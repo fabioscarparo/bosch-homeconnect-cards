@@ -1,4 +1,6 @@
-<h1 align="center">Bosch Home Connect Cards</h1>
+<p align="center">
+  <img src="images/header.svg" alt="BHC Cards HA - Bosch Home Connect cards for Home Assistant" width="420">
+</p>
 
 <p align="center">
   <strong>Home Assistant cards for Bosch and Siemens appliances,<br>
