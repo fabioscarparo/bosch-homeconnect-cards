@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Render SVG images</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=block" rel="stylesheet" />
+    <link rel="stylesheet" href="../demo/theme.css" />
+    <style>
+      #stage { position: absolute; left: 0; top: 0; width: 400px; }
+      #out { position: relative; z-index: 1; padding: 24px; background: #808080; display: flex; flex-direction: column; gap: 24px; }
+      #out img { max-width: 100%; display: block; }
+      #status { position: relative; z-index: 1; font: 14px monospace; padding: 12px 24px; background: #fff; color: #000; }
+    </style>
+  </head>
+  <body>
+    <div id="status">Rendering…</div>
+    <div id="stage"></div>
+    <div id="out"></div>
+    <script type="module">
+      // A fixed clock, so times in the images don't change on every run
+      const FIXED = new Date("2026-10-09T18:42:00").getTime();
+      Date.now = () => FIXED;
+
+      await import("../demo/stubs.js");
+      await import("../bosch-homeconnect-cards.js");
+      const { MockStore } = await import("../demo/mock.js");
+      const { SvgWriter, embeddedFonts, document_ } = await import("./svg.js");
+
+      const status = document.getElementById("status");
+      const stage = document.getElementById("stage");
+      const out = document.getElementById("out");
+      const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+      const CARDS = {
+        washer: {
+          model: "Washer",
+          title: "Washer",
+          items: [
+            ["off", "Off"],
+            ["offline", "Disconnected"],
+            ["ready", "Ready"],
+            ["run", "Running"],
+            ["pause", "Paused"],
+            ["foam", "Foam alert"],
+            ["done", "Finished"],
+            ["run", "Compact view", { compact: true }],
+          ],
+        },
+        dishwasher: {
+          model: "Dishwasher",
+          title: "Dishwasher",
+          items: [
+            ["off", "Off"],
+            ["ready", "Ready"],
+            ["delayed", "Delayed start"],
+            ["run", "Running"],
+            ["salt", "Salt empty"],
+            ["done", "Finished"],
+            ["delayed", "Compact view", { compact: true }],
+          ],
+        },
+        oven: {
+          model: "Oven",
+          title: "Oven",
+          items: [
+            ["off", "Off"],
+            ["ready", "Ready"],
+            ["preheat", "Preheating"],
+            ["food", "Insert food"],
+            ["cook", "Cooking"],
+            ["dish", "Automatic recipe"],
+            ["done", "Finished"],
+            ["ready", "Program picker", { sheet: "programs" }],
+            ["cook", "Compact view", { compact: true }],
+          ],
+        },
+        hob: {
+          model: "Hob",
+          title: "Induction hob",
+          items: [
+            ["off", "Off"],
+            ["residual", "Residual heat"],
+            ["cook", "Cooking"],
+            ["confirm", "Confirm on the hob"],
+            ["flex", "Flex zone"],
+            ["cook", "Zone control", { sheet: "zone" }],
+          ],
+        },
+      };
+      const TAGS = {
+        Washer: "homeconnect-washer-card",
+        Dishwasher: "homeconnect-dishwasher-card",
+        Oven: "homeconnect-oven-card",
+        Hob: "homeconnect-hob-card",
+      };
+
+      const store = await MockStore.load();
+      store.lang = "en";
+      await document.fonts.load("400 16px Roboto");
+      await document.fonts.load("500 16px Roboto");
+      await document.fonts.ready;
+
+      const NO_MOTION = "*, *::before, *::after { transition: none !important; animation: none !important; }";
+      let counter = 0;
+
+      async function renderItem(writer, model, scenario, { compact = false, sheet } = {}) {
+        store.scenario(model, scenario);
+        store.build();
+        const card = document.createElement(TAGS[model]);
+        card.setConfig({ type: `custom:${TAGS[model]}`, device_id: store.device(model).id, hide_hero: compact });
+        stage.appendChild(card);
+        const style = document.createElement("style");
+        style.textContent = NO_MOTION;
+        card.shadowRoot.appendChild(style);
+        card.hass = store.hass;
+        await sleep(30);
+        let target = card;
+        if (sheet) {
+          if (sheet === "programs") card._openSheet({ type: "programs" });
+          else card._onAction("zone", { dataset: { zone: "400" } });
+          target = card.shadowRoot.querySelector("dialog");
+          // Drawn with the card border instead of the shadow, which would fall outside the image
+          target.style.cssText =
+            "width:400px;max-height:600px;margin:0;position:fixed;left:0;top:0;animation:none;box-shadow:none;" +
+            "border:var(--ha-card-border-width, 1px) solid var(--ha-card-border-color, var(--divider-color))";
+          target.querySelector(".selected")?.scrollIntoView({ block: "center" });
+          await sleep(30);
+        }
+        const result = writer.render(target, `c${counter++}`);
+        if (sheet) target.close();
+        card.remove();
+        return result;
+      }
+
+      function theme(name) {
+        document.documentElement.classList.toggle("dark", name === "dark");
+        store.dark = name === "dark";
+      }
+
+      async function save(name, svg) {
+        await fetch(`/images/${name}`, { method: "PUT", body: svg, headers: { "Content-Type": "image/svg+xml" } });
+        const img = new Image();
+        img.src = `/images/${name}?t=${Date.now()}`;
+        img.title = name;
+        out.appendChild(img);
+      }
+
+      async function finish(writer, { width, height, body }) {
+        let fonts = "";
+        try {
+          fonts = await embeddedFonts(writer.chars);
+        } catch (err) {
+          console.warn("Fonts not embedded", err);
+        }
+        return document_({ width, height, body, fonts });
+      }
+
+      // Only the cards: no background, no padding, no captions, 16 px between
+      // cards like a Home Assistant section
+      const W = 400;
+      const GAP = 16;
+
+      // One sheet per card, with every state in reading order
+      async function renderSheet(key, themeName) {
+        const spec = CARDS[key];
+        theme(themeName);
+        const writer = new SvgWriter();
+        const COLS = 4;
+        const rendered = [];
+        for (const [scenario, , options] of spec.items) {
+          rendered.push(await renderItem(writer, spec.model, scenario, options));
+        }
+        const parts = [];
+        let top = 0;
+        for (let row = 0; row < rendered.length; row += COLS) {
+          const items = rendered.slice(row, row + COLS);
+          items.forEach((item, col) => parts.push(`<g transform="translate(${col * (W + GAP)} ${top})">${item.svg}</g>`));
+          top += Math.max(...items.map((item) => item.height)) + GAP;
+        }
+        const cols = Math.min(COLS, rendered.length);
+        return finish(writer, { width: cols * W + (cols - 1) * GAP, height: top - GAP, body: parts.join("\n") });
+      }
+
+      // A dashboard-like wall mixing all four cards. The columns are picked so
+      // they all end at the same height: the render reports it when they don't.
+      const WALL = [
+        [
+          ["Washer", "run"],
+          ["Hob", "cook"],
+          ["Oven", "dish"],
+        ],
+        [
+          ["Oven", "cook"],
+          ["Washer", "pause", { compact: true }],
+          ["Dishwasher", "done"],
+        ],
+        [
+          ["Dishwasher", "ready"],
+          ["Hob", "residual"],
+          ["Oven", "preheat"],
+        ],
+      ];
+
+      async function renderWall(themeName) {
+        theme(themeName);
+        const writer = new SvgWriter();
+        const parts = [];
+        const columns = [];
+        for (let col = 0; col < WALL.length; col++) {
+          let top = 0;
+          for (const [model, scenario, options] of WALL[col]) {
+            const item = await renderItem(writer, model, scenario, options);
+            parts.push(`<g transform="translate(${col * (W + GAP)} ${top})">${item.svg}</g>`);
+            top += item.height + GAP;
+          }
+          columns.push(top - GAP);
+        }
+        if (Math.max(...columns) - Math.min(...columns) > 0.5) {
+          warnings.push(`wall-${themeName}: columns end at ${columns.join(", ")}`);
+        }
+        const width = WALL.length * W + (WALL.length - 1) * GAP;
+        return finish(writer, { width, height: Math.max(...columns), body: parts.join("\n") });
+      }
+
+      const done = [];
+      const warnings = [];
+      for (const themeName of ["light", "dark"]) {
+        for (const key of Object.keys(CARDS)) {
+          status.textContent = `Rendering ${key} (${themeName})…`;
+          await save(`${key}-${themeName}.svg`, await renderSheet(key, themeName));
+          done.push(`${key}-${themeName}.svg`);
+        }
+        status.textContent = `Rendering wall (${themeName})…`;
+        await save(`wall-${themeName}.svg`, await renderWall(themeName));
+        done.push(`wall-${themeName}.svg`);
+      }
+      theme("light");
+      status.textContent = `Done: ${done.join(", ")}${warnings.length ? ` | Not aligned: ${warnings.join("; ")}` : ""}`;
+      window.renderDone = done;
+    </script>
+  </body>
+</html>

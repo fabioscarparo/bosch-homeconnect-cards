@@ -1,0 +1,3193 @@
+{
+ "devices": [
+  {
+   "id": "oven",
+   "name": "Oven",
+   "model": "Oven",
+   "manufacturer": "BSH"
+  },
+  {
+   "id": "dishwasher",
+   "name": "Dishwasher",
+   "model": "Dishwasher",
+   "manufacturer": "BSH"
+  },
+  {
+   "id": "washer",
+   "name": "Washer",
+   "model": "Washer",
+   "manufacturer": "BSH"
+  },
+  {
+   "id": "hob",
+   "name": "Induction Hob",
+   "model": "Hob",
+   "manufacturer": "BSH"
+  }
+ ],
+ "entities": [
+  {
+   "entity_id": "binary_sensor.oven_oven_open_door",
+   "device_id": "oven",
+   "key": "binary_sensor_oven_open_door",
+   "category": "diagnostic",
+   "state": "off",
+   "attributes": {
+    "icon": "mdi:door-open",
+    "friendly_name": "Oven Oven open door"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.oven_oven_close_door",
+   "device_id": "oven",
+   "key": "binary_sensor_oven_close_door",
+   "category": "diagnostic",
+   "state": "off",
+   "attributes": {
+    "icon": "mdi:door-closed",
+    "friendly_name": "Oven Oven close door"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.oven_confirm_permanent_remote_start",
+   "device_id": "oven",
+   "key": "binary_sensor_confirm_permanent_remote_start",
+   "category": "diagnostic",
+   "state": "off",
+   "attributes": {
+    "icon": "mdi:remote-desktop",
+    "friendly_name": "Oven Confirm permanent remote start"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.oven_remote_control_active",
+   "device_id": "oven",
+   "key": "binary_sensor_remote_control_active",
+   "category": null,
+   "state": "on",
+   "attributes": {
+    "icon": "mdi:remote",
+    "friendly_name": "Oven Remote control active"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.oven_local_control_active",
+   "device_id": "oven",
+   "key": "binary_sensor_local_control_active",
+   "category": null,
+   "state": "off",
+   "attributes": {
+    "icon": "mdi:gesture-tap-button",
+    "friendly_name": "Oven Local control active"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.oven_oven_turn_food_now",
+   "device_id": "oven",
+   "key": "binary_sensor_oven_turn_food_now",
+   "category": "diagnostic",
+   "state": "off",
+   "attributes": {
+    "icon": "mdi:rotate-3d-variant",
+    "friendly_name": "Oven Oven turn food now"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.oven_oven_insert_food_now",
+   "device_id": "oven",
+   "key": "binary_sensor_oven_insert_food_now",
+   "category": "diagnostic",
+   "state": "off",
+   "attributes": {
+    "icon": "mdi:food",
+    "friendly_name": "Oven Oven insert food now"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.oven_oven_fast_preheat_001",
+   "device_id": "oven",
+   "key": "binary_sensor_oven_fast_preheat_001",
+   "category": "diagnostic",
+   "state": "unavailable",
+   "attributes": {
+    "icon": "mdi:fast-forward",
+    "friendly_name": "Oven Oven fast preheat 001"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.oven_oven_regular_preheat_finished",
+   "device_id": "oven",
+   "key": "binary_sensor_oven_regular_preheat_finished",
+   "category": "diagnostic",
+   "state": "off",
+   "attributes": {
+    "icon": "mdi:thermometer-check",
+    "friendly_name": "Oven Oven regular preheat finished"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.oven_oven_program_aborted",
+   "device_id": "oven",
+   "key": "binary_sensor_oven_program_aborted",
+   "category": "diagnostic",
+   "state": "off",
+   "attributes": {
+    "icon": "mdi:cancel",
+    "friendly_name": "Oven Oven program aborted"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.oven_oven_program_finished",
+   "device_id": "oven",
+   "key": "binary_sensor_oven_program_finished",
+   "category": "diagnostic",
+   "state": "off",
+   "attributes": {
+    "icon": "mdi:check-circle-outline",
+    "friendly_name": "Oven Oven program finished"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.oven_oven_fast_preheat_finished",
+   "device_id": "oven",
+   "key": "binary_sensor_oven_fast_preheat_finished",
+   "category": "diagnostic",
+   "state": "off",
+   "attributes": {
+    "icon": "mdi:fast-forward",
+    "friendly_name": "Oven Oven fast preheat finished"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.oven_oven_cavity_temperature_too_high",
+   "device_id": "oven",
+   "key": "binary_sensor_oven_cavity_temperature_too_high",
+   "category": "diagnostic",
+   "state": "off",
+   "attributes": {
+    "icon": "mdi:thermometer-alert",
+    "friendly_name": "Oven Oven cavity temperature too high"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.oven_oven_startable_001",
+   "device_id": "oven",
+   "key": "binary_sensor_oven_startable_001",
+   "category": "diagnostic",
+   "state": "on",
+   "attributes": {
+    "icon": "mdi:play-circle-outline",
+    "friendly_name": "Oven Oven startable 001"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.oven_oven_selectable_001",
+   "device_id": "oven",
+   "key": "binary_sensor_oven_selectable_001",
+   "category": "diagnostic",
+   "state": "on",
+   "attributes": {
+    "icon": "mdi:checkbox-marked-circle-outline",
+    "friendly_name": "Oven Oven selectable 001"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.oven_connection",
+   "device_id": "oven",
+   "key": "connection",
+   "category": "diagnostic",
+   "state": "on",
+   "attributes": {
+    "device_class": "connectivity",
+    "friendly_name": "Oven Connection"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.oven_interior_illumination",
+   "device_id": "oven",
+   "key": "binary_sensor_interior_illumination",
+   "category": "diagnostic",
+   "state": "off",
+   "attributes": {
+    "friendly_name": "Oven Interior Illumination"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.oven_door_state",
+   "device_id": "oven",
+   "key": "binary_sensor_door_state",
+   "category": null,
+   "state": "off",
+   "attributes": {
+    "device_class": "door",
+    "friendly_name": "Oven Door"
+   }
+  },
+  {
+   "entity_id": "button.oven_start_program",
+   "device_id": "oven",
+   "key": "button_start_program",
+   "category": null,
+   "state": "unknown",
+   "attributes": {
+    "friendly_name": "Oven Start"
+   }
+  },
+  {
+   "entity_id": "button.oven_deactivate_remote_control",
+   "device_id": "oven",
+   "key": "button_deactivate_remote_control",
+   "category": "config",
+   "state": "unavailable",
+   "attributes": {
+    "icon": "mdi:remote-off",
+    "friendly_name": "Oven Deactivate remote control"
+   }
+  },
+  {
+   "entity_id": "button.oven_abort_program",
+   "device_id": "oven",
+   "key": "button_abort_program",
+   "category": null,
+   "state": "unknown",
+   "attributes": {
+    "friendly_name": "Oven Abort"
+   }
+  },
+  {
+   "entity_id": "button.oven_oven_resume",
+   "device_id": "oven",
+   "key": "button_oven_resume",
+   "category": null,
+   "state": "unavailable",
+   "attributes": {
+    "icon": "mdi:play-pause",
+    "friendly_name": "Oven Oven resume"
+   }
+  },
+  {
+   "entity_id": "button.oven_oven_pause",
+   "device_id": "oven",
+   "key": "button_oven_pause",
+   "category": null,
+   "state": "unknown",
+   "attributes": {
+    "icon": "mdi:pause",
+    "friendly_name": "Oven Oven pause"
+   }
+  },
+  {
+   "entity_id": "button.oven_deactivate_remote_control_start",
+   "device_id": "oven",
+   "key": "button_deactivate_remote_control_start",
+   "category": "config",
+   "state": "unknown",
+   "attributes": {
+    "icon": "mdi:remote-off",
+    "friendly_name": "Oven Deactivate remote control start"
+   }
+  },
+  {
+   "entity_id": "number.oven_duration",
+   "device_id": "oven",
+   "key": "number_duration",
+   "category": null,
+   "state": "3600",
+   "attributes": {
+    "min": 1,
+    "max": 266400,
+    "step": 1,
+    "mode": "auto",
+    "unit_of_measurement": "s",
+    "device_class": "duration",
+    "friendly_name": "Oven Duration"
+   }
+  },
+  {
+   "entity_id": "number.oven_oven_weight",
+   "device_id": "oven",
+   "key": "number_oven_weight",
+   "category": null,
+   "state": "0",
+   "attributes": {
+    "min": 0,
+    "max": 4500,
+    "step": 50,
+    "mode": "box",
+    "unit_of_measurement": "g",
+    "device_class": "weight",
+    "icon": "mdi:scale",
+    "friendly_name": "Oven Oven weight"
+   }
+  },
+  {
+   "entity_id": "number.oven_oven_setpoint_temperature",
+   "device_id": "oven",
+   "key": "number_oven_setpoint_temperature",
+   "category": null,
+   "state": "155.0",
+   "attributes": {
+    "min": 30,
+    "max": 300,
+    "step": 1,
+    "mode": "auto",
+    "unit_of_measurement": "°C",
+    "device_class": "temperature",
+    "icon": "mdi:thermometer-auto",
+    "friendly_name": "Oven Setpoint Temperature"
+   }
+  },
+  {
+   "entity_id": "number.oven_oven_display_brightness",
+   "device_id": "oven",
+   "key": "number_oven_display_brightness",
+   "category": "config",
+   "state": "4",
+   "attributes": {
+    "min": 0,
+    "max": 4,
+    "step": 1,
+    "mode": "slider",
+    "icon": "mdi:brightness-6",
+    "friendly_name": "Oven Display brightness"
+   }
+  },
+  {
+   "entity_id": "number.oven_oven_start_in_relative",
+   "device_id": "oven",
+   "key": "number_oven_start_in_relative",
+   "category": null,
+   "state": "0",
+   "attributes": {
+    "min": 0,
+    "max": 86340,
+    "step": 60,
+    "mode": "box",
+    "unit_of_measurement": "s",
+    "device_class": "duration",
+    "icon": "mdi:timer-plus-outline",
+    "friendly_name": "Oven Oven start in relative"
+   }
+  },
+  {
+   "entity_id": "select.oven_oven_signal_duration",
+   "device_id": "oven",
+   "key": "select_oven_signal_duration",
+   "category": "config",
+   "state": "medium",
+   "attributes": {
+    "options": [
+     "short",
+     "medium",
+     "long",
+     "onlyonetime"
+    ],
+    "icon": "mdi:bell-ring-outline",
+    "friendly_name": "Oven Signal duration"
+   }
+  },
+  {
+   "entity_id": "select.oven_oven_cavity_selector",
+   "device_id": "oven",
+   "key": "select_oven_cavity_selector",
+   "category": null,
+   "state": "main",
+   "attributes": {
+    "options": [
+     "main"
+    ],
+    "icon": "mdi:oven",
+    "friendly_name": "Oven Oven cavity selector"
+   }
+  },
+  {
+   "entity_id": "select.oven_oven_child_lock_setting",
+   "device_id": "oven",
+   "key": "select_oven_child_lock_setting",
+   "category": "config",
+   "state": "activated",
+   "attributes": {
+    "options": [
+     "deactivated",
+     "activated",
+     "activatedwithdoorlock"
+    ],
+    "icon": "mdi:lock-child",
+    "friendly_name": "Oven Child lock setting"
+   }
+  },
+  {
+   "entity_id": "select.oven_oven_level",
+   "device_id": "oven",
+   "key": "select_oven_level",
+   "category": null,
+   "state": "level03",
+   "attributes": {
+    "options": [
+     "level01",
+     "level02",
+     "level03"
+    ],
+    "icon": "mdi:format-list-numbered",
+    "friendly_name": "Oven Level"
+   }
+  },
+  {
+   "entity_id": "select.oven_pyrolysis_level",
+   "device_id": "oven",
+   "key": "select_pyrolysis_level",
+   "category": null,
+   "state": "level02",
+   "attributes": {
+    "options": [
+     "level01",
+     "level02"
+    ],
+    "icon": "mdi:fire",
+    "friendly_name": "Oven Pyrolysis level"
+   }
+  },
+  {
+   "entity_id": "select.oven_program",
+   "device_id": "oven",
+   "key": "select_program",
+   "category": null,
+   "state": "unknown",
+   "attributes": {
+    "options": [
+     "favorite_001",
+     "favorite_002",
+     "favorite_003",
+     "favorite_004",
+     "favorite_005",
+     "favorite_006",
+     "favorite_007",
+     "favorite_008",
+     "favorite_009",
+     "favorite_010",
+     "cooking_oven_program_cleaning_drying",
+     "cooking_oven_program_cleaning_easyclean",
+     "cooking_oven_program_cleaning_pyrolysis",
+     "cooking_oven_program_dish_automatic_conv_belly",
+     "cooking_oven_program_dish_automatic_conv_bonelesslegoflambmedium",
+     "cooking_oven_program_dish_automatic_conv_bonelessporkneckjoint",
+     "cooking_oven_program_dish_automatic_conv_gooselegs",
+     "cooking_oven_program_dish_automatic_conv_jointofporkwithcracklingegshoulder",
+     "cooking_oven_program_dish_automatic_conv_jointofveallean",
+     "cooking_oven_program_dish_automatic_conv_jointofvealmarbled",
+     "cooking_oven_program_dish_automatic_conv_legoflambonthebonewelldone",
+     "cooking_oven_program_dish_automatic_conv_meatloafmadefromfreshmincedmeat",
+     "cooking_oven_program_dish_automatic_conv_pavlova",
+     "cooking_oven_program_dish_automatic_conv_potroastedbeef",
+     "cooking_oven_program_dish_automatic_conv_roastporkloin",
+     "cooking_oven_program_dish_automatic_conv_sirloinmedium",
+     "cooking_oven_program_dish_automatic_conv_sirloinrare",
+     "cooking_oven_program_dish_automatic_conv_slowroastjoint",
+     "cooking_oven_program_dish_automatic_conv_stewwithmeat",
+     "cooking_oven_program_dish_automatic_conv_stewwithvegetables",
+     "cooking_oven_program_dish_automatic_conv_turkeybreast",
+     "cooking_oven_program_dish_automatic_conv_unstuffedduck",
+     "cooking_oven_program_dish_automatic_conv_unstuffedsmallturkey",
+     "cooking_oven_program_dish_automatic_conv_vealossobuco",
+     "cooking_oven_program_dish_recommendation_conv_bakesavouryfreshcookedingredients",
+     "cooking_oven_program_dish_recommendation_conv_bonlessrolledshoulder",
+     "cooking_oven_program_dish_recommendation_conv_chickenparts",
+     "cooking_oven_program_dish_recommendation_conv_chips",
+     "cooking_oven_program_dish_recommendation_conv_freshlasagne",
+     "cooking_oven_program_dish_recommendation_conv_fruitcrumble",
+     "cooking_oven_program_dish_recommendation_conv_halvedchicken",
+     "cooking_oven_program_dish_recommendation_conv_loinjoint",
+     "cooking_oven_program_dish_recommendation_conv_muffins",
+     "cooking_oven_program_dish_recommendation_conv_partcookedbreadrollsorbaguette",
+     "cooking_oven_program_dish_recommendation_conv_pizzathickcrust1slicefrozen",
+     "cooking_oven_program_dish_recommendation_conv_pizzathincrust1slice",
+     "cooking_oven_program_dish_recommendation_conv_porkroast",
+     "cooking_oven_program_dish_recommendation_conv_potatogratinrawingredients4cmdeep",
+     "cooking_oven_program_dish_recommendation_conv_roastwholefish",
+     "cooking_oven_program_dish_recommendation_conv_scones",
+     "cooking_oven_program_dish_recommendation_conv_topsideandtoprump",
+     "cooking_oven_program_dish_recommendation_conv_turkeycrownbritishstyle",
+     "cooking_oven_program_dish_recommendation_conv_wholebakedpotatoes",
+     "cooking_oven_program_heatingmode_3dhotair",
+     "cooking_oven_program_heatingmode_airfry",
+     "cooking_oven_program_heatingmode_bottomheating",
+     "cooking_oven_program_heatingmode_defrost",
+     "cooking_oven_program_heatingmode_grilllargearea",
+     "cooking_oven_program_heatingmode_grillsmallarea",
+     "cooking_oven_program_heatingmode_hotairgentle",
+     "cooking_oven_program_heatingmode_hotairgrilling",
+     "cooking_oven_program_heatingmode_keepwarm",
+     "cooking_oven_program_heatingmode_letrest",
+     "cooking_oven_program_heatingmode_pizzasetting",
+     "cooking_oven_program_heatingmode_preheating",
+     "cooking_oven_program_heatingmode_preheatovenware",
+     "cooking_oven_program_heatingmode_slowcook",
+     "cooking_oven_program_heatingmode_topbottomheating",
+     "cooking_oven_program_heatingmode_topbottomheatingeco",
+     "cooking_oven_program_subsequentmode_continuecooking",
+     "cooking_oven_program_subsequentmode_keepwarm",
+     "cooking_oven_program_subsequentmode_leavetorest",
+     "cooking_oven_program_subsequentmode_startbaking"
+    ],
+    "friendly_name": "Oven Selected Program"
+   }
+  },
+  {
+   "entity_id": "select.oven_oven_cooling_fan_runtime",
+   "device_id": "oven",
+   "key": "select_oven_cooling_fan_runtime",
+   "category": "config",
+   "state": "middle",
+   "attributes": {
+    "options": [
+     "short",
+     "middle",
+     "long",
+     "verylong"
+    ],
+    "icon": "mdi:fan-clock",
+    "friendly_name": "Oven Coolingfan runtime"
+   }
+  },
+  {
+   "entity_id": "sensor.oven_program_progress",
+   "device_id": "oven",
+   "key": "sensor_program_progress",
+   "category": null,
+   "state": "unknown",
+   "attributes": {
+    "unit_of_measurement": "%",
+    "friendly_name": "Oven Program Progress"
+   }
+  },
+  {
+   "entity_id": "sensor.oven_start_in",
+   "device_id": "oven",
+   "key": "sensor_start_in",
+   "category": null,
+   "state": "0.0",
+   "attributes": {
+    "unit_of_measurement": "h",
+    "device_class": "duration",
+    "friendly_name": "Oven Start in"
+   }
+  },
+  {
+   "entity_id": "sensor.oven_oven_base_program_001",
+   "device_id": "oven",
+   "key": "sensor_oven_base_program_001",
+   "category": "diagnostic",
+   "state": "unavailable",
+   "attributes": {
+    "icon": "mdi:identifier",
+    "friendly_name": "Oven Oven base program 001"
+   }
+  },
+  {
+   "entity_id": "sensor.oven_oven_weight_001",
+   "device_id": "oven",
+   "key": "sensor_oven_weight_001",
+   "category": "diagnostic",
+   "state": "unavailable",
+   "attributes": {
+    "unit_of_measurement": "g",
+    "device_class": "weight",
+    "icon": "mdi:scale",
+    "friendly_name": "Oven Oven weight 001"
+   }
+  },
+  {
+   "entity_id": "sensor.oven_oven_program_name_001",
+   "device_id": "oven",
+   "key": "sensor_oven_program_name_001",
+   "category": null,
+   "state": "unavailable",
+   "attributes": {
+    "icon": "mdi:label-outline",
+    "friendly_name": "Oven Oven program name 001"
+   }
+  },
+  {
+   "entity_id": "sensor.oven_door_state",
+   "device_id": "oven",
+   "key": "sensor_door_state",
+   "category": null,
+   "state": "closed",
+   "attributes": {
+    "options": [
+     "open",
+     "closed",
+     "locked"
+    ],
+    "device_class": "enum",
+    "friendly_name": "Oven Door"
+   }
+  },
+  {
+   "entity_id": "sensor.oven_active_program",
+   "device_id": "oven",
+   "key": "sensor_active_program",
+   "category": null,
+   "state": "unknown",
+   "attributes": {
+    "options": [
+     "favorite_001",
+     "favorite_002",
+     "favorite_003",
+     "favorite_004",
+     "favorite_005",
+     "favorite_006",
+     "favorite_007",
+     "favorite_008",
+     "favorite_009",
+     "favorite_010",
+     "cooking_oven_program_cleaning_drying",
+     "cooking_oven_program_cleaning_easyclean",
+     "cooking_oven_program_cleaning_pyrolysis",
+     "cooking_oven_program_dish_automatic_conv_belly",
+     "cooking_oven_program_dish_automatic_conv_bonelesslegoflambmedium",
+     "cooking_oven_program_dish_automatic_conv_bonelessporkneckjoint",
+     "cooking_oven_program_dish_automatic_conv_gooselegs",
+     "cooking_oven_program_dish_automatic_conv_jointofporkwithcracklingegshoulder",
+     "cooking_oven_program_dish_automatic_conv_jointofveallean",
+     "cooking_oven_program_dish_automatic_conv_jointofvealmarbled",
+     "cooking_oven_program_dish_automatic_conv_legoflambonthebonewelldone",
+     "cooking_oven_program_dish_automatic_conv_meatloafmadefromfreshmincedmeat",
+     "cooking_oven_program_dish_automatic_conv_pavlova",
+     "cooking_oven_program_dish_automatic_conv_potroastedbeef",
+     "cooking_oven_program_dish_automatic_conv_roastporkloin",
+     "cooking_oven_program_dish_automatic_conv_sirloinmedium",
+     "cooking_oven_program_dish_automatic_conv_sirloinrare",
+     "cooking_oven_program_dish_automatic_conv_slowroastjoint",
+     "cooking_oven_program_dish_automatic_conv_stewwithmeat",
+     "cooking_oven_program_dish_automatic_conv_stewwithvegetables",
+     "cooking_oven_program_dish_automatic_conv_turkeybreast",
+     "cooking_oven_program_dish_automatic_conv_unstuffedduck",
+     "cooking_oven_program_dish_automatic_conv_unstuffedsmallturkey",
+     "cooking_oven_program_dish_automatic_conv_vealossobuco",
+     "cooking_oven_program_dish_recommendation_conv_bakesavouryfreshcookedingredients",
+     "cooking_oven_program_dish_recommendation_conv_bonlessrolledshoulder",
+     "cooking_oven_program_dish_recommendation_conv_chickenparts",
+     "cooking_oven_program_dish_recommendation_conv_chips",
+     "cooking_oven_program_dish_recommendation_conv_freshlasagne",
+     "cooking_oven_program_dish_recommendation_conv_fruitcrumble",
+     "cooking_oven_program_dish_recommendation_conv_halvedchicken",
+     "cooking_oven_program_dish_recommendation_conv_loinjoint",
+     "cooking_oven_program_dish_recommendation_conv_muffins",
+     "cooking_oven_program_dish_recommendation_conv_partcookedbreadrollsorbaguette",
+     "cooking_oven_program_dish_recommendation_conv_pizzathickcrust1slicefrozen",
+     "cooking_oven_program_dish_recommendation_conv_pizzathincrust1slice",
+     "cooking_oven_program_dish_recommendation_conv_porkroast",
+     "cooking_oven_program_dish_recommendation_conv_potatogratinrawingredients4cmdeep",
+     "cooking_oven_program_dish_recommendation_conv_roastwholefish",
+     "cooking_oven_program_dish_recommendation_conv_scones",
+     "cooking_oven_program_dish_recommendation_conv_topsideandtoprump",
+     "cooking_oven_program_dish_recommendation_conv_turkeycrownbritishstyle",
+     "cooking_oven_program_dish_recommendation_conv_wholebakedpotatoes",
+     "cooking_oven_program_heatingmode_3dhotair",
+     "cooking_oven_program_heatingmode_airfry",
+     "cooking_oven_program_heatingmode_bottomheating",
+     "cooking_oven_program_heatingmode_defrost",
+     "cooking_oven_program_heatingmode_grilllargearea",
+     "cooking_oven_program_heatingmode_grillsmallarea",
+     "cooking_oven_program_heatingmode_hotairgentle",
+     "cooking_oven_program_heatingmode_hotairgrilling",
+     "cooking_oven_program_heatingmode_keepwarm",
+     "cooking_oven_program_heatingmode_letrest",
+     "cooking_oven_program_heatingmode_pizzasetting",
+     "cooking_oven_program_heatingmode_preheating",
+     "cooking_oven_program_heatingmode_preheatovenware",
+     "cooking_oven_program_heatingmode_slowcook",
+     "cooking_oven_program_heatingmode_topbottomheating",
+     "cooking_oven_program_heatingmode_topbottomheatingeco",
+     "cooking_oven_program_subsequentmode_continuecooking",
+     "cooking_oven_program_subsequentmode_keepwarm",
+     "cooking_oven_program_subsequentmode_leavetorest",
+     "cooking_oven_program_subsequentmode_startbaking"
+    ],
+    "device_class": "enum",
+    "friendly_name": "Oven Active Program"
+   }
+  },
+  {
+   "entity_id": "sensor.oven_operation_state",
+   "device_id": "oven",
+   "key": "sensor_operation_state",
+   "category": null,
+   "state": "Inactive",
+   "attributes": {
+    "options": [
+     "Inactive",
+     "Ready",
+     "DelayedStart",
+     "Run",
+     "Pause",
+     "ActionRequired",
+     "Finished",
+     "Error",
+     "Aborting"
+    ],
+    "device_class": "enum",
+    "friendly_name": "Oven Operation State"
+   }
+  },
+  {
+   "entity_id": "sensor.oven_power_state",
+   "device_id": "oven",
+   "key": "sensor_power_state",
+   "category": null,
+   "state": "standby",
+   "attributes": {
+    "options": [
+     "on",
+     "standby"
+    ],
+    "device_class": "enum",
+    "friendly_name": "Oven Power state"
+   }
+  },
+  {
+   "entity_id": "sensor.oven_oven_current_temperature",
+   "device_id": "oven",
+   "key": "sensor_oven_current_temperature",
+   "category": null,
+   "state": "36.0",
+   "attributes": {
+    "unit_of_measurement": "°C",
+    "device_class": "temperature",
+    "icon": "mdi:thermometer",
+    "friendly_name": "Oven Current Temperature{group_name}"
+   }
+  },
+  {
+   "entity_id": "sensor.oven_remaining_program_time",
+   "device_id": "oven",
+   "key": "sensor_remaining_program_time",
+   "category": null,
+   "state": "unknown",
+   "attributes": {
+    "unit_of_measurement": "h",
+    "device_class": "duration",
+    "friendly_name": "Oven Remaining Program Time"
+   }
+  },
+  {
+   "entity_id": "sensor.oven_elapsed_program_time",
+   "device_id": "oven",
+   "key": "sensor_elapsed_program_time",
+   "category": null,
+   "state": "2174",
+   "attributes": {
+    "unit_of_measurement": "s",
+    "device_class": "duration",
+    "icon": "mdi:timer-play-outline",
+    "friendly_name": "Oven Elapsed program time"
+   }
+  },
+  {
+   "entity_id": "switch.oven_power_state",
+   "device_id": "oven",
+   "key": "switch_power_state",
+   "category": null,
+   "state": "off",
+   "attributes": {
+    "device_class": "switch",
+    "friendly_name": "Oven Power"
+   }
+  },
+  {
+   "entity_id": "switch.oven_child_lock",
+   "device_id": "oven",
+   "key": "switch_child_lock",
+   "category": null,
+   "state": "off",
+   "attributes": {
+    "device_class": "switch",
+    "friendly_name": "Oven Child lock"
+   }
+  },
+  {
+   "entity_id": "switch.oven_oven_cavity_light",
+   "device_id": "oven",
+   "key": "switch_oven_cavity_light",
+   "category": null,
+   "state": "off",
+   "attributes": {
+    "device_class": "switch",
+    "icon": "mdi:lightbulb",
+    "friendly_name": "Oven Oven cavity light"
+   }
+  },
+  {
+   "entity_id": "switch.oven_oven_fast_pre_heat",
+   "device_id": "oven",
+   "key": "switch_oven_fast_pre_heat",
+   "category": null,
+   "state": "off",
+   "attributes": {
+    "device_class": "switch",
+    "icon": "mdi:fast-forward",
+    "friendly_name": "Oven Fast Preheat"
+   }
+  },
+  {
+   "entity_id": "switch.oven_oven_button_tones",
+   "device_id": "oven",
+   "key": "switch_oven_button_tones",
+   "category": "config",
+   "state": "on",
+   "attributes": {
+    "device_class": "switch",
+    "icon": "mdi:cellphone-sound",
+    "friendly_name": "Oven Button tones"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.dishwasher_confirm_permanent_remote_start",
+   "device_id": "dishwasher",
+   "key": "binary_sensor_confirm_permanent_remote_start",
+   "category": "diagnostic",
+   "state": "off",
+   "attributes": {
+    "icon": "mdi:remote-desktop",
+    "friendly_name": "Dishwasher Confirm permanent remote start"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.dishwasher_remote_control_active",
+   "device_id": "dishwasher",
+   "key": "binary_sensor_remote_control_active",
+   "category": null,
+   "state": "on",
+   "attributes": {
+    "icon": "mdi:remote",
+    "friendly_name": "Dishwasher Remote control active"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.dishwasher_connection",
+   "device_id": "dishwasher",
+   "key": "connection",
+   "category": "diagnostic",
+   "state": "on",
+   "attributes": {
+    "device_class": "connectivity",
+    "friendly_name": "Dishwasher Connection"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.dishwasher_door_state",
+   "device_id": "dishwasher",
+   "key": "binary_sensor_door_state",
+   "category": null,
+   "state": "on",
+   "attributes": {
+    "device_class": "door",
+    "friendly_name": "Dishwasher Door"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.dishwasher_program_aborted",
+   "device_id": "dishwasher",
+   "key": "binary_sensor_program_aborted",
+   "category": "diagnostic",
+   "state": "off",
+   "attributes": {
+    "device_class": "problem",
+    "friendly_name": "Dishwasher Program Aborted"
+   }
+  },
+  {
+   "entity_id": "button.dishwasher_start_program",
+   "device_id": "dishwasher",
+   "key": "button_start_program",
+   "category": null,
+   "state": "unavailable",
+   "attributes": {
+    "friendly_name": "Dishwasher Start"
+   }
+  },
+  {
+   "entity_id": "button.dishwasher_abort_program",
+   "device_id": "dishwasher",
+   "key": "button_abort_program",
+   "category": null,
+   "state": "unavailable",
+   "attributes": {
+    "friendly_name": "Dishwasher Abort"
+   }
+  },
+  {
+   "entity_id": "button.dishwasher_deactivate_remote_control_start",
+   "device_id": "dishwasher",
+   "key": "button_deactivate_remote_control_start",
+   "category": "config",
+   "state": "unknown",
+   "attributes": {
+    "icon": "mdi:remote-off",
+    "friendly_name": "Dishwasher Deactivate remote control start"
+   }
+  },
+  {
+   "entity_id": "number.dishwasher_oven_start_in_relative",
+   "device_id": "dishwasher",
+   "key": "number_oven_start_in_relative",
+   "category": null,
+   "state": "0",
+   "attributes": {
+    "min": 0,
+    "max": 86400,
+    "step": 60,
+    "mode": "box",
+    "unit_of_measurement": "s",
+    "device_class": "duration",
+    "icon": "mdi:timer-plus-outline",
+    "friendly_name": "Dishwasher Oven start in relative"
+   }
+  },
+  {
+   "entity_id": "select.dishwasher_program",
+   "device_id": "dishwasher",
+   "key": "select_program",
+   "category": null,
+   "state": "dishcare_dishwasher_program_eco50",
+   "attributes": {
+    "options": [
+     "favorite_001",
+     "dishcare_dishwasher_program_auto2",
+     "dishcare_dishwasher_program_eco50",
+     "dishcare_dishwasher_program_glas40",
+     "dishcare_dishwasher_program_intensiv70",
+     "dishcare_dishwasher_program_intensivpower",
+     "dishcare_dishwasher_program_kurz60",
+     "dishcare_dishwasher_program_machinecare",
+     "dishcare_dishwasher_program_mixedload",
+     "dishcare_dishwasher_program_nightwash",
+     "dishcare_dishwasher_program_prerinse",
+     "dishcare_dishwasher_program_quick45",
+     "dishcare_dishwasher_program_quickd",
+     "dishcare_dishwasher_program_super60"
+    ],
+    "friendly_name": "Dishwasher Selected Program"
+   }
+  },
+  {
+   "entity_id": "sensor.dishwasher_program_progress",
+   "device_id": "dishwasher",
+   "key": "sensor_program_progress",
+   "category": null,
+   "state": "0.0",
+   "attributes": {
+    "unit_of_measurement": "%",
+    "friendly_name": "Dishwasher Program Progress"
+   }
+  },
+  {
+   "entity_id": "sensor.dishwasher_start_in",
+   "device_id": "dishwasher",
+   "key": "sensor_start_in",
+   "category": null,
+   "state": "0.0",
+   "attributes": {
+    "unit_of_measurement": "h",
+    "device_class": "duration",
+    "friendly_name": "Dishwasher Start in"
+   }
+  },
+  {
+   "entity_id": "sensor.dishwasher_rinse_aid",
+   "device_id": "dishwasher",
+   "key": "sensor_rinse_aid",
+   "category": null,
+   "state": "full",
+   "attributes": {
+    "options": [
+     "empty",
+     "nearly_empty",
+     "full"
+    ],
+    "device_class": "enum",
+    "friendly_name": "Dishwasher Rinse Aid"
+   }
+  },
+  {
+   "entity_id": "sensor.dishwasher_program_phase",
+   "device_id": "dishwasher",
+   "key": "sensor_program_phase",
+   "category": null,
+   "state": "unknown",
+   "attributes": {
+    "options": [
+     "None",
+     "PreRinse",
+     "MainWash",
+     "FinalRinse",
+     "Drying"
+    ],
+    "device_class": "enum",
+    "friendly_name": "Dishwasher Program phase"
+   }
+  },
+  {
+   "entity_id": "sensor.dishwasher_water_forecast",
+   "device_id": "dishwasher",
+   "key": "sensor_water_forecast",
+   "category": "diagnostic",
+   "state": "42.0",
+   "attributes": {
+    "unit_of_measurement": "%",
+    "friendly_name": "Dishwasher Water Forecast"
+   }
+  },
+  {
+   "entity_id": "sensor.dishwasher_energy_forecast",
+   "device_id": "dishwasher",
+   "key": "sensor_energy_forecast",
+   "category": "diagnostic",
+   "state": "40.0",
+   "attributes": {
+    "unit_of_measurement": "%",
+    "friendly_name": "Dishwasher Energy Forecast"
+   }
+  },
+  {
+   "entity_id": "sensor.dishwasher_active_program",
+   "device_id": "dishwasher",
+   "key": "sensor_active_program",
+   "category": null,
+   "state": "unknown",
+   "attributes": {
+    "options": [
+     "favorite_001",
+     "dishcare_dishwasher_program_auto2",
+     "dishcare_dishwasher_program_eco50",
+     "dishcare_dishwasher_program_glas40",
+     "dishcare_dishwasher_program_intensiv70",
+     "dishcare_dishwasher_program_intensivpower",
+     "dishcare_dishwasher_program_kurz60",
+     "dishcare_dishwasher_program_machinecare",
+     "dishcare_dishwasher_program_mixedload",
+     "dishcare_dishwasher_program_nightwash",
+     "dishcare_dishwasher_program_prerinse",
+     "dishcare_dishwasher_program_quick45",
+     "dishcare_dishwasher_program_quickd",
+     "dishcare_dishwasher_program_super60"
+    ],
+    "device_class": "enum",
+    "friendly_name": "Dishwasher Active Program"
+   }
+  },
+  {
+   "entity_id": "sensor.dishwasher_salt",
+   "device_id": "dishwasher",
+   "key": "sensor_salt",
+   "category": null,
+   "state": "full",
+   "attributes": {
+    "options": [
+     "empty",
+     "nearly_empty",
+     "full"
+    ],
+    "device_class": "enum",
+    "friendly_name": "Dishwasher Salt"
+   }
+  },
+  {
+   "entity_id": "sensor.dishwasher_power_state",
+   "device_id": "dishwasher",
+   "key": "sensor_power_state",
+   "category": null,
+   "state": "off",
+   "attributes": {
+    "options": [
+     "off",
+     "on"
+    ],
+    "device_class": "enum",
+    "friendly_name": "Dishwasher Power state"
+   }
+  },
+  {
+   "entity_id": "sensor.dishwasher_operation_state",
+   "device_id": "dishwasher",
+   "key": "sensor_operation_state",
+   "category": null,
+   "state": "Ready",
+   "attributes": {
+    "options": [
+     "Inactive",
+     "Ready",
+     "DelayedStart",
+     "Run",
+     "Pause",
+     "ActionRequired",
+     "Finished",
+     "Error",
+     "Aborting"
+    ],
+    "device_class": "enum",
+    "friendly_name": "Dishwasher Operation State"
+   }
+  },
+  {
+   "entity_id": "sensor.dishwasher_remaining_program_time",
+   "device_id": "dishwasher",
+   "key": "sensor_remaining_program_time",
+   "category": null,
+   "state": "4.5",
+   "attributes": {
+    "Is Estimated": true,
+    "unit_of_measurement": "h",
+    "device_class": "duration",
+    "friendly_name": "Dishwasher Remaining Program Time"
+   }
+  },
+  {
+   "entity_id": "switch.dishwasher_power_state",
+   "device_id": "dishwasher",
+   "key": "switch_power_state",
+   "category": null,
+   "state": "off",
+   "attributes": {
+    "device_class": "switch",
+    "friendly_name": "Dishwasher Power"
+   }
+  },
+  {
+   "entity_id": "switch.dishwasher_hygiene_plus",
+   "device_id": "dishwasher",
+   "key": "switch_hygiene_plus",
+   "category": null,
+   "state": "off",
+   "attributes": {
+    "device_class": "switch",
+    "friendly_name": "Dishwasher Hygiene Plus"
+   }
+  },
+  {
+   "entity_id": "switch.dishwasher_backend_connection",
+   "device_id": "dishwasher",
+   "key": "switch_backend_connection",
+   "category": "config",
+   "state": "on",
+   "attributes": {
+    "device_class": "switch",
+    "icon": "mdi:cloud-sync",
+    "friendly_name": "Dishwasher Backend connection"
+   }
+  },
+  {
+   "entity_id": "switch.dishwasher_half_load",
+   "device_id": "dishwasher",
+   "key": "switch_half_load",
+   "category": null,
+   "state": "off",
+   "attributes": {
+    "device_class": "switch",
+    "friendly_name": "Dishwasher Half load"
+   }
+  },
+  {
+   "entity_id": "switch.dishwasher_silence_on_demand",
+   "device_id": "dishwasher",
+   "key": "switch_silence_on_demand",
+   "category": null,
+   "state": "unavailable",
+   "attributes": {
+    "device_class": "switch",
+    "friendly_name": "Dishwasher Silence On Demand"
+   }
+  },
+  {
+   "entity_id": "switch.dishwasher_vario_speed_plus",
+   "device_id": "dishwasher",
+   "key": "switch_vario_speed_plus",
+   "category": null,
+   "state": "off",
+   "attributes": {
+    "device_class": "switch",
+    "friendly_name": "Dishwasher VariospeedPlus"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.washer_remote_control_active",
+   "device_id": "washer",
+   "key": "binary_sensor_remote_control_active",
+   "category": null,
+   "state": "unavailable",
+   "attributes": {
+    "icon": "mdi:remote",
+    "friendly_name": "Washer Remote control active"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.washer_local_control_active",
+   "device_id": "washer",
+   "key": "binary_sensor_local_control_active",
+   "category": null,
+   "state": "off",
+   "attributes": {
+    "icon": "mdi:gesture-tap-button",
+    "friendly_name": "Washer Local control active"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.washer_connection",
+   "device_id": "washer",
+   "key": "connection",
+   "category": "diagnostic",
+   "state": "on",
+   "attributes": {
+    "device_class": "connectivity",
+    "friendly_name": "Washer Connection"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.washer_door_state",
+   "device_id": "washer",
+   "key": "binary_sensor_door_state",
+   "category": null,
+   "state": "unavailable",
+   "attributes": {
+    "device_class": "door",
+    "friendly_name": "Washer Door"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.washer_program_aborted",
+   "device_id": "washer",
+   "key": "binary_sensor_program_aborted",
+   "category": "diagnostic",
+   "state": "off",
+   "attributes": {
+    "device_class": "problem",
+    "friendly_name": "Washer Program Aborted"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.washer_foam_detection",
+   "device_id": "washer",
+   "key": "binary_sensor_foam_detection",
+   "category": "diagnostic",
+   "state": "off",
+   "attributes": {
+    "device_class": "problem",
+    "friendly_name": "Washer Foam Detection"
+   }
+  },
+  {
+   "entity_id": "button.washer_start_program",
+   "device_id": "washer",
+   "key": "button_start_program",
+   "category": null,
+   "state": "unavailable",
+   "attributes": {
+    "friendly_name": "Washer Start"
+   }
+  },
+  {
+   "entity_id": "button.washer_deactivate_remote_control_start",
+   "device_id": "washer",
+   "key": "button_deactivate_remote_control_start",
+   "category": "config",
+   "state": "unknown",
+   "attributes": {
+    "icon": "mdi:remote-off",
+    "friendly_name": "Washer Deactivate remote control start"
+   }
+  },
+  {
+   "entity_id": "button.washer_abort_program",
+   "device_id": "washer",
+   "key": "button_abort_program",
+   "category": null,
+   "state": "unavailable",
+   "attributes": {
+    "friendly_name": "Washer Abort"
+   }
+  },
+  {
+   "entity_id": "button.washer_oven_pause",
+   "device_id": "washer",
+   "key": "button_oven_pause",
+   "category": null,
+   "state": "unknown",
+   "attributes": {
+    "icon": "mdi:pause",
+    "friendly_name": "Washer Oven pause"
+   }
+  },
+  {
+   "entity_id": "button.washer_oven_resume",
+   "device_id": "washer",
+   "key": "button_oven_resume",
+   "category": null,
+   "state": "unknown",
+   "attributes": {
+    "icon": "mdi:play-pause",
+    "friendly_name": "Washer Oven resume"
+   }
+  },
+  {
+   "entity_id": "number.washer_duration",
+   "device_id": "washer",
+   "key": "number_duration",
+   "category": null,
+   "state": "unavailable",
+   "attributes": {
+    "min": 1200,
+    "max": 7200,
+    "step": 600,
+    "mode": "auto",
+    "unit_of_measurement": "s",
+    "device_class": "duration",
+    "friendly_name": "Washer Duration"
+   }
+  },
+  {
+   "entity_id": "number.washer_laundry_brightness",
+   "device_id": "washer",
+   "key": "number_laundry_brightness",
+   "category": "config",
+   "state": "100.0",
+   "attributes": {
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "mode": "auto",
+    "unit_of_measurement": "%",
+    "friendly_name": "Washer Brightness"
+   }
+  },
+  {
+   "entity_id": "number.washer_door_light_ring_brightness",
+   "device_id": "washer",
+   "key": "number_door_light_ring_brightness",
+   "category": "config",
+   "state": "unavailable",
+   "attributes": {
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "mode": "auto",
+    "unit_of_measurement": "%",
+    "friendly_name": "Washer Door Ring light brightness"
+   }
+  },
+  {
+   "entity_id": "select.washer_auto_power_off",
+   "device_id": "washer",
+   "key": "select_auto_power_off",
+   "category": "config",
+   "state": "unavailable",
+   "attributes": {
+    "options": [
+     "off",
+     "15min",
+     "30min",
+     "60min"
+    ],
+    "friendly_name": "Washer Auto Power off"
+   }
+  },
+  {
+   "entity_id": "select.washer_door_light_ring_brightness",
+   "device_id": "washer",
+   "key": "select_door_light_ring_brightness",
+   "category": "config",
+   "state": "unavailable",
+   "attributes": {
+    "options": [
+     "low",
+     "medium",
+     "high",
+     "veryhigh"
+    ],
+    "friendly_name": "Washer Door Ring light brightness Level"
+   }
+  },
+  {
+   "entity_id": "select.washer_laundry_brightness",
+   "device_id": "washer",
+   "key": "select_laundry_brightness",
+   "category": "config",
+   "state": "unavailable",
+   "attributes": {
+    "options": [
+     "low",
+     "medium",
+     "high",
+     "veryhigh"
+    ],
+    "friendly_name": "Washer Brightness Level"
+   }
+  },
+  {
+   "entity_id": "select.washer_door_light_ring_mode",
+   "device_id": "washer",
+   "key": "select_door_light_ring_mode",
+   "category": "config",
+   "state": "unavailable",
+   "attributes": {
+    "options": [
+     "off",
+     "on",
+     "auto"
+    ],
+    "friendly_name": "Washer Door Ring light mode"
+   }
+  },
+  {
+   "entity_id": "select.washer_laundry_power_rating",
+   "device_id": "washer",
+   "key": "select_laundry_power_rating",
+   "category": "config",
+   "state": "unavailable",
+   "attributes": {
+    "options": [
+     "10A",
+     "16A"
+    ],
+    "friendly_name": "Washer Supply power rating"
+   }
+  },
+  {
+   "entity_id": "select.washer_program",
+   "device_id": "washer",
+   "key": "select_program",
+   "category": null,
+   "state": "unavailable",
+   "attributes": {
+    "options": [
+     "laundrycare_washer_program_cotton_cotton_cotton",
+     "laundrycare_washer_program_darkwash_darkwash_darkwash",
+     "laundrycare_washer_program_delicatessilk_delicatessilk_delicatessilk",
+     "laundrycare_washer_program_delicatessilk_delicatessilk_delicatessilkmp",
+     "laundrycare_washer_program_drumclean_drumclean70_drumclean70",
+     "laundrycare_washer_program_easycare_easycare_easycare",
+     "laundrycare_washer_program_goldencycle_goldencycle_goldencycle",
+     "laundrycare_washer_program_labeleu19_labeleu19_eco4060",
+     "laundrycare_washer_program_mix_mix_mix",
+     "laundrycare_washer_program_outdoor_outdoor_outdoor",
+     "laundrycare_washer_program_rinse_rinse_rinse",
+     "laundrycare_washer_program_sensitive_sensitive_sensitive",
+     "laundrycare_washer_program_shirtsblouses_shirtsblouses_shirtsblouses",
+     "laundrycare_washer_program_shirtsblouses_sportfitness_sportfitness",
+     "laundrycare_washer_program_spin_spin_spindrain",
+     "laundrycare_washer_program_steaming_steaming_steaming",
+     "laundrycare_washer_program_super153045_super1530_super1530",
+     "laundrycare_washer_program_wool_wool_wool"
+    ],
+    "friendly_name": "Washer Selected Program"
+   }
+  },
+  {
+   "entity_id": "select.washer_laundry_end_signal_volume",
+   "device_id": "washer",
+   "key": "select_laundry_end_signal_volume",
+   "category": "config",
+   "state": "loud",
+   "attributes": {
+    "options": [
+     "off",
+     "low",
+     "medium",
+     "loud",
+     "veryloud"
+    ],
+    "friendly_name": "Washer End Signal volume"
+   }
+  },
+  {
+   "entity_id": "select.washer_laundry_key_signal_volume",
+   "device_id": "washer",
+   "key": "select_laundry_key_signal_volume",
+   "category": "config",
+   "state": "loud",
+   "attributes": {
+    "options": [
+     "off",
+     "low",
+     "medium",
+     "loud",
+     "veryloud"
+    ],
+    "friendly_name": "Washer Key Signal volume"
+   }
+  },
+  {
+   "entity_id": "select.washer_laundry_sound_volume",
+   "device_id": "washer",
+   "key": "select_laundry_sound_volume",
+   "category": "config",
+   "state": "unavailable",
+   "attributes": {
+    "options": [
+     "off",
+     "volume1",
+     "volume2",
+     "volume3",
+     "volume4"
+    ],
+    "friendly_name": "Washer Sound volume"
+   }
+  },
+  {
+   "entity_id": "sensor.washer_water_consumed_total",
+   "device_id": "washer",
+   "key": "sensor_water_consumed_total",
+   "category": null,
+   "state": "572.0",
+   "attributes": {
+    "state_class": "total_increasing",
+    "unit_of_measurement": "L",
+    "device_class": "water",
+    "friendly_name": "Washer Total water consumption"
+   }
+  },
+  {
+   "entity_id": "sensor.washer_water_consumed_last",
+   "device_id": "washer",
+   "key": "sensor_water_consumed_last",
+   "category": null,
+   "state": "36.0",
+   "attributes": {
+    "unit_of_measurement": "L",
+    "device_class": "water",
+    "friendly_name": "Washer Water consumption last program"
+   }
+  },
+  {
+   "entity_id": "sensor.washer_energy_consumed_total",
+   "device_id": "washer",
+   "key": "sensor_energy_consumed_total",
+   "category": null,
+   "state": "9.146",
+   "attributes": {
+    "state_class": "total_increasing",
+    "unit_of_measurement": "kWh",
+    "device_class": "energy",
+    "friendly_name": "Washer Total energy consumption"
+   }
+  },
+  {
+   "entity_id": "sensor.washer_energy_consumed_last",
+   "device_id": "washer",
+   "key": "sensor_energy_consumed_last",
+   "category": null,
+   "state": "0.522",
+   "attributes": {
+    "unit_of_measurement": "kWh",
+    "device_class": "energy",
+    "friendly_name": "Washer Energy consumption last program"
+   }
+  },
+  {
+   "entity_id": "sensor.washer_laundry_process_phase",
+   "device_id": "washer",
+   "key": "sensor_laundry_process_phase",
+   "category": null,
+   "state": "unavailable",
+   "attributes": {
+    "options": [
+     "nophase",
+     "prewash",
+     "rinsingaquasensor",
+     "rinseonly",
+     "waterproofing",
+     "anyphase",
+     "rinsingsoftener",
+     "holdafterrinse",
+     "pumping",
+     "spinningfinal",
+     "lessironing",
+     "fluffing",
+     "soaking",
+     "intermediatespin",
+     "hygienicsteamfogging",
+     "guardingoxy",
+     "generatingozone",
+     "degradingozone",
+     "drying",
+     "coolingdown",
+     "additionalcoolingdown",
+     "guardingwrinkle",
+     "detectingtextile",
+     "detectingsoil",
+     "fillingdetergent",
+     "disinfecting",
+     "lowtemperaturehygiene",
+     "steamingactive",
+     "irondryreached",
+     "cupboarddryreached",
+     "cupboarddryplusreached",
+     "cleaningheatexchanger",
+     "slightlydampreached",
+     "extradryreached",
+     "gentlydryreached",
+     "detectingload",
+     "quickcare",
+     "depthcarephase1",
+     "depthcarephase2",
+     "coldrefreshing",
+     "steaming",
+     "foam",
+     "testprogramdummytextfinalspeedreached",
+     "rinsingfoamf21",
+     "handsoak",
+     "vacant",
+     "heating",
+     "spinning",
+     "displayspinabortnospin",
+     "multiplesoak",
+     "laundryrefreshing",
+     "reload",
+     "hotmoistheatingwetting",
+     "hotmoistheatingheating",
+     "hotmoistheatingwashing",
+     "moistureremoval",
+     "selfcleaning",
+     "washing",
+     "hygiene",
+     "smartsoak",
+     "soakpause",
+     "soakfinished",
+     "soillevelhigh",
+     "cooldown",
+     "rinsingfoam",
+     "rinsing"
+    ],
+    "device_class": "enum",
+    "friendly_name": "Washer Process Phase"
+   }
+  },
+  {
+   "entity_id": "sensor.washer_program_progress",
+   "device_id": "washer",
+   "key": "sensor_program_progress",
+   "category": null,
+   "state": "unavailable",
+   "attributes": {
+    "unit_of_measurement": "%",
+    "friendly_name": "Washer Program Progress"
+   }
+  },
+  {
+   "entity_id": "sensor.washer_door_state",
+   "device_id": "washer",
+   "key": "sensor_door_state",
+   "category": null,
+   "state": "unavailable",
+   "attributes": {
+    "options": [
+     "open",
+     "closed",
+     "locked",
+     "ajar"
+    ],
+    "device_class": "enum",
+    "friendly_name": "Washer Door"
+   }
+  },
+  {
+   "entity_id": "sensor.washer_water_forecast",
+   "device_id": "washer",
+   "key": "sensor_water_forecast",
+   "category": "diagnostic",
+   "state": "unavailable",
+   "attributes": {
+    "unit_of_measurement": "%",
+    "friendly_name": "Washer Water Forecast"
+   }
+  },
+  {
+   "entity_id": "sensor.washer_energy_forecast",
+   "device_id": "washer",
+   "key": "sensor_energy_forecast",
+   "category": "diagnostic",
+   "state": "unavailable",
+   "attributes": {
+    "unit_of_measurement": "%",
+    "friendly_name": "Washer Energy Forecast"
+   }
+  },
+  {
+   "entity_id": "sensor.washer_active_program",
+   "device_id": "washer",
+   "key": "sensor_active_program",
+   "category": null,
+   "state": "unknown",
+   "attributes": {
+    "options": [
+     "laundrycare_washer_program_cotton_cotton_cotton",
+     "laundrycare_washer_program_darkwash_darkwash_darkwash",
+     "laundrycare_washer_program_delicatessilk_delicatessilk_delicatessilk",
+     "laundrycare_washer_program_delicatessilk_delicatessilk_delicatessilkmp",
+     "laundrycare_washer_program_drumclean_drumclean70_drumclean70",
+     "laundrycare_washer_program_easycare_easycare_easycare",
+     "laundrycare_washer_program_goldencycle_goldencycle_goldencycle",
+     "laundrycare_washer_program_labeleu19_labeleu19_eco4060",
+     "laundrycare_washer_program_mix_mix_mix",
+     "laundrycare_washer_program_outdoor_outdoor_outdoor",
+     "laundrycare_washer_program_rinse_rinse_rinse",
+     "laundrycare_washer_program_sensitive_sensitive_sensitive",
+     "laundrycare_washer_program_shirtsblouses_shirtsblouses_shirtsblouses",
+     "laundrycare_washer_program_shirtsblouses_sportfitness_sportfitness",
+     "laundrycare_washer_program_spin_spin_spindrain",
+     "laundrycare_washer_program_steaming_steaming_steaming",
+     "laundrycare_washer_program_super153045_super1530_super1530",
+     "laundrycare_washer_program_wool_wool_wool"
+    ],
+    "device_class": "enum",
+    "friendly_name": "Washer Active Program"
+   }
+  },
+  {
+   "entity_id": "sensor.washer_laundry_reload",
+   "device_id": "washer",
+   "key": "sensor_laundry_reload",
+   "category": null,
+   "state": "unavailable",
+   "attributes": {
+    "options": [
+     "impossible",
+     "possiblepauseprogram",
+     "possibleopendoor"
+    ],
+    "device_class": "enum",
+    "friendly_name": "Washer Laundry reload"
+   }
+  },
+  {
+   "entity_id": "sensor.washer_power_state",
+   "device_id": "washer",
+   "key": "sensor_power_state",
+   "category": null,
+   "state": "off",
+   "attributes": {
+    "options": [
+     "mainsoff",
+     "off",
+     "on",
+     "standby"
+    ],
+    "device_class": "enum",
+    "friendly_name": "Washer Power state"
+   }
+  },
+  {
+   "entity_id": "sensor.washer_operation_state",
+   "device_id": "washer",
+   "key": "sensor_operation_state",
+   "category": null,
+   "state": "Inactive",
+   "attributes": {
+    "options": [
+     "Inactive",
+     "Ready",
+     "DelayedStart",
+     "Run",
+     "Pause",
+     "ActionRequired",
+     "Finished",
+     "Error",
+     "Aborting"
+    ],
+    "device_class": "enum",
+    "friendly_name": "Washer Operation State"
+   }
+  },
+  {
+   "entity_id": "sensor.washer_remaining_program_time",
+   "device_id": "washer",
+   "key": "sensor_remaining_program_time",
+   "category": null,
+   "state": "unavailable",
+   "attributes": {
+    "unit_of_measurement": "h",
+    "device_class": "duration",
+    "friendly_name": "Washer Remaining Program Time"
+   }
+  },
+  {
+   "entity_id": "sensor.washer_estimated_remaining_program_time",
+   "device_id": "washer",
+   "key": "sensor_estimated_remaining_program_time",
+   "category": null,
+   "state": "0.0166666666666667",
+   "attributes": {
+    "unit_of_measurement": "h",
+    "device_class": "duration",
+    "friendly_name": "Washer Estimated total program time"
+   }
+  },
+  {
+   "entity_id": "sensor.washer_laundry_spin_speed",
+   "device_id": "washer",
+   "key": "sensor_laundry_spin_speed",
+   "category": null,
+   "state": "rpm1400",
+   "attributes": {
+    "options": [
+     "off",
+     "uloff",
+     "rpm1000",
+     "ulhigh",
+     "rpm1200",
+     "rpm1400",
+     "rpm1500",
+     "rpm1600",
+     "rinsehold",
+     "auto",
+     "max",
+     "ullow",
+     "rpm400",
+     "rpm600",
+     "rpm700",
+     "ulmedium",
+     "rpm800",
+     "rpm900"
+    ],
+    "device_class": "enum",
+    "friendly_name": "Washer Spin Speed"
+   }
+  },
+  {
+   "entity_id": "switch.washer_backend_connection",
+   "device_id": "washer",
+   "key": "switch_backend_connection",
+   "category": "config",
+   "state": "on",
+   "attributes": {
+    "device_class": "switch",
+    "icon": "mdi:cloud-sync",
+    "friendly_name": "Washer Backend connection"
+   }
+  },
+  {
+   "entity_id": "switch.washer_power_state",
+   "device_id": "washer",
+   "key": "switch_power_state",
+   "category": null,
+   "state": "off",
+   "attributes": {
+    "device_class": "switch",
+    "friendly_name": "Washer Power"
+   }
+  },
+  {
+   "entity_id": "switch.washer_child_lock",
+   "device_id": "washer",
+   "key": "switch_child_lock",
+   "category": null,
+   "state": "unavailable",
+   "attributes": {
+    "device_class": "switch",
+    "friendly_name": "Washer Child lock"
+   }
+  },
+  {
+   "entity_id": "switch.washer_door_light_ring",
+   "device_id": "washer",
+   "key": "switch_door_light_ring",
+   "category": null,
+   "state": "unavailable",
+   "attributes": {
+    "device_class": "switch",
+    "friendly_name": "Washer Door Ring light"
+   }
+  },
+  {
+   "entity_id": "switch.washer_drum_light",
+   "device_id": "washer",
+   "key": "switch_drum_light",
+   "category": null,
+   "state": "unavailable",
+   "attributes": {
+    "device_class": "switch",
+    "friendly_name": "Washer Drum light"
+   }
+  },
+  {
+   "entity_id": "switch.washer_laundry_silent_mode",
+   "device_id": "washer",
+   "key": "switch_laundry_silent_mode",
+   "category": null,
+   "state": "off",
+   "attributes": {
+    "device_class": "switch",
+    "friendly_name": "Washer Silent mode"
+   }
+  },
+  {
+   "entity_id": "switch.washer_laundry_wrinkle_guard",
+   "device_id": "washer",
+   "key": "switch_laundry_wrinkle_guard",
+   "category": "config",
+   "state": "off",
+   "attributes": {
+    "device_class": "switch",
+    "friendly_name": "Washer Wrinkle guard"
+   }
+  },
+  {
+   "entity_id": "switch.washer_laundry_end_signal",
+   "device_id": "washer",
+   "key": "switch_laundry_end_signal",
+   "category": "config",
+   "state": "unavailable",
+   "attributes": {
+    "device_class": "switch",
+    "friendly_name": "Washer End Signal"
+   }
+  },
+  {
+   "entity_id": "switch.washer_laundry_sound_mute",
+   "device_id": "washer",
+   "key": "switch_laundry_sound_mute",
+   "category": "config",
+   "state": "off",
+   "attributes": {
+    "device_class": "switch",
+    "friendly_name": "Washer Sound mute"
+   }
+  },
+  {
+   "entity_id": "switch.washer_laundry_time_light",
+   "device_id": "washer",
+   "key": "switch_laundry_time_light",
+   "category": "config",
+   "state": "unavailable",
+   "attributes": {
+    "device_class": "switch",
+    "friendly_name": "Washer Time light"
+   }
+  },
+  {
+   "entity_id": "switch.washer_laundry_speed_perfect",
+   "device_id": "washer",
+   "key": "switch_laundry_speed_perfect",
+   "category": null,
+   "state": "off",
+   "attributes": {
+    "device_class": "switch",
+    "friendly_name": "Washer Speed perfect"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.hob_local_control_active",
+   "device_id": "hob",
+   "key": "binary_sensor_local_control_active",
+   "category": null,
+   "state": "off",
+   "attributes": {
+    "icon": "mdi:gesture-tap-button",
+    "friendly_name": "Induction Hob Local control active"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.hob_connection",
+   "device_id": "hob",
+   "key": "connection",
+   "category": "diagnostic",
+   "state": "on",
+   "attributes": {
+    "device_class": "connectivity",
+    "friendly_name": "Induction Hob Connection"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.hob_hob_zone_100_residual_heat",
+   "device_id": "hob",
+   "key": "binary_sensor_hob_zone_100_residual_heat",
+   "category": null,
+   "state": "off",
+   "attributes": {
+    "device_class": "heat",
+    "friendly_name": "Induction Hob Hob zone 100 residual heat"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.hob_hob_zone_400_residual_heat",
+   "device_id": "hob",
+   "key": "binary_sensor_hob_zone_400_residual_heat",
+   "category": null,
+   "state": "off",
+   "attributes": {
+    "device_class": "heat",
+    "friendly_name": "Induction Hob Hob zone 400 residual heat"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.hob_hob_zone_120_residual_heat",
+   "device_id": "hob",
+   "key": "binary_sensor_hob_zone_120_residual_heat",
+   "category": null,
+   "state": "off",
+   "attributes": {
+    "device_class": "heat",
+    "friendly_name": "Induction Hob Hob zone 120 residual heat"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.hob_hob_zone_200_residual_heat",
+   "device_id": "hob",
+   "key": "binary_sensor_hob_zone_200_residual_heat",
+   "category": null,
+   "state": "off",
+   "attributes": {
+    "device_class": "heat",
+    "friendly_name": "Induction Hob Hob zone 200 residual heat"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.hob_hob_zone_300_residual_heat",
+   "device_id": "hob",
+   "key": "binary_sensor_hob_zone_300_residual_heat",
+   "category": null,
+   "state": "off",
+   "attributes": {
+    "device_class": "heat",
+    "friendly_name": "Induction Hob Hob zone 300 residual heat"
+   }
+  },
+  {
+   "entity_id": "button.hob_start_program",
+   "device_id": "hob",
+   "key": "button_start_program",
+   "category": null,
+   "state": "unknown",
+   "attributes": {
+    "friendly_name": "Induction Hob Start"
+   }
+  },
+  {
+   "entity_id": "button.hob_start_bluetooth_presence_detection",
+   "device_id": "hob",
+   "key": "button_start_bluetooth_presence_detection",
+   "category": "diagnostic",
+   "state": "unknown",
+   "attributes": {
+    "icon": "mdi:bluetooth-connect",
+    "friendly_name": "Induction Hob Start bluetooth presence detection"
+   }
+  },
+  {
+   "entity_id": "button.hob_abort_program",
+   "device_id": "hob",
+   "key": "button_abort_program",
+   "category": null,
+   "state": "unavailable",
+   "attributes": {
+    "friendly_name": "Induction Hob Abort"
+   }
+  },
+  {
+   "entity_id": "number.hob_duration",
+   "device_id": "hob",
+   "key": "number_duration",
+   "category": null,
+   "state": "0",
+   "attributes": {
+    "min": 0,
+    "max": 266400,
+    "step": 1,
+    "mode": "auto",
+    "unit_of_measurement": "s",
+    "device_class": "duration",
+    "friendly_name": "Induction Hob Duration"
+   }
+  },
+  {
+   "entity_id": "select.hob_hob_power_level",
+   "device_id": "hob",
+   "key": "select_hob_power_level",
+   "category": null,
+   "state": "Off",
+   "attributes": {
+    "options": [
+     "Off",
+     "KeepWarm",
+     "50",
+     "55",
+     "60",
+     "65",
+     "70",
+     "75",
+     "80",
+     "85",
+     "90",
+     "10",
+     "Boost1",
+     "Boost2",
+     "15",
+     "20",
+     "25",
+     "30",
+     "35",
+     "40",
+     "45"
+    ],
+    "icon": "mdi:stove",
+    "friendly_name": "Induction Hob Hob power level"
+   }
+  },
+  {
+   "entity_id": "select.hob_program",
+   "device_id": "hob",
+   "key": "select_program",
+   "category": null,
+   "state": "unknown",
+   "attributes": {
+    "options": [
+     "favorite_001",
+     "favorite_002",
+     "cooking_hob_program_powerlevelmode"
+    ],
+    "friendly_name": "Induction Hob Selected Program"
+   }
+  },
+  {
+   "entity_id": "select.hob_hob_zone_selector",
+   "device_id": "hob",
+   "key": "select_hob_zone_selector",
+   "category": null,
+   "state": "FrontLeft",
+   "attributes": {
+    "options": [
+     "FrontLeft",
+     "Left",
+     "RearLeft",
+     "RearRight",
+     "FrontRight"
+    ],
+    "icon": "mdi:target",
+    "friendly_name": "Induction Hob Hob zone selector"
+   }
+  },
+  {
+   "entity_id": "sensor.hob_confirm_action_at_appliance",
+   "device_id": "hob",
+   "key": "sensor_confirm_action_at_appliance",
+   "category": "diagnostic",
+   "state": "ok",
+   "attributes": {
+    "options": [
+     "confirm_action_at_appliance",
+     "ok"
+    ],
+    "device_class": "enum",
+    "icon": "mdi:gesture-tap-button",
+    "friendly_name": "Induction Hob Confirm action at appliance"
+   }
+  },
+  {
+   "entity_id": "sensor.hob_program_progress",
+   "device_id": "hob",
+   "key": "sensor_program_progress",
+   "category": null,
+   "state": "0.0",
+   "attributes": {
+    "unit_of_measurement": "%",
+    "friendly_name": "Induction Hob Program Progress"
+   }
+  },
+  {
+   "entity_id": "sensor.hob_bluetooth_presence_detection",
+   "device_id": "hob",
+   "key": "sensor_bluetooth_presence_detection",
+   "category": "diagnostic",
+   "state": "off",
+   "attributes": {
+    "options": [
+     "off",
+     "ready",
+     "busy"
+    ],
+    "device_class": "enum",
+    "icon": "mdi:bluetooth",
+    "friendly_name": "Induction Hob Bluetooth presence detection"
+   }
+  },
+  {
+   "entity_id": "sensor.hob_hob_zone_100_operation_state",
+   "device_id": "hob",
+   "key": "sensor_hob_zone_100_operation_state",
+   "category": null,
+   "state": "inactive",
+   "attributes": {
+    "options": [
+     "inactive",
+     "ready",
+     "run",
+     "pause",
+     "actionrequired",
+     "finished",
+     "error",
+     "aborting"
+    ],
+    "device_class": "enum",
+    "icon": "mdi:state-machine",
+    "friendly_name": "Induction Hob Hob zone 100 operation state"
+   }
+  },
+  {
+   "entity_id": "sensor.hob_hob_zone_100_power_level",
+   "device_id": "hob",
+   "key": "sensor_hob_zone_100_power_level",
+   "category": null,
+   "state": "Off",
+   "attributes": {
+    "options": [
+     "Off",
+     "KeepWarm",
+     "50",
+     "55",
+     "60",
+     "65",
+     "70",
+     "75",
+     "80",
+     "85",
+     "90",
+     "10",
+     "Boost1",
+     "Boost2",
+     "15",
+     "20",
+     "25",
+     "30",
+     "35",
+     "40",
+     "45"
+    ],
+    "device_class": "enum",
+    "icon": "mdi:fire",
+    "friendly_name": "Induction Hob Hob zone 100 power level"
+   }
+  },
+  {
+   "entity_id": "sensor.hob_hob_zone_100_remaining_time",
+   "device_id": "hob",
+   "key": "sensor_hob_zone_100_remaining_time",
+   "category": null,
+   "state": "0",
+   "attributes": {
+    "unit_of_measurement": "s",
+    "device_class": "duration",
+    "friendly_name": "Induction Hob Hob zone 100 remaining time"
+   }
+  },
+  {
+   "entity_id": "sensor.hob_hob_zone_100_state",
+   "device_id": "hob",
+   "key": "sensor_hob_zone_100_state",
+   "category": null,
+   "state": "off",
+   "attributes": {
+    "options": [
+     "notselectable",
+     "off",
+     "active",
+     "residuelheat"
+    ],
+    "device_class": "enum",
+    "icon": "mdi:pot-steam",
+    "friendly_name": "Induction Hob Hob zone 100 state"
+   }
+  },
+  {
+   "entity_id": "sensor.hob_hob_zone_400_operation_state",
+   "device_id": "hob",
+   "key": "sensor_hob_zone_400_operation_state",
+   "category": null,
+   "state": "inactive",
+   "attributes": {
+    "options": [
+     "inactive",
+     "ready",
+     "run",
+     "pause",
+     "actionrequired",
+     "finished",
+     "error",
+     "aborting"
+    ],
+    "device_class": "enum",
+    "icon": "mdi:state-machine",
+    "friendly_name": "Induction Hob Hob zone 400 operation state"
+   }
+  },
+  {
+   "entity_id": "sensor.hob_hob_zone_400_power_level",
+   "device_id": "hob",
+   "key": "sensor_hob_zone_400_power_level",
+   "category": null,
+   "state": "Off",
+   "attributes": {
+    "options": [
+     "Off",
+     "KeepWarm",
+     "50",
+     "55",
+     "60",
+     "65",
+     "70",
+     "75",
+     "80",
+     "85",
+     "90",
+     "10",
+     "Boost1",
+     "Boost2",
+     "15",
+     "20",
+     "25",
+     "30",
+     "35",
+     "40",
+     "45"
+    ],
+    "device_class": "enum",
+    "icon": "mdi:fire",
+    "friendly_name": "Induction Hob Hob zone 400 power level"
+   }
+  },
+  {
+   "entity_id": "sensor.hob_hob_zone_400_remaining_time",
+   "device_id": "hob",
+   "key": "sensor_hob_zone_400_remaining_time",
+   "category": null,
+   "state": "0",
+   "attributes": {
+    "unit_of_measurement": "s",
+    "device_class": "duration",
+    "friendly_name": "Induction Hob Hob zone 400 remaining time"
+   }
+  },
+  {
+   "entity_id": "sensor.hob_hob_zone_400_state",
+   "device_id": "hob",
+   "key": "sensor_hob_zone_400_state",
+   "category": null,
+   "state": "off",
+   "attributes": {
+    "options": [
+     "notselectable",
+     "off",
+     "active",
+     "residuelheat"
+    ],
+    "device_class": "enum",
+    "icon": "mdi:pot-steam",
+    "friendly_name": "Induction Hob Hob zone 400 state"
+   }
+  },
+  {
+   "entity_id": "sensor.hob_hob_zone_120_operation_state",
+   "device_id": "hob",
+   "key": "sensor_hob_zone_120_operation_state",
+   "category": null,
+   "state": "inactive",
+   "attributes": {
+    "options": [
+     "inactive",
+     "ready",
+     "run",
+     "pause",
+     "actionrequired",
+     "finished",
+     "error",
+     "aborting"
+    ],
+    "device_class": "enum",
+    "icon": "mdi:state-machine",
+    "friendly_name": "Induction Hob Hob zone 120 operation state"
+   }
+  },
+  {
+   "entity_id": "sensor.hob_hob_zone_120_power_level",
+   "device_id": "hob",
+   "key": "sensor_hob_zone_120_power_level",
+   "category": null,
+   "state": "Off",
+   "attributes": {
+    "options": [
+     "Off",
+     "KeepWarm",
+     "50",
+     "55",
+     "60",
+     "65",
+     "70",
+     "75",
+     "80",
+     "85",
+     "90",
+     "10",
+     "Boost1",
+     "Boost2",
+     "15",
+     "20",
+     "25",
+     "30",
+     "35",
+     "40",
+     "45"
+    ],
+    "device_class": "enum",
+    "icon": "mdi:fire",
+    "friendly_name": "Induction Hob Hob zone 120 power level"
+   }
+  },
+  {
+   "entity_id": "sensor.hob_hob_zone_120_remaining_time",
+   "device_id": "hob",
+   "key": "sensor_hob_zone_120_remaining_time",
+   "category": null,
+   "state": "0",
+   "attributes": {
+    "unit_of_measurement": "s",
+    "device_class": "duration",
+    "friendly_name": "Induction Hob Hob zone 120 remaining time"
+   }
+  },
+  {
+   "entity_id": "sensor.hob_hob_zone_120_state",
+   "device_id": "hob",
+   "key": "sensor_hob_zone_120_state",
+   "category": null,
+   "state": "notselectable",
+   "attributes": {
+    "options": [
+     "notselectable",
+     "off",
+     "active",
+     "residuelheat"
+    ],
+    "device_class": "enum",
+    "icon": "mdi:pot-steam",
+    "friendly_name": "Induction Hob Hob zone 120 state"
+   }
+  },
+  {
+   "entity_id": "sensor.hob_active_program",
+   "device_id": "hob",
+   "key": "sensor_active_program",
+   "category": null,
+   "state": "unknown",
+   "attributes": {
+    "options": [
+     "favorite_001",
+     "favorite_002",
+     "cooking_hob_program_powerlevelmode"
+    ],
+    "device_class": "enum",
+    "friendly_name": "Induction Hob Active Program"
+   }
+  },
+  {
+   "entity_id": "sensor.hob_hob_zone_200_operation_state",
+   "device_id": "hob",
+   "key": "sensor_hob_zone_200_operation_state",
+   "category": null,
+   "state": "inactive",
+   "attributes": {
+    "options": [
+     "inactive",
+     "ready",
+     "run",
+     "pause",
+     "actionrequired",
+     "finished",
+     "error",
+     "aborting"
+    ],
+    "device_class": "enum",
+    "icon": "mdi:state-machine",
+    "friendly_name": "Induction Hob Hob zone 200 operation state"
+   }
+  },
+  {
+   "entity_id": "sensor.hob_hob_zone_200_power_level",
+   "device_id": "hob",
+   "key": "sensor_hob_zone_200_power_level",
+   "category": null,
+   "state": "Off",
+   "attributes": {
+    "options": [
+     "Off",
+     "KeepWarm",
+     "50",
+     "55",
+     "60",
+     "65",
+     "70",
+     "75",
+     "80",
+     "85",
+     "90",
+     "10",
+     "Boost1",
+     "Boost2",
+     "15",
+     "20",
+     "25",
+     "30",
+     "35",
+     "40",
+     "45"
+    ],
+    "device_class": "enum",
+    "icon": "mdi:fire",
+    "friendly_name": "Induction Hob Hob zone 200 power level"
+   }
+  },
+  {
+   "entity_id": "sensor.hob_hob_zone_200_remaining_time",
+   "device_id": "hob",
+   "key": "sensor_hob_zone_200_remaining_time",
+   "category": null,
+   "state": "0",
+   "attributes": {
+    "unit_of_measurement": "s",
+    "device_class": "duration",
+    "friendly_name": "Induction Hob Hob zone 200 remaining time"
+   }
+  },
+  {
+   "entity_id": "sensor.hob_hob_zone_200_state",
+   "device_id": "hob",
+   "key": "sensor_hob_zone_200_state",
+   "category": null,
+   "state": "off",
+   "attributes": {
+    "options": [
+     "notselectable",
+     "off",
+     "active",
+     "residuelheat"
+    ],
+    "device_class": "enum",
+    "icon": "mdi:pot-steam",
+    "friendly_name": "Induction Hob Hob zone 200 state"
+   }
+  },
+  {
+   "entity_id": "sensor.hob_hob_zone_300_operation_state",
+   "device_id": "hob",
+   "key": "sensor_hob_zone_300_operation_state",
+   "category": null,
+   "state": "inactive",
+   "attributes": {
+    "options": [
+     "inactive",
+     "ready",
+     "run",
+     "pause",
+     "actionrequired",
+     "finished",
+     "error",
+     "aborting"
+    ],
+    "device_class": "enum",
+    "icon": "mdi:state-machine",
+    "friendly_name": "Induction Hob Hob zone 300 operation state"
+   }
+  },
+  {
+   "entity_id": "sensor.hob_hob_zone_300_power_level",
+   "device_id": "hob",
+   "key": "sensor_hob_zone_300_power_level",
+   "category": null,
+   "state": "Off",
+   "attributes": {
+    "options": [
+     "Off",
+     "KeepWarm",
+     "50",
+     "55",
+     "60",
+     "65",
+     "70",
+     "75",
+     "80",
+     "85",
+     "90",
+     "10",
+     "Boost1",
+     "Boost2",
+     "15",
+     "20",
+     "25",
+     "30",
+     "35",
+     "40",
+     "45"
+    ],
+    "device_class": "enum",
+    "icon": "mdi:fire",
+    "friendly_name": "Induction Hob Hob zone 300 power level"
+   }
+  },
+  {
+   "entity_id": "sensor.hob_hob_zone_300_remaining_time",
+   "device_id": "hob",
+   "key": "sensor_hob_zone_300_remaining_time",
+   "category": null,
+   "state": "0",
+   "attributes": {
+    "unit_of_measurement": "s",
+    "device_class": "duration",
+    "friendly_name": "Induction Hob Hob zone 300 remaining time"
+   }
+  },
+  {
+   "entity_id": "sensor.hob_hob_zone_300_state",
+   "device_id": "hob",
+   "key": "sensor_hob_zone_300_state",
+   "category": null,
+   "state": "off",
+   "attributes": {
+    "options": [
+     "notselectable",
+     "off",
+     "active",
+     "residuelheat"
+    ],
+    "device_class": "enum",
+    "icon": "mdi:pot-steam",
+    "friendly_name": "Induction Hob Hob zone 300 state"
+   }
+  },
+  {
+   "entity_id": "sensor.hob_power_state",
+   "device_id": "hob",
+   "key": "sensor_power_state",
+   "category": null,
+   "state": "off",
+   "attributes": {
+    "options": [
+     "off",
+     "on"
+    ],
+    "device_class": "enum",
+    "friendly_name": "Induction Hob Power state"
+   }
+  },
+  {
+   "entity_id": "sensor.hob_operation_state",
+   "device_id": "hob",
+   "key": "sensor_operation_state",
+   "category": null,
+   "state": "Inactive",
+   "attributes": {
+    "options": [
+     "Inactive",
+     "Ready",
+     "Run",
+     "Pause",
+     "ActionRequired",
+     "Finished",
+     "Error",
+     "Aborting"
+    ],
+    "device_class": "enum",
+    "friendly_name": "Induction Hob Operation State"
+   }
+  },
+  {
+   "entity_id": "sensor.hob_remaining_program_time",
+   "device_id": "hob",
+   "key": "sensor_remaining_program_time",
+   "category": null,
+   "state": "0.0",
+   "attributes": {
+    "unit_of_measurement": "h",
+    "device_class": "duration",
+    "friendly_name": "Induction Hob Remaining Program Time"
+   }
+  },
+  {
+   "entity_id": "sensor.hob_elapsed_program_time",
+   "device_id": "hob",
+   "key": "sensor_elapsed_program_time",
+   "category": null,
+   "state": "0",
+   "attributes": {
+    "unit_of_measurement": "s",
+    "device_class": "duration",
+    "icon": "mdi:timer-play-outline",
+    "friendly_name": "Induction Hob Elapsed program time"
+   }
+  },
+  {
+   "entity_id": "switch.hob_power_state",
+   "device_id": "hob",
+   "key": "switch_power_state",
+   "category": null,
+   "state": "off",
+   "attributes": {
+    "device_class": "switch",
+    "friendly_name": "Induction Hob Power"
+   }
+  },
+  {
+   "entity_id": "switch.hob_child_lock",
+   "device_id": "hob",
+   "key": "switch_child_lock",
+   "category": null,
+   "state": "off",
+   "attributes": {
+    "device_class": "switch",
+    "friendly_name": "Induction Hob Child lock"
+   }
+  },
+  {
+   "entity_id": "text.hob_bluetooth_presence_token",
+   "device_id": "hob",
+   "key": "text_bluetooth_presence_token",
+   "category": "diagnostic",
+   "state": "0",
+   "attributes": {
+    "mode": "text",
+    "min": 0,
+    "max": 255,
+    "pattern": null,
+    "icon": "mdi:key-wireless",
+    "friendly_name": "Induction Hob Bluetooth presence token"
+   }
+  }
+ ],
+ "translations": {
+  "en": {
+   "select": {
+    "select_oven_signal_duration": {
+     "short": "Short",
+     "medium": "Medium",
+     "long": "Long"
+    },
+    "select_oven_child_lock_setting": {
+     "deactivated": "Deactivated",
+     "activated": "Activated",
+     "activatedwithdoorlock": "Activated with Doorlock"
+    },
+    "select_oven_level": {
+     "level01": "Level 1",
+     "level02": "Level 2",
+     "level03": "Level 3"
+    },
+    "select_pyrolysis_level": {
+     "level01": "Level 1",
+     "level02": "Level 2",
+     "level03": "Level 3"
+    },
+    "select_program": {
+     "dishcare_dishwasher_program_intensiv70": "Intensiv 70",
+     "dishcare_dishwasher_program_auto2": "Auto 2",
+     "dishcare_dishwasher_program_eco50": "Eco 50",
+     "dishcare_dishwasher_program_quick45": "Quick 45",
+     "dishcare_dishwasher_program_prerinse": "PreRinse",
+     "dishcare_dishwasher_program_quick65": "Quick 65",
+     "dishcare_dishwasher_program_machinecare": "MachineCare",
+     "favorite_001": "Favorite 1",
+     "favorite_002": "Favorite 2",
+     "favorite_003": "Favorite 3",
+     "favorite_004": "Favorite 4",
+     "favorite_005": "Favorite 5",
+     "favorite_006": "Favorite 6",
+     "favorite_007": "Favorite 7",
+     "favorite_008": "Favorite 8",
+     "favorite_009": "Favorite 9",
+     "favorite_010": "Favorite 10"
+    },
+    "select_oven_cooling_fan_runtime": {
+     "short": "Short",
+     "medium": "Medium",
+     "long": "Long",
+     "verylong": "Very long"
+    },
+    "select_auto_power_off": {
+     "off": "Off",
+     "15min": "15 min",
+     "30min": "30 min",
+     "60min": "60 min"
+    },
+    "select_door_light_ring_brightness": {
+     "low": "Low",
+     "medium": "Medium",
+     "high": "High",
+     "veryhigh": "Very High"
+    },
+    "select_laundry_brightness": {
+     "low": "Low",
+     "medium": "Medium",
+     "high": "High",
+     "veryhigh": "Very High"
+    },
+    "select_door_light_ring_mode": {
+     "off": "Off",
+     "on": "On",
+     "auto": "Auto"
+    },
+    "select_laundry_end_signal_volume": {
+     "off": "Off",
+     "low": "Low",
+     "medium": "Medium",
+     "loud": "Loud",
+     "veryloud": "Very Loud"
+    },
+    "select_laundry_key_signal_volume": {
+     "off": "Off",
+     "low": "Low",
+     "medium": "Medium",
+     "loud": "Loud",
+     "veryloud": "Very Loud"
+    },
+    "select_laundry_sound_volume": {
+     "off": "Off",
+     "volume1": "Volume 1",
+     "volume2": "Volume 2",
+     "volume3": "Volume 3",
+     "volume4": "Volume 4"
+    }
+   },
+   "sensor": {
+    "sensor_door_state": {
+     "open": "Open",
+     "closed": "Closed",
+     "locked": "Locked",
+     "ajar": "Ajar"
+    },
+    "sensor_active_program": {
+     "dishcare_dishwasher_program_intensiv70": "Intensiv 70",
+     "dishcare_dishwasher_program_auto2": "Auto 2",
+     "dishcare_dishwasher_program_eco50": "Eco 50",
+     "dishcare_dishwasher_program_quick45": "Quick 45",
+     "dishcare_dishwasher_program_prerinse": "PreRinse",
+     "dishcare_dishwasher_program_quick65": "Quick 65",
+     "dishcare_dishwasher_program_machinecare": "MachineCare",
+     "favorite_001": "Favorite 1",
+     "favorite_002": "Favorite 2",
+     "favorite_003": "Favorite 3",
+     "favorite_004": "Favorite 4",
+     "favorite_005": "Favorite 5",
+     "favorite_006": "Favorite 6",
+     "favorite_007": "Favorite 7",
+     "favorite_008": "Favorite 8",
+     "favorite_009": "Favorite 9",
+     "favorite_010": "Favorite 10"
+    },
+    "sensor_power_state": {
+     "mainsoff": "Mains off",
+     "off": "Off",
+     "on": "On",
+     "standby": "Standby"
+    },
+    "sensor_rinse_aid": {
+     "empty": "Empty",
+     "nearly_empty": "Nearly Empty",
+     "full": "Full"
+    },
+    "sensor_salt": {
+     "empty": "Empty",
+     "nearly_empty": "Nearly Empty",
+     "full": "Full"
+    },
+    "sensor_laundry_process_phase": {
+     "nophase": "No Phase",
+     "prewash": "Prewash",
+     "intermediatespin": "Intermediate Spin",
+     "fillingdetergent": "Filling Detergent",
+     "detectingload": "Detecting Load",
+     "heating": "Heating",
+     "washing": "Washing",
+     "cooldown": "Cooldown",
+     "rinsingfoam": "Rinsing Foam",
+     "rinsing": "Rinsing",
+     "rinsingaquasensor": "Rinsing Aqua Sensor",
+     "rinseonly": "Rinse only",
+     "waterproofing": "Water proofing",
+     "rinsingsoftener": "Rinsing softener",
+     "holdafterrinse": "Hold after Rinse",
+     "pumping": "Pumping",
+     "spinningfinal": "Spinning final",
+     "lessironing": "Less Ironing",
+     "fluffing": "Fluffing",
+     "soaking": "Soaking",
+     "hygienicsteamfogging": "Hygienic Steam Fogging",
+     "guardingoxy": "Guarding Oxy",
+     "generatingozone": "Generating Ozone",
+     "degradingozone": "Degrading Ozone",
+     "drying": "Drying",
+     "coolingdown": "Cooling down",
+     "additionalcoolingdown": "Additional cooling down",
+     "guardingwrinkle": "Guarding Wrinkle",
+     "detectingtextile": "Detecting Textile",
+     "detectingsoil": "Detecting Soil",
+     "disinfecting": "Disinfecting",
+     "lowtemperaturehygiene": "Low Temperature Hygiene",
+     "steamingactive": "Steaming Active",
+     "irondryreached": "Iron dry reached",
+     "cupboarddryreached": "Cupboard dry reached",
+     "cupboarddryplusreached": "Cupboard dry plus reached",
+     "cleaningheatexchanger": "Cleaning heat exchanger",
+     "slightlydampreached": "Slightly damp reached",
+     "extradryreached": "Extra dry reached",
+     "gentlydryreached": "Gently dry reached",
+     "quickcare": "Quick Care",
+     "depthcarephase1": "Depth Care phase 1",
+     "depthcarephase2": "Depth Care phase 2",
+     "coldrefreshing": "Cold Refreshing",
+     "steaming": "Steaming",
+     "foam": "Foam",
+     "testprogramdummytextfinalspeedreached": "Test Program dummy text final speed reached",
+     "rinsingfoamf21": "Rinsing Foam F21",
+     "handsoak": "Hand soak",
+     "vacant": "Vacant",
+     "spinning": "Spinning",
+     "displayspinabortnospin": "Display Spin Abort no Spin",
+     "multiplesoak": "Multiple soak",
+     "laundryrefreshing": "Laundry Refreshing",
+     "reload": "Reload",
+     "hotmoistheatingwetting": "Hot Moist Heating Wetting",
+     "hotmoistheatingheating": "Hot Moist Heating Heating",
+     "hotmoistheatingwashing": "Hot Moist Heating Washing",
+     "moistureremoval": "Moisture removal",
+     "selfcleaning": "Self cleaning",
+     "hygiene": "Hygiene",
+     "smartsoak": "Smart soak",
+     "soakpause": "Soak pause",
+     "soakfinished": "Soak finished",
+     "anyphase": "Any Phase"
+    },
+    "sensor_laundry_reload": {
+     "impossible": "Impossible",
+     "possiblepauseprogram": "Possible Pause Program",
+     "possibleopendoor": "Possible Open Door"
+    },
+    "sensor_laundry_spin_speed": {
+     "off": "Off",
+     "rpm400": "400 rpm",
+     "rpm600": "600 rpm",
+     "rpm700": "700 rpm",
+     "rpm800": "800 rpm",
+     "rpm900": "900 rpm",
+     "rpm1000": "1000 rpm",
+     "rpm1200": "1200 rpm",
+     "rpm1400": "1400 rpm",
+     "rpm1500": "1500 rpm",
+     "rpm1600": "1600 rpm",
+     "rinsehold": "Rinse Hold",
+     "auto": "Auto"
+    }
+   }
+  },
+  "it": {
+   "select": {
+    "select_oven_signal_duration": {
+     "short": "Corto",
+     "medium": "Medio",
+     "long": "Lungo"
+    },
+    "select_oven_child_lock_setting": {
+     "deactivated": "Disabilitato",
+     "activated": "Abilitato",
+     "activatedwithdoorlock": "Abilitato con blocco porta"
+    },
+    "select_oven_level": {
+     "level01": "Livello 1",
+     "level02": "Livello 2",
+     "level03": "Livello 3"
+    },
+    "select_pyrolysis_level": {
+     "level01": "Livello 1",
+     "level02": "Livello 2",
+     "level03": "Livello 3"
+    },
+    "select_program": {
+     "intensiv70": "Intensivo 70",
+     "auto2": "Auto 2",
+     "eco50": "Eco 50",
+     "quick45": "Veloce 45",
+     "prerinse": "Prerisciacquo",
+     "quick65": "Veloce 65",
+     "machinecare": "Cura lavastoviglie",
+     "001": "Preferito 1"
+    },
+    "select_oven_cooling_fan_runtime": {
+     "short": "Corto",
+     "medium": "Medio",
+     "long": "Lungo",
+     "verylong": "Molto lungo"
+    },
+    "select_auto_power_off": {
+     "off": "Spento",
+     "15min": "15 min",
+     "30min": "30 min",
+     "60min": "60 min"
+    },
+    "select_door_light_ring_brightness": {
+     "low": "Basso",
+     "medium": "Medio",
+     "high": "Alto",
+     "veryhigh": "Molto alto"
+    },
+    "select_laundry_brightness": {
+     "low": "Basso",
+     "medium": "Medio",
+     "high": "Alto",
+     "veryhigh": "Molto alto"
+    },
+    "select_door_light_ring_mode": {
+     "off": "Spento",
+     "on": "Acceso",
+     "auto": "Automatico"
+    },
+    "select_laundry_end_signal_volume": {
+     "off": "Spento",
+     "low": "Basso",
+     "medium": "Medio",
+     "loud": "Medio",
+     "veryloud": "Molto alto"
+    },
+    "select_laundry_key_signal_volume": {
+     "off": "Spento",
+     "low": "Basso",
+     "medium": "Medio",
+     "loud": "Alto",
+     "veryloud": "Molto alto"
+    },
+    "select_laundry_sound_volume": {
+     "off": "Spento",
+     "volume1": "Volume 1",
+     "volume2": "Volume 2",
+     "volume3": "Volume 3",
+     "volume4": "Volume 4"
+    }
+   },
+   "sensor": {
+    "sensor_door_state": {
+     "open": "Aperta",
+     "closed": "Chiusa",
+     "locked": "Bloccata",
+     "ajar": "Ajar"
+    },
+    "sensor_active_program": {
+     "intensiv70": "Intensivo 70",
+     "auto2": "Auto 2",
+     "eco50": "Eco 50",
+     "quick45": "Veloce 45",
+     "prerinse": "Prerisciacquo",
+     "quick65": "Veloce 65",
+     "machinecare": "Cura lavastoviglie",
+     "001": "Preferito 1"
+    },
+    "sensor_power_state": {
+     "mainsoff": "Alimentazione spenta",
+     "off": "Spento",
+     "on": "Acceso",
+     "standby": "In attesa"
+    },
+    "sensor_rinse_aid": {
+     "empty": "Vuoto",
+     "nearly_empty": "Quasi vuoto",
+     "full": "Pieno"
+    },
+    "sensor_salt": {
+     "empty": "Vuoto",
+     "nearly_empty": "Quasi vuoto",
+     "full": "Pieno"
+    },
+    "sensor_laundry_process_phase": {
+     "nophase": "Nessuna fase",
+     "prewash": "Prelavaggio",
+     "intermediatespin": "Rotazione intermedia",
+     "fillingdetergent": "Riempimento detergente",
+     "detectingload": "Rilevazione carico",
+     "heating": "Riscaldamento",
+     "washing": "Lavaggio",
+     "cooldown": "Raffreddamento",
+     "rinsingfoam": "Risciacquo schiuma",
+     "rinsing": "Risciacquo",
+     "rinsingaquasensor": "Sensore acqua risciacquo",
+     "rinseonly": "Solo risciacquo",
+     "waterproofing": "Impermeabilizzazione",
+     "rinsingsoftener": "Ammorbidente per risciacquo",
+     "holdafterrinse": "Pausa dopo risciacquo",
+     "pumping": "Pompaggio",
+     "spinningfinal": "Rotazione finale",
+     "lessironing": "Meno stiratura",
+     "fluffing": "Lanuggine",
+     "soaking": "Ammollo",
+     "hygienicsteamfogging": "Nebulizzazione igienica a vapore",
+     "guardingoxy": "Ossigenazione",
+     "generatingozone": "Generazione di ozono",
+     "degradingozone": "Conversione dell'ozono",
+     "drying": "Asciugatura",
+     "coolingdown": "Raffreddamento",
+     "additionalcoolingdown": "Raffreddamento ulteriore",
+     "guardingwrinkle": "Riduzione delle pieghe",
+     "detectingtextile": "Rilevamento del tessuto",
+     "detectingsoil": "Rilevamento dello sporco",
+     "disinfecting": "Disinfezione",
+     "lowtemperaturehygiene": "Igienizzazione a bassa temperatura",
+     "steamingactive": "Vapore attivo",
+     "irondryreached": "Asciugatura per stiro raggiunta",
+     "cupboarddryreached": "Asciugatura per armadio raggiunta",
+     "cupboarddryplusreached": "Asciugatura per armadio plus raggiunta",
+     "cleaningheatexchanger": "Pulizia scambiatore di calore",
+     "slightlydampreached": "Leggermente umido raggiunto",
+     "extradryreached": "Extra asciutto raggiunto",
+     "gentlydryreached": "Asciugatura delicata raggiunta",
+     "quickcare": "Cura veloce",
+     "depthcarephase1": "Cura profonda fase 1",
+     "depthcarephase2": "Cura profonda fase 2",
+     "coldrefreshing": "Rinfrescatura a freddo",
+     "steaming": "Vaporizzazione",
+     "foam": "Schiuma",
+     "testprogramdummytextfinalspeedreached": "Programma di test fittizio velocità finale raggiunta",
+     "rinsingfoamf21": "Riscuacquo schiuma F21",
+     "handsoak": "Ammollo a mano",
+     "vacant": "Mancante",
+     "spinning": "Rotazione",
+     "displayspinabortnospin": "Display rotazione annullato",
+     "multiplesoak": "Ammollo multiplo",
+     "laundryrefreshing": "Lavaggio rinfrescante",
+     "reload": "Ricarica",
+     "hotmoistheatingwetting": "Hot Moist Heating Wetting",
+     "hotmoistheatingheating": "Hot Moist Heating Heating",
+     "hotmoistheatingwashing": "Hot Moist Heating Washing",
+     "moistureremoval": "Rimozione umidità",
+     "selfcleaning": "Autopulitura",
+     "hygiene": "Igienizzazione",
+     "smartsoak": "Ammollo intelligente",
+     "soakpause": "Pausa ammollo",
+     "soakfinished": "Ammollo terminato",
+     "anyphase": "Qualsiasi fase"
+    },
+    "sensor_laundry_reload": {
+     "impossible": "Impossibile",
+     "possiblepauseprogram": "Possibile con pausa programma",
+     "possibleopendoor": "Possibile con porta aperta"
+    },
+    "sensor_laundry_spin_speed": {
+     "off": "Spento",
+     "rpm400": "400 giri",
+     "rpm600": "600 giri",
+     "rpm700": "700 giri",
+     "rpm800": "800 giri",
+     "rpm900": "900 giri",
+     "rpm1000": "1000 giri",
+     "rpm1200": "1200 giri",
+     "rpm1400": "1400 giri",
+     "rpm1500": "1500 giri",
+     "rpm1600": "1600 giri",
+     "rinsehold": "Attesa risciacquo",
+     "auto": "Auto"
+    }
+   }
+  }
+ }
+}

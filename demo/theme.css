@@ -1,0 +1,60 @@
+/* Home Assistant default theme, light and dark */
+:root {
+  --primary-color: #009ac7;
+  --accent-color: #ff9800;
+  --primary-background-color: #fafafa;
+  --secondary-background-color: #e5e5e5;
+  --card-background-color: #ffffff;
+  --primary-text-color: #212121;
+  --secondary-text-color: #727272;
+  --disabled-text-color: #bdbdbd;
+  --text-primary-color: #ffffff;
+  --divider-color: rgba(0, 0, 0, 0.12);
+  --disabled-color: #bdbdbd;
+  --state-inactive-color: #9e9e9e;
+  --error-color: #db4437;
+  --warning-color: #ffa600;
+  --success-color: #43a047;
+  --info-color: #039be5;
+  --red-color: #f44336;
+  --pink-color: #e91e63;
+  --purple-color: #926bc7;
+  --deep-purple-color: #6e41ab;
+  --indigo-color: #3f51b5;
+  --blue-color: #2196f3;
+  --light-blue-color: #03a9f4;
+  --cyan-color: #00bcd4;
+  --teal-color: #009688;
+  --green-color: #4caf50;
+  --light-green-color: #8bc34a;
+  --lime-color: #cddc39;
+  --yellow-color: #ffeb3b;
+  --amber-color: #ffc107;
+  --orange-color: #ff9800;
+  --deep-orange-color: #ff6f22;
+  --brown-color: #795548;
+  --grey-color: #9e9e9e;
+  --ha-font-family-body: Roboto, Noto, sans-serif;
+  color-scheme: light;
+}
+
+:root.dark {
+  --primary-background-color: #111111;
+  --secondary-background-color: #282828;
+  --card-background-color: #1c1c1c;
+  --primary-text-color: #e1e1e1;
+  --secondary-text-color: #9b9b9b;
+  --disabled-text-color: #6f6f6f;
+  --divider-color: rgba(225, 225, 225, 0.12);
+  --disabled-color: #464646;
+  --state-inactive-color: #6f6f6f;
+  color-scheme: dark;
+}
+
+body {
+  margin: 0;
+  background: var(--primary-background-color);
+  color: var(--primary-text-color);
+  font-family: var(--ha-font-family-body);
+  -webkit-font-smoothing: antialiased;
+}

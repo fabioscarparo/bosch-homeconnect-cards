@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bosch Home Connect cards - demo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="theme.css" />
+    <style>
+      .toolbar {
+        position: sticky;
+        top: 0;
+        z-index: 2;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px 20px;
+        padding: 12px 24px;
+        background: var(--card-background-color);
+        border-bottom: 1px solid var(--divider-color);
+      }
+      .toolbar h1 { font-size: 20px; font-weight: 400; margin: 0 auto 0 0; }
+      .toggle { display: inline-flex; background: color-mix(in srgb, var(--disabled-color) 20%, transparent); border-radius: 10px; padding: 3px; }
+      .toggle button, .chips button {
+        font: inherit;
+        font-size: 13px;
+        font-weight: 500;
+        border: none;
+        background: none;
+        color: var(--primary-text-color);
+        padding: 6px 12px;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      .toggle button.sel { background: var(--card-background-color); box-shadow: 0 1px 3px rgba(0, 0, 0, 0.18); }
+      main {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 32px 24px;
+        padding: 24px;
+        max-width: 2100px;
+        margin: 0 auto;
+        align-items: start;
+      }
+      main.phone { grid-template-columns: repeat(auto-fill, 343px); justify-content: center; }
+      .column { display: flex; flex-direction: column; gap: 10px; min-width: 0; max-width: 500px; }
+      .column h2 { font-size: 16px; font-weight: 500; margin: 0 4px; }
+      .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+      .chips button { border: 1px solid var(--divider-color); padding: 4px 12px; border-radius: 16px; }
+      .chips button.sel { background: var(--primary-color); border-color: var(--primary-color); color: #fff; }
+      .log {
+        position: fixed;
+        right: 16px;
+        bottom: 16px;
+        width: min(420px, calc(100vw - 32px));
+        max-height: 40vh;
+        overflow: auto;
+        background: var(--card-background-color);
+        border: 1px solid var(--divider-color);
+        border-radius: 12px;
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+        font: 12px/1.5 ui-monospace, Menlo, monospace;
+        padding: 8px 12px;
+        display: none;
+      }
+      .log.show { display: block; }
+      .log div { padding: 4px 0; border-bottom: 1px solid var(--divider-color); white-space: pre-wrap; word-break: break-word; }
+      .log div:last-child { border-bottom: none; }
+      .log b { color: var(--primary-color); font-weight: 500; }
+    </style>
+  </head>
+  <body>
+    <div class="toolbar">
+      <h1>Bosch Home Connect cards</h1>
+      <div class="toggle" id="theme"><button data-v="light" class="sel">Light</button><button data-v="dark">Dark</button></div>
+      <div class="toggle" id="lang"><button data-v="en" class="sel">EN</button><button data-v="it">IT</button></div>
+      <div class="toggle" id="width"><button data-v="desktop" class="sel">Sections</button><button data-v="phone">Phone</button></div>
+      <div class="toggle" id="compact"><button data-v="full" class="sel">Dial</button><button data-v="compact">Compact</button></div>
+    </div>
+    <main id="grid"></main>
+    <div class="log" id="log"></div>
+
+    <script type="module">
+      import "./stubs.js";
+      import "../bosch-homeconnect-cards.js";
+      import { MockStore, SCENARIOS } from "./mock.js";
+
+      const store = await MockStore.load();
+      const grid = document.getElementById("grid");
+      const log = document.getElementById("log");
+      const columns = [
+        { model: "Washer", tag: "homeconnect-washer-card", title: "Washer" },
+        { model: "Dishwasher", tag: "homeconnect-dishwasher-card", title: "Dishwasher" },
+        { model: "Oven", tag: "homeconnect-oven-card", title: "Oven" },
+        { model: "Hob", tag: "homeconnect-hob-card", title: "Induction hob" },
+      ];
+      const cards = [];
+
+      // Service calls the cards would send to Home Assistant
+      store.onCall = ({ domain, service, data }) => {
+        const row = document.createElement("div");
+        row.innerHTML = `<b>${domain}.${service}</b> ${JSON.stringify(data)}`;
+        log.prepend(row);
+        log.classList.add("show");
+      };
+
+      for (const column of columns) {
+        const device = store.device(column.model);
+        const wrap = document.createElement("section");
+        wrap.className = "column";
+        const chips = Object.entries(SCENARIOS[column.model])
+          .map(([key, [label]]) => `<button data-s="${key}" class="${key === "off" ? "sel" : ""}">${label}</button>`)
+          .join("");
+        wrap.innerHTML = `<h2>${column.title}</h2><div class="chips">${chips}</div>`;
+        const card = document.createElement(column.tag);
+        card.setConfig({ type: `custom:${column.tag}`, device_id: device.id });
+        card.hass = store.hass;
+        wrap.appendChild(card);
+        grid.appendChild(wrap);
+        cards.push({ card, column, device });
+
+        wrap.querySelector(".chips").addEventListener("click", (ev) => {
+          const button = ev.target.closest("button");
+          if (!button) return;
+          wrap.querySelectorAll(".chips button").forEach((b) => b.classList.toggle("sel", b === button));
+          store.scenario(column.model, button.dataset.s);
+          store.emit();
+        });
+      }
+
+      store.subscribe((hass) => cards.forEach(({ card }) => (card.hass = hass)));
+
+      const toggle = (id, fn) => {
+        const el = document.getElementById(id);
+        el.addEventListener("click", (ev) => {
+          const button = ev.target.closest("button");
+          if (!button) return;
+          el.querySelectorAll("button").forEach((b) => b.classList.toggle("sel", b === button));
+          fn(button.dataset.v);
+        });
+      };
+      toggle("theme", (v) => {
+        document.documentElement.classList.toggle("dark", v === "dark");
+        store.dark = v === "dark";
+        store.emit();
+      });
+      toggle("lang", (v) => {
+        store.lang = v;
+        store.emit();
+      });
+      toggle("width", (v) => grid.classList.toggle("phone", v === "phone"));
+      toggle("compact", (v) => {
+        for (const { card, column, device } of cards) {
+          card.setConfig({ type: `custom:${column.tag}`, device_id: device.id, hide_hero: v === "compact" });
+          card.hass = store.hass;
+        }
+      });
+
+      // Events that open more-info, toasts and navigation inside Home Assistant
+      for (const type of ["hass-more-info", "hass-notification"]) {
+        window.addEventListener(type, (ev) => store.onCall({ domain: "event", service: type, data: ev.detail }));
+      }
+      window.addEventListener("location-changed", () => {
+        store.onCall({ domain: "event", service: "navigate", data: location.pathname });
+        history.replaceState(null, "", "/demo/");
+      });
+    </script>
+  </body>
+</html>
