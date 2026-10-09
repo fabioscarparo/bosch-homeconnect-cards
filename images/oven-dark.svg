@@ -4,24 +4,24 @@
 </defs>
 <g transform="translate(0 0)"><rect x="0" y="0" width="400" height="164" rx="12" fill="#1c1c1c"/>
 <rect x="0.5" y="0.5" width="399" height="163" rx="11.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
-<clipPath id="c54-clip0"><rect x="0" y="0" width="400" height="164" rx="12"/></clipPath>
-<g clip-path="url(#c54-clip0)">
+<clipPath id="c0-clip0"><rect x="0" y="0" width="400" height="164" rx="12"/></clipPath>
+<g clip-path="url(#c0-clip0)">
 <rect x="13" y="15" width="36" height="36" rx="18" fill="#6f6f6f" fill-opacity="0.2"/>
 <path transform="translate(19 21) scale(1)" d="M6,14H8L11,17H9L6,14M4,4H5V3A1,1 0 0,1 6,2H10A1,1 0 0,1 11,3V4H13V3A1,1 0 0,1 14,2H18A1,1 0 0,1 19,3V4H20A2,2 0 0,1 22,6V19A2,2 0 0,1 20,21V22H17V21H7V22H4V21A2,2 0 0,1 2,19V6A2,2 0 0,1 4,4M18,7A1,1 0 0,1 19,8A1,1 0 0,1 18,9A1,1 0 0,1 17,8A1,1 0 0,1 18,7M14,7A1,1 0 0,1 15,8A1,1 0 0,1 14,9A1,1 0 0,1 13,8A1,1 0 0,1 14,7M20,6H4V10H20V6M4,19H20V12H4V19M6,7A1,1 0 0,1 7,8A1,1 0 0,1 6,9A1,1 0 0,1 5,8A1,1 0 0,1 6,7M13,14H15L18,17H16L13,14Z" fill="#6f6f6f"/>
-<clipPath id="c54-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
-<g clip-path="url(#c54-clip1)">
+<clipPath id="c0-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
+<g clip-path="url(#c0-clip1)">
 <text x="59" y="30" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Oven</text>
 </g>
-<clipPath id="c54-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
-<g clip-path="url(#c54-clip2)">
+<clipPath id="c0-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
+<g clip-path="url(#c0-clip2)">
 <text x="59" y="47" font-size="12" font-weight="400" fill="#9b9b9b" letter-spacing="0.4">Off</text>
 </g>
 <path transform="translate(306 22) scale(0.92)" d="M16.56,5.44L15.11,6.89C16.84,7.94 18,9.83 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12C6,9.83 7.16,7.94 8.88,6.88L7.44,5.44C5.36,6.88 4,9.28 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12C20,9.28 18.64,6.88 16.56,5.44M13,3H11V13H13" fill="#9b9b9b"/>
 <path transform="translate(356 22) scale(0.92)" d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z" fill="#9b9b9b"/>
 <rect x="13" y="65" width="374" height="42" rx="12" fill="#ff6f22" fill-opacity="0.2"/>
 <path transform="translate(162.14 76) scale(0.83)" d="M16.56,5.44L15.11,6.89C16.84,7.94 18,9.83 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12C6,9.83 7.16,7.94 8.88,6.88L7.44,5.44C5.36,6.88 4,9.28 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12C20,9.28 18.64,6.88 16.56,5.44M13,3H11V13H13" fill="#ff6f22"/>
-<clipPath id="c54-clip3"><rect x="190.14" y="76" width="47.7" height="20"/></clipPath>
-<g clip-path="url(#c54-clip3)">
+<clipPath id="c0-clip3"><rect x="190.14" y="76" width="47.7" height="20"/></clipPath>
+<g clip-path="url(#c0-clip3)">
 <text x="190.14" y="91" font-size="14" font-weight="500" fill="#e1e1e1">Turn on</text>
 </g>
 <rect x="13.5" y="119.5" width="109.17" height="31" rx="15.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
@@ -33,16 +33,16 @@
 </g></g>
 <g transform="translate(416 0)"><rect x="0" y="0" width="400" height="620" rx="12" fill="#1c1c1c"/>
 <rect x="0.5" y="0.5" width="399" height="619" rx="11.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
-<clipPath id="c55-clip0"><rect x="0" y="0" width="400" height="620" rx="12"/></clipPath>
-<g clip-path="url(#c55-clip0)">
+<clipPath id="c1-clip0"><rect x="0" y="0" width="400" height="620" rx="12"/></clipPath>
+<g clip-path="url(#c1-clip0)">
 <rect x="13" y="15" width="36" height="36" rx="18" fill="#ff6f22" fill-opacity="0.2"/>
 <path transform="translate(19 21) scale(1)" d="M6,14H8L11,17H9L6,14M4,4H5V3A1,1 0 0,1 6,2H10A1,1 0 0,1 11,3V4H13V3A1,1 0 0,1 14,2H18A1,1 0 0,1 19,3V4H20A2,2 0 0,1 22,6V19A2,2 0 0,1 20,21V22H17V21H7V22H4V21A2,2 0 0,1 2,19V6A2,2 0 0,1 4,4M18,7A1,1 0 0,1 19,8A1,1 0 0,1 18,9A1,1 0 0,1 17,8A1,1 0 0,1 18,7M14,7A1,1 0 0,1 15,8A1,1 0 0,1 14,9A1,1 0 0,1 13,8A1,1 0 0,1 14,7M20,6H4V10H20V6M4,19H20V12H4V19M6,7A1,1 0 0,1 7,8A1,1 0 0,1 6,9A1,1 0 0,1 5,8A1,1 0 0,1 6,7M13,14H15L18,17H16L13,14Z" fill="#ff6f22"/>
-<clipPath id="c55-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
-<g clip-path="url(#c55-clip1)">
+<clipPath id="c1-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
+<g clip-path="url(#c1-clip1)">
 <text x="59" y="30" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Oven</text>
 </g>
-<clipPath id="c55-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
-<g clip-path="url(#c55-clip2)">
+<clipPath id="c1-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
+<g clip-path="url(#c1-clip2)">
 <text x="59" y="47" font-size="12" font-weight="400" fill="#9b9b9b" letter-spacing="0.4">Ready · 3D hot air</text>
 </g>
 <path transform="translate(306 22) scale(0.92)" d="M16.56,5.44L15.11,6.89C16.84,7.94 18,9.83 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12C6,9.83 7.16,7.94 8.88,6.88L7.44,5.44C5.36,6.88 4,9.28 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12C20,9.28 18.64,6.88 16.56,5.44M13,3H11V13H13" fill="#ff6f22"/>
@@ -52,8 +52,8 @@
 <circle cx="120" cy="120" r="96" transform="rotate(135 120 120)" fill="none" stroke="#ff6f22" stroke-width="16" stroke-dasharray="251.3, 603.2" stroke-linecap="round"/>
 <circle cx="52.1" cy="187.9" r="6" fill="#1c1c1c" stroke="#e1e1e1" stroke-width="3"/>
 </svg>
-<clipPath id="c55-clip3"><rect x="153.5" y="138.03" width="92.98" height="20"/></clipPath>
-<g clip-path="url(#c55-clip3)">
+<clipPath id="c1-clip3"><rect x="153.5" y="138.03" width="92.98" height="20"/></clipPath>
+<g clip-path="url(#c1-clip3)">
 <text x="153.5" y="153.03" font-size="14" font-weight="400" fill="#9b9b9b">Currently 24 °C</text>
 </g>
 <text x="139.05" y="209.03" font-size="57" font-weight="400" fill="#e1e1e1" letter-spacing="-0.25">180</text>
@@ -65,14 +65,14 @@
 <rect x="13" y="309" width="374" height="52" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(25 324) scale(0.92)" d="M8.5 4.5L5.4 9.5L8.5 14.7L5.2 20.5L3.4 19.6L6.1 14.7L3 9.5L6.7 3.6L8.5 4.5M14.7 4.4L11.6 9.5L14.7 14.5L11.4 20.3L9.6 19.4L12.3 14.5L9.2 9.5L12.9 3.5L14.7 4.4M21 4.4L17.9 9.5L21 14.5L17.7 20.3L15.9 19.4L18.6 14.5L15.5 9.5L19.2 3.5L21 4.4" fill="#ff6f22"/>
 <text x="59" y="329" font-size="12" font-weight="400" fill="#9b9b9b">Program</text>
-<clipPath id="c55-clip4"><rect x="59" y="333" width="64.84" height="20"/></clipPath>
-<g clip-path="url(#c55-clip4)">
+<clipPath id="c1-clip4"><rect x="59" y="333" width="64.84" height="20"/></clipPath>
+<g clip-path="url(#c1-clip4)">
 <text x="59" y="348" font-size="15" font-weight="500" fill="#e1e1e1">3D hot air</text>
 </g>
 <path transform="translate(353 324) scale(0.92)" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" fill="#9b9b9b"/>
 <path transform="translate(13 379) scale(1)" d="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M19.03,7.39L20.45,5.97C20,5.46 19.55,5 19.04,4.56L17.62,6C16.07,4.74 14.12,4 12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22C17,22 21,17.97 21,13C21,10.88 20.26,8.93 19.03,7.39M11,14H13V8H11M15,1H9V3H15V1Z" fill="#9b9b9b"/>
-<clipPath id="c55-clip5"><rect x="49" y="380" width="52.7" height="20"/></clipPath>
-<g clip-path="url(#c55-clip5)">
+<clipPath id="c1-clip5"><rect x="49" y="380" width="52.7" height="20"/></clipPath>
+<g clip-path="url(#c1-clip5)">
 <text x="49" y="395" font-size="14" font-weight="400" fill="#e1e1e1">Duration</text>
 </g>
 <rect x="223" y="369" width="164" height="42" rx="12" fill="#464646" fill-opacity="0.2"/>
@@ -80,8 +80,8 @@
 <text x="285.58" y="395" font-size="14" font-weight="500" fill="#e1e1e1">1:00 h</text>
 <path transform="translate(356 380) scale(0.83)" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#e1e1e1"/>
 <path transform="translate(13 429) scale(1)" d="M11 8H13V14H11V8M15 1H9V3H15V1M12 20C8.13 20 5 16.87 5 13S8.13 6 12 6 19 9.13 19 13C19.7 13 20.36 13.13 21 13.35C21 13.23 21 13.12 21 13C21 10.88 20.26 8.93 19.03 7.39L20.45 5.97C20 5.46 19.55 5 19.04 4.56L17.62 6C16.07 4.74 14.12 4 12 4C7.03 4 3 8.03 3 13S7.03 22 12 22C12.59 22 13.16 21.94 13.71 21.83C13.4 21.25 13.18 20.6 13.08 19.91C12.72 19.96 12.37 20 12 20M20 18V15H18V18H15V20H18V23H20V20H23V18H20Z" fill="#9b9b9b"/>
-<clipPath id="c55-clip6"><rect x="49" y="430" width="81.95" height="20"/></clipPath>
-<g clip-path="url(#c55-clip6)">
+<clipPath id="c1-clip6"><rect x="49" y="430" width="81.95" height="20"/></clipPath>
+<g clip-path="url(#c1-clip6)">
 <text x="49" y="445" font-size="14" font-weight="400" fill="#e1e1e1">Delayed start</text>
 </g>
 <rect x="223" y="419" width="164" height="42" rx="12" fill="#464646" fill-opacity="0.2"/>
@@ -92,20 +92,20 @@
 <path transform="translate(356 430) scale(0.83)" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#e1e1e1"/>
 <rect x="13" y="469" width="183" height="44" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(25 481) scale(0.83)" d="M12,2A7,7 0 0,1 19,9C19,11.38 17.81,13.47 16,14.74V17A1,1 0 0,1 15,18H9A1,1 0 0,1 8,17V14.74C6.19,13.47 5,11.38 5,9A7,7 0 0,1 12,2M9,21V20H15V21A1,1 0 0,1 14,22H10A1,1 0 0,1 9,21M12,4A5,5 0 0,0 7,9C7,11.05 8.23,12.81 10,13.58V16H14V13.58C15.77,12.81 17,11.05 17,9A5,5 0 0,0 12,4Z" fill="#9b9b9b"/>
-<clipPath id="c55-clip7"><rect x="53" y="481" width="61.92" height="20"/></clipPath>
-<g clip-path="url(#c55-clip7)">
+<clipPath id="c1-clip7"><rect x="53" y="481" width="61.92" height="20"/></clipPath>
+<g clip-path="url(#c1-clip7)">
 <text x="53" y="496" font-size="14" font-weight="400" fill="#e1e1e1">Oven light</text>
 </g>
 <rect x="204" y="469" width="183" height="44" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(216 481) scale(0.83)" d="M13,6V18L21.5,12M4,18L12.5,12L4,6V18Z" fill="#9b9b9b"/>
-<clipPath id="c55-clip8"><rect x="244" y="481" width="77.64" height="20"/></clipPath>
-<g clip-path="url(#c55-clip8)">
+<clipPath id="c1-clip8"><rect x="244" y="481" width="77.64" height="20"/></clipPath>
+<g clip-path="url(#c1-clip8)">
 <text x="244" y="496" font-size="14" font-weight="400" fill="#e1e1e1">Fast preheat</text>
 </g>
 <rect x="13" y="521" width="374" height="42" rx="12" fill="#ff6f22"/>
 <path transform="translate(170.67 532) scale(0.83)" d="M8,5.14V19.14L19,12.14L8,5.14Z" fill="#ffffff"/>
-<clipPath id="c55-clip9"><rect x="198.67" y="532" width="30.66" height="20"/></clipPath>
-<g clip-path="url(#c55-clip9)">
+<clipPath id="c1-clip9"><rect x="198.67" y="532" width="30.66" height="20"/></clipPath>
+<g clip-path="url(#c1-clip9)">
 <text x="198.67" y="547" font-size="14" font-weight="500" fill="#ffffff">Start</text>
 </g>
 <rect x="13.5" y="575.5" width="109.17" height="31" rx="15.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
@@ -114,16 +114,16 @@
 </g></g>
 <g transform="translate(832 0)"><rect x="0" y="0" width="400" height="512" rx="12" fill="#1c1c1c"/>
 <rect x="0.5" y="0.5" width="399" height="511" rx="11.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
-<clipPath id="c56-clip0"><rect x="0" y="0" width="400" height="512" rx="12"/></clipPath>
-<g clip-path="url(#c56-clip0)">
+<clipPath id="c2-clip0"><rect x="0" y="0" width="400" height="512" rx="12"/></clipPath>
+<g clip-path="url(#c2-clip0)">
 <rect x="13" y="15" width="36" height="36" rx="18" fill="#ff6f22" fill-opacity="0.2"/>
 <path transform="translate(19 21) scale(1)" d="M6,14H8L11,17H9L6,14M4,4H5V3A1,1 0 0,1 6,2H10A1,1 0 0,1 11,3V4H13V3A1,1 0 0,1 14,2H18A1,1 0 0,1 19,3V4H20A2,2 0 0,1 22,6V19A2,2 0 0,1 20,21V22H17V21H7V22H4V21A2,2 0 0,1 2,19V6A2,2 0 0,1 4,4M18,7A1,1 0 0,1 19,8A1,1 0 0,1 18,9A1,1 0 0,1 17,8A1,1 0 0,1 18,7M14,7A1,1 0 0,1 15,8A1,1 0 0,1 14,9A1,1 0 0,1 13,8A1,1 0 0,1 14,7M20,6H4V10H20V6M4,19H20V12H4V19M6,7A1,1 0 0,1 7,8A1,1 0 0,1 6,9A1,1 0 0,1 5,8A1,1 0 0,1 6,7M13,14H15L18,17H16L13,14Z" fill="#ff6f22"/>
-<clipPath id="c56-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
-<g clip-path="url(#c56-clip1)">
+<clipPath id="c2-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
+<g clip-path="url(#c2-clip1)">
 <text x="59" y="30" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Oven</text>
 </g>
-<clipPath id="c56-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
-<g clip-path="url(#c56-clip2)">
+<clipPath id="c2-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
+<g clip-path="url(#c2-clip2)">
 <text x="59" y="47" font-size="12" font-weight="400" fill="#9b9b9b" letter-spacing="0.4">Running · 3D hot air</text>
 </g>
 <path transform="translate(306 22) scale(0.92)" d="M16.56,5.44L15.11,6.89C16.84,7.94 18,9.83 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12C6,9.83 7.16,7.94 8.88,6.88L7.44,5.44C5.36,6.88 4,9.28 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12C20,9.28 18.64,6.88 16.56,5.44M13,3H11V13H13" fill="#ff6f22"/>
@@ -133,14 +133,14 @@
 <circle cx="120" cy="120" r="96" transform="rotate(135 120 120)" fill="none" stroke="#ff6f22" stroke-width="16" stroke-dasharray="251.3, 603.2" stroke-linecap="round"/>
 <circle cx="62.2" cy="43.3" r="6" fill="#1c1c1c" stroke="#e1e1e1" stroke-width="3"/>
 </svg>
-<clipPath id="c56-clip3"><rect x="149.58" y="128.03" width="100.84" height="20"/></clipPath>
-<g clip-path="url(#c56-clip3)">
+<clipPath id="c2-clip3"><rect x="149.58" y="128.03" width="100.84" height="20"/></clipPath>
+<g clip-path="url(#c2-clip3)">
 <text x="149.58" y="143.03" font-size="14" font-weight="400" fill="#9b9b9b">Currently 128 °C</text>
 </g>
 <text x="139.05" y="199.03" font-size="57" font-weight="400" fill="#e1e1e1" letter-spacing="-0.25">180</text>
 <text x="238.41" y="175.03" font-size="22" font-weight="400" fill="#e1e1e1">°C</text>
-<clipPath id="c56-clip4"><rect x="149.25" y="212.03" width="101.48" height="20"/></clipPath>
-<g clip-path="url(#c56-clip4)">
+<clipPath id="c2-clip4"><rect x="149.25" y="212.03" width="101.48" height="20"/></clipPath>
+<g clip-path="url(#c2-clip4)">
 <text x="149.25" y="227.03" font-size="14" font-weight="400" fill="#9b9b9b">Ends at 7:34 PM</text>
 </g>
 <rect x="146.5" y="258.06" width="43" height="43" rx="21.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.24" stroke-width="1"/>
@@ -155,22 +155,22 @@
 <text x="297.48" y="342" font-size="16" font-weight="500" fill="#e1e1e1">7:34 PM</text>
 <rect x="13" y="361" width="183" height="44" rx="12" fill="#ff6f22" fill-opacity="0.2"/>
 <path transform="translate(25 373) scale(0.83)" d="M12,2A7,7 0 0,1 19,9C19,11.38 17.81,13.47 16,14.74V17A1,1 0 0,1 15,18H9A1,1 0 0,1 8,17V14.74C6.19,13.47 5,11.38 5,9A7,7 0 0,1 12,2M9,21V20H15V21A1,1 0 0,1 14,22H10A1,1 0 0,1 9,21M12,4A5,5 0 0,0 7,9C7,11.05 8.23,12.81 10,13.58V16H14V13.58C15.77,12.81 17,11.05 17,9A5,5 0 0,0 12,4Z" fill="#ff6f22"/>
-<clipPath id="c56-clip5"><rect x="53" y="373" width="61.92" height="20"/></clipPath>
-<g clip-path="url(#c56-clip5)">
+<clipPath id="c2-clip5"><rect x="53" y="373" width="61.92" height="20"/></clipPath>
+<g clip-path="url(#c2-clip5)">
 <text x="53" y="388" font-size="14" font-weight="400" fill="#e1e1e1">Oven light</text>
 </g>
 <g opacity="0.45">
 <rect x="204" y="361" width="183" height="44" rx="12" fill="#ff6f22" fill-opacity="0.2"/>
 <path transform="translate(216 373) scale(0.83)" d="M13,6V18L21.5,12M4,18L12.5,12L4,6V18Z" fill="#ff6f22"/>
-<clipPath id="c56-clip6"><rect x="244" y="373" width="77.64" height="20"/></clipPath>
-<g clip-path="url(#c56-clip6)">
+<clipPath id="c2-clip6"><rect x="244" y="373" width="77.64" height="20"/></clipPath>
+<g clip-path="url(#c2-clip6)">
 <text x="244" y="388" font-size="14" font-weight="400" fill="#e1e1e1">Fast preheat</text>
 </g>
 </g>
 <rect x="13" y="413" width="310" height="42" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(134.55 424) scale(0.83)" d="M14,19H18V5H14M6,19H10V5H6V19Z" fill="#e1e1e1"/>
-<clipPath id="c56-clip7"><rect x="162.55" y="424" width="38.91" height="20"/></clipPath>
-<g clip-path="url(#c56-clip7)">
+<clipPath id="c2-clip7"><rect x="162.55" y="424" width="38.91" height="20"/></clipPath>
+<g clip-path="url(#c2-clip7)">
 <text x="162.55" y="439" font-size="14" font-weight="500" fill="#e1e1e1">Pause</text>
 </g>
 <rect x="331" y="413" width="56" height="42" rx="12" fill="#464646" fill-opacity="0.2"/>
@@ -181,16 +181,16 @@
 </g></g>
 <g transform="translate(1248 0)"><rect x="0" y="0" width="400" height="620" rx="12" fill="#1c1c1c"/>
 <rect x="0.5" y="0.5" width="399" height="619" rx="11.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
-<clipPath id="c57-clip0"><rect x="0" y="0" width="400" height="620" rx="12"/></clipPath>
-<g clip-path="url(#c57-clip0)">
+<clipPath id="c3-clip0"><rect x="0" y="0" width="400" height="620" rx="12"/></clipPath>
+<g clip-path="url(#c3-clip0)">
 <rect x="13" y="15" width="36" height="36" rx="18" fill="#ff6f22" fill-opacity="0.2"/>
 <path transform="translate(19 21) scale(1)" d="M6,14H8L11,17H9L6,14M4,4H5V3A1,1 0 0,1 6,2H10A1,1 0 0,1 11,3V4H13V3A1,1 0 0,1 14,2H18A1,1 0 0,1 19,3V4H20A2,2 0 0,1 22,6V19A2,2 0 0,1 20,21V22H17V21H7V22H4V21A2,2 0 0,1 2,19V6A2,2 0 0,1 4,4M18,7A1,1 0 0,1 19,8A1,1 0 0,1 18,9A1,1 0 0,1 17,8A1,1 0 0,1 18,7M14,7A1,1 0 0,1 15,8A1,1 0 0,1 14,9A1,1 0 0,1 13,8A1,1 0 0,1 14,7M20,6H4V10H20V6M4,19H20V12H4V19M6,7A1,1 0 0,1 7,8A1,1 0 0,1 6,9A1,1 0 0,1 5,8A1,1 0 0,1 6,7M13,14H15L18,17H16L13,14Z" fill="#ff6f22"/>
-<clipPath id="c57-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
-<g clip-path="url(#c57-clip1)">
+<clipPath id="c3-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
+<g clip-path="url(#c3-clip1)">
 <text x="59" y="30" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Oven</text>
 </g>
-<clipPath id="c57-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
-<g clip-path="url(#c57-clip2)">
+<clipPath id="c3-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
+<g clip-path="url(#c3-clip2)">
 <text x="59" y="47" font-size="12" font-weight="400" fill="#9b9b9b" letter-spacing="0.4">Running · Pizza setting</text>
 </g>
 <path transform="translate(306 22) scale(0.92)" d="M16.56,5.44L15.11,6.89C16.84,7.94 18,9.83 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12C6,9.83 7.16,7.94 8.88,6.88L7.44,5.44C5.36,6.88 4,9.28 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12C20,9.28 18.64,6.88 16.56,5.44M13,3H11V13H13" fill="#ff6f22"/>
@@ -206,14 +206,14 @@
 <circle cx="120" cy="120" r="96" transform="rotate(135 120 120)" fill="none" stroke="#ff6f22" stroke-width="16" stroke-dasharray="284.8, 603.2" stroke-linecap="round"/>
 <circle cx="175.1" cy="41.4" r="6" fill="#1c1c1c" stroke="#e1e1e1" stroke-width="3"/>
 </svg>
-<clipPath id="c57-clip3"><rect x="149.58" y="236.03" width="100.84" height="20"/></clipPath>
-<g clip-path="url(#c57-clip3)">
+<clipPath id="c3-clip3"><rect x="149.58" y="236.03" width="100.84" height="20"/></clipPath>
+<g clip-path="url(#c3-clip3)">
 <text x="149.58" y="251.03" font-size="14" font-weight="400" fill="#9b9b9b">Currently 200 °C</text>
 </g>
 <text x="139.05" y="307.03" font-size="57" font-weight="400" fill="#e1e1e1" letter-spacing="-0.25">200</text>
 <text x="238.41" y="283.03" font-size="22" font-weight="400" fill="#e1e1e1">°C</text>
-<clipPath id="c57-clip4"><rect x="149.25" y="320.03" width="101.48" height="20"/></clipPath>
-<g clip-path="url(#c57-clip4)">
+<clipPath id="c3-clip4"><rect x="149.25" y="320.03" width="101.48" height="20"/></clipPath>
+<g clip-path="url(#c3-clip4)">
 <text x="149.25" y="335.03" font-size="14" font-weight="400" fill="#9b9b9b">Ends at 7:27 PM</text>
 </g>
 <rect x="146.5" y="366.06" width="43" height="43" rx="21.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.24" stroke-width="1"/>
@@ -228,22 +228,22 @@
 <text x="297.48" y="450" font-size="16" font-weight="500" fill="#e1e1e1">7:27 PM</text>
 <rect x="13" y="469" width="183" height="44" rx="12" fill="#ff6f22" fill-opacity="0.2"/>
 <path transform="translate(25 481) scale(0.83)" d="M12,2A7,7 0 0,1 19,9C19,11.38 17.81,13.47 16,14.74V17A1,1 0 0,1 15,18H9A1,1 0 0,1 8,17V14.74C6.19,13.47 5,11.38 5,9A7,7 0 0,1 12,2M9,21V20H15V21A1,1 0 0,1 14,22H10A1,1 0 0,1 9,21M12,4A5,5 0 0,0 7,9C7,11.05 8.23,12.81 10,13.58V16H14V13.58C15.77,12.81 17,11.05 17,9A5,5 0 0,0 12,4Z" fill="#ff6f22"/>
-<clipPath id="c57-clip5"><rect x="53" y="481" width="61.92" height="20"/></clipPath>
-<g clip-path="url(#c57-clip5)">
+<clipPath id="c3-clip5"><rect x="53" y="481" width="61.92" height="20"/></clipPath>
+<g clip-path="url(#c3-clip5)">
 <text x="53" y="496" font-size="14" font-weight="400" fill="#e1e1e1">Oven light</text>
 </g>
 <g opacity="0.45">
 <rect x="204" y="469" width="183" height="44" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(216 481) scale(0.83)" d="M13,6V18L21.5,12M4,18L12.5,12L4,6V18Z" fill="#9b9b9b"/>
-<clipPath id="c57-clip6"><rect x="244" y="481" width="77.64" height="20"/></clipPath>
-<g clip-path="url(#c57-clip6)">
+<clipPath id="c3-clip6"><rect x="244" y="481" width="77.64" height="20"/></clipPath>
+<g clip-path="url(#c3-clip6)">
 <text x="244" y="496" font-size="14" font-weight="400" fill="#e1e1e1">Fast preheat</text>
 </g>
 </g>
 <rect x="13" y="521" width="310" height="42" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(134.55 532) scale(0.83)" d="M14,19H18V5H14M6,19H10V5H6V19Z" fill="#e1e1e1"/>
-<clipPath id="c57-clip7"><rect x="162.55" y="532" width="38.91" height="20"/></clipPath>
-<g clip-path="url(#c57-clip7)">
+<clipPath id="c3-clip7"><rect x="162.55" y="532" width="38.91" height="20"/></clipPath>
+<g clip-path="url(#c3-clip7)">
 <text x="162.55" y="547" font-size="14" font-weight="500" fill="#e1e1e1">Pause</text>
 </g>
 <rect x="331" y="521" width="56" height="42" rx="12" fill="#464646" fill-opacity="0.2"/>
@@ -254,16 +254,16 @@
 </g></g>
 <g transform="translate(0 636)"><rect x="0" y="0" width="400" height="566" rx="12" fill="#1c1c1c"/>
 <rect x="0.5" y="0.5" width="399" height="565" rx="11.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
-<clipPath id="c58-clip0"><rect x="0" y="0" width="400" height="566" rx="12"/></clipPath>
-<g clip-path="url(#c58-clip0)">
+<clipPath id="c4-clip0"><rect x="0" y="0" width="400" height="566" rx="12"/></clipPath>
+<g clip-path="url(#c4-clip0)">
 <rect x="13" y="15" width="36" height="36" rx="18" fill="#ff6f22" fill-opacity="0.2"/>
 <path transform="translate(19 21) scale(1)" d="M6,14H8L11,17H9L6,14M4,4H5V3A1,1 0 0,1 6,2H10A1,1 0 0,1 11,3V4H13V3A1,1 0 0,1 14,2H18A1,1 0 0,1 19,3V4H20A2,2 0 0,1 22,6V19A2,2 0 0,1 20,21V22H17V21H7V22H4V21A2,2 0 0,1 2,19V6A2,2 0 0,1 4,4M18,7A1,1 0 0,1 19,8A1,1 0 0,1 18,9A1,1 0 0,1 17,8A1,1 0 0,1 18,7M14,7A1,1 0 0,1 15,8A1,1 0 0,1 14,9A1,1 0 0,1 13,8A1,1 0 0,1 14,7M20,6H4V10H20V6M4,19H20V12H4V19M6,7A1,1 0 0,1 7,8A1,1 0 0,1 6,9A1,1 0 0,1 5,8A1,1 0 0,1 6,7M13,14H15L18,17H16L13,14Z" fill="#ff6f22"/>
-<clipPath id="c58-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
-<g clip-path="url(#c58-clip1)">
+<clipPath id="c4-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
+<g clip-path="url(#c4-clip1)">
 <text x="59" y="30" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Oven</text>
 </g>
-<clipPath id="c58-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
-<g clip-path="url(#c58-clip2)">
+<clipPath id="c4-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
+<g clip-path="url(#c4-clip2)">
 <text x="59" y="47" font-size="12" font-weight="400" fill="#9b9b9b" letter-spacing="0.4">Running · 3D hot air</text>
 </g>
 <path transform="translate(306 22) scale(0.92)" d="M16.56,5.44L15.11,6.89C16.84,7.94 18,9.83 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12C6,9.83 7.16,7.94 8.88,6.88L7.44,5.44C5.36,6.88 4,9.28 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12C20,9.28 18.64,6.88 16.56,5.44M13,3H11V13H13" fill="#ff6f22"/>
@@ -276,14 +276,14 @@
 <circle cx="120" cy="120" r="96" transform="rotate(135 120 120)" fill="none" stroke="#ff6f22" stroke-width="16" stroke-dasharray="251.3, 603.2" stroke-linecap="round"/>
 <circle cx="146.5" cy="27.7" r="6" fill="#1c1c1c" stroke="#e1e1e1" stroke-width="3"/>
 </svg>
-<clipPath id="c58-clip3"><rect x="149.58" y="182.03" width="100.84" height="20"/></clipPath>
-<g clip-path="url(#c58-clip3)">
+<clipPath id="c4-clip3"><rect x="149.58" y="182.03" width="100.84" height="20"/></clipPath>
+<g clip-path="url(#c4-clip3)">
 <text x="149.58" y="197.03" font-size="14" font-weight="400" fill="#9b9b9b">Currently 181 °C</text>
 </g>
 <text x="139.05" y="253.03" font-size="57" font-weight="400" fill="#e1e1e1" letter-spacing="-0.25">180</text>
 <text x="238.41" y="229.03" font-size="22" font-weight="400" fill="#e1e1e1">°C</text>
-<clipPath id="c58-clip4"><rect x="149.25" y="266.03" width="101.48" height="20"/></clipPath>
-<g clip-path="url(#c58-clip4)">
+<clipPath id="c4-clip4"><rect x="149.25" y="266.03" width="101.48" height="20"/></clipPath>
+<g clip-path="url(#c4-clip4)">
 <text x="149.25" y="281.03" font-size="14" font-weight="400" fill="#9b9b9b">Ends at 7:12 PM</text>
 </g>
 <rect x="146.5" y="312.06" width="43" height="43" rx="21.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.24" stroke-width="1"/>
@@ -298,22 +298,22 @@
 <text x="297.48" y="396" font-size="16" font-weight="500" fill="#e1e1e1">7:12 PM</text>
 <rect x="13" y="415" width="183" height="44" rx="12" fill="#ff6f22" fill-opacity="0.2"/>
 <path transform="translate(25 427) scale(0.83)" d="M12,2A7,7 0 0,1 19,9C19,11.38 17.81,13.47 16,14.74V17A1,1 0 0,1 15,18H9A1,1 0 0,1 8,17V14.74C6.19,13.47 5,11.38 5,9A7,7 0 0,1 12,2M9,21V20H15V21A1,1 0 0,1 14,22H10A1,1 0 0,1 9,21M12,4A5,5 0 0,0 7,9C7,11.05 8.23,12.81 10,13.58V16H14V13.58C15.77,12.81 17,11.05 17,9A5,5 0 0,0 12,4Z" fill="#ff6f22"/>
-<clipPath id="c58-clip5"><rect x="53" y="427" width="61.92" height="20"/></clipPath>
-<g clip-path="url(#c58-clip5)">
+<clipPath id="c4-clip5"><rect x="53" y="427" width="61.92" height="20"/></clipPath>
+<g clip-path="url(#c4-clip5)">
 <text x="53" y="442" font-size="14" font-weight="400" fill="#e1e1e1">Oven light</text>
 </g>
 <g opacity="0.45">
 <rect x="204" y="415" width="183" height="44" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(216 427) scale(0.83)" d="M13,6V18L21.5,12M4,18L12.5,12L4,6V18Z" fill="#9b9b9b"/>
-<clipPath id="c58-clip6"><rect x="244" y="427" width="77.64" height="20"/></clipPath>
-<g clip-path="url(#c58-clip6)">
+<clipPath id="c4-clip6"><rect x="244" y="427" width="77.64" height="20"/></clipPath>
+<g clip-path="url(#c4-clip6)">
 <text x="244" y="442" font-size="14" font-weight="400" fill="#e1e1e1">Fast preheat</text>
 </g>
 </g>
 <rect x="13" y="467" width="310" height="42" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(134.55 478) scale(0.83)" d="M14,19H18V5H14M6,19H10V5H6V19Z" fill="#e1e1e1"/>
-<clipPath id="c58-clip7"><rect x="162.55" y="478" width="38.91" height="20"/></clipPath>
-<g clip-path="url(#c58-clip7)">
+<clipPath id="c4-clip7"><rect x="162.55" y="478" width="38.91" height="20"/></clipPath>
+<g clip-path="url(#c4-clip7)">
 <text x="162.55" y="493" font-size="14" font-weight="500" fill="#e1e1e1">Pause</text>
 </g>
 <rect x="331" y="467" width="56" height="42" rx="12" fill="#464646" fill-opacity="0.2"/>
@@ -324,16 +324,16 @@
 </g></g>
 <g transform="translate(416 636)"><rect x="0" y="0" width="400" height="670" rx="12" fill="#1c1c1c"/>
 <rect x="0.5" y="0.5" width="399" height="669" rx="11.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
-<clipPath id="c59-clip0"><rect x="0" y="0" width="400" height="670" rx="12"/></clipPath>
-<g clip-path="url(#c59-clip0)">
+<clipPath id="c5-clip0"><rect x="0" y="0" width="400" height="670" rx="12"/></clipPath>
+<g clip-path="url(#c5-clip0)">
 <rect x="13" y="15" width="36" height="36" rx="18" fill="#ff6f22" fill-opacity="0.2"/>
 <path transform="translate(19 21) scale(1)" d="M6,14H8L11,17H9L6,14M4,4H5V3A1,1 0 0,1 6,2H10A1,1 0 0,1 11,3V4H13V3A1,1 0 0,1 14,2H18A1,1 0 0,1 19,3V4H20A2,2 0 0,1 22,6V19A2,2 0 0,1 20,21V22H17V21H7V22H4V21A2,2 0 0,1 2,19V6A2,2 0 0,1 4,4M18,7A1,1 0 0,1 19,8A1,1 0 0,1 18,9A1,1 0 0,1 17,8A1,1 0 0,1 18,7M14,7A1,1 0 0,1 15,8A1,1 0 0,1 14,9A1,1 0 0,1 13,8A1,1 0 0,1 14,7M20,6H4V10H20V6M4,19H20V12H4V19M6,7A1,1 0 0,1 7,8A1,1 0 0,1 6,9A1,1 0 0,1 5,8A1,1 0 0,1 6,7M13,14H15L18,17H16L13,14Z" fill="#ff6f22"/>
-<clipPath id="c59-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
-<g clip-path="url(#c59-clip1)">
+<clipPath id="c5-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
+<g clip-path="url(#c5-clip1)">
 <text x="59" y="30" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Oven</text>
 </g>
-<clipPath id="c59-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
-<g clip-path="url(#c59-clip2)">
+<clipPath id="c5-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
+<g clip-path="url(#c5-clip2)">
 <text x="59" y="47" font-size="12" font-weight="400" fill="#9b9b9b" letter-spacing="0.4">Ready · Turkey breast</text>
 </g>
 <path transform="translate(306 22) scale(0.92)" d="M16.56,5.44L15.11,6.89C16.84,7.94 18,9.83 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12C6,9.83 7.16,7.94 8.88,6.88L7.44,5.44C5.36,6.88 4,9.28 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12C20,9.28 18.64,6.88 16.56,5.44M13,3H11V13H13" fill="#ff6f22"/>
@@ -342,8 +342,8 @@
 <circle cx="120" cy="120" r="96" transform="rotate(135 120 120)" fill="none" stroke="#464646" stroke-opacity="0.3" stroke-width="16" stroke-dasharray="452.4, 603.2" stroke-linecap="round"/>
 <circle cx="120" cy="120" r="96" transform="rotate(135 120 120)" fill="none" stroke="#ff6f22" stroke-width="16" stroke-dasharray="0, 603.2" stroke-linecap="round" opacity="0"/>
 </svg>
-<clipPath id="c59-clip3"><rect x="160.45" y="138.03" width="79.09" height="20"/></clipPath>
-<g clip-path="url(#c59-clip3)">
+<clipPath id="c5-clip3"><rect x="160.45" y="138.03" width="79.09" height="20"/></clipPath>
+<g clip-path="url(#c5-clip3)">
 <text x="160.45" y="153.03" font-size="14" font-weight="400" fill="#9b9b9b">Temperature</text>
 </g>
 <text x="154.94" y="209.03" font-size="57" font-weight="400" fill="#e1e1e1" letter-spacing="-0.25">24</text>
@@ -351,14 +351,14 @@
 <rect x="13" y="309" width="374" height="52" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(25 324) scale(0.92)" d="M12.5,1.5C10.73,1.5 9.17,2.67 8.67,4.37C8.14,4.13 7.58,4 7,4A4,4 0 0,0 3,8C3,9.82 4.24,11.41 6,11.87V19H19V11.87C20.76,11.41 22,9.82 22,8A4,4 0 0,0 18,4C17.42,4 16.86,4.13 16.33,4.37C15.83,2.67 14.27,1.5 12.5,1.5M12,10.5H13V17.5H12V10.5M9,12.5H10V17.5H9V12.5M15,12.5H16V17.5H15V12.5M6,20V21A1,1 0 0,0 7,22H18A1,1 0 0,0 19,21V20H6Z" fill="#ff6f22"/>
 <text x="59" y="329" font-size="12" font-weight="400" fill="#9b9b9b">Program</text>
-<clipPath id="c59-clip4"><rect x="59" y="333" width="91.3" height="20"/></clipPath>
-<g clip-path="url(#c59-clip4)">
+<clipPath id="c5-clip4"><rect x="59" y="333" width="91.3" height="20"/></clipPath>
+<g clip-path="url(#c5-clip4)">
 <text x="59" y="348" font-size="15" font-weight="500" fill="#e1e1e1">Turkey breast</text>
 </g>
 <path transform="translate(353 324) scale(0.92)" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" fill="#9b9b9b"/>
 <path transform="translate(13 379) scale(1)" d="M8.46,15.06L7.05,16.47L5.68,15.1C4.82,16.21 4.24,17.54 4.06,19H6V21H2V20C2,15.16 5.44,11.13 10,10.2V8.2L2,5V3H22V5L14,8.2V10.2C18.56,11.13 22,15.16 22,20V21H18V19H19.94C19.76,17.54 19.18,16.21 18.32,15.1L16.95,16.47L15.54,15.06L16.91,13.68C15.8,12.82 14.46,12.24 13,12.06V14H11V12.06C9.54,12.24 8.2,12.82 7.09,13.68L8.46,15.06M12,18A2,2 0 0,1 14,20A2,2 0 0,1 12,22C11.68,22 11.38,21.93 11.12,21.79L7.27,20L11.12,18.21C11.38,18.07 11.68,18 12,18Z" fill="#9b9b9b"/>
-<clipPath id="c59-clip5"><rect x="49" y="380" width="43.2" height="20"/></clipPath>
-<g clip-path="url(#c59-clip5)">
+<clipPath id="c5-clip5"><rect x="49" y="380" width="43.2" height="20"/></clipPath>
+<g clip-path="url(#c5-clip5)">
 <text x="49" y="395" font-size="14" font-weight="400" fill="#e1e1e1">Weight</text>
 </g>
 <rect x="223" y="369" width="164" height="42" rx="12" fill="#464646" fill-opacity="0.2"/>
@@ -366,21 +366,21 @@
 <text x="281.8" y="395" font-size="14" font-weight="500" fill="#e1e1e1">1,200 g</text>
 <path transform="translate(356 380) scale(0.83)" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#e1e1e1"/>
 <path transform="translate(13 429) scale(1)" d="M7,13V11H21V13H7M7,19V17H21V19H7M7,7V5H21V7H7M3,8V5H2V4H4V8H3M2,17V16H5V20H2V19H4V18.5H3V17.5H4V17H2M4.25,10A0.75,0.75 0 0,1 5,10.75C5,10.95 4.92,11.14 4.79,11.27L3.12,13H5V14H2V13.08L4,11H2V10H4.25Z" fill="#9b9b9b"/>
-<clipPath id="c59-clip6"><rect x="49" y="430" width="32.41" height="20"/></clipPath>
-<g clip-path="url(#c59-clip6)">
+<clipPath id="c5-clip6"><rect x="49" y="430" width="32.41" height="20"/></clipPath>
+<g clip-path="url(#c5-clip6)">
 <text x="49" y="445" font-size="14" font-weight="400" fill="#e1e1e1">Level</text>
 </g>
 <rect x="223" y="419" width="164" height="42" rx="12" fill="#464646" fill-opacity="0.2"/>
-<clipPath id="c59-clip7"><rect x="223" y="419" width="164" height="42" rx="12"/></clipPath>
-<g clip-path="url(#c59-clip7)">
+<clipPath id="c5-clip7"><rect x="223" y="419" width="164" height="42" rx="12"/></clipPath>
+<g clip-path="url(#c5-clip7)">
 <text x="246.34" y="445" font-size="14" font-weight="500" fill="#e1e1e1">1</text>
 <text x="301" y="445" font-size="14" font-weight="500" fill="#e1e1e1">2</text>
 <rect x="332.33" y="419" width="54.67" height="42" rx="12" fill="#ff6f22"/>
 <text x="355.67" y="445" font-size="14" font-weight="500" fill="#ffffff">3</text>
 </g>
 <path transform="translate(13 479) scale(1)" d="M11 8H13V14H11V8M15 1H9V3H15V1M12 20C8.13 20 5 16.87 5 13S8.13 6 12 6 19 9.13 19 13C19.7 13 20.36 13.13 21 13.35C21 13.23 21 13.12 21 13C21 10.88 20.26 8.93 19.03 7.39L20.45 5.97C20 5.46 19.55 5 19.04 4.56L17.62 6C16.07 4.74 14.12 4 12 4C7.03 4 3 8.03 3 13S7.03 22 12 22C12.59 22 13.16 21.94 13.71 21.83C13.4 21.25 13.18 20.6 13.08 19.91C12.72 19.96 12.37 20 12 20M20 18V15H18V18H15V20H18V23H20V20H23V18H20Z" fill="#9b9b9b"/>
-<clipPath id="c59-clip8"><rect x="49" y="480" width="81.95" height="20"/></clipPath>
-<g clip-path="url(#c59-clip8)">
+<clipPath id="c5-clip8"><rect x="49" y="480" width="81.95" height="20"/></clipPath>
+<g clip-path="url(#c5-clip8)">
 <text x="49" y="495" font-size="14" font-weight="400" fill="#e1e1e1">Delayed start</text>
 </g>
 <rect x="223" y="469" width="164" height="42" rx="12" fill="#464646" fill-opacity="0.2"/>
@@ -391,20 +391,20 @@
 <path transform="translate(356 480) scale(0.83)" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#e1e1e1"/>
 <rect x="13" y="519" width="183" height="44" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(25 531) scale(0.83)" d="M12,2A7,7 0 0,1 19,9C19,11.38 17.81,13.47 16,14.74V17A1,1 0 0,1 15,18H9A1,1 0 0,1 8,17V14.74C6.19,13.47 5,11.38 5,9A7,7 0 0,1 12,2M9,21V20H15V21A1,1 0 0,1 14,22H10A1,1 0 0,1 9,21M12,4A5,5 0 0,0 7,9C7,11.05 8.23,12.81 10,13.58V16H14V13.58C15.77,12.81 17,11.05 17,9A5,5 0 0,0 12,4Z" fill="#9b9b9b"/>
-<clipPath id="c59-clip9"><rect x="53" y="531" width="61.92" height="20"/></clipPath>
-<g clip-path="url(#c59-clip9)">
+<clipPath id="c5-clip9"><rect x="53" y="531" width="61.92" height="20"/></clipPath>
+<g clip-path="url(#c5-clip9)">
 <text x="53" y="546" font-size="14" font-weight="400" fill="#e1e1e1">Oven light</text>
 </g>
 <rect x="204" y="519" width="183" height="44" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(216 531) scale(0.83)" d="M13,6V18L21.5,12M4,18L12.5,12L4,6V18Z" fill="#9b9b9b"/>
-<clipPath id="c59-clip10"><rect x="244" y="531" width="77.64" height="20"/></clipPath>
-<g clip-path="url(#c59-clip10)">
+<clipPath id="c5-clip10"><rect x="244" y="531" width="77.64" height="20"/></clipPath>
+<g clip-path="url(#c5-clip10)">
 <text x="244" y="546" font-size="14" font-weight="400" fill="#e1e1e1">Fast preheat</text>
 </g>
 <rect x="13" y="571" width="374" height="42" rx="12" fill="#ff6f22"/>
 <path transform="translate(170.67 582) scale(0.83)" d="M8,5.14V19.14L19,12.14L8,5.14Z" fill="#ffffff"/>
-<clipPath id="c59-clip11"><rect x="198.67" y="582" width="30.66" height="20"/></clipPath>
-<g clip-path="url(#c59-clip11)">
+<clipPath id="c5-clip11"><rect x="198.67" y="582" width="30.66" height="20"/></clipPath>
+<g clip-path="url(#c5-clip11)">
 <text x="198.67" y="597" font-size="14" font-weight="500" fill="#ffffff">Start</text>
 </g>
 <rect x="13.5" y="625.5" width="109.17" height="31" rx="15.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
@@ -413,16 +413,16 @@
 </g></g>
 <g transform="translate(832 636)"><rect x="0" y="0" width="400" height="674" rx="12" fill="#1c1c1c"/>
 <rect x="0.5" y="0.5" width="399" height="673" rx="11.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
-<clipPath id="c60-clip0"><rect x="0" y="0" width="400" height="674" rx="12"/></clipPath>
-<g clip-path="url(#c60-clip0)">
+<clipPath id="c6-clip0"><rect x="0" y="0" width="400" height="674" rx="12"/></clipPath>
+<g clip-path="url(#c6-clip0)">
 <rect x="13" y="15" width="36" height="36" rx="18" fill="#ff6f22" fill-opacity="0.2"/>
 <path transform="translate(19 21) scale(1)" d="M6,14H8L11,17H9L6,14M4,4H5V3A1,1 0 0,1 6,2H10A1,1 0 0,1 11,3V4H13V3A1,1 0 0,1 14,2H18A1,1 0 0,1 19,3V4H20A2,2 0 0,1 22,6V19A2,2 0 0,1 20,21V22H17V21H7V22H4V21A2,2 0 0,1 2,19V6A2,2 0 0,1 4,4M18,7A1,1 0 0,1 19,8A1,1 0 0,1 18,9A1,1 0 0,1 17,8A1,1 0 0,1 18,7M14,7A1,1 0 0,1 15,8A1,1 0 0,1 14,9A1,1 0 0,1 13,8A1,1 0 0,1 14,7M20,6H4V10H20V6M4,19H20V12H4V19M6,7A1,1 0 0,1 7,8A1,1 0 0,1 6,9A1,1 0 0,1 5,8A1,1 0 0,1 6,7M13,14H15L18,17H16L13,14Z" fill="#ff6f22"/>
-<clipPath id="c60-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
-<g clip-path="url(#c60-clip1)">
+<clipPath id="c6-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
+<g clip-path="url(#c6-clip1)">
 <text x="59" y="30" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Oven</text>
 </g>
-<clipPath id="c60-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
-<g clip-path="url(#c60-clip2)">
+<clipPath id="c6-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
+<g clip-path="url(#c6-clip2)">
 <text x="59" y="47" font-size="12" font-weight="400" fill="#9b9b9b" letter-spacing="0.4">Finished · 3D hot air</text>
 </g>
 <path transform="translate(306 22) scale(0.92)" d="M16.56,5.44L15.11,6.89C16.84,7.94 18,9.83 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12C6,9.83 7.16,7.94 8.88,6.88L7.44,5.44C5.36,6.88 4,9.28 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12C20,9.28 18.64,6.88 16.56,5.44M13,3H11V13H13" fill="#ff6f22"/>
@@ -435,8 +435,8 @@
 <circle cx="120" cy="120" r="96" transform="rotate(135 120 120)" fill="none" stroke="#ff6f22" stroke-width="16" stroke-dasharray="251.3, 603.2" stroke-linecap="round"/>
 <circle cx="138.3" cy="25.8" r="6" fill="#1c1c1c" stroke="#e1e1e1" stroke-width="3"/>
 </svg>
-<clipPath id="c60-clip3"><rect x="149.58" y="192.03" width="100.84" height="20"/></clipPath>
-<g clip-path="url(#c60-clip3)">
+<clipPath id="c6-clip3"><rect x="149.58" y="192.03" width="100.84" height="20"/></clipPath>
+<g clip-path="url(#c6-clip3)">
 <text x="149.58" y="207.03" font-size="14" font-weight="400" fill="#9b9b9b">Currently 176 °C</text>
 </g>
 <text x="139.05" y="263.03" font-size="57" font-weight="400" fill="#e1e1e1" letter-spacing="-0.25">180</text>
@@ -448,14 +448,14 @@
 <rect x="13" y="363" width="374" height="52" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(25 378) scale(0.92)" d="M8.5 4.5L5.4 9.5L8.5 14.7L5.2 20.5L3.4 19.6L6.1 14.7L3 9.5L6.7 3.6L8.5 4.5M14.7 4.4L11.6 9.5L14.7 14.5L11.4 20.3L9.6 19.4L12.3 14.5L9.2 9.5L12.9 3.5L14.7 4.4M21 4.4L17.9 9.5L21 14.5L17.7 20.3L15.9 19.4L18.6 14.5L15.5 9.5L19.2 3.5L21 4.4" fill="#ff6f22"/>
 <text x="59" y="383" font-size="12" font-weight="400" fill="#9b9b9b">Program</text>
-<clipPath id="c60-clip4"><rect x="59" y="387" width="64.84" height="20"/></clipPath>
-<g clip-path="url(#c60-clip4)">
+<clipPath id="c6-clip4"><rect x="59" y="387" width="64.84" height="20"/></clipPath>
+<g clip-path="url(#c6-clip4)">
 <text x="59" y="402" font-size="15" font-weight="500" fill="#e1e1e1">3D hot air</text>
 </g>
 <path transform="translate(353 378) scale(0.92)" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" fill="#9b9b9b"/>
 <path transform="translate(13 433) scale(1)" d="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M19.03,7.39L20.45,5.97C20,5.46 19.55,5 19.04,4.56L17.62,6C16.07,4.74 14.12,4 12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22C17,22 21,17.97 21,13C21,10.88 20.26,8.93 19.03,7.39M11,14H13V8H11M15,1H9V3H15V1Z" fill="#9b9b9b"/>
-<clipPath id="c60-clip5"><rect x="49" y="434" width="52.7" height="20"/></clipPath>
-<g clip-path="url(#c60-clip5)">
+<clipPath id="c6-clip5"><rect x="49" y="434" width="52.7" height="20"/></clipPath>
+<g clip-path="url(#c6-clip5)">
 <text x="49" y="449" font-size="14" font-weight="400" fill="#e1e1e1">Duration</text>
 </g>
 <rect x="223" y="423" width="164" height="42" rx="12" fill="#464646" fill-opacity="0.2"/>
@@ -463,8 +463,8 @@
 <text x="285.58" y="449" font-size="14" font-weight="500" fill="#e1e1e1">1:00 h</text>
 <path transform="translate(356 434) scale(0.83)" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#e1e1e1"/>
 <path transform="translate(13 483) scale(1)" d="M11 8H13V14H11V8M15 1H9V3H15V1M12 20C8.13 20 5 16.87 5 13S8.13 6 12 6 19 9.13 19 13C19.7 13 20.36 13.13 21 13.35C21 13.23 21 13.12 21 13C21 10.88 20.26 8.93 19.03 7.39L20.45 5.97C20 5.46 19.55 5 19.04 4.56L17.62 6C16.07 4.74 14.12 4 12 4C7.03 4 3 8.03 3 13S7.03 22 12 22C12.59 22 13.16 21.94 13.71 21.83C13.4 21.25 13.18 20.6 13.08 19.91C12.72 19.96 12.37 20 12 20M20 18V15H18V18H15V20H18V23H20V20H23V18H20Z" fill="#9b9b9b"/>
-<clipPath id="c60-clip6"><rect x="49" y="484" width="81.95" height="20"/></clipPath>
-<g clip-path="url(#c60-clip6)">
+<clipPath id="c6-clip6"><rect x="49" y="484" width="81.95" height="20"/></clipPath>
+<g clip-path="url(#c6-clip6)">
 <text x="49" y="499" font-size="14" font-weight="400" fill="#e1e1e1">Delayed start</text>
 </g>
 <rect x="223" y="473" width="164" height="42" rx="12" fill="#464646" fill-opacity="0.2"/>
@@ -475,20 +475,20 @@
 <path transform="translate(356 484) scale(0.83)" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#e1e1e1"/>
 <rect x="13" y="523" width="183" height="44" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(25 535) scale(0.83)" d="M12,2A7,7 0 0,1 19,9C19,11.38 17.81,13.47 16,14.74V17A1,1 0 0,1 15,18H9A1,1 0 0,1 8,17V14.74C6.19,13.47 5,11.38 5,9A7,7 0 0,1 12,2M9,21V20H15V21A1,1 0 0,1 14,22H10A1,1 0 0,1 9,21M12,4A5,5 0 0,0 7,9C7,11.05 8.23,12.81 10,13.58V16H14V13.58C15.77,12.81 17,11.05 17,9A5,5 0 0,0 12,4Z" fill="#9b9b9b"/>
-<clipPath id="c60-clip7"><rect x="53" y="535" width="61.92" height="20"/></clipPath>
-<g clip-path="url(#c60-clip7)">
+<clipPath id="c6-clip7"><rect x="53" y="535" width="61.92" height="20"/></clipPath>
+<g clip-path="url(#c6-clip7)">
 <text x="53" y="550" font-size="14" font-weight="400" fill="#e1e1e1">Oven light</text>
 </g>
 <rect x="204" y="523" width="183" height="44" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(216 535) scale(0.83)" d="M13,6V18L21.5,12M4,18L12.5,12L4,6V18Z" fill="#9b9b9b"/>
-<clipPath id="c60-clip8"><rect x="244" y="535" width="77.64" height="20"/></clipPath>
-<g clip-path="url(#c60-clip8)">
+<clipPath id="c6-clip8"><rect x="244" y="535" width="77.64" height="20"/></clipPath>
+<g clip-path="url(#c6-clip8)">
 <text x="244" y="550" font-size="14" font-weight="400" fill="#e1e1e1">Fast preheat</text>
 </g>
 <rect x="13" y="575" width="374" height="42" rx="12" fill="#ff6f22"/>
 <path transform="translate(170.67 586) scale(0.83)" d="M8,5.14V19.14L19,12.14L8,5.14Z" fill="#ffffff"/>
-<clipPath id="c60-clip9"><rect x="198.67" y="586" width="30.66" height="20"/></clipPath>
-<g clip-path="url(#c60-clip9)">
+<clipPath id="c6-clip9"><rect x="198.67" y="586" width="30.66" height="20"/></clipPath>
+<g clip-path="url(#c6-clip9)">
 <text x="198.67" y="601" font-size="14" font-weight="500" fill="#ffffff">Start</text>
 </g>
 <rect x="13.5" y="629.5" width="109.17" height="31" rx="15.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
@@ -497,16 +497,16 @@
 </g></g>
 <g transform="translate(1248 636)"><rect x="0" y="0" width="402" height="602" rx="28" fill="#1c1c1c"/>
 <rect x="0.5" y="0.5" width="401" height="601" rx="27.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
-<clipPath id="c61-clip0"><rect x="25" y="23" width="316" height="28"/></clipPath>
-<g clip-path="url(#c61-clip0)">
+<clipPath id="c7-clip0"><rect x="25" y="23" width="316" height="28"/></clipPath>
+<g clip-path="url(#c7-clip0)">
 <text x="25" y="44" font-size="22" font-weight="400" fill="#e1e1e1">Choose a program</text>
 </g>
 <path transform="translate(358 26) scale(0.92)" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" fill="#9b9b9b"/>
 <path transform="translate(31 81) scale(0.83)" d="M9.5,3A6.5,6.5 0 0,1 16,9.5C16,11.11 15.41,12.59 14.44,13.73L14.71,14H15.5L20.5,19L19,20.5L14,15.5V14.71L13.73,14.44C12.59,15.41 11.11,16 9.5,16A6.5,6.5 0 0,1 3,9.5A6.5,6.5 0 0,1 9.5,3M9.5,5C7,5 5,7 5,9.5C5,12 7,14 9.5,14C12,14 14,12 14,9.5C14,7 12,5 9.5,5Z" fill="#9b9b9b"/>
 <rect x="17" y="69" width="368" height="44" rx="22" fill="#464646" fill-opacity="0.2"/>
 <text x="61" y="96" font-size="15" font-weight="400" fill="#757575">Search programs</text>
-<clipPath id="c61-clip1"><rect x="1" y="121" width="400" height="480"/></clipPath>
-<g clip-path="url(#c61-clip1)">
+<clipPath id="c7-clip1"><rect x="1" y="121" width="400" height="480"/></clipPath>
+<g clip-path="url(#c7-clip1)">
 <text x="25" y="152" font-size="14" font-weight="500" fill="#9b9b9b">Heating modes</text>
 <path transform="translate(25 176) scale(0.92)" d="M8.5 4.5L5.4 9.5L8.5 14.7L5.2 20.5L3.4 19.6L6.1 14.7L3 9.5L6.7 3.6L8.5 4.5M14.7 4.4L11.6 9.5L14.7 14.5L11.4 20.3L9.6 19.4L12.3 14.5L9.2 9.5L12.9 3.5L14.7 4.4M21 4.4L17.9 9.5L21 14.5L17.7 20.3L15.9 19.4L18.6 14.5L15.5 9.5L19.2 3.5L21 4.4" fill="#ff6f22"/>
 <text x="63" y="192" font-size="16" font-weight="500" fill="#ff6f22">3D hot air</text>
@@ -530,16 +530,16 @@
 </g></g>
 <g transform="translate(0 1326)"><rect x="0" y="0" width="400" height="316" rx="12" fill="#1c1c1c"/>
 <rect x="0.5" y="0.5" width="399" height="315" rx="11.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
-<clipPath id="c62-clip0"><rect x="0" y="0" width="400" height="316" rx="12"/></clipPath>
-<g clip-path="url(#c62-clip0)">
+<clipPath id="c8-clip0"><rect x="0" y="0" width="400" height="316" rx="12"/></clipPath>
+<g clip-path="url(#c8-clip0)">
 <rect x="13" y="15" width="36" height="36" rx="18" fill="#ff6f22" fill-opacity="0.2"/>
 <path transform="translate(19 21) scale(1)" d="M6,14H8L11,17H9L6,14M4,4H5V3A1,1 0 0,1 6,2H10A1,1 0 0,1 11,3V4H13V3A1,1 0 0,1 14,2H18A1,1 0 0,1 19,3V4H20A2,2 0 0,1 22,6V19A2,2 0 0,1 20,21V22H17V21H7V22H4V21A2,2 0 0,1 2,19V6A2,2 0 0,1 4,4M18,7A1,1 0 0,1 19,8A1,1 0 0,1 18,9A1,1 0 0,1 17,8A1,1 0 0,1 18,7M14,7A1,1 0 0,1 15,8A1,1 0 0,1 14,9A1,1 0 0,1 13,8A1,1 0 0,1 14,7M20,6H4V10H20V6M4,19H20V12H4V19M6,7A1,1 0 0,1 7,8A1,1 0 0,1 6,9A1,1 0 0,1 5,8A1,1 0 0,1 6,7M13,14H15L18,17H16L13,14Z" fill="#ff6f22"/>
-<clipPath id="c62-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
-<g clip-path="url(#c62-clip1)">
+<clipPath id="c8-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
+<g clip-path="url(#c8-clip1)">
 <text x="59" y="30" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Oven</text>
 </g>
-<clipPath id="c62-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
-<g clip-path="url(#c62-clip2)">
+<clipPath id="c8-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
+<g clip-path="url(#c8-clip2)">
 <text x="59" y="47" font-size="12" font-weight="400" fill="#9b9b9b" letter-spacing="0.4">Running · 3D hot air</text>
 </g>
 <path transform="translate(306 22) scale(0.92)" d="M16.56,5.44L15.11,6.89C16.84,7.94 18,9.83 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12C6,9.83 7.16,7.94 8.88,6.88L7.44,5.44C5.36,6.88 4,9.28 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12C20,9.28 18.64,6.88 16.56,5.44M13,3H11V13H13" fill="#ff6f22"/>
@@ -550,28 +550,28 @@
 <text x="13" y="134" font-size="14" font-weight="500" fill="#e1e1e1">181 °C → 180 °C</text>
 <text x="285.52" y="134" font-size="14" font-weight="400" fill="#9b9b9b">Ends at 7:12 PM</text>
 <rect x="13" y="145" width="374" height="8" rx="4" fill="#464646" fill-opacity="0.3"/>
-<clipPath id="c62-clip3"><rect x="13" y="145" width="374" height="8" rx="4"/></clipPath>
-<g clip-path="url(#c62-clip3)">
+<clipPath id="c8-clip3"><rect x="13" y="145" width="374" height="8" rx="4"/></clipPath>
+<g clip-path="url(#c8-clip3)">
 <rect x="13" y="145" width="187" height="8" rx="4" fill="#ff6f22"/>
 </g>
 <rect x="13" y="165" width="183" height="44" rx="12" fill="#ff6f22" fill-opacity="0.2"/>
 <path transform="translate(25 177) scale(0.83)" d="M12,2A7,7 0 0,1 19,9C19,11.38 17.81,13.47 16,14.74V17A1,1 0 0,1 15,18H9A1,1 0 0,1 8,17V14.74C6.19,13.47 5,11.38 5,9A7,7 0 0,1 12,2M9,21V20H15V21A1,1 0 0,1 14,22H10A1,1 0 0,1 9,21M12,4A5,5 0 0,0 7,9C7,11.05 8.23,12.81 10,13.58V16H14V13.58C15.77,12.81 17,11.05 17,9A5,5 0 0,0 12,4Z" fill="#ff6f22"/>
-<clipPath id="c62-clip4"><rect x="53" y="177" width="61.92" height="20"/></clipPath>
-<g clip-path="url(#c62-clip4)">
+<clipPath id="c8-clip4"><rect x="53" y="177" width="61.92" height="20"/></clipPath>
+<g clip-path="url(#c8-clip4)">
 <text x="53" y="192" font-size="14" font-weight="400" fill="#e1e1e1">Oven light</text>
 </g>
 <g opacity="0.45">
 <rect x="204" y="165" width="183" height="44" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(216 177) scale(0.83)" d="M13,6V18L21.5,12M4,18L12.5,12L4,6V18Z" fill="#9b9b9b"/>
-<clipPath id="c62-clip5"><rect x="244" y="177" width="77.64" height="20"/></clipPath>
-<g clip-path="url(#c62-clip5)">
+<clipPath id="c8-clip5"><rect x="244" y="177" width="77.64" height="20"/></clipPath>
+<g clip-path="url(#c8-clip5)">
 <text x="244" y="192" font-size="14" font-weight="400" fill="#e1e1e1">Fast preheat</text>
 </g>
 </g>
 <rect x="13" y="217" width="310" height="42" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(134.55 228) scale(0.83)" d="M14,19H18V5H14M6,19H10V5H6V19Z" fill="#e1e1e1"/>
-<clipPath id="c62-clip6"><rect x="162.55" y="228" width="38.91" height="20"/></clipPath>
-<g clip-path="url(#c62-clip6)">
+<clipPath id="c8-clip6"><rect x="162.55" y="228" width="38.91" height="20"/></clipPath>
+<g clip-path="url(#c8-clip6)">
 <text x="162.55" y="243" font-size="14" font-weight="500" fill="#e1e1e1">Pause</text>
 </g>
 <rect x="331" y="217" width="56" height="42" rx="12" fill="#464646" fill-opacity="0.2"/>

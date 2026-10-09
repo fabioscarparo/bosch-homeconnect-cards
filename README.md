@@ -151,7 +151,7 @@ card tells you when laundry can still be added.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="images/washer-dark.svg">
-  <img alt="Washer card: off, disconnected, ready, running, paused, foam alert, finished and compact view" src="images/washer-light.svg">
+  <img alt="Washer card: off, disconnected, ready, remote start off, running, paused, foam alert, finished and compact view" src="images/washer-light.svg">
 </picture>
 
 ### Dishwasher
@@ -199,12 +199,11 @@ Some parts appear only when the integration provides what they need:
 |---|---|
 | Energy and water of the last cycle | The "last program" consumption sensors |
 | Hob zone control | The `homeconnect_ws.start_hob_program` action |
-| Remote start hint | The **Remote start allowed** entity |
 
 > [!TIP]
-> **Remote start allowed** is disabled by default. Enable it on the
-> appliance's device page: when remote start is off, the card disables the
-> start button and tells you to turn it on at the appliance.
+> Bosch and Siemens appliances accept a remote start only after you turn on
+> **Remote Start** at the appliance itself. Until then the card disables
+> **Start** and tells you why.
 
 ## Languages
 

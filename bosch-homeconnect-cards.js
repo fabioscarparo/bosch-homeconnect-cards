@@ -10,7 +10,7 @@
  * MIT License - Copyright (c) 2026 Fabio Scarparo
  */
 
-const VERSION = "0.1.0";
+const VERSION = "0.1.1";
 const DOMAIN = "homeconnect_ws";
 const UNAVAILABLE = new Set(["unavailable", "unknown"]);
 
@@ -118,7 +118,7 @@ const STRINGS = {
       reload_now: "Puoi aprire la porta e aggiungere capi",
       error: "L'elettrodomestico segnala un errore",
     },
-    hint_remote_start: "Per avviare da qui attiva l'avvio remoto sull'elettrodomestico",
+    hint_remote_start: "Avvio remoto non attivo: attivalo sull'elettrodomestico per avviare da qui",
     hint_remote_off: "Controllo remoto non attivo",
     hint_local: "In uso dai comandi dell'elettrodomestico",
     child_lock: "Blocco bambini",
@@ -235,7 +235,7 @@ const STRINGS = {
       reload_now: "You can open the door and add laundry",
       error: "The appliance reports an error",
     },
-    hint_remote_start: "Enable remote start on the appliance to start it from here",
+    hint_remote_start: "Remote start is off: turn it on at the appliance to start from here",
     hint_remote_off: "Remote control is not active",
     hint_local: "In use from the appliance controls",
     child_lock: "Child lock",
@@ -953,7 +953,6 @@ const STYLES = `
   .segmented button { flex: 1; min-width: 40px; padding: 0 8px; font-size: var(--ha-font-size-m, 14px); font-weight: 500; border-radius: var(--radius); transition: background-color 180ms, color 180ms; }
   .segmented button.sel { background: var(--accent); color: var(--on-accent); }
 
-  .hint { display: flex; align-items: center; gap: 8px; font-size: 12px; line-height: 16px; color: var(--secondary-text-color); --mdc-icon-size: 18px; }
 
   /* Alerts, like ha-alert */
   .alert {
@@ -1341,14 +1340,22 @@ class HomeConnectCard extends HTMLElement {
     const selected = selectEid
       ? (this._pendingVal(selectEid) ?? (this.ok("select_program") ? this.val("select_program") : null))
       : null;
+    // Remote start must be turned on at the appliance. The "Remote start allowed" entity
+    // says so directly, but it's disabled by default: without it, the integration makes
+    // Start unavailable while the appliance doesn't accept a remote start.
     const remoteStart = this.st("binary_remote_start_allowed");
+    let remoteStartBlocked = false;
+    if (remoteStart && !UNAVAILABLE.has(remoteStart.state)) remoteStartBlocked = remoteStart.state === "off";
+    else if (!off && !running && this.eid("button_start_program")) {
+      remoteStartBlocked = this.val("button_start_program") === "unavailable";
+    }
     return {
       offline,
       off,
       op,
       running,
       program: running ? active || selected : selected || active,
-      remoteStartBlocked: remoteStart ? remoteStart.state === "off" : false,
+      remoteStartBlocked,
       remoteControlOff: this.val("binary_sensor_remote_control_active") === "off",
       localControl: this.on("binary_sensor_local_control_active"),
     };
@@ -1595,7 +1602,7 @@ class HomeConnectCard extends HTMLElement {
       buttons.push(
         button("start", delay > 0 ? "mdi:timer-play-outline" : "mdi:play", text, {
           primary: true,
-          blocked: !d.program || d.remoteStartBlocked || (delay === 0 && this.val("button_start_program") === "unavailable"),
+          blocked: !d.program || d.remoteStartBlocked,
         }),
       );
     }
@@ -1603,13 +1610,14 @@ class HomeConnectCard extends HTMLElement {
     return html ? `<div class="actions">${html}</div>` : "";
   }
 
-  _hints(d) {
+  // Shown right above the buttons they explain
+  _hints(d, { start = true } = {}) {
     const hints = [];
     if (d.remoteControlOff) hints.push(["mdi:remote-off", this._t("hint_remote_off")]);
-    else if (d.remoteStartBlocked && !d.running) hints.push(["mdi:remote-off", this._t("hint_remote_start")]);
+    else if (start && d.remoteStartBlocked && !d.running) hints.push(["mdi:remote-off", this._t("hint_remote_start")]);
     if (d.localControl) hints.push(["mdi:gesture-tap-button", this._t("hint_local")]);
     return hints
-      .map(([icon, text]) => `<div class="hint"><ha-icon icon="${icon}"></ha-icon><span>${esc(text)}</span></div>`)
+      .map(([icon, text]) => this._alert("info", icon, text))
       .join("");
   }
 
@@ -2336,7 +2344,7 @@ class HobCard extends HomeConnectCard {
   }
 
   _body(d) {
-    return [this._hobMap(), `<div class="controls">${this._options(d, ["switch_child_lock"])}${this._hints(d)}</div>`].join("");
+    return [this._hobMap(), `<div class="controls">${this._options(d, ["switch_child_lock"])}${this._hints(d, { start: false })}</div>`].join("");
   }
 
   _alerts(d) {

@@ -4,16 +4,16 @@
 </defs>
 <g transform="translate(0 0)"><rect x="0" y="0" width="400" height="310" rx="12" fill="#1c1c1c"/>
 <rect x="0.5" y="0.5" width="399" height="309" rx="11.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
-<clipPath id="c63-clip0"><rect x="0" y="0" width="400" height="310" rx="12"/></clipPath>
-<g clip-path="url(#c63-clip0)">
+<clipPath id="c0-clip0"><rect x="0" y="0" width="400" height="310" rx="12"/></clipPath>
+<g clip-path="url(#c0-clip0)">
 <rect x="13" y="15" width="36" height="36" rx="18" fill="#6f6f6f" fill-opacity="0.2"/>
 <path transform="translate(19 21) scale(1)" d="M8 1.5C6.15 1.5 4.65 3 4.65 4.85C4.65 6.7 6.15 8.2 8 8.2H9.53C9.92 8.2 10.29 8.3 10.61 8.5H12.63C12.05 7.45 10.86 6.75 9.53 6.75H8C7 6.75 6.15 5.77 6.15 4.75C6.15 3.73 7 3 8 3V1.5M12.85 2C12.85 3 12 3.85 11 3.85V5.35C12.92 5.35 14.5 6.7 14.89 8.5H16.42C16.12 6.67 14.96 5.15 13.35 4.38C13.97 3.77 14.35 2.93 14.35 2H12.85M3 10V12H5V19C5 20.11 5.9 21 7 21H17C18.11 21 19 20.11 19 19V12H21V10H3M7 12H17V19H7V12Z" fill="#6f6f6f"/>
-<clipPath id="c63-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
-<g clip-path="url(#c63-clip1)">
+<clipPath id="c0-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
+<g clip-path="url(#c0-clip1)">
 <text x="59" y="30" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Induction Hob</text>
 </g>
-<clipPath id="c63-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
-<g clip-path="url(#c63-clip2)">
+<clipPath id="c0-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
+<g clip-path="url(#c0-clip2)">
 <text x="59" y="47" font-size="12" font-weight="400" fill="#9b9b9b" letter-spacing="0.4">Off</text>
 </g>
 <path transform="translate(306 22) scale(0.92)" d="M16.56,5.44L15.11,6.89C16.84,7.94 18,9.83 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12C6,9.83 7.16,7.94 8.88,6.88L7.44,5.44C5.36,6.88 4,9.28 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12C20,9.28 18.64,6.88 16.56,5.44M13,3H11V13H13" fill="#9b9b9b"/>
@@ -37,16 +37,16 @@
 </g></g>
 <g transform="translate(416 0)"><rect x="0" y="0" width="400" height="332" rx="12" fill="#1c1c1c"/>
 <rect x="0.5" y="0.5" width="399" height="331" rx="11.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
-<clipPath id="c64-clip0"><rect x="0" y="0" width="400" height="332" rx="12"/></clipPath>
-<g clip-path="url(#c64-clip0)">
+<clipPath id="c1-clip0"><rect x="0" y="0" width="400" height="332" rx="12"/></clipPath>
+<g clip-path="url(#c1-clip0)">
 <rect x="13" y="15" width="36" height="36" rx="18" fill="#6f6f6f" fill-opacity="0.2"/>
 <path transform="translate(19 21) scale(1)" d="M8 1.5C6.15 1.5 4.65 3 4.65 4.85C4.65 6.7 6.15 8.2 8 8.2H9.53C9.92 8.2 10.29 8.3 10.61 8.5H12.63C12.05 7.45 10.86 6.75 9.53 6.75H8C7 6.75 6.15 5.77 6.15 4.75C6.15 3.73 7 3 8 3V1.5M12.85 2C12.85 3 12 3.85 11 3.85V5.35C12.92 5.35 14.5 6.7 14.89 8.5H16.42C16.12 6.67 14.96 5.15 13.35 4.38C13.97 3.77 14.35 2.93 14.35 2H12.85M3 10V12H5V19C5 20.11 5.9 21 7 21H17C18.11 21 19 20.11 19 19V12H21V10H3M7 12H17V19H7V12Z" fill="#6f6f6f"/>
-<clipPath id="c64-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
-<g clip-path="url(#c64-clip1)">
+<clipPath id="c1-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
+<g clip-path="url(#c1-clip1)">
 <text x="59" y="30" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Induction Hob</text>
 </g>
-<clipPath id="c64-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
-<g clip-path="url(#c64-clip2)">
+<clipPath id="c1-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
+<g clip-path="url(#c1-clip2)">
 <text x="59" y="47" font-size="12" font-weight="400" fill="#9b9b9b" letter-spacing="0.4">Off</text>
 </g>
 <path transform="translate(306 22) scale(0.92)" d="M16.56,5.44L15.11,6.89C16.84,7.94 18,9.83 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12C6,9.83 7.16,7.94 8.88,6.88L7.44,5.44C5.36,6.88 4,9.28 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12C20,9.28 18.64,6.88 16.56,5.44M13,3H11V13H13" fill="#9b9b9b"/>
@@ -79,16 +79,16 @@
 </g></g>
 <g transform="translate(832 0)"><rect x="0" y="0" width="400" height="428" rx="12" fill="#1c1c1c"/>
 <rect x="0.5" y="0.5" width="399" height="427" rx="11.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
-<clipPath id="c65-clip0"><rect x="0" y="0" width="400" height="428" rx="12"/></clipPath>
-<g clip-path="url(#c65-clip0)">
+<clipPath id="c2-clip0"><rect x="0" y="0" width="400" height="428" rx="12"/></clipPath>
+<g clip-path="url(#c2-clip0)">
 <rect x="13" y="15" width="36" height="36" rx="18" fill="#ff9800" fill-opacity="0.2"/>
 <path transform="translate(19 21) scale(1)" d="M8 1.5C6.15 1.5 4.65 3 4.65 4.85C4.65 6.7 6.15 8.2 8 8.2H9.53C9.92 8.2 10.29 8.3 10.61 8.5H12.63C12.05 7.45 10.86 6.75 9.53 6.75H8C7 6.75 6.15 5.77 6.15 4.75C6.15 3.73 7 3 8 3V1.5M12.85 2C12.85 3 12 3.85 11 3.85V5.35C12.92 5.35 14.5 6.7 14.89 8.5H16.42C16.12 6.67 14.96 5.15 13.35 4.38C13.97 3.77 14.35 2.93 14.35 2H12.85M3 10V12H5V19C5 20.11 5.9 21 7 21H17C18.11 21 19 20.11 19 19V12H21V10H3M7 12H17V19H7V12Z" fill="#ff9800"/>
-<clipPath id="c65-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
-<g clip-path="url(#c65-clip1)">
+<clipPath id="c2-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
+<g clip-path="url(#c2-clip1)">
 <text x="59" y="30" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Induction Hob</text>
 </g>
-<clipPath id="c65-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
-<g clip-path="url(#c65-clip2)">
+<clipPath id="c2-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
+<g clip-path="url(#c2-clip2)">
 <text x="59" y="47" font-size="12" font-weight="400" fill="#9b9b9b" letter-spacing="0.4">Running</text>
 </g>
 <path transform="translate(306 22) scale(0.92)" d="M16.56,5.44L15.11,6.89C16.84,7.94 18,9.83 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12C6,9.83 7.16,7.94 8.88,6.88L7.44,5.44C5.36,6.88 4,9.28 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12C20,9.28 18.64,6.88 16.56,5.44M13,3H11V13H13" fill="#ff9800"/>
@@ -114,8 +114,8 @@
 </svg>
 <rect x="13" y="287" width="183" height="44" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(25 299) scale(0.83)" d="M12,17C10.89,17 10,16.1 10,15C10,13.89 10.89,13 12,13A2,2 0 0,1 14,15A2,2 0 0,1 12,17M18,20V10H6V20H18M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6C4.89,22 4,21.1 4,20V10C4,8.89 4.89,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z" fill="#9b9b9b"/>
-<clipPath id="c65-clip3"><rect x="53" y="299" width="60.81" height="20"/></clipPath>
-<g clip-path="url(#c65-clip3)">
+<clipPath id="c2-clip3"><rect x="53" y="299" width="60.81" height="20"/></clipPath>
+<g clip-path="url(#c2-clip3)">
 <text x="53" y="314" font-size="14" font-weight="400" fill="#e1e1e1">Child lock</text>
 </g>
 <rect x="13.5" y="343.5" width="103.39" height="31" rx="15.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
@@ -133,16 +133,16 @@
 </g></g>
 <g transform="translate(1248 0)"><rect x="0" y="0" width="400" height="442" rx="12" fill="#1c1c1c"/>
 <rect x="0.5" y="0.5" width="399" height="441" rx="11.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
-<clipPath id="c66-clip0"><rect x="0" y="0" width="400" height="442" rx="12"/></clipPath>
-<g clip-path="url(#c66-clip0)">
+<clipPath id="c3-clip0"><rect x="0" y="0" width="400" height="442" rx="12"/></clipPath>
+<g clip-path="url(#c3-clip0)">
 <rect x="13" y="15" width="36" height="36" rx="18" fill="#ff9800" fill-opacity="0.2"/>
 <path transform="translate(19 21) scale(1)" d="M8 1.5C6.15 1.5 4.65 3 4.65 4.85C4.65 6.7 6.15 8.2 8 8.2H9.53C9.92 8.2 10.29 8.3 10.61 8.5H12.63C12.05 7.45 10.86 6.75 9.53 6.75H8C7 6.75 6.15 5.77 6.15 4.75C6.15 3.73 7 3 8 3V1.5M12.85 2C12.85 3 12 3.85 11 3.85V5.35C12.92 5.35 14.5 6.7 14.89 8.5H16.42C16.12 6.67 14.96 5.15 13.35 4.38C13.97 3.77 14.35 2.93 14.35 2H12.85M3 10V12H5V19C5 20.11 5.9 21 7 21H17C18.11 21 19 20.11 19 19V12H21V10H3M7 12H17V19H7V12Z" fill="#ff9800"/>
-<clipPath id="c66-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
-<g clip-path="url(#c66-clip1)">
+<clipPath id="c3-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
+<g clip-path="url(#c3-clip1)">
 <text x="59" y="30" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Induction Hob</text>
 </g>
-<clipPath id="c66-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
-<g clip-path="url(#c66-clip2)">
+<clipPath id="c3-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
+<g clip-path="url(#c3-clip2)">
 <text x="59" y="47" font-size="12" font-weight="400" fill="#9b9b9b" letter-spacing="0.4">Running</text>
 </g>
 <path transform="translate(306 22) scale(0.92)" d="M16.56,5.44L15.11,6.89C16.84,7.94 18,9.83 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12C6,9.83 7.16,7.94 8.88,6.88L7.44,5.44C5.36,6.88 4,9.28 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12C20,9.28 18.64,6.88 16.56,5.44M13,3H11V13H13" fill="#ff9800"/>
@@ -170,8 +170,8 @@
 </svg>
 <rect x="13" y="341" width="183" height="44" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(25 353) scale(0.83)" d="M12,17C10.89,17 10,16.1 10,15C10,13.89 10.89,13 12,13A2,2 0 0,1 14,15A2,2 0 0,1 12,17M18,20V10H6V20H18M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6C4.89,22 4,21.1 4,20V10C4,8.89 4.89,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z" fill="#9b9b9b"/>
-<clipPath id="c66-clip3"><rect x="53" y="353" width="60.81" height="20"/></clipPath>
-<g clip-path="url(#c66-clip3)">
+<clipPath id="c3-clip3"><rect x="53" y="353" width="60.81" height="20"/></clipPath>
+<g clip-path="url(#c3-clip3)">
 <text x="53" y="368" font-size="14" font-weight="400" fill="#e1e1e1">Child lock</text>
 </g>
 <rect x="13.5" y="397.5" width="145.38" height="31" rx="15.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
@@ -185,16 +185,16 @@
 </g></g>
 <g transform="translate(0 458)"><rect x="0" y="0" width="400" height="388" rx="12" fill="#1c1c1c"/>
 <rect x="0.5" y="0.5" width="399" height="387" rx="11.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
-<clipPath id="c67-clip0"><rect x="0" y="0" width="400" height="388" rx="12"/></clipPath>
-<g clip-path="url(#c67-clip0)">
+<clipPath id="c4-clip0"><rect x="0" y="0" width="400" height="388" rx="12"/></clipPath>
+<g clip-path="url(#c4-clip0)">
 <rect x="13" y="15" width="36" height="36" rx="18" fill="#ff9800" fill-opacity="0.2"/>
 <path transform="translate(19 21) scale(1)" d="M8 1.5C6.15 1.5 4.65 3 4.65 4.85C4.65 6.7 6.15 8.2 8 8.2H9.53C9.92 8.2 10.29 8.3 10.61 8.5H12.63C12.05 7.45 10.86 6.75 9.53 6.75H8C7 6.75 6.15 5.77 6.15 4.75C6.15 3.73 7 3 8 3V1.5M12.85 2C12.85 3 12 3.85 11 3.85V5.35C12.92 5.35 14.5 6.7 14.89 8.5H16.42C16.12 6.67 14.96 5.15 13.35 4.38C13.97 3.77 14.35 2.93 14.35 2H12.85M3 10V12H5V19C5 20.11 5.9 21 7 21H17C18.11 21 19 20.11 19 19V12H21V10H3M7 12H17V19H7V12Z" fill="#ff9800"/>
-<clipPath id="c67-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
-<g clip-path="url(#c67-clip1)">
+<clipPath id="c4-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
+<g clip-path="url(#c4-clip1)">
 <text x="59" y="30" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Induction Hob</text>
 </g>
-<clipPath id="c67-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
-<g clip-path="url(#c67-clip2)">
+<clipPath id="c4-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
+<g clip-path="url(#c4-clip2)">
 <text x="59" y="47" font-size="12" font-weight="400" fill="#9b9b9b" letter-spacing="0.4">Running</text>
 </g>
 <path transform="translate(306 22) scale(0.92)" d="M16.56,5.44L15.11,6.89C16.84,7.94 18,9.83 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12C6,9.83 7.16,7.94 8.88,6.88L7.44,5.44C5.36,6.88 4,9.28 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12C20,9.28 18.64,6.88 16.56,5.44M13,3H11V13H13" fill="#ff9800"/>
@@ -216,8 +216,8 @@
 </svg>
 <rect x="13" y="287" width="183" height="44" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(25 299) scale(0.83)" d="M12,17C10.89,17 10,16.1 10,15C10,13.89 10.89,13 12,13A2,2 0 0,1 14,15A2,2 0 0,1 12,17M18,20V10H6V20H18M18,8A2,2 0 0,1 20,10V20A2,2 0 0,1 18,22H6C4.89,22 4,21.1 4,20V10C4,8.89 4.89,8 6,8H7V6A5,5 0 0,1 12,1A5,5 0 0,1 17,6V8H18M12,3A3,3 0 0,0 9,6V8H15V6A3,3 0 0,0 12,3Z" fill="#9b9b9b"/>
-<clipPath id="c67-clip3"><rect x="53" y="299" width="60.81" height="20"/></clipPath>
-<g clip-path="url(#c67-clip3)">
+<clipPath id="c4-clip3"><rect x="53" y="299" width="60.81" height="20"/></clipPath>
+<g clip-path="url(#c4-clip3)">
 <text x="53" y="314" font-size="14" font-weight="400" fill="#e1e1e1">Child lock</text>
 </g>
 <rect x="13.5" y="343.5" width="157.2" height="31" rx="15.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
@@ -231,13 +231,13 @@
 </g></g>
 <g transform="translate(416 458)"><rect x="0" y="0" width="402" height="540" rx="28" fill="#1c1c1c"/>
 <rect x="0.5" y="0.5" width="401" height="539" rx="27.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
-<clipPath id="c68-clip0"><rect x="25" y="23" width="316" height="28"/></clipPath>
-<g clip-path="url(#c68-clip0)">
+<clipPath id="c5-clip0"><rect x="25" y="23" width="316" height="28"/></clipPath>
+<g clip-path="url(#c5-clip0)">
 <text x="25" y="44" font-size="22" font-weight="400" fill="#e1e1e1">Front right</text>
 </g>
 <path transform="translate(358 26) scale(0.92)" d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z" fill="#9b9b9b"/>
-<clipPath id="c68-clip1"><rect x="1" y="65" width="400" height="474"/></clipPath>
-<g clip-path="url(#c68-clip1)">
+<clipPath id="c5-clip1"><rect x="1" y="65" width="400" height="474"/></clipPath>
+<g clip-path="url(#c5-clip1)">
 <text x="25" y="124" font-size="57" font-weight="400" fill="#e1e1e1" letter-spacing="-0.25">7</text>
 <text x="68.8" y="124" font-size="14" font-weight="400" fill="#9b9b9b">On · 10 min</text>
 <text x="25" y="166" font-size="14" font-weight="500" fill="#9b9b9b">Power level</text>
@@ -282,8 +282,8 @@
 <rect x="311.39" y="315" width="65.59" height="40" rx="10" fill="#464646" fill-opacity="0.2"/>
 <text x="335.23" y="340" font-size="15" font-weight="500" fill="#e1e1e1">P+</text>
 <path transform="translate(25 381) scale(1)" d="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M19.03,7.39L20.45,5.97C20,5.46 19.55,5 19.04,4.56L17.62,6C16.07,4.74 14.12,4 12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22C17,22 21,17.97 21,13C21,10.88 20.26,8.93 19.03,7.39M11,14H13V8H11M15,1H9V3H15V1Z" fill="#9b9b9b"/>
-<clipPath id="c68-clip2"><rect x="61" y="382" width="36.2" height="20"/></clipPath>
-<g clip-path="url(#c68-clip2)">
+<clipPath id="c5-clip2"><rect x="61" y="382" width="36.2" height="20"/></clipPath>
+<g clip-path="url(#c5-clip2)">
 <text x="61" y="397" font-size="14" font-weight="400" fill="#e1e1e1">Timer</text>
 </g>
 <rect x="213" y="371" width="164" height="42" rx="12" fill="#464646" fill-opacity="0.2"/>
@@ -292,14 +292,14 @@
 <path transform="translate(346 382) scale(0.83)" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#e1e1e1"/>
 <rect x="25" y="429" width="172" height="42" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(55.27 440) scale(0.83)" d="M16.56,5.44L15.11,6.89C16.84,7.94 18,9.83 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12C6,9.83 7.16,7.94 8.88,6.88L7.44,5.44C5.36,6.88 4,9.28 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12C20,9.28 18.64,6.88 16.56,5.44M13,3H11V13H13" fill="#e1e1e1"/>
-<clipPath id="c68-clip3"><rect x="83.27" y="440" width="83.45" height="20"/></clipPath>
-<g clip-path="url(#c68-clip3)">
+<clipPath id="c5-clip3"><rect x="83.27" y="440" width="83.45" height="20"/></clipPath>
+<g clip-path="url(#c5-clip3)">
 <text x="83.27" y="455" font-size="14" font-weight="500" fill="#e1e1e1">Turn zone off</text>
 </g>
 <rect x="205" y="429" width="172" height="42" rx="12" fill="#ff9800"/>
 <path transform="translate(236.31 440) scale(0.83)" d="M17.66 11.2C17.43 10.9 17.15 10.64 16.89 10.38C16.22 9.78 15.46 9.35 14.82 8.72C13.33 7.26 13 4.85 13.95 3C13 3.23 12.17 3.75 11.46 4.32C8.87 6.4 7.85 10.07 9.07 13.22C9.11 13.32 9.15 13.42 9.15 13.55C9.15 13.77 9 13.97 8.8 14.05C8.57 14.15 8.33 14.09 8.14 13.93C8.08 13.88 8.04 13.83 8 13.76C6.87 12.33 6.69 10.28 7.45 8.64C5.78 10 4.87 12.3 5 14.47C5.06 14.97 5.12 15.47 5.29 15.97C5.43 16.57 5.7 17.17 6 17.7C7.08 19.43 8.95 20.67 10.96 20.92C13.1 21.19 15.39 20.8 17.03 19.32C18.86 17.66 19.5 15 18.56 12.72L18.43 12.46C18.22 12 17.66 11.2 17.66 11.2M14.5 17.5C14.22 17.74 13.76 18 13.4 18.1C12.28 18.5 11.16 17.94 10.5 17.28C11.69 17 12.4 16.12 12.61 15.23C12.78 14.43 12.46 13.77 12.33 13C12.21 12.26 12.23 11.63 12.5 10.94C12.69 11.32 12.89 11.7 13.13 12C13.9 13 15.11 13.44 15.37 14.8C15.41 14.94 15.43 15.08 15.43 15.23C15.46 16.05 15.1 16.95 14.5 17.5H14.5Z" fill="#ffffff"/>
-<clipPath id="c68-clip4"><rect x="264.31" y="440" width="81.36" height="20"/></clipPath>
-<g clip-path="url(#c68-clip4)">
+<clipPath id="c5-clip4"><rect x="264.31" y="440" width="81.36" height="20"/></clipPath>
+<g clip-path="url(#c5-clip4)">
 <text x="264.31" y="455" font-size="14" font-weight="500" fill="#ffffff">Turn zone on</text>
 </g>
 <text x="25" y="499" font-size="12" font-weight="400" fill="#9b9b9b">Works only with the hob on and remote control active</text>

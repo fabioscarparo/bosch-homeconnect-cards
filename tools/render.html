@@ -39,6 +39,7 @@
             ["off", "Off"],
             ["offline", "Disconnected"],
             ["ready", "Ready"],
+            ["remote", "Remote start off"],
             ["run", "Running"],
             ["pause", "Paused"],
             ["foam", "Foam alert"],
@@ -164,6 +165,7 @@
       async function renderSheet(key, themeName) {
         const spec = CARDS[key];
         theme(themeName);
+        counter = 0;
         const writer = new SvgWriter();
         const COLS = 4;
         const rendered = [];
@@ -203,6 +205,7 @@
 
       async function renderWall(themeName) {
         theme(themeName);
+        counter = 0;
         const writer = new SvgWriter();
         const parts = [];
         const columns = [];

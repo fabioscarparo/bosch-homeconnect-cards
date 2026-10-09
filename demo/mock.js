@@ -280,6 +280,13 @@ export const SCENARIOS = {
   Washer: {
     off: ["Off", () => {}],
     ready: ["Ready", washerReady],
+    remote: [
+      "Remote start off",
+      (s, d) => {
+        washerReady(s, d);
+        s.set(d, "button_start_program", "unavailable");
+      },
+    ],
     run: ["Running", washerRun],
     pause: [
       "Paused",
