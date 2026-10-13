@@ -105,6 +105,12 @@ const STRINGS = {
     cold: "Fredda",
     rpm: "{n} giri/min",
     rinse_plus: "Extra risciacquo",
+    pretreatment: "Pretrattamento",
+    pretreatment_values: { prewash: "Prelavaggio", handsoak: "Ammollo" },
+    soak_temperature: "Temperatura ammollo",
+    soak_duration: "Durata ammollo",
+    steam_intensity: "Intensità vapore",
+    intensity: { middle: "Media", high: "Alta" },
     multiple_soak: "Ammollo multiplo",
     stains: "Antimacchie",
     load_recommendation: "Carico consigliato",
@@ -233,6 +239,12 @@ const STRINGS = {
     cold: "Cold",
     rpm: "{n} rpm",
     rinse_plus: "Rinse plus",
+    pretreatment: "Pre-treatment",
+    pretreatment_values: { prewash: "Prewash", handsoak: "Soak" },
+    soak_temperature: "Soak temperature",
+    soak_duration: "Soak duration",
+    steam_intensity: "Steam intensity",
+    intensity: { middle: "Medium", high: "High" },
     multiple_soak: "Multiple soak",
     stains: "Stains",
     load_recommendation: "Recommended load",
@@ -550,6 +562,7 @@ const OPTION_META = {
   switch_laundry_soak: { icon: "mdi:bucket-outline", it: "Ammollo", en: "Soak" },
   switch_laundry_hygienic_steam: { icon: "mdi:kettle-steam-outline", it: "Vapore", en: "Steam" },
   switch_laundry_intensive_plus: { icon: "mdi:shimmer", it: "Intensive Plus", en: "Intensive Plus" },
+  switch_laundry_mini_load: { icon: "mdi:tshirt-crew-outline", it: "Mini", en: "Mini" },
   switch_laundry_silent_mode: { icon: "mdi:weather-night", it: "Silenzioso", en: "Silent" },
   switch_laundry_silent_wash: { icon: "mdi:weather-night", it: "Silenzioso", en: "Silent" },
   switch_laundry_speed_perfect: { icon: "mdi:speedometer", it: "SpeedPerfect", en: "SpeedPerfect" },
@@ -648,6 +661,7 @@ function hobZonePart(entry, stateObj) {
 const OPTION_STEPS = {
   select_laundry_option_temperature: (option) => /^(cold|gc\d+)$/.test(option),
   select_laundry_spin_speed: (option) => /^(off|rpm\d+)$/.test(option),
+  select_laundry_soak_temperature: (option) => /^(cold|gc\d+)$/.test(option),
 };
 
 // "2h" or "90min", as used by the fork's "Delay start" select
@@ -1043,7 +1057,7 @@ const STYLES = `
   .stepper .num { flex: 1; text-align: center; font-size: var(--ha-font-size-m, 14px); font-weight: 500; font-variant-numeric: tabular-nums; white-space: nowrap; }
   .stepper.pending .num { color: var(--accent); }
   .segmented { flex: none; display: flex; height: 42px; min-width: 164px; border-radius: var(--radius); background: var(--control); overflow: hidden; }
-  .segmented button { flex: 1; min-width: 40px; padding: 0 8px; font-size: var(--ha-font-size-m, 14px); font-weight: 500; border-radius: var(--radius); transition: background-color 180ms, color 180ms; }
+  .segmented button { flex: 1 1 auto; min-width: 40px; padding: 0 10px; white-space: nowrap; font-size: var(--ha-font-size-m, 14px); font-weight: 500; border-radius: var(--radius); transition: background-color 180ms, color 180ms; }
   .segmented button.sel { background: var(--accent); color: var(--on-accent); }
 
 
@@ -2208,7 +2222,7 @@ class WasherCard extends CycleCard {
   _temperatureText(option) {
     if (option === "cold") return this._t("cold");
     const degrees = String(option).match(/^gc(\d+)$/);
-    return degrees ? `${degrees[1]} °C` : this._fmtState(this.st("select_laundry_option_temperature"), option);
+    return degrees ? `${degrees[1]} °C` : String(option);
   }
 
   _plusText(option) {
@@ -2240,6 +2254,35 @@ class WasherCard extends CycleCard {
             label: this._t("rinse_plus"),
             icon: "mdi:water-sync",
             format: (option) => this._plusText(option),
+          })
+        : "",
+      idle
+        ? this._segmented("select_laundry_pretreatment", {
+            label: this._t("pretreatment"),
+            icon: "mdi:hand-wash-outline",
+            format: (option) => (option === "off" ? this._t("none") : this._t(`pretreatment_values.${option}`)),
+          })
+        : "",
+      idle
+        ? this._optionStepper("select_laundry_soak_temperature", {
+            label: this._t("soak_temperature"),
+            icon: "mdi:thermometer-water",
+            format: (option) => this._temperatureText(option),
+          })
+        : "",
+      idle
+        ? this._stepper("number_laundry_soak_duration", {
+            label: this._t("soak_duration"),
+            icon: "mdi:timer-sand",
+            step: 900,
+            format: (v) => durationText(v),
+          })
+        : "",
+      idle
+        ? this._segmented("select_laundry_hygienic_steam_intensity", {
+            label: this._t("steam_intensity"),
+            icon: "mdi:kettle-steam-outline",
+            format: (option) => this._t(`intensity.${option}`),
           })
         : "",
       idle

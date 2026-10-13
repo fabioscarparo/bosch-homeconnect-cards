@@ -58,7 +58,8 @@ function forkEntities(data) {
         options: ["off", "blood", "egg", "mud", "grass", "coffee", "redwine", "chocolate", "tea", "tomatosauce"],
       });
       add("sensor_laundry_load_recommendation", "sensor", "4.0", { unit_of_measurement: "kg", device_class: "weight" });
-      for (const option of ["water_plus", "prewash", "rinse_hold", "less_ironing", "intensive_plus"]) {
+      add("select_laundry_pretreatment", "select", "off", { options: ["off", "prewash", "handsoak"] });
+      for (const option of ["water_plus", "prewash", "rinse_hold", "less_ironing", "intensive_plus", "mini_load"]) {
         add(`switch_laundry_${option}`, "switch", "off");
       }
     }
