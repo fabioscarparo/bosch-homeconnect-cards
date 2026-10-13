@@ -50,7 +50,9 @@
 <svg x="76" y="61" width="248" height="248" viewBox="0 0 240 240" overflow="visible">
 <circle cx="120" cy="120" r="96" transform="rotate(135 120 120)" fill="none" stroke="#bdbdbd" stroke-opacity="0.3" stroke-width="16" stroke-dasharray="452.4, 603.2" stroke-linecap="round"/>
 <circle cx="120" cy="120" r="96" transform="rotate(135 120 120)" fill="none" stroke="#ff6f22" stroke-width="16" stroke-dasharray="251.3, 603.2" stroke-linecap="round"/>
-<circle cx="52.1" cy="187.9" r="6" fill="#ffffff" stroke="#212121" stroke-width="3"/>
+<circle cx="52.1" cy="187.9" r="3.5" fill="#212121" stroke="none" stroke-width="1" opacity="0.6"/>
+<circle cx="144.8" cy="27.3" r="12" fill="#ff6f22" stroke="none" stroke-width="1"/>
+<circle cx="144.8" cy="27.3" r="7.5" fill="#ffffff" stroke="none" stroke-width="1"/>
 </svg>
 <clipPath id="c1-clip3"><rect x="153.51" y="138.04" width="92.98" height="20"/></clipPath>
 <g clip-path="url(#c1-clip3)">
@@ -131,7 +133,9 @@
 <svg x="76" y="61" width="248" height="248" viewBox="0 0 240 240" overflow="visible">
 <circle cx="120" cy="120" r="96" transform="rotate(135 120 120)" fill="none" stroke="#bdbdbd" stroke-opacity="0.3" stroke-width="16" stroke-dasharray="452.4, 603.2" stroke-linecap="round"/>
 <circle cx="120" cy="120" r="96" transform="rotate(135 120 120)" fill="none" stroke="#ff6f22" stroke-width="16" stroke-dasharray="251.3, 603.2" stroke-linecap="round"/>
-<circle cx="62.2" cy="43.3" r="6" fill="#ffffff" stroke="#212121" stroke-width="3"/>
+<circle cx="62.2" cy="43.3" r="3.5" fill="#212121" stroke="none" stroke-width="1" opacity="0.6"/>
+<circle cx="144.8" cy="27.3" r="12" fill="#ff6f22" stroke="none" stroke-width="1"/>
+<circle cx="144.8" cy="27.3" r="7.5" fill="#ffffff" stroke="none" stroke-width="1"/>
 </svg>
 <clipPath id="c2-clip3"><rect x="149.58" y="128.04" width="100.84" height="20"/></clipPath>
 <g clip-path="url(#c2-clip3)">
@@ -204,7 +208,9 @@
 <svg x="76" y="169" width="248" height="248" viewBox="0 0 240 240" overflow="visible">
 <circle cx="120" cy="120" r="96" transform="rotate(135 120 120)" fill="none" stroke="#bdbdbd" stroke-opacity="0.3" stroke-width="16" stroke-dasharray="452.4, 603.2" stroke-linecap="round"/>
 <circle cx="120" cy="120" r="96" transform="rotate(135 120 120)" fill="none" stroke="#ff6f22" stroke-width="16" stroke-dasharray="284.8, 603.2" stroke-linecap="round"/>
-<circle cx="175.1" cy="41.4" r="6" fill="#ffffff" stroke="#212121" stroke-width="3"/>
+<circle cx="175.1" cy="41.4" r="3.5" fill="#212121" stroke="none" stroke-width="1" opacity="0.6"/>
+<circle cx="175.1" cy="41.4" r="12" fill="#ff6f22" stroke="none" stroke-width="1"/>
+<circle cx="175.1" cy="41.4" r="7.5" fill="#ffffff" stroke="none" stroke-width="1"/>
 </svg>
 <clipPath id="c3-clip3"><rect x="149.58" y="236.04" width="100.84" height="20"/></clipPath>
 <g clip-path="url(#c3-clip3)">
@@ -274,7 +280,9 @@
 <svg x="76" y="115" width="248" height="248" viewBox="0 0 240 240" overflow="visible">
 <circle cx="120" cy="120" r="96" transform="rotate(135 120 120)" fill="none" stroke="#bdbdbd" stroke-opacity="0.3" stroke-width="16" stroke-dasharray="452.4, 603.2" stroke-linecap="round"/>
 <circle cx="120" cy="120" r="96" transform="rotate(135 120 120)" fill="none" stroke="#ff6f22" stroke-width="16" stroke-dasharray="251.3, 603.2" stroke-linecap="round"/>
-<circle cx="146.5" cy="27.7" r="6" fill="#ffffff" stroke="#212121" stroke-width="3"/>
+<circle cx="146.5" cy="27.7" r="3.5" fill="#212121" stroke="none" stroke-width="1" opacity="0.6"/>
+<circle cx="144.8" cy="27.3" r="12" fill="#ff6f22" stroke="none" stroke-width="1"/>
+<circle cx="144.8" cy="27.3" r="7.5" fill="#ffffff" stroke="none" stroke-width="1"/>
 </svg>
 <clipPath id="c4-clip3"><rect x="149.58" y="182.04" width="100.84" height="20"/></clipPath>
 <g clip-path="url(#c4-clip3)">
@@ -433,7 +441,9 @@
 <svg x="76" y="115" width="248" height="248" viewBox="0 0 240 240" overflow="visible">
 <circle cx="120" cy="120" r="96" transform="rotate(135 120 120)" fill="none" stroke="#bdbdbd" stroke-opacity="0.3" stroke-width="16" stroke-dasharray="452.4, 603.2" stroke-linecap="round"/>
 <circle cx="120" cy="120" r="96" transform="rotate(135 120 120)" fill="none" stroke="#ff6f22" stroke-width="16" stroke-dasharray="251.3, 603.2" stroke-linecap="round"/>
-<circle cx="138.3" cy="25.8" r="6" fill="#ffffff" stroke="#212121" stroke-width="3"/>
+<circle cx="138.3" cy="25.8" r="3.5" fill="#212121" stroke="none" stroke-width="1" opacity="0.6"/>
+<circle cx="144.8" cy="27.3" r="12" fill="#ff6f22" stroke="none" stroke-width="1"/>
+<circle cx="144.8" cy="27.3" r="7.5" fill="#ffffff" stroke="none" stroke-width="1"/>
 </svg>
 <clipPath id="c6-clip3"><rect x="149.58" y="192.04" width="100.84" height="20"/></clipPath>
 <g clip-path="url(#c6-clip3)">

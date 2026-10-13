@@ -10,7 +10,7 @@
  * MIT License - Copyright (c) 2026 Fabio Scarparo
  */
 
-const VERSION = "0.4.4";
+const VERSION = "0.4.5";
 const DOMAIN = "homeconnect_ws";
 const UNAVAILABLE = new Set(["unavailable", "unknown"]);
 
@@ -838,20 +838,29 @@ function patchChildren(target, source) {
 }
 
 // 270° dial, like the Home Assistant thermostat card
-function dial({ pct = 0, marker = null, color = "var(--accent)", label = "", big = "", unit = "", sub = "", gap = "" }) {
+function dial({ pct = 0, marker = null, knob = false, color = "var(--accent)", label = "", big = "", unit = "", sub = "", gap = "" }) {
   const r = 96;
   const circumference = 2 * Math.PI * r;
   const length = circumference * 0.75;
   const value = clamp(pct, 0, 1) * length;
+  const point = (p) => {
+    const angle = ((135 + 270 * clamp(p, 0, 1)) * Math.PI) / 180;
+    return [(120 + r * Math.cos(angle)).toFixed(1), (120 + r * Math.sin(angle)).toFixed(1)];
+  };
   let markerSvg = "";
+  // Like the thermostat card: the current value is a small dot on the track,
+  // the value you set has the handle at the end of the arc
   if (marker != null) {
-    const angle = ((135 + 270 * clamp(marker, 0, 1)) * Math.PI) / 180;
-    const x = (120 + r * Math.cos(angle)).toFixed(1);
-    const y = (120 + r * Math.sin(angle)).toFixed(1);
-    markerSvg = `<circle class="marker" cx="${x}" cy="${y}" r="6"></circle>`;
+    const [x, y] = point(marker);
+    markerSvg += `<circle class="marker" cx="${x}" cy="${y}" r="3.5"></circle>`;
+  }
+  if (knob) {
+    const [x, y] = point(pct);
+    markerSvg += `<circle class="knob" cx="${x}" cy="${y}" r="12" style="fill:${color}"></circle>
+      <circle class="knob-center" cx="${x}" cy="${y}" r="7.5"></circle>`;
   }
   return `
-    <div class="dial">
+    <div class="dial ${knob ? "with-knob" : ""}">
       <svg viewBox="0 0 240 240" aria-hidden="true">
         <circle class="track" cx="120" cy="120" r="${r}" transform="rotate(135 120 120)"
           style="stroke-dasharray:${length.toFixed(1)} ${circumference.toFixed(1)}"></circle>
@@ -945,7 +954,10 @@ const STYLES = `
   .dial .track, .dial .value { fill: none; stroke-width: 16; stroke-linecap: round; }
   .dial .track { stroke: color-mix(in srgb, var(--disabled-color, #bdbdbd) 30%, transparent); }
   .dial .value { transition: stroke-dasharray 700ms cubic-bezier(0.2, 0, 0, 1), stroke 300ms, opacity 300ms; }
-  .dial .marker { fill: var(--ha-card-background, var(--card-background-color, #fff)); stroke: var(--primary-text-color); stroke-width: 3; }
+  .dial .marker { fill: var(--primary-text-color); opacity: 0.6; }
+  .dial .knob-center { fill: var(--white-color, #fff); }
+  /* The handle moves at once with the buttons, so the arc does too */
+  .dial.with-knob .value { transition: stroke 300ms, opacity 300ms; }
   .dial-center {
     position: absolute;
     inset: 20% 12% 24%;
@@ -2734,6 +2746,7 @@ class OvenCard extends HomeConnectCard {
     return `
       ${dial({
         pct: (setpoint.value - setpoint.min) / range,
+        knob: true,
         marker: current != null ? (current - setpoint.min) / range : null,
         label: current != null ? esc(this._t("current", { v: `${this._num(current, 0)} ${setpoint.unit}` })) : "",
         big: this._num(setpoint.value, 0),
