@@ -10,7 +10,7 @@
  * MIT License - Copyright (c) 2026 Fabio Scarparo
  */
 
-const VERSION = "0.3.0";
+const VERSION = "0.3.1";
 const DOMAIN = "homeconnect_ws";
 const UNAVAILABLE = new Set(["unavailable", "unknown"]);
 
@@ -155,7 +155,7 @@ const STRINGS = {
     zone_start: "Accendi zona",
     zone_stop: "Spegni zona",
     zone_note: "Funziona solo con il piano acceso e il controllo remoto attivo",
-    zone_unsupported: "Per comandare le zone serve il servizio homeconnect_ws.start_hob_program",
+    zone_unsupported: "Le zone si accendono e si regolano dal piano cottura",
     groups: {
       favorite: "Preferiti",
       heatingmode: "Modalità di cottura",
@@ -289,7 +289,7 @@ const STRINGS = {
     zone_start: "Turn zone on",
     zone_stop: "Turn zone off",
     zone_note: "Works only with the hob on and remote control active",
-    zone_unsupported: "Zone control needs the homeconnect_ws.start_hob_program service",
+    zone_unsupported: "Zones are switched on and adjusted at the hob",
     groups: {
       favorite: "Favorites",
       heatingmode: "Heating modes",
@@ -1395,11 +1395,12 @@ class HomeConnectCard extends HTMLElement {
         if (!before || (before.stale && !stale)) zone[zonePart.part] = { id: entry.entity_id, stale };
       }
     }
-    for (const candidates of Object.values(found)) candidates.sort((a, b) => a.stale - b.stale);
+    // After a migration the old key can still be there as a stale entity, next to the renamed one
     for (const [key, aliases] of Object.entries(KEY_ALIASES)) {
-      const alias = found[key] ? undefined : aliases.find((name) => found[name]);
-      if (alias) found[key] = found[alias];
+      const candidates = [key, ...aliases].flatMap((name) => found[name] || []);
+      if (candidates.length) found[key] = candidates;
     }
+    for (const candidates of Object.values(found)) candidates.sort((a, b) => a.stale - b.stale);
     this._entityCache = { registry: hass.entities, id, found, zones };
     return this._entityCache;
   }
@@ -1470,9 +1471,10 @@ class HomeConnectCard extends HTMLElement {
       : null;
     // Only the "Remote start allowed" entity says that remote start is off. Start can also
     // be unavailable for other reasons, such as an open door, so that gets its own hint.
+    // The fork also keeps Start unavailable until a program is selected.
     const remoteStart = this.st("binary_remote_start_allowed");
     const remoteStartBlocked = remoteStart?.state === "off";
-    const startUnavailable = !off && !running && this.val("button_start_program") === "unavailable";
+    const startUnavailable = !off && !running && !!selected && this.val("button_start_program") === "unavailable";
     return {
       offline,
       off,
@@ -1609,7 +1611,8 @@ class HomeConnectCard extends HTMLElement {
 
   _programSelect(d) {
     if (!this.eid("select_program") || d.running) return "";
-    const disabled = !this.ok("select_program") || d.remoteControlOff;
+    // "unknown" only means that no program is selected yet
+    const disabled = this.val("select_program") === "unavailable" || d.remoteControlOff;
     const label = d.program ? this._programLabel(d.program) : this._t("choose_program");
     return `
       <button class="select" data-action="open-programs" ${disabled ? "disabled" : ""}>

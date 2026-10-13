@@ -30,8 +30,12 @@ function forkEntities(data) {
       entity.entity_id = `sensor.hob_zone_${zone[1]}_${part}`;
       entity.attributes.friendly_name = `Induction Hob Zone ${zone[1]} ${part.replace(/_/g, " ")}`;
     } else if (FORK_RENAMES[e.key]) {
+      // After a migration the old entity stays in the registry, restored and unavailable
+      out.push({ ...e, canonical: `orphan_${e.key}`, state: "unavailable", attributes: { ...e.attributes, restored: true } });
       entity.key = FORK_RENAMES[e.key];
-      if (entity.key.startsWith("light_")) entity.entity_id = entity.entity_id.replace(/^switch\./, "light.");
+      entity.entity_id = entity.key.startsWith("light_")
+        ? entity.entity_id.replace(/^switch\./, "light.")
+        : `${entity.entity_id}_2`;
     }
     if (FORK_LOWER.test(e.key)) entity.state = String(entity.state).toLowerCase();
     out.push(entity);
@@ -167,7 +171,8 @@ export class MockStore {
       entities: this.entities,
       devices: this.devices,
       areas: {},
-      services: { homeconnect_ws: { start_program: {}, start_hob_program: {} } },
+      // No released version has an action to control the hob zones
+      services: { homeconnect_ws: { start_program: {} } },
       language: lang,
       locale: { language: lang, number_format: "language", time_format: "language" },
       themes: { darkMode: this.dark },
