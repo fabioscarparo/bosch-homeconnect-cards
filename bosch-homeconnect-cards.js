@@ -10,7 +10,7 @@
  * MIT License - Copyright (c) 2026 Fabio Scarparo
  */
 
-const VERSION = "0.4.2";
+const VERSION = "0.4.3";
 const DOMAIN = "homeconnect_ws";
 const UNAVAILABLE = new Set(["unavailable", "unknown"]);
 
@@ -98,6 +98,7 @@ const STRINGS = {
     energy: "Energia",
     water: "Acqua",
     this_month: "Questo mese",
+    since: "Dal {d}",
     last_months: "Ultimi 6 mesi",
     this_year: "Quest'anno",
     per_cycle: "Media per ciclo",
@@ -242,6 +243,7 @@ const STRINGS = {
     energy: "Energy",
     water: "Water",
     this_month: "This month",
+    since: "Since {d}",
     last_months: "Last 6 months",
     this_year: "This year",
     per_cycle: "Average per cycle",
@@ -1285,6 +1287,9 @@ const STYLES = `
   .usage-rows .row { min-height: 40px; }
   .usage-rows .row-label { gap: 16px; font-size: var(--ha-font-size-m, 14px); }
   .usage-rows .row-label ha-icon { color: var(--state-icon-color, #44739e); --mdc-icon-size: 24px; margin: 0 8px; }
+  .usage-rows .row-text { display: flex; flex-direction: column; min-width: 0; }
+  .usage-rows .row-text span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .usage-rows .secondary { font-size: var(--ha-font-size-s, 12px); line-height: 16px; color: var(--secondary-text-color); }
   .row-value { font-size: var(--ha-font-size-m, 14px); font-weight: var(--ha-font-weight-normal, 400); font-variant-numeric: tabular-nums; white-space: nowrap; }
 
   @container (max-width: 300px) {
@@ -1976,12 +1981,22 @@ class HomeConnectCard extends HTMLElement {
         key: metrics[0][0],
         label: this._t("last_cycle"),
         action,
-        parts: metrics.map(([key, metric]) => ({ icon: metric.icon, color: metric.color, text: this._fmtState(this.st(key)) })),
+        parts: metrics.map(([key, metric]) => ({ icon: metric.icon, color: metric.color, text: this._consumption(key) })),
       }),
     ];
   }
 
   // --- Consumption -----------------------------------------------------------
+
+  // A consumption value with fixed decimals, whatever display precision the entity has
+  _consumption(key) {
+    const stateObj = this.st(key);
+    if (!stateObj || UNAVAILABLE.has(stateObj.state)) return "";
+    const value = Number(stateObj.state);
+    const unit = stateObj.attributes.unit_of_measurement || "";
+    if (!Number.isFinite(value)) return this._fmtState(stateObj);
+    return `${this._num(value, unit === "L" ? 0 : 2)} ${unit}`.trim();
+  }
 
   _hasUsage() {
     return Object.values(USAGE_METRICS).some((metric) => this._found[metric.total]);
@@ -2002,25 +2017,35 @@ class HomeConnectCard extends HTMLElement {
     };
     const usage = { months, series: {} };
     try {
+      // By day, added up into months: the first day also tells from when the history starts
       const result = await this._hass.callWS({
         type: "recorder/statistics_during_period",
         start_time: months[0].toISOString(),
         statistic_ids: [...new Set(Object.values(ids).flat())],
-        period: "month",
+        period: "day",
         types: ["change"],
         units: { energy: "kWh", volume: "L" },
       });
+      usage.days = {};
+      usage.first = {};
       for (const [name, list] of Object.entries(ids)) {
         const series = months.map(() => null);
+        const days = [];
         for (const id of list) {
           for (const row of result?.[id] || []) {
             const start = new Date(row.start);
+            if (!(usage.first[name] <= start)) usage.first[name] = start;
+            if (!Number.isFinite(row.change)) continue;
+            days.push({ start, change: row.change });
             const index = months.findIndex((m) => m.getFullYear() === start.getFullYear() && m.getMonth() === start.getMonth());
-            if (index >= 0 && Number.isFinite(row.change)) series[index] = (series[index] ?? 0) + row.change;
+            if (index >= 0) series[index] = (series[index] ?? 0) + row.change;
           }
         }
         usage.series[name] = series;
+        usage.days[name] = days;
       }
+      const firsts = [usage.first.energy, usage.first.water].filter(Boolean);
+      usage.since = firsts.length ? new Date(Math.min(...firsts)) : null;
     } catch (err) {
       usage.error = true;
     }
@@ -2040,6 +2065,11 @@ class HomeConnectCard extends HTMLElement {
       const known = values.filter((v) => v != null);
       return known.length ? known.reduce((a, b) => a + b, 0) : null;
     };
+    const day = (date) => new Intl.DateTimeFormat(lang, { day: "numeric", month: "short" }).format(date).replace(".", "");
+    // The history can start later than this month or this year, for example after a migration
+    const since = loaded ? usage.since : null;
+    const thisMonth = usage?.months?.at(-1);
+    const period = since && since > thisMonth ? this._t("since", { d: day(since) }) : this._t("this_month");
 
     const tiles = metrics
       .map(([name, m]) => {
@@ -2049,7 +2079,7 @@ class HomeConnectCard extends HTMLElement {
             style="--metric:${m.color}" aria-pressed="${name === metric}">
             <span class="ut-head"><ha-icon icon="${m.icon}"></ha-icon>${esc(this._t(name))}</span>
             <span class="ut-value">${value != null ? `${esc(this._num(value, m.digits))}<span class="unit">${m.unit}</span>` : "-"}</span>
-            <span class="ut-sub">${esc(this._t("this_month"))}</span>
+            <span class="ut-sub">${esc(period)}</span>
           </button>`;
       })
       .join("");
@@ -2077,29 +2107,33 @@ class HomeConnectCard extends HTMLElement {
     const fmt = (name, value, digits = USAGE_METRICS[name].digits) =>
       value != null && this._found[USAGE_METRICS[name].total] ? `${this._num(value, digits)} ${USAGE_METRICS[name].unit}` : "";
     const rows = [];
-    const last = pair(
-      this.ok("sensor_energy_consumed_last") ? this._fmtState(this.st("sensor_energy_consumed_last")) : "",
-      this.ok("sensor_water_consumed_last") ? this._fmtState(this.st("sensor_water_consumed_last")) : "",
-    );
-    if (last) rows.push(["mdi:history", this._t("last_cycle"), last]);
+    const last = pair(this._consumption("sensor_energy_consumed_last"), this._consumption("sensor_water_consumed_last"));
+    // The fork has the end of the last program on the start counter, disabled by default
+    const lastEnd = new Date(this.st("sensor_count_started")?.attributes["Last End"] ?? NaN);
+    const lastDate = Number.isFinite(lastEnd.getTime())
+      ? new Intl.DateTimeFormat(lang, { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }).format(lastEnd)
+      : "";
+    if (last) rows.push(["mdi:history", this._t("last_cycle"), last, lastDate]);
     if (loaded) {
-      // Only the months with both the consumption and the number of cycles
+      // Only over the days with both the consumption and the number of cycles
       const perCycle = (name) => {
-        const months = usage.series[name].map((value, i) => [value, usage.series.cycles?.[i]]).filter(([v, c]) => v != null && c > 0);
-        const cycles = sum(months.map(([, c]) => c));
-        return cycles > 0 ? sum(months.map(([v]) => v)) / cycles : null;
+        if (!usage.first[name] || !usage.first.cycles) return null;
+        const from = Math.max(usage.first[name], usage.first.cycles);
+        const total = (days) => sum(days.filter((d) => d.start >= from).map((d) => d.change));
+        const cycles = total(usage.days.cycles);
+        return cycles > 0 ? total(usage.days[name]) / cycles : null;
       };
       const average = pair(fmt("energy", perCycle("energy"), 2), fmt("water", perCycle("water"), 0));
       if (average) rows.push(["mdi:approximately-equal", this._t("per_cycle"), average]);
-      const year = new Date(Date.now()).getFullYear();
-      const thisYear = (name) => sum((usage.series[name] || []).filter((_, i) => usage.months[i].getFullYear() === year));
+      const yearStart = new Date(new Date(Date.now()).getFullYear(), 0, 1);
+      const thisYear = (name) => sum((usage.series[name] || []).filter((_, i) => usage.months[i] >= yearStart));
       const yearText = pair(fmt("energy", thisYear("energy")), fmt("water", thisYear("water")));
-      if (yearText) rows.push(["mdi:calendar-blank-outline", this._t("this_year"), yearText]);
+      // Only when the history covers more than this month, which the tiles show already
+      if (yearText && since && since < thisMonth) {
+        rows.push(["mdi:calendar-blank-outline", since > yearStart ? this._t("since", { d: day(since) }) : this._t("this_year"), yearText]);
+      }
     }
-    const total = pair(
-      this.ok(USAGE_METRICS.energy.total) ? this._fmtState(this.st(USAGE_METRICS.energy.total)) : "",
-      this.ok(USAGE_METRICS.water.total) ? this._fmtState(this.st(USAGE_METRICS.water.total)) : "",
-    );
+    const total = pair(this._consumption(USAGE_METRICS.energy.total), this._consumption(USAGE_METRICS.water.total));
     if (total) rows.push(["mdi:sigma", this._t("total"), total]);
 
     const empty = loaded && !series.some((v) => v != null);
@@ -2112,8 +2146,9 @@ class HomeConnectCard extends HTMLElement {
         ${message ? `<div class="note">${esc(this._t(message))}</div>` : ""}
         <div class="usage-rows">${rows
           .map(
-            ([icon, label, value]) => `
-          <div class="row"><div class="row-label"><ha-icon icon="${icon}"></ha-icon><span>${esc(label)}</span></div>
+            ([icon, label, value, secondary]) => `
+          <div class="row"><div class="row-label"><ha-icon icon="${icon}"></ha-icon>
+            <div class="row-text"><span>${esc(label)}</span>${secondary ? `<span class="secondary">${esc(secondary)}</span>` : ""}</div></div>
             <span class="row-value">${esc(value)}</span></div>`,
           )
           .join("")}</div>

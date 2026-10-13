@@ -237,7 +237,8 @@ Some parts appear only when the integration provides what they need:
 |---|---|
 | Energy and water of the last cycle | The "last program" consumption sensors |
 | Consumption by month | The total energy and water sensors, recorded in the Home Assistant statistics |
-| Average per cycle | The "completed programs" counter as well, which is disabled by default |
+| Date of the last cycle | The "Start count" sensor of the vemboy200 fork, which is disabled by default |
+| Average per cycle | The "Completed count" sensor as well, also disabled by default |
 | Oven hints such as "time to turn the food" | The oven event sensors |
 | Hints when remote control or remote start is off | The "Remote control active" and "Remote start allowed" entities |
 
