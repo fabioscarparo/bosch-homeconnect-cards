@@ -6,17 +6,30 @@ const now = () => new Date(Date.now()).toISOString();
 const HOB_ZONE_IDS = { FrontLeft: "100", Left: "120", RearLeft: "200", RearRight: "300", Right: "340", FrontRight: "400" };
 
 // The "fork" variant reshapes the fixtures the way the vemboy200 fork of Home Connect
-// Local exposes them: renamed keys, lower-case states, hob zones sharing one key with
-// the zone in the name, a "Delay start" select and no consumption sensors.
+// Local exposes them, with vemboy200/homeconnect_local_hass#179: renamed keys, lower-case
+// states, hob zones sharing one key with the zone in the name and a "Delay start" select.
 const FORK_RENAMES = {
   button_oven_pause: "button_pause_program",
   button_oven_resume: "button_resume_program",
   switch_oven_cavity_light: "light_oven_cavity",
+  sensor_energy_consumed_total: "sensor_energy_consumed",
+  sensor_water_consumed_total: "sensor_water_consumed",
 };
 const FORK_DROPPED =
-  /^(sensor_energy_consumed_|sensor_water_consumed_|binary_sensor_oven_|binary_sensor_hob_zone_|sensor_confirm_action_at_appliance|number_oven_weight|number_oven_start_in_relative|sensor_hob_zone_\d+_operation_state)/;
+  /^(binary_sensor_oven_(fast_preheat|selectable|startable)_\d+|binary_sensor_hob_zone_|sensor_confirm_action_at_appliance|number_oven_start_in_relative|sensor_hob_zone_\d+_operation_state)/;
 const FORK_LOWER = /^(sensor_operation_state|sensor_program_phase|sensor_hob_zone_\d+_power_level)$/;
 const FORK_DELAY_OPTIONS = ["no_delay", ...Array.from({ length: 24 }, (_, i) => `${i + 1}h`)];
+// As the fork translates them
+const FORK_STAIN_NAMES = {
+  en: {
+    off: "Off", blood: "Blood", egg: "Egg", mud: "Mud", grass: "Grass", coffee: "Coffee",
+    redwine: "Red Wine", chocolate: "Chocolate", tea: "Tea", tomatosauce: "Tomato Sauce",
+  },
+  it: {
+    off: "Off", blood: "Sangue", egg: "Uovo", mud: "Fango", grass: "Erba", coffee: "Caffè",
+    redwine: "Vino Rosso", chocolate: "Cioccolato", tea: "Tè", tomatosauce: "Salsa di Pomodoro",
+  },
+};
 
 function forkEntities(data) {
   const out = [];
@@ -63,6 +76,10 @@ function forkEntities(data) {
       });
       add("sensor_laundry_load_recommendation", "sensor", "4.0", { unit_of_measurement: "kg", device_class: "weight" });
       add("select_laundry_pretreatment", "select", "off", { options: ["off", "prewash", "handsoak"] });
+      // Only for some programs or pre-treatments
+      add("select_laundry_soak_temperature", "select", "unavailable", { options: ["cold", "gc20", "gc30", "gc40"] });
+      add("number_laundry_soak_duration", "number", "unavailable", { min: 900, max: 14400, step: 900, unit_of_measurement: "s" });
+      add("select_laundry_hygienic_steam_intensity", "select", "unavailable", { options: ["middle", "high"] });
       for (const option of ["water_plus", "prewash", "rinse_hold", "less_ironing", "intensive_plus", "mini_load"]) {
         add(`switch_laundry_${option}`, "switch", "off");
       }
@@ -74,7 +91,12 @@ function forkEntities(data) {
 export class MockStore {
   static async load({ variant = "original" } = {}) {
     const data = await fetch(new URL("./fixtures.json", import.meta.url)).then((r) => r.json());
-    if (variant === "fork") data.entities = forkEntities(data);
+    if (variant === "fork") {
+      data.entities = forkEntities(data);
+      for (const [lang, states] of Object.entries(FORK_STAIN_NAMES)) {
+        data.translations[lang].select.select_laundry_option_stains = states;
+      }
+    }
     return new MockStore(data, variant);
   }
 
@@ -366,6 +388,20 @@ export const SCENARIOS = {
         washerReady(s, d);
         s.set(d, "binary_remote_start_allowed", "off");
         s.set(d, "button_start_program", "unavailable");
+      },
+    ],
+    options: [
+      "Options",
+      (s, d) => {
+        washerReady(s, d);
+        s.set(d, "select_laundry_option_temperature", "gc30");
+        s.set(d, "select_laundry_spin_speed", "rpm1000");
+        s.set(d, "switch_laundry_mini_load", "on");
+        s.set(d, "select_laundry_rinseplus", "plus1");
+        s.set(d, "select_laundry_pretreatment", "handsoak");
+        s.set(d, "select_laundry_soak_temperature", "gc30");
+        s.set(d, "number_laundry_soak_duration", 3600);
+        s.set(d, "select_laundry_option_stains", "grass");
       },
     ],
     run: ["Running", washerRun],

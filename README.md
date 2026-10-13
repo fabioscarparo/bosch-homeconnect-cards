@@ -21,8 +21,8 @@ the integration that talks to the appliances directly on your network.
 
 There is one card for each type of appliance:
 
-- **Washer** - program and options, remaining time, spin speed and the
-  energy and water of the last cycle
+- **Washer** - program, temperature, spin speed and options, remaining
+  time and the energy and water of the last cycle
 - **Dishwasher** - program and options, delayed start, salt and rinse aid
 - **Oven** - heating mode, temperature, duration, automatic recipes and
   cooking hints such as "time to turn the food"
@@ -149,16 +149,17 @@ the address, after `/config/devices/device/`.
 ### Washer
 
 The dial shows the remaining time, the progress and the current phase of
-the program. Before starting you choose the program and its options, such
-as **SpeedPerfect** or **Silent**, and the duration when the program allows
-it. With the vemboy200 fork you also set the temperature, the spin speed,
-extra rinses and stain treatment, and see the recommended load, like in the
-Home Connect app. While the program runs you can pause it, resume it or stop
-it, and the card tells you when laundry can still be added.
+the program. Before starting you set up the program like in the Home
+Connect app: temperature, spin speed, options such as **SpeedPerfect**,
+**Silent** or **Mini**, extra rinses, pre-treatment and soak, stain
+treatment and duration, each one only when the program allows it. The card
+also shows the recommended load. While the program runs you can pause it,
+resume it or stop it, and the card tells you when laundry can still be
+added.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="images/washer-dark.svg">
-  <img alt="Washer card: off, disconnected, ready, remote start off, running, paused, foam alert, finished and compact view" src="images/washer-light.svg">
+  <img alt="Washer card: off, disconnected, ready, options, stain picker, remote start off, running, paused, foam alert, finished and compact view" src="images/washer-light.svg">
 </picture>
 
 ### Dishwasher
@@ -169,7 +170,7 @@ in sight, with an alert when they run out.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="images/dishwasher-dark.svg">
-  <img alt="Dishwasher card: off, ready, door open, delayed start, running, salt empty, finished and compact view" src="images/dishwasher-light.svg">
+  <img alt="Dishwasher card: off, ready, door open, delayed start, running, salt empty, finished, program picker and compact view" src="images/dishwasher-light.svg">
 </picture>
 
 ### Oven
@@ -190,29 +191,37 @@ level for cleaning, duration and delayed start for heating modes.
 
 A map of the hob with every cooking zone: power level, timer and residual
 heat at a glance, and the **flex zone** drawn as one surface when it is in
-use. Select a zone to see its details and, where the integration allows
-it, to switch it on with a power level and a timer.
+use. Select a zone to see its details. Zones are switched on and adjusted
+at the hob itself: no version of Home Connect Local can control them.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="images/hob-dark.svg">
-  <img alt="Induction hob card: off, residual heat, cooking, confirm on the hob, flex zone and zone control" src="images/hob-light.svg">
+  <img alt="Induction hob card: off, residual heat, cooking, flex zone and zone details" src="images/hob-light.svg">
 </picture>
 
 ## Compatibility
 
 The cards work with both versions of Home Connect Local, and adapt to what
-each one provides. The fork by vemboy200 renames some entities, reports
-states in lower case, shares one entity name across the hob zones and
-handles delayed start on its own: the cards take care of all of it.
+each one provides. The two versions name some entities differently, and
+the fork by vemboy200 reports states in lower case, shares one entity name
+across the hob zones and handles delayed start on its own: the cards take
+care of all of it, also after migrating from one to the other.
 
-| | chris-mc1 | vemboy200 fork (1.9, 2.0 beta) |
+| | chris-mc1 (1.0.6) | vemboy200 fork (1.9, 2.0 beta) |
 |---|---|---|
 | Washer, dishwasher, oven, hob status | Yes | Yes |
 | Programs, options, start, pause, stop | Yes | Yes |
 | Delayed start | "Start in" number, started through `homeconnect_ws.start_program` | "Delay start" select or number, applied by the Start button |
-| Oven light | Switch | Light |
-| Washer temperature, spin speed, extra rinse, stains, recommended load | No | Yes |
-| Washer options such as Water Plus, Prewash, Less ironing, Intensive Plus | No | Yes |
+| Washer temperature, spin speed, extra rinse, stains, recommended load | Yes | Yes |
+| Washer Mini, pre-treatment and soak | No | With [#179](https://github.com/vemboy200/homeconnect_local_hass/pull/179) |
+| Energy and water of the last cycle | No | With [#179](https://github.com/vemboy200/homeconnect_local_hass/pull/179) |
+| Oven light | No | Yes |
+| Oven hints and weight | No | With [#179](https://github.com/vemboy200/homeconnect_local_hass/pull/179) |
+| Hob zone control | No | No |
+
+[#179](https://github.com/vemboy200/homeconnect_local_hass/pull/179) is a
+pull request to the fork that is still open: until it's merged, those parts
+of the cards don't appear.
 
 ## Optional features
 
@@ -221,8 +230,8 @@ Some parts appear only when the integration provides what they need:
 | Feature | Needs |
 |---|---|
 | Energy and water of the last cycle | The "last program" consumption sensors |
-| Hob zone control | The `homeconnect_ws.start_hob_program` action |
 | Oven hints such as "time to turn the food" | The oven event sensors |
+| Hints when remote control or remote start is off | The "Remote control active" and "Remote start allowed" entities |
 
 > [!TIP]
 > Bosch and Siemens appliances accept a remote start only after you turn on
@@ -273,7 +282,8 @@ python3 -m http.server 8765
 
 Then open `http://localhost:8765/demo/` to see the cards with demo data:
 every scenario, light and dark, English and Italian. Add `?variant=fork` to
-see them on the entities of the vemboy200 fork.
+see them on the entities of the vemboy200 fork, with
+[#179](https://github.com/vemboy200/homeconnect_local_hass/pull/179).
 
 ## Contributing
 
