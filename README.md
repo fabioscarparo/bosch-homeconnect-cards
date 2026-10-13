@@ -258,6 +258,9 @@ integration doesn't translate all of them.
 
 ## How it works
 
+The cards are a single JavaScript file, with no build step and no
+dependencies.
+
 ### Entities found by device
 
 The cards never ask for entity ids. They read the entity registry, keep the
@@ -272,26 +275,11 @@ easy to follow in the logbook and in automations:
 
 | Control | Action |
 |---|---|
-| Program, level | `select.select_option` |
-| Temperature, duration, delayed start, weight | `number.set_value`, sent after a short pause so repeated taps add up |
-| Options, power, light | `switch.toggle` |
+| Program, levels, washer temperature and spin speed | `select.select_option` |
+| Oven temperature, duration, weight | `number.set_value`, sent after a short pause so repeated taps add up |
+| Delayed start | `select.select_option` or `number.set_value` on the vemboy200 fork. With chris-mc1, `number.set_value` and then `homeconnect_ws.start_program` to start |
+| Options, power, oven light | `switch.toggle`, or `light.toggle` when the light is a light entity |
 | Start, pause, resume, stop | `button.press` |
-| Start with a delay | `homeconnect_ws.start_program` |
-| Hob zones | `homeconnect_ws.start_hob_program` |
-
-## Development
-
-The cards are a single JavaScript file, with no build step and no
-dependencies.
-
-```bash
-python3 -m http.server 8765
-```
-
-Then open `http://localhost:8765/demo/` to see the cards with demo data:
-every scenario, light and dark, English and Italian. Add `?variant=fork` to
-see them on the entities of the vemboy200 fork, with
-[#179](https://github.com/vemboy200/homeconnect_local_hass/pull/179).
 
 ## Contributing
 
