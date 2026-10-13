@@ -19,6 +19,13 @@ const FORK_DROPPED =
   /^(binary_sensor_oven_(fast_preheat|selectable|startable)_\d+|binary_sensor_hob_zone_|sensor_confirm_action_at_appliance|number_oven_start_in_relative|sensor_hob_zone_\d+_operation_state)/;
 const FORK_LOWER = /^(sensor_operation_state|sensor_program_phase|sensor_hob_zone_\d+_power_level)$/;
 const FORK_DELAY_OPTIONS = ["no_delay", ...Array.from({ length: 24 }, (_, i) => `${i + 1}h`)];
+// Washer consumption per month, from 11 months ago to this month
+const USAGE_HISTORY = {
+  energy: [4.5, 5.0, 4.9, 4.4, 4.7, 4.2, 4.6, 3.9, 5.2, 3.1, 4.3, 1.8],
+  water: [345, 382, 380, 340, 362, 325, 352, 298, 395, 236, 330, 136],
+  cycles: [9, 10, 10, 9, 9, 8, 9, 8, 10, 6, 8, 4],
+};
+
 // As the fork translates them
 const FORK_STAIN_NAMES = {
   en: {
@@ -75,6 +82,7 @@ function forkEntities(data) {
         options: ["off", "blood", "egg", "mud", "grass", "coffee", "redwine", "chocolate", "tea", "tomatosauce"],
       });
       add("sensor_laundry_load_recommendation", "sensor", "4.0", { unit_of_measurement: "kg", device_class: "weight" });
+      add("sensor_count_completed", "sensor", "412", { state_class: "total_increasing" });
       add("select_laundry_pretreatment", "select", "off", { options: ["off", "prewash", "handsoak"] });
       // Only for some programs or pre-treatments
       add("select_laundry_soak_temperature", "select", "unavailable", { options: ["cold", "gc20", "gc30", "gc40"] });
@@ -202,7 +210,7 @@ export class MockStore {
       user: { name: "Demo", is_admin: true },
       formatEntityState: (stateObj, state) => this.format(stateObj, state),
       callService: (domain, service, data) => this.callService(domain, service, data),
-      callWS: async () => ({}),
+      callWS: async (message) => this.ws(message),
     };
   }
 
@@ -224,6 +232,38 @@ export class MockStore {
       return unit ? `${text}${unit === "%" ? "" : " "}${unit}` : text;
     }
     return value;
+  }
+
+  // --- Simulated statistics --------------------------------------------------
+
+  // Monthly changes of the consumption sensors, as the recorder returns them
+  ws(message) {
+    if (message.type !== "recorder/statistics_during_period") return {};
+    const now = new Date(Date.now());
+    const result = {};
+    for (const id of message.statistic_ids) {
+      const canonical = this.canonical[id] || "";
+      const metric = canonical.includes("count_completed")
+        ? "cycles"
+        : /energy_consumed(_total)?$/.test(canonical)
+          ? "energy"
+          : /water_consumed(_total)?$/.test(canonical)
+            ? "water"
+            : null;
+      if (!metric) continue;
+      // After a migration the old entity has the history, the new one only what came after
+      const orphan = canonical.startsWith("orphan_");
+      const renamed = this.variant === "fork" && metric !== "cycles";
+      result[id] = USAGE_HISTORY[metric]
+        .map((value, i) => {
+          const start = new Date(now.getFullYear(), now.getMonth() - 11 + i, 1);
+          const current = i === USAGE_HISTORY[metric].length - 1;
+          const share = !renamed ? 1 : orphan ? (current ? 0.7 : 1) : current ? 0.3 : 0;
+          return { start: start.getTime(), end: new Date(now.getFullYear(), now.getMonth() - 10 + i, 1).getTime(), change: value * share };
+        })
+        .filter((row) => row.change > 0);
+    }
+    return result;
   }
 
   // --- Simulated services ----------------------------------------------------

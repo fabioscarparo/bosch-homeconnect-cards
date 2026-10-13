@@ -10,7 +10,7 @@
  * MIT License - Copyright (c) 2026 Fabio Scarparo
  */
 
-const VERSION = "0.3.1";
+const VERSION = "0.4.0";
 const DOMAIN = "homeconnect_ws";
 const UNAVAILABLE = new Set(["unavailable", "unknown"]);
 
@@ -94,6 +94,16 @@ const STRINGS = {
     pyrolysis_level: "Livello pirolisi",
     preheating: "Preriscaldamento",
     last_cycle: "Ultimo ciclo",
+    usage: "Consumi",
+    energy: "Energia",
+    water: "Acqua",
+    this_month: "Questo mese",
+    last_months: "Ultimi 6 mesi",
+    this_year: "Quest'anno",
+    per_cycle: "Media per ciclo",
+    total: "Totale",
+    usage_none: "Le statistiche compaiono dopo il primo ciclo registrato da Home Assistant",
+    usage_error: "Non è stato possibile leggere le statistiche di Home Assistant",
     forecast_energy: "Energia prevista",
     forecast_water: "Acqua prevista",
     salt: "Sale",
@@ -228,6 +238,16 @@ const STRINGS = {
     pyrolysis_level: "Pyrolysis level",
     preheating: "Preheating",
     last_cycle: "Last cycle",
+    usage: "Consumption",
+    energy: "Energy",
+    water: "Water",
+    this_month: "This month",
+    last_months: "Last 6 months",
+    this_year: "This year",
+    per_cycle: "Average per cycle",
+    total: "Total",
+    usage_none: "Statistics show up after the first cycle Home Assistant records",
+    usage_error: "Couldn't read the Home Assistant statistics",
     forecast_energy: "Expected energy",
     forecast_water: "Expected water",
     salt: "Salt",
@@ -620,6 +640,8 @@ const KEY_ALIASES = {
   switch_oven_cavity_light: ["light_oven_cavity"],
   binary_sensor_oven_program_finished: ["binary_sensor_program_finished"],
   number_oven_start_in_relative: ["number_start_in"],
+  sensor_energy_consumed: ["sensor_energy_consumed_total"],
+  sensor_water_consumed: ["sensor_water_consumed_total"],
 };
 
 // Some versions report states in lower case (run, mainwash, keepwarm)
@@ -655,6 +677,12 @@ function hobZonePart(entry, stateObj) {
   const zone = zoneNumber(entry.entity_id) ?? zoneNumber(stateObj?.attributes.friendly_name);
   return zone ? { zone, part: ZONE_PARTS[m[1]] } : null;
 }
+
+// The total consumption sensors behind the consumption sheet
+const USAGE_METRICS = {
+  energy: { total: "sensor_energy_consumed", icon: "mdi:lightning-bolt", unit: "kWh", digits: 1, color: "var(--amber-color, #ffc107)" },
+  water: { total: "sensor_water_consumed", icon: "mdi:water", unit: "L", digits: 0, color: "var(--blue-color, #2196f3)" },
+};
 
 // Selects stepped through with minus and plus, limited to the values that make sense
 // there: the "ul" values are for US appliances
@@ -1211,6 +1239,52 @@ const STYLES = `
   .levels button.sel { background: var(--accent); color: var(--on-accent); }
   .note { font-size: 12px; line-height: 16px; color: var(--secondary-text-color); }
 
+  /* Consumption sheet, with the type scale and colors of Home Assistant */
+  .usage-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(0, 1fr)); gap: 8px; }
+  .usage-tile {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    background: var(--control);
+    text-align: start;
+    transition: background-color 180ms;
+  }
+  .usage-tile:hover:not(.sel) { background: var(--control-hover); }
+  .usage-tile.sel { background: color-mix(in srgb, var(--metric) 20%, transparent); }
+  .ut-head { display: flex; align-items: center; gap: 8px; font-size: var(--ha-font-size-m, 14px); line-height: 20px; font-weight: var(--ha-font-weight-medium, 500); }
+  .ut-head ha-icon { color: var(--metric); --mdc-icon-size: 20px; }
+  .ut-value { margin-top: 4px; font-size: var(--ha-font-size-3xl, 28px); line-height: 36px; font-weight: var(--ha-font-weight-normal, 400); font-variant-numeric: tabular-nums; }
+  .ut-value .unit { margin-inline-start: 4px; font-size: var(--ha-font-size-l, 16px); color: var(--secondary-text-color); }
+  .ut-sub { font-size: var(--ha-font-size-s, 12px); line-height: 16px; color: var(--secondary-text-color); }
+  .chart { position: relative; display: flex; gap: 8px; height: 168px; }
+  /* Baseline above the month labels, like the axis of the Home Assistant charts */
+  .chart::after { content: ""; position: absolute; inset: auto 0 24px; border-top: 1px solid var(--divider-color); }
+  .chart .col { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .chart .bar-area { flex: 1; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; gap: 4px; }
+  .chart .bar {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 40px;
+    border: 1.5px solid var(--metric);
+    border-bottom: none;
+    border-radius: 4px 4px 0 0;
+    background: color-mix(in srgb, var(--metric) 50%, transparent);
+    transition: height 300ms;
+  }
+  .chart .col.current .bar { background: var(--metric); }
+  .chart .bar.empty { height: 0 !important; border: none; }
+  .chart.loading .bar { height: 30% !important; border: none; background: var(--control); }
+  .chart .v, .chart .m { font-size: var(--ha-font-size-s, 12px); line-height: 16px; color: var(--secondary-text-color); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .chart .col.current .v, .chart .col.current .m { color: var(--primary-text-color); font-weight: var(--ha-font-weight-medium, 500); }
+  /* Rows like the entity rows of an entities card */
+  .usage-rows { display: flex; flex-direction: column; }
+  .usage-rows .row { min-height: 40px; }
+  .usage-rows .row-label { gap: 16px; font-size: var(--ha-font-size-m, 14px); }
+  .usage-rows .row-label ha-icon { color: var(--state-icon-color, #44739e); --mdc-icon-size: 24px; margin: 0 8px; }
+  .row-value { font-size: var(--ha-font-size-m, 14px); font-weight: var(--ha-font-weight-normal, 400); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
   @container (max-width: 300px) {
     .options { grid-template-columns: 1fr; }
     .stepper, .segmented { width: 140px; min-width: 140px; }
@@ -1598,9 +1672,10 @@ class HomeConnectCard extends HTMLElement {
     return `<div class="alert ${type}" role="status"><ha-icon icon="${icon}"></ha-icon><span>${esc(text)}</span></div>`;
   }
 
-  _badge(icon, text, { key, entity, color, label } = {}) {
+  _badge(icon, text, { key, entity, color, label, action: onTap } = {}) {
     const target = entity || (key ? this.eid(key) : undefined);
-    const action = target ? `data-action="more-info" data-entity="${target}" role="button" tabindex="0"` : "";
+    let action = target ? `data-action="more-info" data-entity="${target}" role="button" tabindex="0"` : "";
+    if (onTap) action = `data-action="${onTap}" role="button" tabindex="0"`;
     return `
       <div class="badge" ${action} style="${color ? `--badge-color:${color}` : ""}">
         <ha-icon icon="${icon}"></ha-icon>
@@ -1884,12 +1959,15 @@ class HomeConnectCard extends HTMLElement {
 
   _lastCycleBadges() {
     const badges = [];
+    // With the total consumption sensors they open the consumption sheet
+    const action = this._hasUsage() ? "open-usage" : undefined;
     if (this.ok("sensor_energy_consumed_last")) {
       badges.push(
         this._badge("mdi:lightning-bolt", this._fmtState(this.st("sensor_energy_consumed_last")), {
           key: "sensor_energy_consumed_last",
           label: this._t("last_cycle"),
-          color: "var(--amber-color, #ffc107)",
+          color: USAGE_METRICS.energy.color,
+          action,
         }),
       );
     }
@@ -1897,11 +1975,152 @@ class HomeConnectCard extends HTMLElement {
       badges.push(
         this._badge("mdi:water", this._fmtState(this.st("sensor_water_consumed_last")), {
           key: "sensor_water_consumed_last",
-          color: "var(--blue-color, #2196f3)",
+          color: USAGE_METRICS.water.color,
+          action,
         }),
       );
     }
+    if (!badges.length && action) badges.push(this._badge("mdi:chart-bar", this._t("usage"), { action }));
     return badges;
+  }
+
+  // --- Consumption -----------------------------------------------------------
+
+  _hasUsage() {
+    return Object.values(USAGE_METRICS).some((metric) => this._found[metric.total]);
+  }
+
+  // Every entity of a key, stale ones too: after a migration the old one keeps the history
+  _statisticIds(key) {
+    return (this._found[key] || []).map((c) => c.id);
+  }
+
+  async _loadUsage() {
+    const now = new Date(Date.now());
+    const months = Array.from({ length: 12 }, (_, i) => new Date(now.getFullYear(), now.getMonth() - 11 + i, 1));
+    const ids = {
+      energy: this._statisticIds(USAGE_METRICS.energy.total),
+      water: this._statisticIds(USAGE_METRICS.water.total),
+      cycles: this._statisticIds("sensor_count_completed"),
+    };
+    const usage = { months, series: {} };
+    try {
+      const result = await this._hass.callWS({
+        type: "recorder/statistics_during_period",
+        start_time: months[0].toISOString(),
+        statistic_ids: [...new Set(Object.values(ids).flat())],
+        period: "month",
+        types: ["change"],
+        units: { energy: "kWh", volume: "L" },
+      });
+      for (const [name, list] of Object.entries(ids)) {
+        const series = months.map(() => null);
+        for (const id of list) {
+          for (const row of result?.[id] || []) {
+            const start = new Date(row.start);
+            const index = months.findIndex((m) => m.getFullYear() === start.getFullYear() && m.getMonth() === start.getMonth());
+            if (index >= 0 && Number.isFinite(row.change)) series[index] = (series[index] ?? 0) + row.change;
+          }
+        }
+        usage.series[name] = series;
+      }
+    } catch (err) {
+      usage.error = true;
+    }
+    this._usage = usage;
+    if (this._sheet?.type === "usage") this._renderSheet();
+  }
+
+  _usageBody() {
+    const usage = this._usage;
+    const metric = this._sheet.metric || "energy";
+    if (!USAGE_METRICS[metric]) return "";
+    const lang = this._hass?.locale?.language || this._lang;
+    const month = (date, style) => new Intl.DateTimeFormat(lang, { month: style }).format(date);
+    const metrics = Object.entries(USAGE_METRICS).filter(([, m]) => this._found[m.total]);
+    const loaded = usage && !usage.error;
+    const sum = (values) => {
+      const known = values.filter((v) => v != null);
+      return known.length ? known.reduce((a, b) => a + b, 0) : null;
+    };
+
+    const tiles = metrics
+      .map(([name, m]) => {
+        const value = loaded ? usage.series[name]?.at(-1) : null;
+        return `
+          <button class="usage-tile ${name === metric ? "sel" : ""}" data-action="usage-metric" data-metric="${name}"
+            style="--metric:${m.color}" aria-pressed="${name === metric}">
+            <span class="ut-head"><ha-icon icon="${m.icon}"></ha-icon>${esc(this._t(name))}</span>
+            <span class="ut-value">${value != null ? `${esc(this._num(value, m.digits))}<span class="unit">${m.unit}</span>` : "-"}</span>
+            <span class="ut-sub">${esc(this._t("this_month"))}</span>
+          </button>`;
+      })
+      .join("");
+
+    const series = loaded ? usage.series[metric]?.slice(-6) || [] : Array(6).fill(null);
+    const months = (usage?.months || []).slice(-6);
+    const max = Math.max(...series.filter((v) => v != null), 0);
+    const columns = series
+      .map((value, i) => {
+        const pct = max > 0 && value != null ? Math.max(4, (value / max) * 100) : 0;
+        const label = months[i] ? month(months[i], "short").replace(".", "") : "";
+        return `
+          <div class="col ${i === series.length - 1 ? "current" : ""}">
+            <div class="bar-area">
+              <span class="v">${value != null ? esc(this._num(value, USAGE_METRICS[metric].digits)) : ""}</span>
+              <div class="bar ${value == null ? "empty" : ""}" style="height:${pct * 0.82}%"></div>
+            </div>
+            <span class="m">${esc(label)}</span>
+          </div>`;
+      })
+      .join("");
+
+    // Rows with both metrics side by side
+    const pair = (energy, water) => [energy, water].filter(Boolean).join(" · ");
+    const fmt = (name, value, digits = USAGE_METRICS[name].digits) =>
+      value != null && this._found[USAGE_METRICS[name].total] ? `${this._num(value, digits)} ${USAGE_METRICS[name].unit}` : "";
+    const rows = [];
+    const last = pair(
+      this.ok("sensor_energy_consumed_last") ? this._fmtState(this.st("sensor_energy_consumed_last")) : "",
+      this.ok("sensor_water_consumed_last") ? this._fmtState(this.st("sensor_water_consumed_last")) : "",
+    );
+    if (last) rows.push(["mdi:history", this._t("last_cycle"), last]);
+    if (loaded) {
+      // Only the months with both the consumption and the number of cycles
+      const perCycle = (name) => {
+        const months = usage.series[name].map((value, i) => [value, usage.series.cycles?.[i]]).filter(([v, c]) => v != null && c > 0);
+        const cycles = sum(months.map(([, c]) => c));
+        return cycles > 0 ? sum(months.map(([v]) => v)) / cycles : null;
+      };
+      const average = pair(fmt("energy", perCycle("energy"), 2), fmt("water", perCycle("water"), 0));
+      if (average) rows.push(["mdi:approximately-equal", this._t("per_cycle"), average]);
+      const year = new Date(Date.now()).getFullYear();
+      const thisYear = (name) => sum((usage.series[name] || []).filter((_, i) => usage.months[i].getFullYear() === year));
+      const yearText = pair(fmt("energy", thisYear("energy")), fmt("water", thisYear("water")));
+      if (yearText) rows.push(["mdi:calendar-blank-outline", this._t("this_year"), yearText]);
+    }
+    const total = pair(
+      this.ok(USAGE_METRICS.energy.total) ? this._fmtState(this.st(USAGE_METRICS.energy.total)) : "",
+      this.ok(USAGE_METRICS.water.total) ? this._fmtState(this.st(USAGE_METRICS.water.total)) : "",
+    );
+    if (total) rows.push(["mdi:sigma", this._t("total"), total]);
+
+    const empty = loaded && !series.some((v) => v != null);
+    const message = usage?.error ? "usage_error" : empty ? "usage_none" : null;
+    return `
+      <div class="sheet-body usage">
+        <div class="usage-tiles">${tiles}</div>
+        <div class="section-label">${esc(this._t("last_months"))} · ${USAGE_METRICS[metric].unit}</div>
+        ${usage?.error ? "" : `<div class="chart ${loaded ? "" : "loading"}" style="--metric:${USAGE_METRICS[metric].color}">${columns}</div>`}
+        ${message ? `<div class="note">${esc(this._t(message))}</div>` : ""}
+        <div class="usage-rows">${rows
+          .map(
+            ([icon, label, value]) => `
+          <div class="row"><div class="row-label"><ha-icon icon="${icon}"></ha-icon><span>${esc(label)}</span></div>
+            <span class="row-value">${esc(value)}</span></div>`,
+          )
+          .join("")}</div>
+      </div>`;
   }
 
   // --- Actions ---------------------------------------------------------------
@@ -1968,6 +2187,17 @@ class HomeConnectCard extends HTMLElement {
       }
       case "open-programs":
         this._openSheet({ type: "programs" });
+        break;
+      case "open-usage": {
+        this._usage = null;
+        const [metric] = Object.keys(USAGE_METRICS).filter((name) => this._found[USAGE_METRICS[name].total]);
+        this._openSheet({ type: "usage", metric });
+        this._loadUsage();
+        break;
+      }
+      case "usage-metric":
+        this._sheet.metric = el.dataset.metric;
+        this._renderSheet();
         break;
       case "pick-program":
         this._select("select_program", el.dataset.option);
@@ -2051,10 +2281,11 @@ class HomeConnectCard extends HTMLElement {
   }
 
   _sheetHead() {
-    if (this._sheet.type === "select") {
+    if (this._sheet.type === "select" || this._sheet.type === "usage") {
+      const title = this._sheet.type === "usage" ? this._t("usage") : this._sheet.title;
       return `
         <div class="sheet-head">
-          <div class="sheet-title">${esc(this._sheet.title || "")}</div>
+          <div class="sheet-title">${esc(title || "")}</div>
           <button class="icon-btn" data-action="close" aria-label="Close"><ha-icon icon="mdi:close"></ha-icon></button>
         </div>`;
     }
@@ -2078,6 +2309,7 @@ class HomeConnectCard extends HTMLElement {
   }
 
   _sheetBody() {
+    if (this._sheet.type === "usage") return this._usageBody();
     if (this._sheet.type === "select") {
       const stateObj = this.st(this._sheet.key);
       if (!stateObj) return "";

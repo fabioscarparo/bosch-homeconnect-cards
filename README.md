@@ -22,7 +22,7 @@ the integration that talks to the appliances directly on your network.
 There is one card for each type of appliance:
 
 - **Washer** - program, temperature, spin speed and options, remaining
-  time and the energy and water of the last cycle
+  time, and the energy and water of the last cycle and month by month
 - **Dishwasher** - program and options, delayed start, salt and rinse aid
 - **Oven** - heating mode, temperature, duration, automatic recipes and
   cooking hints such as "time to turn the food"
@@ -157,9 +157,14 @@ also shows the recommended load. While the program runs you can pause it,
 resume it or stop it, and the card tells you when laundry can still be
 added.
 
+Tap the **Last cycle** badges, or the **Consumption** badge when there's no
+last cycle, to see the energy and water of this month, a chart of the last
+six months, the average per cycle, this year and the total, from the Home
+Assistant statistics.
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="images/washer-dark.svg">
-  <img alt="Washer card: off, disconnected, ready, options, stain picker, remote start off, running, paused, foam alert, finished and compact view" src="images/washer-light.svg">
+  <img alt="Washer card: off, disconnected, ready, options, stain picker, remote start off, running, paused, foam alert, finished, consumption and compact view" src="images/washer-light.svg">
 </picture>
 
 ### Dishwasher
@@ -215,6 +220,7 @@ care of all of it, also after migrating from one to the other.
 | Washer temperature, spin speed, extra rinse, stains, recommended load | Yes | Yes |
 | Washer Mini, pre-treatment and soak | No | With [#179](https://github.com/vemboy200/homeconnect_local_hass/pull/179) |
 | Energy and water of the last cycle | No | With [#179](https://github.com/vemboy200/homeconnect_local_hass/pull/179) |
+| Consumption by month | No | In the next release, already on `dev` |
 | Oven light | No | Yes |
 | Oven hints and weight | No | With [#179](https://github.com/vemboy200/homeconnect_local_hass/pull/179) |
 | Hob zone control | No | No |
@@ -230,6 +236,8 @@ Some parts appear only when the integration provides what they need:
 | Feature | Needs |
 |---|---|
 | Energy and water of the last cycle | The "last program" consumption sensors |
+| Consumption by month | The total energy and water sensors, recorded in the Home Assistant statistics |
+| Average per cycle | The "completed programs" counter as well, which is disabled by default |
 | Oven hints such as "time to turn the food" | The oven event sensors |
 | Hints when remote control or remote start is off | The "Remote control active" and "Remote start allowed" entities |
 

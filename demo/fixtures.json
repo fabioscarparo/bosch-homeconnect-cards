@@ -1538,7 +1538,7 @@
    "device_id": "washer",
    "key": "sensor_water_consumed_total",
    "category": null,
-   "state": "572.0",
+   "state": "16380.0",
    "attributes": {
     "state_class": "total_increasing",
     "unit_of_measurement": "L",
@@ -1563,7 +1563,7 @@
    "device_id": "washer",
    "key": "sensor_energy_consumed_total",
    "category": null,
-   "state": "9.146",
+   "state": "212.4",
    "attributes": {
     "state_class": "total_increasing",
     "unit_of_measurement": "kWh",
