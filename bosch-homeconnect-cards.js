@@ -10,7 +10,7 @@
  * MIT License - Copyright (c) 2026 Fabio Scarparo
  */
 
-const VERSION = "0.4.1";
+const VERSION = "0.4.2";
 const DOMAIN = "homeconnect_ws";
 const UNAVAILABLE = new Set(["unavailable", "unknown"]);
 
@@ -2532,6 +2532,8 @@ class WasherCard extends CycleCard {
             icon: "mdi:timer-outline",
             step: 600,
             format: (v) => durationText(v),
+            // The duration belongs to the program: the appliance takes it only once one is selected
+            disabled: !d.program,
           }),
       d.running ? "" : this._delayControl(1800),
       this._hints(d),
@@ -2784,6 +2786,8 @@ class OvenCard extends HomeConnectCard {
             step: 300,
             min: 0,
             format: (v) => (v > 60 ? durationText(v) : this._t("none")),
+            // The duration belongs to the program: the appliance takes it only once one is selected
+            disabled: !d.program,
           }),
         );
       }
