@@ -159,8 +159,9 @@ added.
 
 The **Last cycle** badge shows the energy and water of the last program.
 Tap it, or the **Consumption** badge when there's no last cycle, to see the
-energy and water of this month, a chart of the last six months, the average
-per cycle, this year and the total, from the Home Assistant statistics.
+energy and water of this month, a chart of the last six months, the date
+of the last cycle, the average per cycle, this year and the total, from the
+Home Assistant statistics.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="images/washer-dark.svg">
@@ -231,24 +232,42 @@ of the cards don't appear.
 
 ## Optional features
 
-Some parts appear only when the integration provides what they need:
+Some parts of the cards appear only when the integration provides the
+entities they need. A few of those entities start disabled: Home Assistant
+asks integrations to disable by default what few people need, to keep the
+device pages tidy and the database small.
 
-| Feature | Needs |
-|---|---|
-| Energy and water of the last cycle | The "last program" consumption sensors |
-| Consumption by month | The total energy and water sensors, recorded in the Home Assistant statistics |
-| Date of the last cycle | The "Start count" sensor of the vemboy200 fork, which is disabled by default |
-| Average per cycle | The "Completed count" sensor as well, also disabled by default |
-| Oven hints such as "time to turn the food" | The oven event sensors |
-| Hints when remote control or remote start is off | The "Remote control active" and "Remote start allowed" entities |
+| Feature | Entities | Disabled by default |
+|---|---|---|
+| Energy and water of the last cycle | Last program energy and water consumption | No |
+| Consumption by month | Total energy and water consumption, recorded in the Home Assistant statistics | No |
+| Date of the last cycle | Start count, on the vemboy200 fork | Yes |
+| Average per cycle | Completed count | Yes |
+| Oven hints such as "time to turn the food" | The oven event sensors | No |
+| Hint when remote control is off | Remote control active, on the vemboy200 fork | Yes |
+| Hint when the appliance is in use from its own controls | Local control active, on the vemboy200 fork | Yes |
+| Hint when remote start is off | Remote start allowed | With chris-mc1 |
+
+### Enabling a disabled entity
+
+1. Go to **Settings → Devices & services → Home Connect Local** and open
+   the appliance.
+2. In the **Diagnostic** section, show the entities that are hidden.
+3. Select the entity, open its settings with the gear icon, turn on
+   **Enabled** and select **Update**.
+4. Wait about 30 seconds: Home Assistant reloads the integration, and the
+   entity shows as unavailable until then.
+
+Statistics only start when the entity is enabled: the average per cycle,
+for example, counts the cycles from then on.
 
 > [!TIP]
 > Bosch and Siemens appliances accept a remote start only after you turn on
 > **Remote Start** at the appliance itself. The card can tell you so only
 > through the **Remote start allowed** entity, which Home Connect Local by
-> chris-mc1 disables by default: enable it on the appliance's device page.
-> Without it, when the appliance doesn't accept a start the card disables
-> **Start** and suggests what to check.
+> chris-mc1 disables by default: enable it as described above. Without it,
+> when the appliance doesn't accept a start the card disables **Start** and
+> suggests what to check.
 
 ## Languages
 
