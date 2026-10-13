@@ -5,13 +5,58 @@ const now = () => new Date(Date.now()).toISOString();
 
 const HOB_ZONE_IDS = { FrontLeft: "100", Left: "120", RearLeft: "200", RearRight: "300", Right: "340", FrontRight: "400" };
 
+// The "fork" variant reshapes the fixtures the way the vemboy200 fork of Home Connect
+// Local exposes them: renamed keys, lower-case states, hob zones sharing one key with
+// the zone in the name, a "Delay start" select and no consumption sensors.
+const FORK_RENAMES = {
+  button_oven_pause: "button_pause_program",
+  button_oven_resume: "button_resume_program",
+  switch_oven_cavity_light: "light_oven_cavity",
+};
+const FORK_DROPPED =
+  /^(sensor_energy_consumed_|sensor_water_consumed_|binary_sensor_oven_|binary_sensor_hob_zone_|sensor_confirm_action_at_appliance|number_oven_weight|number_oven_start_in_relative|sensor_hob_zone_\d+_operation_state)/;
+const FORK_LOWER = /^(sensor_operation_state|sensor_program_phase|sensor_hob_zone_\d+_power_level)$/;
+const FORK_DELAY_OPTIONS = ["no_delay", ...Array.from({ length: 24 }, (_, i) => `${i + 1}h`)];
+
+function forkEntities(data) {
+  const out = [];
+  for (const e of data.entities) {
+    if (FORK_DROPPED.test(e.key)) continue;
+    const entity = { ...e, canonical: e.key, attributes: { ...e.attributes } };
+    const zone = e.key.match(/^sensor_hob_zone_(\d+)_(state|power_level|remaining_time)$/);
+    if (zone) {
+      const part = zone[2] === "remaining_time" ? "remaining_program_time" : zone[2];
+      entity.key = `sensor_hob_zone_${part}`;
+      entity.entity_id = `sensor.hob_zone_${zone[1]}_${part}`;
+      entity.attributes.friendly_name = `Induction Hob Zone ${zone[1]} ${part.replace(/_/g, " ")}`;
+    } else if (FORK_RENAMES[e.key]) {
+      entity.key = FORK_RENAMES[e.key];
+      if (entity.key.startsWith("light_")) entity.entity_id = entity.entity_id.replace(/^switch\./, "light.");
+    }
+    if (FORK_LOWER.test(e.key)) entity.state = String(entity.state).toLowerCase();
+    out.push(entity);
+  }
+  for (const device of data.devices) {
+    if (device.model === "Hob") continue;
+    const add = (key, domain, state, attributes = {}) =>
+      out.push({ entity_id: `${domain}.${device.id}_${key}`, device_id: device.id, key, canonical: key, category: null, state, attributes });
+    add("select_delay_start", "select", "no_delay", { options: FORK_DELAY_OPTIONS, friendly_name: `${device.name} Delay start` });
+    add("binary_remote_start_allowed", "binary_sensor", "on", { friendly_name: `${device.name} Remote start allowed` });
+    if (device.model === "Oven") add("binary_sensor_program_finished", "binary_sensor", "off");
+  }
+  return out;
+}
+
 export class MockStore {
-  static async load() {
+  static async load({ variant = "original" } = {}) {
     const data = await fetch(new URL("./fixtures.json", import.meta.url)).then((r) => r.json());
-    return new MockStore(data);
+    if (variant === "fork") data.entities = forkEntities(data);
+    return new MockStore(data, variant);
   }
 
-  constructor(data) {
+  constructor(data, variant = "original") {
+    this.variant = variant;
+    this.canonical = {};
     this.translations = data.translations;
     this.base = {};
     this.entities = {};
@@ -38,7 +83,9 @@ export class MockStore {
         translation_key: e.key,
         entity_category: e.category ?? null,
       };
-      (this.keys[e.device_id] ??= {})[e.key] = e.entity_id;
+      const canonical = e.canonical ?? e.key;
+      (this.keys[e.device_id] ??= {})[canonical] = e.entity_id;
+      this.canonical[e.entity_id] = canonical;
     }
     this.states = structuredClone(this.base);
     this.build();
@@ -67,7 +114,9 @@ export class MockStore {
 
   set(deviceId, key, state, attributes) {
     const entityId = this.eid(deviceId, key);
-    if (entityId) this.setId(entityId, state, attributes);
+    if (!entityId) return;
+    const value = this.variant === "fork" && FORK_LOWER.test(key) ? String(state).toLowerCase() : state;
+    this.setId(entityId, value, attributes);
   }
 
   reset(deviceId) {
@@ -137,18 +186,18 @@ export class MockStore {
     await sleep(350);
     const entityId = data.entity_id;
     const entry = this.entities[entityId];
-    if (domain === "switch") {
+    if (domain === "switch" || domain === "light") {
       const current = this.states[entityId].state;
       const next = service === "toggle" ? (current === "on" ? "off" : "on") : service === "turn_on" ? "on" : "off";
       this.setId(entityId, next);
-      if (entry.translation_key === "switch_power_state") this.power(entry.device_id, next === "on");
+      if (this.canonical[entityId] === "switch_power_state") this.power(entry.device_id, next === "on");
     } else if (domain === "select") {
       this.setId(entityId, data.option);
     } else if (domain === "number") {
       this.setId(entityId, data.value);
     } else if (domain === "button") {
       this.setId(entityId, now());
-      this.button(entry.device_id, entry.translation_key);
+      this.button(entry.device_id, this.canonical[entityId]);
     } else if (domain === "homeconnect_ws" && service === "start_program") {
       const d = data.device_id;
       const hours = (data.start_in?.hours ?? 0) + (data.start_in?.minutes ?? 0) / 60;
@@ -176,7 +225,13 @@ export class MockStore {
 
   button(d, key) {
     const selected = this.states[this.eid(d, "select_program")]?.state;
-    if (key === "button_start_program") {
+    // The fork applies its "Delay start" select itself when Start is pressed
+    const delay = this.states[this.eid(d, "select_delay_start")]?.state;
+    if (key === "button_start_program" && delay && delay !== "no_delay") {
+      this.set(d, "sensor_operation_state", "DelayedStart");
+      this.set(d, "sensor_start_in", parseInt(delay, 10));
+      this.set(d, "select_delay_start", "no_delay");
+    } else if (key === "button_start_program") {
       this.set(d, "sensor_operation_state", "Run");
       this.set(d, "sensor_active_program", selected);
       this.set(d, "sensor_program_progress", 2);

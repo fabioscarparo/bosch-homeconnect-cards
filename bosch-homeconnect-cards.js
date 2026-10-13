@@ -10,7 +10,7 @@
  * MIT License - Copyright (c) 2026 Fabio Scarparo
  */
 
-const VERSION = "0.1.1";
+const VERSION = "0.2.0";
 const DOMAIN = "homeconnect_ws";
 const UNAVAILABLE = new Set(["unavailable", "unknown"]);
 
@@ -563,6 +563,59 @@ const HOB_LEVELS = [
 ];
 
 const RUNNING = new Set(["Run", "Pause", "DelayedStart", "ActionRequired", "Aborting"]);
+
+// Versions of the integration differ: Home Connect Local by chris-mc1 and the fork by
+// vemboy200 name some entities differently. The cards use the first key and fall back
+// to the others when it's missing.
+const KEY_ALIASES = {
+  button_oven_pause: ["button_pause_program"],
+  button_oven_resume: ["button_resume_program"],
+  sensor_oven_current_temperature: ["sensor_oven_current_temperature_group"],
+  switch_oven_cavity_light: ["light_oven_cavity"],
+  binary_sensor_oven_program_finished: ["binary_sensor_program_finished"],
+  number_oven_start_in_relative: ["number_start_in"],
+};
+
+// Some versions report states in lower case (run, mainwash, keepwarm)
+const OP_STATES = ["Inactive", "Ready", "DelayedStart", "Run", "Pause", "ActionRequired", "Finished", "Error", "Aborting"];
+const OP_BY_LOWER = Object.fromEntries(OP_STATES.map((state) => [state.toLowerCase(), state]));
+const HOB_LEVEL_BY_LOWER = { off: "Off", keepwarm: "KeepWarm", boost1: "Boost1", boost2: "Boost2" };
+const normalizeLevel = (level) => (level == null ? level : (HOB_LEVEL_BY_LOWER[String(level).toLowerCase()] ?? String(level)));
+
+// Hob zones come either with one translation key per zone (sensor_hob_zone_100_state)
+// or with a key shared by all zones and the zone number in the entity name
+const ZONE_PARTS = {
+  state: "state",
+  power_level: "level",
+  remaining_time: "remaining",
+  remaining_program_time: "remaining",
+  residual_heat: "residual",
+};
+
+function zoneNumber(text) {
+  const value = String(text ?? "");
+  const named = value.match(/zon[a-z]*[_\s]*(\d{3})(?!\d)/i);
+  if (named) return named[1];
+  const numbers = [...value.matchAll(/(?:^|\D)(\d{3})(?=\D|$)/g)];
+  return numbers.length ? numbers.at(-1)[1] : undefined;
+}
+
+function hobZonePart(entry, stateObj) {
+  const key = entry.translation_key;
+  let m = key.match(/^(?:binary_)?sensor_hob_zone_(\d+)_(state|power_level|remaining_time|remaining_program_time|residual_heat)$/);
+  if (m) return { zone: m[1], part: ZONE_PARTS[m[2]] };
+  m = key.match(/^sensor_hob_zone_(state|power_level|remaining_program_time)$/);
+  if (!m) return null;
+  const zone = zoneNumber(entry.entity_id) ?? zoneNumber(stateObj?.attributes.friendly_name);
+  return zone ? { zone, part: ZONE_PARTS[m[1]] } : null;
+}
+
+// "2h" or "90min", as used by the fork's "Delay start" select
+function delayOptionSeconds(option) {
+  const m = String(option ?? "").match(/^\+?(\d+)\s*(h|min)$/i);
+  if (!m) return 0;
+  return Number(m[1]) * (m[2].toLowerCase() === "h" ? 3600 : 60);
+}
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -1246,7 +1299,13 @@ class HomeConnectCard extends HTMLElement {
     const info = programInfo(key);
     if (info.group === "favorite") return this._t("favorite", { n: info.n });
     const labels = PROGRAM_LABELS[this._lang];
-    return labels[`${info.group}:${info.id}`] || labels[info.id] || PROGRAM_LABELS.en[info.id] || humanize(info.id);
+    const own = labels[`${info.group}:${info.id}`] || labels[info.id];
+    if (own) return own;
+    // Newer versions of the integration translate many more programs
+    const stateObj = this.st("select_program") || this.st("sensor_active_program");
+    const translated = stateObj ? this._fmtState(stateObj, key) : key;
+    if (translated && translated !== key) return translated;
+    return PROGRAM_LABELS.en[info.id] || humanize(info.id);
   }
 
   _entityName(stateObj) {
@@ -1267,6 +1326,7 @@ class HomeConnectCard extends HTMLElement {
     const id = this._config.device_id;
     if (this._entityCache?.registry === hass.entities && this._entityCache.id === id) return this._entityCache;
     const found = {};
+    const zones = {};
     for (const entry of Object.values(hass.entities || {})) {
       if (entry.device_id !== id || entry.platform !== DOMAIN || !entry.translation_key) continue;
       const stateObj = hass.states[entry.entity_id];
@@ -1276,8 +1336,18 @@ class HomeConnectCard extends HTMLElement {
       if (!previous || (previous.stale && !stale)) {
         found[entry.translation_key] = { id: entry.entity_id, stale, category: entry.entity_category ?? null };
       }
+      const zonePart = hobZonePart(entry, stateObj);
+      if (zonePart) {
+        const zone = (zones[zonePart.zone] ||= {});
+        const before = zone[zonePart.part];
+        if (!before || (before.stale && !stale)) zone[zonePart.part] = { id: entry.entity_id, stale };
+      }
     }
-    this._entityCache = { registry: hass.entities, id, found };
+    for (const [key, aliases] of Object.entries(KEY_ALIASES)) {
+      const alias = found[key] ? undefined : aliases.find((name) => found[name]);
+      if (alias) found[key] = found[alias];
+    }
+    this._entityCache = { registry: hass.entities, id, found, zones };
     return this._entityCache;
   }
 
@@ -1325,7 +1395,8 @@ class HomeConnectCard extends HTMLElement {
 
   _derive() {
     const offline = this.val("connection") === "off";
-    const op = this.ok("sensor_operation_state") ? this.val("sensor_operation_state") : null;
+    const rawOp = this.ok("sensor_operation_state") ? this.val("sensor_operation_state") : null;
+    const op = rawOp ? (OP_BY_LOWER[rawOp.toLowerCase()] ?? rawOp) : null;
     const running = RUNNING.has(op);
     let off = offline;
     if (!off && !running) {
@@ -1365,7 +1436,9 @@ class HomeConnectCard extends HTMLElement {
 
   _render() {
     if (!this._hass || !this._config) return;
-    this._found = this._entities().found;
+    const entities = this._entities();
+    this._found = entities.found;
+    this._zoneEntities = entities.zones;
     const html = this._template();
     if (html !== this._lastHtml) {
       morph(this._cardEl, html);
@@ -1469,8 +1542,9 @@ class HomeConnectCard extends HTMLElement {
     return `<div class="alert ${type}" role="status"><ha-icon icon="${icon}"></ha-icon><span>${esc(text)}</span></div>`;
   }
 
-  _badge(icon, text, { key, color, label } = {}) {
-    const action = key && this.eid(key) ? `data-action="more-info" data-key="${key}" role="button" tabindex="0"` : "";
+  _badge(icon, text, { key, entity, color, label } = {}) {
+    const target = entity || (key ? this.eid(key) : undefined);
+    const action = target ? `data-action="more-info" data-entity="${target}" role="button" tabindex="0"` : "";
     return `
       <div class="badge" ${action} style="${color ? `--badge-color:${color}` : ""}">
         <ha-icon icon="${icon}"></ha-icon>
@@ -1527,14 +1601,28 @@ class HomeConnectCard extends HTMLElement {
     const lo = min ?? attrs.min ?? 0;
     const hi = max ?? attrs.max ?? 100;
     const off = disabled || this._d.remoteControlOff;
+    return this._stepperRow({
+      label,
+      icon: icon || attrs.icon || "mdi:numeric",
+      text: format(value),
+      pending: pending !== undefined,
+      action: "step",
+      key,
+      step,
+      minus: off || value <= lo,
+      plus: off || value >= hi,
+    });
+  }
+
+  _stepperRow({ label, icon, text, pending, action, key, step, minus, plus }) {
     return `
       <div class="row">
-        <div class="row-label"><ha-icon icon="${icon || attrs.icon || "mdi:numeric"}"></ha-icon><span>${esc(label)}</span></div>
-        <div class="stepper ${pending !== undefined ? "pending" : ""}">
-          <button data-action="step" data-key="${key}" data-delta="${-step}" ${off || value <= lo ? "disabled" : ""} aria-label="-">
+        <div class="row-label"><ha-icon icon="${icon}"></ha-icon><span>${esc(label)}</span></div>
+        <div class="stepper ${pending ? "pending" : ""}">
+          <button data-action="${action}" data-key="${key}" data-delta="${-step}" ${minus ? "disabled" : ""} aria-label="-">
             <ha-icon icon="mdi:minus"></ha-icon></button>
-          <span class="num">${esc(format(value))}</span>
-          <button data-action="step" data-key="${key}" data-delta="${step}" ${off || value >= hi ? "disabled" : ""} aria-label="+">
+          <span class="num">${esc(text)}</span>
+          <button data-action="${action}" data-key="${key}" data-delta="${step}" ${plus ? "disabled" : ""} aria-label="+">
             <ha-icon icon="mdi:plus"></ha-icon></button>
         </div>
       </div>`;
@@ -1563,10 +1651,61 @@ class HomeConnectCard extends HTMLElement {
       </div>`;
   }
 
+  // Delayed start comes in three shapes: the appliance's own "start in" number, or the
+  // fork's "Delay start" number (minutes) or select (+1 h ... +24 h). The fork applies its
+  // own delay when Start is pressed; the appliance's number needs the start_program action.
+  _delay() {
+    if (this.ok("number_delay_start")) {
+      const stateObj = this.st("number_delay_start");
+      const factor = UNIT_SECONDS[stateObj.attributes.unit_of_measurement] ?? 60;
+      const value = this._pendingVal(stateObj.entity_id) ?? Number(stateObj.state);
+      return { kind: "number", key: "number_delay_start", factor, seconds: value * factor, native: true };
+    }
+    if (this.ok("select_delay_start")) {
+      const stateObj = this.st("select_delay_start");
+      const option = this._pendingVal(stateObj.entity_id) ?? stateObj.state;
+      const options = stateObj.attributes.options || [];
+      return { kind: "select", key: "select_delay_start", option, options, seconds: delayOptionSeconds(option), native: true };
+    }
+    if (this.ok("number_oven_start_in_relative")) {
+      const stateObj = this.st("number_oven_start_in_relative");
+      const value = this._pendingVal(stateObj.entity_id) ?? Number(stateObj.state);
+      return { kind: "number", key: "number_oven_start_in_relative", factor: 1, seconds: value, native: false };
+    }
+    return null;
+  }
+
   _delayValue() {
-    const id = this.eid("number_oven_start_in_relative");
-    if (!id || !this.ok("number_oven_start_in_relative")) return 0;
-    return this._pendingVal(id) ?? Number(this.val("number_oven_start_in_relative"));
+    return this._delay()?.seconds ?? 0;
+  }
+
+  _delayControl(step) {
+    const delay = this._delay();
+    if (!delay) return "";
+    const format = (seconds) => (seconds > 0 ? durationText(seconds) : this._t("none"));
+    const label = this._t("delay");
+    const icon = "mdi:timer-plus-outline";
+    if (delay.kind === "select") {
+      const index = delay.options.indexOf(delay.option);
+      const off = this._d.remoteControlOff;
+      return this._stepperRow({
+        label,
+        icon,
+        text: format(delay.seconds),
+        pending: this._pending[this.eid(delay.key)] !== undefined,
+        action: "delay-option",
+        key: delay.key,
+        step: 1,
+        minus: off || index <= 0,
+        plus: off || index >= delay.options.length - 1,
+      });
+    }
+    return this._stepper(delay.key, {
+      label,
+      icon,
+      step: Math.max(1, step / delay.factor),
+      format: (value) => format(value * delay.factor),
+    });
   }
 
   _actions(d) {
@@ -1668,7 +1807,7 @@ class HomeConnectCard extends HTMLElement {
     if (!el || el.disabled) return;
     const action = el.dataset.action;
     const key = el.dataset.key;
-    const entityId = key ? this.eid(key) : undefined;
+    const entityId = key ? this.eid(key) : el.dataset.entity;
 
     switch (action) {
       case "more-info":
@@ -1700,6 +1839,13 @@ class HomeConnectCard extends HTMLElement {
       case "select":
         this._select(key, el.dataset.option);
         break;
+      case "delay-option": {
+        const delay = this._delay();
+        if (delay?.kind !== "select") break;
+        const index = clamp(delay.options.indexOf(delay.option) + Number(el.dataset.delta), 0, delay.options.length - 1);
+        this._select(delay.key, delay.options[index]);
+        break;
+      }
       case "open-programs":
         this._openSheet({ type: "programs" });
         break;
@@ -1752,11 +1898,15 @@ class HomeConnectCard extends HTMLElement {
   }
 
   _start() {
-    const delay = this._delayValue();
-    if (delay > 0) {
+    const delay = this._delay();
+    if (delay && !delay.native && delay.seconds > 0) {
       this._call(DOMAIN, "start_program", {
         device_id: this._config.device_id,
-        start_in: { hours: Math.floor(delay / 3600), minutes: Math.floor((delay % 3600) / 60), seconds: 0 },
+        start_in: {
+          hours: Math.floor(delay.seconds / 3600),
+          minutes: Math.floor((delay.seconds % 3600) / 60),
+          seconds: 0,
+        },
       });
     } else {
       this._call("button", "press", { entity_id: this.eid("button_start_program") });
@@ -1845,9 +1995,10 @@ class CycleCard extends HomeConnectCard {
   _phase() {
     for (const key of ["sensor_laundry_process_phase", "sensor_program_phase"]) {
       if (!this.ok(key)) continue;
-      const value = this.val(key);
-      const own = this._t(`phase.${value}`);
-      if (own !== `phase.${value}`) return own;
+      const value = String(this.val(key)).toLowerCase();
+      const phases = STRINGS[this._lang].phase;
+      const own = Object.keys(phases).find((phase) => phase.toLowerCase() === value);
+      if (own !== undefined) return phases[own];
       return this._fmtState(this.st(key));
     }
     return "";
@@ -1931,6 +2082,7 @@ class WasherCard extends CycleCard {
             step: 600,
             format: (v) => durationText(v),
           }),
+      d.running ? "" : this._delayControl(1800),
       this._hints(d),
       this._actions(d),
     ].join("");
@@ -1971,14 +2123,7 @@ class DishwasherCard extends CycleCard {
     return [
       this._programSelect(d),
       d.running ? "" : this._options(d),
-      d.running
-        ? ""
-        : this._stepper("number_oven_start_in_relative", {
-            label: this._t("delay"),
-            icon: "mdi:timer-plus-outline",
-            step: 1800,
-            format: (v) => (v > 0 ? durationText(v) : this._t("none")),
-          }),
+      d.running ? "" : this._delayControl(1800),
       this._hints(d),
       this._actions(d),
     ].join("");
@@ -2173,14 +2318,7 @@ class OvenCard extends HomeConnectCard {
           }),
         );
       }
-      parts.push(
-        this._stepper("number_oven_start_in_relative", {
-          label: this._t("delay"),
-          icon: "mdi:timer-plus-outline",
-          step: 900,
-          format: (v) => (v > 0 ? durationText(v) : this._t("none")),
-        }),
-      );
+      parts.push(this._delayControl(900));
     }
     parts.push(this._options(d), this._hints(d), this._actions(d));
     return parts.join("");
@@ -2236,22 +2374,27 @@ class HobCard extends HomeConnectCard {
   }
 
   _zone(id) {
-    const state = this.val(`sensor_hob_zone_${id}_state`);
-    const level = this.ok(`sensor_hob_zone_${id}_power_level`) ? this.val(`sensor_hob_zone_${id}_power_level`) : null;
-    const remaining = toSeconds(this.st(`sensor_hob_zone_${id}_remaining_time`));
-    const residual = this.on(`binary_sensor_hob_zone_${id}_residual_heat`) || state === "residuelheat";
+    const entities = this._zoneEntities[id] || {};
+    const stateOf = (part) => (entities[part] ? this._hass.states[entities[part].id] : undefined);
+    const known = (stateObj) => stateObj && !UNAVAILABLE.has(stateObj.state);
+    const stateObj = stateOf("state");
+    const state = known(stateObj) ? stateObj.state.toLowerCase() : undefined;
+    const levelObj = stateOf("level");
+    const level = known(levelObj) ? normalizeLevel(levelObj.state) : null;
+    const remaining = toSeconds(stateOf("remaining"));
+    const residual = stateOf("residual")?.state === "on" || state === "residuelheat";
     const active = state === "active" || (level && level !== "Off");
     let mode = "off";
     if (active) mode = "active";
     else if (residual) mode = "residual";
     else if (state === "notselectable") mode = "unselectable";
     const zone = HOB_ZONES.find((z) => z.id === id);
-    return { id, name: zone.name, mode, level, remaining };
+    return { id, name: zone.name, mode, level, remaining, entities };
   }
 
   _zones() {
-    return HOB_ZONES.filter((z) => this.eid(`sensor_hob_zone_${z.id}_state`) || this.eid(`sensor_hob_zone_${z.id}_power_level`)).map(
-      (z) => this._zone(z.id),
+    return HOB_ZONES.filter((z) => this._zoneEntities[z.id]?.state || this._zoneEntities[z.id]?.level).map((z) =>
+      this._zone(z.id),
     );
   }
 
@@ -2363,14 +2506,14 @@ class HobCard extends HomeConnectCard {
         const name = this._t(`zones.${z.name}`);
         if (z.mode === "residual") {
           return this._badge("mdi:heat-wave", this._t("zone_mode.residual"), {
-            key: `binary_sensor_hob_zone_${z.id}_residual_heat`,
+            entity: (z.entities.residual || z.entities.state)?.id,
             label: name,
             color: "var(--amber-color, #ffc107)",
           });
         }
         const timer = z.remaining > 0 ? ` · ${durationText(z.remaining)}` : "";
         return this._badge("mdi:fire", `${this._levelText(z.level)}${timer}`, {
-          key: `sensor_hob_zone_${z.id}_power_level`,
+          entity: (z.entities.level || z.entities.state)?.id,
           label: name,
           color: "var(--accent)",
         });

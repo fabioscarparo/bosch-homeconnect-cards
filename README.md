@@ -46,7 +46,10 @@ and renamed entities keep working.
 - **Home Assistant 2024.8** or later, with [HACS](https://hacs.xyz)
   installed
 - The **Home Connect Local** integration (`homeconnect_ws`), with your
-  appliances already set up
+  appliances already set up: either the original by
+  [chris-mc1](https://github.com/chris-mc1/homeconnect_local_hass) or the
+  fork by [vemboy200](https://github.com/vemboy200/homeconnect_local_hass),
+  see [Compatibility](#compatibility)
 
 > [!IMPORTANT]
 > The cards work with Home Connect Local only. The official Home Connect
@@ -193,6 +196,20 @@ it, to switch it on with a power level and a timer.
   <img alt="Induction hob card: off, residual heat, cooking, confirm on the hob, flex zone and zone control" src="images/hob-light.svg">
 </picture>
 
+## Compatibility
+
+The cards work with both versions of Home Connect Local, and adapt to what
+each one provides. The fork by vemboy200 renames some entities, reports
+states in lower case, shares one entity name across the hob zones and
+handles delayed start on its own: the cards take care of all of it.
+
+| | chris-mc1 | vemboy200 fork (1.9, 2.0 beta) |
+|---|---|---|
+| Washer, dishwasher, oven, hob status | Yes | Yes |
+| Programs, options, start, pause, stop | Yes | Yes |
+| Delayed start | "Start in" number, started through `homeconnect_ws.start_program` | "Delay start" select or number, applied by the Start button |
+| Oven light | Switch | Light |
+
 ## Optional features
 
 Some parts appear only when the integration provides what they need:
@@ -201,6 +218,7 @@ Some parts appear only when the integration provides what they need:
 |---|---|
 | Energy and water of the last cycle | The "last program" consumption sensors |
 | Hob zone control | The `homeconnect_ws.start_hob_program` action |
+| Oven hints such as "time to turn the food" | The oven event sensors |
 
 > [!TIP]
 > Bosch and Siemens appliances accept a remote start only after you turn on
@@ -247,7 +265,8 @@ python3 tools/serve.py
 ```
 
 - `http://localhost:8765/demo/` shows the cards with demo data: every
-  scenario, light and dark, English and Italian.
+  scenario, light and dark, English and Italian. Add `?variant=fork` to see
+  them on the entities of the vemboy200 fork.
 - `http://localhost:8765/tools/render.html` renders the images in
   `images/` from the real cards, as plain vector SVG with an embedded
   Roboto subset. It also checks that the columns of the wall stay aligned.

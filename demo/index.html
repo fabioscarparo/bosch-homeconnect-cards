@@ -77,6 +77,7 @@
       <div class="toggle" id="lang"><button data-v="en" class="sel">EN</button><button data-v="it">IT</button></div>
       <div class="toggle" id="width"><button data-v="desktop" class="sel">Sections</button><button data-v="phone">Phone</button></div>
       <div class="toggle" id="compact"><button data-v="full" class="sel">Dial</button><button data-v="compact">Compact</button></div>
+      <div class="toggle" id="variant"><button data-v="original">Home Connect Local</button><button data-v="fork">vemboy200 fork</button></div>
     </div>
     <main id="grid"></main>
     <div class="log" id="log"></div>
@@ -86,7 +87,14 @@
       import "../bosch-homeconnect-cards.js";
       import { MockStore, SCENARIOS } from "./mock.js";
 
-      const store = await MockStore.load();
+      // ?variant=fork shows the cards on the entities of the vemboy200 fork
+      const variant = new URLSearchParams(location.search).get("variant") === "fork" ? "fork" : "original";
+      document.querySelector(`#variant [data-v="${variant}"]`).classList.add("sel");
+      document.getElementById("variant").addEventListener("click", (ev) => {
+        const button = ev.target.closest("button");
+        if (button) location.search = button.dataset.v === "fork" ? "?variant=fork" : "";
+      });
+      const store = await MockStore.load({ variant });
       const grid = document.getElementById("grid");
       const log = document.getElementById("log");
       const columns = [
@@ -163,7 +171,7 @@
       }
       window.addEventListener("location-changed", () => {
         store.onCall({ domain: "event", service: "navigate", data: location.pathname });
-        history.replaceState(null, "", "/demo/");
+        history.replaceState(null, "", variant === "fork" ? "/demo/?variant=fork" : "/demo/");
       });
     </script>
   </body>
