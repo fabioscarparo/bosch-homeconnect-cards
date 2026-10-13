@@ -264,7 +264,7 @@ The cards are a single JavaScript file, with no build step and no
 dependencies.
 
 ```bash
-python3 tools/serve.py
+python3 -m http.server 8765
 ```
 
 Then open `http://localhost:8765/demo/` to see the cards with demo data:
