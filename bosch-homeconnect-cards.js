@@ -119,6 +119,9 @@ const STRINGS = {
       error: "L'elettrodomestico segnala un errore",
     },
     hint_remote_start: "Avvio remoto non attivo: attivalo sull'elettrodomestico per avviare da qui",
+    hint_close_door: "Chiudi la porta per avviare il programma",
+    hint_start_unavailable:
+      "Al momento l'elettrodomestico non accetta l'avvio. Controlla, per esempio, che la porta sia chiusa e l'avvio remoto attivo",
     hint_remote_off: "Controllo remoto non attivo",
     hint_local: "In uso dai comandi dell'elettrodomestico",
     child_lock: "Blocco bambini",
@@ -236,6 +239,9 @@ const STRINGS = {
       error: "The appliance reports an error",
     },
     hint_remote_start: "Remote start is off: turn it on at the appliance to start from here",
+    hint_close_door: "Close the door to start the program",
+    hint_start_unavailable:
+      "The appliance doesn't accept a start right now. Check, for example, that the door is closed and remote start is on",
     hint_remote_off: "Remote control is not active",
     hint_local: "In use from the appliance controls",
     child_lock: "Child lock",
@@ -1411,15 +1417,11 @@ class HomeConnectCard extends HTMLElement {
     const selected = selectEid
       ? (this._pendingVal(selectEid) ?? (this.ok("select_program") ? this.val("select_program") : null))
       : null;
-    // Remote start must be turned on at the appliance. The "Remote start allowed" entity
-    // says so directly, but it's disabled by default: without it, the integration makes
-    // Start unavailable while the appliance doesn't accept a remote start.
+    // Only the "Remote start allowed" entity says that remote start is off. Start can also
+    // be unavailable for other reasons, such as an open door, so that gets its own hint.
     const remoteStart = this.st("binary_remote_start_allowed");
-    let remoteStartBlocked = false;
-    if (remoteStart && !UNAVAILABLE.has(remoteStart.state)) remoteStartBlocked = remoteStart.state === "off";
-    else if (!off && !running && this.eid("button_start_program")) {
-      remoteStartBlocked = this.val("button_start_program") === "unavailable";
-    }
+    const remoteStartBlocked = remoteStart?.state === "off";
+    const startUnavailable = !off && !running && this.val("button_start_program") === "unavailable";
     return {
       offline,
       off,
@@ -1427,6 +1429,7 @@ class HomeConnectCard extends HTMLElement {
       running,
       program: running ? active || selected : selected || active,
       remoteStartBlocked,
+      startUnavailable,
       remoteControlOff: this.val("binary_sensor_remote_control_active") === "off",
       localControl: this.on("binary_sensor_local_control_active"),
     };
@@ -1741,7 +1744,7 @@ class HomeConnectCard extends HTMLElement {
       buttons.push(
         button("start", delay > 0 ? "mdi:timer-play-outline" : "mdi:play", text, {
           primary: true,
-          blocked: !d.program || d.remoteStartBlocked,
+          blocked: !d.program || d.remoteStartBlocked || d.startUnavailable,
         }),
       );
     }
@@ -1753,11 +1756,21 @@ class HomeConnectCard extends HTMLElement {
   _hints(d, { start = true } = {}) {
     const hints = [];
     if (d.remoteControlOff) hints.push(["mdi:remote-off", this._t("hint_remote_off")]);
-    else if (start && d.remoteStartBlocked && !d.running) hints.push(["mdi:remote-off", this._t("hint_remote_start")]);
+    else if (start && !d.running && d.remoteStartBlocked) hints.push(["mdi:remote-off", this._t("hint_remote_start")]);
+    else if (start && !d.running && d.startUnavailable) {
+      if (this._doorOpen()) hints.push(["mdi:door-open", this._t("hint_close_door")]);
+      else hints.push(["mdi:information-outline", this._t("hint_start_unavailable")]);
+    }
     if (d.localControl) hints.push(["mdi:gesture-tap-button", this._t("hint_local")]);
     return hints
       .map(([icon, text]) => this._alert("info", icon, text))
       .join("");
+  }
+
+  _doorOpen() {
+    const sensor = this.val("sensor_door_state");
+    if (sensor && !UNAVAILABLE.has(sensor)) return ["open", "ajar"].includes(sensor.toLowerCase());
+    return this.val("binary_sensor_door_state") === "on";
   }
 
   _doorBadge() {
@@ -1888,11 +1901,15 @@ class HomeConnectCard extends HTMLElement {
     const current = this._pendingVal(entityId) ?? Number(stateObj.state);
     const size = Math.abs(delta);
     const next = clamp(Math.round((current + delta) / size) * size, min, max);
+    if (next === current) return;
     this._pending[entityId] = { value: next, number: true, time: Date.now() };
     this._render();
     clearTimeout(this._timers[entityId]);
     this._timers[entityId] = setTimeout(() => {
-      this._pending[entityId].time = Date.now();
+      // Gone when the appliance already reports this value, or the steps went back to it
+      const pending = this._pending[entityId];
+      if (pending?.value !== next) return;
+      pending.time = Date.now();
       this._call("number", "set_value", { entity_id: entityId, value: next });
     }, 900);
   }

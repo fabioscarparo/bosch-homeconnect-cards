@@ -10,7 +10,7 @@
 <path transform="translate(19 21) scale(1)" d="M14.83,11.17C16.39,12.73 16.39,15.27 14.83,16.83C13.27,18.39 10.73,18.39 9.17,16.83L14.83,11.17M6,2H18A2,2 0 0,1 20,4V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V4A2,2 0 0,1 6,2M7,4A1,1 0 0,0 6,5A1,1 0 0,0 7,6A1,1 0 0,0 8,5A1,1 0 0,0 7,4M10,4A1,1 0 0,0 9,5A1,1 0 0,0 10,6A1,1 0 0,0 11,5A1,1 0 0,0 10,4M12,8A6,6 0 0,0 6,14A6,6 0 0,0 12,20A6,6 0 0,0 18,14A6,6 0 0,0 12,8Z" fill="#6f6f6f"/>
 <clipPath id="c0-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
 <g clip-path="url(#c0-clip1)">
-<text x="59" y="30" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Washer</text>
+<text x="59" y="29.75" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Washer</text>
 </g>
 <clipPath id="c0-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
 <g clip-path="url(#c0-clip2)">
@@ -19,10 +19,10 @@
 <path transform="translate(306 22) scale(0.92)" d="M16.56,5.44L15.11,6.89C16.84,7.94 18,9.83 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12C6,9.83 7.16,7.94 8.88,6.88L7.44,5.44C5.36,6.88 4,9.28 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12C20,9.28 18.64,6.88 16.56,5.44M13,3H11V13H13" fill="#9b9b9b"/>
 <path transform="translate(356 22) scale(0.92)" d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z" fill="#9b9b9b"/>
 <rect x="13" y="65" width="374" height="42" rx="12" fill="#2196f3" fill-opacity="0.2"/>
-<path transform="translate(162.14 76) scale(0.83)" d="M16.56,5.44L15.11,6.89C16.84,7.94 18,9.83 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12C6,9.83 7.16,7.94 8.88,6.88L7.44,5.44C5.36,6.88 4,9.28 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12C20,9.28 18.64,6.88 16.56,5.44M13,3H11V13H13" fill="#2196f3"/>
-<clipPath id="c0-clip3"><rect x="190.14" y="76" width="47.7" height="20"/></clipPath>
+<path transform="translate(162.15 76) scale(0.83)" d="M16.56,5.44L15.11,6.89C16.84,7.94 18,9.83 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12C6,9.83 7.16,7.94 8.88,6.88L7.44,5.44C5.36,6.88 4,9.28 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12C20,9.28 18.64,6.88 16.56,5.44M13,3H11V13H13" fill="#2196f3"/>
+<clipPath id="c0-clip3"><rect x="190.15" y="76" width="47.7" height="20"/></clipPath>
 <g clip-path="url(#c0-clip3)">
-<text x="190.14" y="91" font-size="14" font-weight="500" fill="#e1e1e1">Turn on</text>
+<text x="190.15" y="90.75" font-size="14" font-weight="500" fill="#e1e1e1">Turn on</text>
 </g>
 <rect x="13.5" y="119.5" width="154.81" height="31" rx="15.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
 <path transform="translate(22 126) scale(0.75)" d="M11 15H6L13 1V9H18L11 23V15Z" fill="#ffc107"/>
@@ -40,7 +40,7 @@
 <path transform="translate(19 21) scale(1)" d="M14.83,11.17C16.39,12.73 16.39,15.27 14.83,16.83C13.27,18.39 10.73,18.39 9.17,16.83L14.83,11.17M6,2H18A2,2 0 0,1 20,4V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V4A2,2 0 0,1 6,2M7,4A1,1 0 0,0 6,5A1,1 0 0,0 7,6A1,1 0 0,0 8,5A1,1 0 0,0 7,4M10,4A1,1 0 0,0 9,5A1,1 0 0,0 10,6A1,1 0 0,0 11,5A1,1 0 0,0 10,4M12,8A6,6 0 0,0 6,14A6,6 0 0,0 12,20A6,6 0 0,0 18,14A6,6 0 0,0 12,8Z" fill="#6f6f6f"/>
 <clipPath id="c1-clip1"><rect x="59" y="15" width="278" height="20"/></clipPath>
 <g clip-path="url(#c1-clip1)">
-<text x="59" y="30" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Washer</text>
+<text x="59" y="29.75" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Washer</text>
 </g>
 <clipPath id="c1-clip2"><rect x="59" y="35" width="278" height="16"/></clipPath>
 <g clip-path="url(#c1-clip2)">
@@ -65,7 +65,7 @@
 <path transform="translate(19 21) scale(1)" d="M14.83,11.17C16.39,12.73 16.39,15.27 14.83,16.83C13.27,18.39 10.73,18.39 9.17,16.83L14.83,11.17M6,2H18A2,2 0 0,1 20,4V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V4A2,2 0 0,1 6,2M7,4A1,1 0 0,0 6,5A1,1 0 0,0 7,6A1,1 0 0,0 8,5A1,1 0 0,0 7,4M10,4A1,1 0 0,0 9,5A1,1 0 0,0 10,6A1,1 0 0,0 11,5A1,1 0 0,0 10,4M12,8A6,6 0 0,0 6,14A6,6 0 0,0 12,20A6,6 0 0,0 18,14A6,6 0 0,0 12,8Z" fill="#2196f3"/>
 <clipPath id="c2-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
 <g clip-path="url(#c2-clip1)">
-<text x="59" y="30" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Washer</text>
+<text x="59" y="29.75" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Washer</text>
 </g>
 <clipPath id="c2-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
 <g clip-path="url(#c2-clip2)">
@@ -77,44 +77,44 @@
 <circle cx="120" cy="120" r="96" transform="rotate(135 120 120)" fill="none" stroke="#464646" stroke-opacity="0.3" stroke-width="16" stroke-dasharray="452.4, 603.2" stroke-linecap="round"/>
 <circle cx="120" cy="120" r="96" transform="rotate(135 120 120)" fill="none" stroke="#2196f3" stroke-width="16" stroke-dasharray="0, 603.2" stroke-linecap="round" opacity="0"/>
 </svg>
-<clipPath id="c2-clip3"><rect x="141.08" y="128.03" width="117.84" height="20"/></clipPath>
+<clipPath id="c2-clip3"><rect x="141.08" y="128.04" width="117.84" height="20"/></clipPath>
 <g clip-path="url(#c2-clip3)">
-<text x="141.08" y="143.03" font-size="14" font-weight="400" fill="#9b9b9b">Estimated duration</text>
+<text x="141.08" y="142.79" font-size="14" font-weight="400" fill="#9b9b9b">Estimated duration</text>
 </g>
-<text x="137.47" y="199.03" font-size="57" font-weight="400" fill="#e1e1e1" letter-spacing="-0.25">2:59</text>
-<text x="250.39" y="175.03" font-size="22" font-weight="400" fill="#e1e1e1">h</text>
-<clipPath id="c2-clip4"><rect x="149.25" y="212.03" width="101.48" height="20"/></clipPath>
+<text x="137.48" y="199.54" font-size="57" font-weight="400" fill="#e1e1e1" letter-spacing="-0.25">2:59</text>
+<text x="250.4" y="175.54" font-size="22" font-weight="400" fill="#e1e1e1">h</text>
+<clipPath id="c2-clip4"><rect x="149.26" y="212.04" width="101.48" height="20"/></clipPath>
 <g clip-path="url(#c2-clip4)">
-<text x="149.25" y="227.03" font-size="14" font-weight="400" fill="#9b9b9b">Ends at 9:40 PM</text>
+<text x="149.26" y="226.79" font-size="14" font-weight="400" fill="#9b9b9b">Ends at 9:40 PM</text>
 </g>
 <rect x="13" y="309" width="374" height="52" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(25 324) scale(0.92)" d="M16,21H8A1,1 0 0,1 7,20V12.07L5.7,13.12C5.31,13.5 4.68,13.5 4.29,13.12L1.46,10.29C1.07,9.9 1.07,9.27 1.46,8.88L7.34,3H9C9,4.1 10.34,5 12,5C13.66,5 15,4.1 15,3H16.66L22.54,8.88C22.93,9.27 22.93,9.9 22.54,10.29L19.71,13.12C19.32,13.5 18.69,13.5 18.3,13.12L17,12.07V20A1,1 0 0,1 16,21M20.42,9.58L16.11,5.28C15.8,5.63 15.43,5.94 15,6.2C14.16,6.7 13.13,7 12,7C10.3,7 8.79,6.32 7.89,5.28L3.58,9.58L5,11L8,9H9V19H15V9H16L19,11L20.42,9.58Z" fill="#2196f3"/>
 <text x="59" y="329" font-size="12" font-weight="400" fill="#9b9b9b">Program</text>
 <clipPath id="c2-clip5"><rect x="59" y="333" width="45.98" height="20"/></clipPath>
 <g clip-path="url(#c2-clip5)">
-<text x="59" y="348" font-size="15" font-weight="500" fill="#e1e1e1">Cotton</text>
+<text x="59" y="347.75" font-size="15" font-weight="500" fill="#e1e1e1">Cotton</text>
 </g>
 <path transform="translate(353 324) scale(0.92)" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" fill="#9b9b9b"/>
 <rect x="13" y="369" width="183" height="44" rx="12" fill="#2196f3" fill-opacity="0.2"/>
 <path transform="translate(25 381) scale(0.83)" d="M7,9V15H11L16,20V4L11,9H7Z" fill="#2196f3"/>
 <clipPath id="c2-clip6"><rect x="53" y="381" width="34.86" height="20"/></clipPath>
 <g clip-path="url(#c2-clip6)">
-<text x="53" y="396" font-size="14" font-weight="400" fill="#e1e1e1">Silent</text>
+<text x="53" y="395.75" font-size="14" font-weight="400" fill="#e1e1e1">Silent</text>
 </g>
 <rect x="204" y="369" width="183" height="44" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(216 381) scale(0.83)" d="M16.5,5.5A2,2 0 0,0 18.5,3.5A2,2 0 0,0 16.5,1.5A2,2 0 0,0 14.5,3.5A2,2 0 0,0 16.5,5.5M12.9,19.4L13.9,15L16,17V23H18V15.5L15.9,13.5L16.5,10.5C17.89,12.09 19.89,13 22,13V11C20.24,11.03 18.6,10.11 17.7,8.6L16.7,7C16.34,6.4 15.7,6 15,6C14.7,6 14.5,6.1 14.2,6.1L9,8.3V13H11V9.6L12.8,8.9L11.2,17L6.3,16L5.9,18L12.9,19.4M4,9A1,1 0 0,1 3,8A1,1 0 0,1 4,7H7V9H4M5,5A1,1 0 0,1 4,4A1,1 0 0,1 5,3H10V5H5M3,13A1,1 0 0,1 2,12A1,1 0 0,1 3,11H7V13H3Z" fill="#9b9b9b"/>
 <clipPath id="c2-clip7"><rect x="244" y="381" width="83.97" height="20"/></clipPath>
 <g clip-path="url(#c2-clip7)">
-<text x="244" y="396" font-size="14" font-weight="400" fill="#e1e1e1">SpeedPerfect</text>
+<text x="244" y="395.75" font-size="14" font-weight="400" fill="#e1e1e1">SpeedPerfect</text>
 </g>
 <path transform="translate(13 431) scale(1)" d="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M19.03,7.39L20.45,5.97C20,5.46 19.55,5 19.04,4.56L17.62,6C16.07,4.74 14.12,4 12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22C17,22 21,17.97 21,13C21,10.88 20.26,8.93 19.03,7.39M11,14H13V8H11M15,1H9V3H15V1Z" fill="#9b9b9b"/>
 <clipPath id="c2-clip8"><rect x="49" y="432" width="52.7" height="20"/></clipPath>
 <g clip-path="url(#c2-clip8)">
-<text x="49" y="447" font-size="14" font-weight="400" fill="#e1e1e1">Duration</text>
+<text x="49" y="446.75" font-size="14" font-weight="400" fill="#e1e1e1">Duration</text>
 </g>
 <rect x="223" y="421" width="164" height="42" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(234 432) scale(0.83)" d="M19,13H5V11H19V13Z" fill="#e1e1e1"/>
-<text x="285.58" y="447" font-size="14" font-weight="500" fill="#e1e1e1">2:00 h</text>
+<text x="285.59" y="447" font-size="14" font-weight="500" fill="#e1e1e1">2:00 h</text>
 <g opacity="0.35">
 <path transform="translate(356 432) scale(0.83)" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#e1e1e1"/>
 </g>
@@ -122,12 +122,12 @@
 <path transform="translate(170.67 482) scale(0.83)" d="M8,5.14V19.14L19,12.14L8,5.14Z" fill="#ffffff"/>
 <clipPath id="c2-clip9"><rect x="198.67" y="482" width="30.66" height="20"/></clipPath>
 <g clip-path="url(#c2-clip9)">
-<text x="198.67" y="497" font-size="14" font-weight="500" fill="#ffffff">Start</text>
+<text x="198.67" y="496.75" font-size="14" font-weight="500" fill="#ffffff">Start</text>
 </g>
 <rect x="13.5" y="525.5" width="109.17" height="31" rx="15.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
 <path transform="translate(22 532) scale(0.75)" d="M16,11H18V13H16V11M12,3H19C20.11,3 21,3.89 21,5V19H22V21H2V19H10V5C10,3.89 10.89,3 12,3M12,5V19H19V5H12Z" fill="#9b9b9b"/>
 <text x="46" y="545" font-size="12" font-weight="500" fill="#e1e1e1">Door closed</text>
-<rect x="131.67" y="525.5" width="126.14" height="31" rx="15.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
+<rect x="131.67" y="525.5" width="126.13" height="31" rx="15.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
 <path transform="translate(140.17 532) scale(0.75)" d="M16.89,15.5L18.31,16.89C19.21,15.73 19.76,14.39 19.93,13H17.91C17.77,13.87 17.43,14.72 16.89,15.5M13,17.9V19.92C14.39,19.75 15.74,19.21 16.9,18.31L15.46,16.87C14.71,17.41 13.87,17.76 13,17.9M19.93,11C19.76,9.61 19.21,8.27 18.31,7.11L16.89,8.53C17.43,9.28 17.77,10.13 17.91,11M15.55,5.55L11,1V4.07C7.06,4.56 4,7.92 4,12C4,16.08 7.05,19.44 11,19.93V17.91C8.16,17.43 6,14.97 6,12C6,9.03 8.16,6.57 11,6.09V10L15.55,5.55Z" fill="#9b9b9b"/>
 <text x="164.17" y="545" font-size="12" font-weight="400" fill="#9b9b9b">Spin</text>
 <text x="193.59" y="545" font-size="12" font-weight="500" fill="#e1e1e1">1400 rpm</text>
@@ -147,7 +147,7 @@
 <path transform="translate(19 21) scale(1)" d="M14.83,11.17C16.39,12.73 16.39,15.27 14.83,16.83C13.27,18.39 10.73,18.39 9.17,16.83L14.83,11.17M6,2H18A2,2 0 0,1 20,4V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V4A2,2 0 0,1 6,2M7,4A1,1 0 0,0 6,5A1,1 0 0,0 7,6A1,1 0 0,0 8,5A1,1 0 0,0 7,4M10,4A1,1 0 0,0 9,5A1,1 0 0,0 10,6A1,1 0 0,0 11,5A1,1 0 0,0 10,4M12,8A6,6 0 0,0 6,14A6,6 0 0,0 12,20A6,6 0 0,0 18,14A6,6 0 0,0 12,8Z" fill="#2196f3"/>
 <clipPath id="c3-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
 <g clip-path="url(#c3-clip1)">
-<text x="59" y="30" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Washer</text>
+<text x="59" y="29.75" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Washer</text>
 </g>
 <clipPath id="c3-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
 <g clip-path="url(#c3-clip2)">
@@ -159,63 +159,63 @@
 <circle cx="120" cy="120" r="96" transform="rotate(135 120 120)" fill="none" stroke="#464646" stroke-opacity="0.3" stroke-width="16" stroke-dasharray="452.4, 603.2" stroke-linecap="round"/>
 <circle cx="120" cy="120" r="96" transform="rotate(135 120 120)" fill="none" stroke="#2196f3" stroke-width="16" stroke-dasharray="0, 603.2" stroke-linecap="round" opacity="0"/>
 </svg>
-<clipPath id="c3-clip3"><rect x="141.08" y="128.03" width="117.84" height="20"/></clipPath>
+<clipPath id="c3-clip3"><rect x="141.08" y="128.04" width="117.84" height="20"/></clipPath>
 <g clip-path="url(#c3-clip3)">
-<text x="141.08" y="143.03" font-size="14" font-weight="400" fill="#9b9b9b">Estimated duration</text>
+<text x="141.08" y="142.79" font-size="14" font-weight="400" fill="#9b9b9b">Estimated duration</text>
 </g>
-<text x="137.47" y="199.03" font-size="57" font-weight="400" fill="#e1e1e1" letter-spacing="-0.25">2:59</text>
-<text x="250.39" y="175.03" font-size="22" font-weight="400" fill="#e1e1e1">h</text>
-<clipPath id="c3-clip4"><rect x="149.25" y="212.03" width="101.48" height="20"/></clipPath>
+<text x="137.48" y="199.54" font-size="57" font-weight="400" fill="#e1e1e1" letter-spacing="-0.25">2:59</text>
+<text x="250.4" y="175.54" font-size="22" font-weight="400" fill="#e1e1e1">h</text>
+<clipPath id="c3-clip4"><rect x="149.26" y="212.04" width="101.48" height="20"/></clipPath>
 <g clip-path="url(#c3-clip4)">
-<text x="149.25" y="227.03" font-size="14" font-weight="400" fill="#9b9b9b">Ends at 9:40 PM</text>
+<text x="149.26" y="226.79" font-size="14" font-weight="400" fill="#9b9b9b">Ends at 9:40 PM</text>
 </g>
 <rect x="13" y="309" width="374" height="52" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(25 324) scale(0.92)" d="M16,21H8A1,1 0 0,1 7,20V12.07L5.7,13.12C5.31,13.5 4.68,13.5 4.29,13.12L1.46,10.29C1.07,9.9 1.07,9.27 1.46,8.88L7.34,3H9C9,4.1 10.34,5 12,5C13.66,5 15,4.1 15,3H16.66L22.54,8.88C22.93,9.27 22.93,9.9 22.54,10.29L19.71,13.12C19.32,13.5 18.69,13.5 18.3,13.12L17,12.07V20A1,1 0 0,1 16,21M20.42,9.58L16.11,5.28C15.8,5.63 15.43,5.94 15,6.2C14.16,6.7 13.13,7 12,7C10.3,7 8.79,6.32 7.89,5.28L3.58,9.58L5,11L8,9H9V19H15V9H16L19,11L20.42,9.58Z" fill="#2196f3"/>
 <text x="59" y="329" font-size="12" font-weight="400" fill="#9b9b9b">Program</text>
 <clipPath id="c3-clip5"><rect x="59" y="333" width="45.98" height="20"/></clipPath>
 <g clip-path="url(#c3-clip5)">
-<text x="59" y="348" font-size="15" font-weight="500" fill="#e1e1e1">Cotton</text>
+<text x="59" y="347.75" font-size="15" font-weight="500" fill="#e1e1e1">Cotton</text>
 </g>
 <path transform="translate(353 324) scale(0.92)" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" fill="#9b9b9b"/>
 <rect x="13" y="369" width="183" height="44" rx="12" fill="#2196f3" fill-opacity="0.2"/>
 <path transform="translate(25 381) scale(0.83)" d="M7,9V15H11L16,20V4L11,9H7Z" fill="#2196f3"/>
 <clipPath id="c3-clip6"><rect x="53" y="381" width="34.86" height="20"/></clipPath>
 <g clip-path="url(#c3-clip6)">
-<text x="53" y="396" font-size="14" font-weight="400" fill="#e1e1e1">Silent</text>
+<text x="53" y="395.75" font-size="14" font-weight="400" fill="#e1e1e1">Silent</text>
 </g>
 <rect x="204" y="369" width="183" height="44" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(216 381) scale(0.83)" d="M16.5,5.5A2,2 0 0,0 18.5,3.5A2,2 0 0,0 16.5,1.5A2,2 0 0,0 14.5,3.5A2,2 0 0,0 16.5,5.5M12.9,19.4L13.9,15L16,17V23H18V15.5L15.9,13.5L16.5,10.5C17.89,12.09 19.89,13 22,13V11C20.24,11.03 18.6,10.11 17.7,8.6L16.7,7C16.34,6.4 15.7,6 15,6C14.7,6 14.5,6.1 14.2,6.1L9,8.3V13H11V9.6L12.8,8.9L11.2,17L6.3,16L5.9,18L12.9,19.4M4,9A1,1 0 0,1 3,8A1,1 0 0,1 4,7H7V9H4M5,5A1,1 0 0,1 4,4A1,1 0 0,1 5,3H10V5H5M3,13A1,1 0 0,1 2,12A1,1 0 0,1 3,11H7V13H3Z" fill="#9b9b9b"/>
 <clipPath id="c3-clip7"><rect x="244" y="381" width="83.97" height="20"/></clipPath>
 <g clip-path="url(#c3-clip7)">
-<text x="244" y="396" font-size="14" font-weight="400" fill="#e1e1e1">SpeedPerfect</text>
+<text x="244" y="395.75" font-size="14" font-weight="400" fill="#e1e1e1">SpeedPerfect</text>
 </g>
 <path transform="translate(13 431) scale(1)" d="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M19.03,7.39L20.45,5.97C20,5.46 19.55,5 19.04,4.56L17.62,6C16.07,4.74 14.12,4 12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22C17,22 21,17.97 21,13C21,10.88 20.26,8.93 19.03,7.39M11,14H13V8H11M15,1H9V3H15V1Z" fill="#9b9b9b"/>
 <clipPath id="c3-clip8"><rect x="49" y="432" width="52.7" height="20"/></clipPath>
 <g clip-path="url(#c3-clip8)">
-<text x="49" y="447" font-size="14" font-weight="400" fill="#e1e1e1">Duration</text>
+<text x="49" y="446.75" font-size="14" font-weight="400" fill="#e1e1e1">Duration</text>
 </g>
 <rect x="223" y="421" width="164" height="42" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(234 432) scale(0.83)" d="M19,13H5V11H19V13Z" fill="#e1e1e1"/>
-<text x="285.58" y="447" font-size="14" font-weight="500" fill="#e1e1e1">2:00 h</text>
+<text x="285.59" y="447" font-size="14" font-weight="500" fill="#e1e1e1">2:00 h</text>
 <g opacity="0.35">
 <path transform="translate(356 432) scale(0.83)" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#e1e1e1"/>
 </g>
 <rect x="13" y="471" width="374" height="60" rx="10" fill="#039be5" fill-opacity="0.12"/>
 <path transform="translate(25 490) scale(0.92)" d="M2,5.27L3.28,4L21,21.72L19.73,23L16,19.27V22A1,1 0 0,1 15,23H9C8.46,23 8,22.55 8,22V11.27L2,5.27M12,0C15.05,0 17.8,1.23 19.77,3.23L18.36,4.64C16.75,3 14.5,2 12,2C9.72,2 7.64,2.85 6.06,4.24L4.64,2.82C6.59,1.07 9.17,0 12,0M12,4C13.94,4 15.69,4.78 16.95,6.05L15.55,7.46C14.64,6.56 13.39,6 12,6C10.83,6 9.76,6.4 8.9,7.08L7.5,5.66C8.7,4.62 10.28,4 12,4M15,9C15.56,9 16,9.45 16,10V14.18L13.5,11.69L13.31,11.5L10.82,9H15M10.03,13.3C10.16,14.16 10.84,14.85 11.71,15L10.03,13.3Z" fill="#039be5"/>
-<text x="59" y="496" font-size="14" font-weight="400" fill="#e1e1e1">Remote start is off: turn it on at the appliance to</text>
-<text x="59" y="516" font-size="14" font-weight="400" fill="#e1e1e1">start from here</text>
+<text x="59" y="495.75" font-size="14" font-weight="400" fill="#e1e1e1">Remote start is off: turn it on at the appliance to</text>
+<text x="59" y="515.75" font-size="14" font-weight="400" fill="#e1e1e1">start from here</text>
 <g opacity="0.45">
 <rect x="13" y="539" width="374" height="42" rx="12" fill="#2196f3"/>
 <path transform="translate(170.67 550) scale(0.83)" d="M8,5.14V19.14L19,12.14L8,5.14Z" fill="#ffffff"/>
 <clipPath id="c3-clip9"><rect x="198.67" y="550" width="30.66" height="20"/></clipPath>
 <g clip-path="url(#c3-clip9)">
-<text x="198.67" y="565" font-size="14" font-weight="500" fill="#ffffff">Start</text>
+<text x="198.67" y="564.75" font-size="14" font-weight="500" fill="#ffffff">Start</text>
 </g>
 </g>
 <rect x="13.5" y="593.5" width="109.17" height="31" rx="15.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
 <path transform="translate(22 600) scale(0.75)" d="M16,11H18V13H16V11M12,3H19C20.11,3 21,3.89 21,5V19H22V21H2V19H10V5C10,3.89 10.89,3 12,3M12,5V19H19V5H12Z" fill="#9b9b9b"/>
 <text x="46" y="613" font-size="12" font-weight="500" fill="#e1e1e1">Door closed</text>
-<rect x="131.67" y="593.5" width="126.14" height="31" rx="15.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
+<rect x="131.67" y="593.5" width="126.13" height="31" rx="15.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
 <path transform="translate(140.17 600) scale(0.75)" d="M16.89,15.5L18.31,16.89C19.21,15.73 19.76,14.39 19.93,13H17.91C17.77,13.87 17.43,14.72 16.89,15.5M13,17.9V19.92C14.39,19.75 15.74,19.21 16.9,18.31L15.46,16.87C14.71,17.41 13.87,17.76 13,17.9M19.93,11C19.76,9.61 19.21,8.27 18.31,7.11L16.89,8.53C17.43,9.28 17.77,10.13 17.91,11M15.55,5.55L11,1V4.07C7.06,4.56 4,7.92 4,12C4,16.08 7.05,19.44 11,19.93V17.91C8.16,17.43 6,14.97 6,12C6,9.03 8.16,6.57 11,6.09V10L15.55,5.55Z" fill="#9b9b9b"/>
 <text x="164.17" y="613" font-size="12" font-weight="400" fill="#9b9b9b">Spin</text>
 <text x="193.59" y="613" font-size="12" font-weight="500" fill="#e1e1e1">1400 rpm</text>
@@ -235,7 +235,7 @@
 <path transform="translate(19 21) scale(1)" d="M14.83,11.17C16.39,12.73 16.39,15.27 14.83,16.83C13.27,18.39 10.73,18.39 9.17,16.83L14.83,11.17M6,2H18A2,2 0 0,1 20,4V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V4A2,2 0 0,1 6,2M7,4A1,1 0 0,0 6,5A1,1 0 0,0 7,6A1,1 0 0,0 8,5A1,1 0 0,0 7,4M10,4A1,1 0 0,0 9,5A1,1 0 0,0 10,6A1,1 0 0,0 11,5A1,1 0 0,0 10,4M12,8A6,6 0 0,0 6,14A6,6 0 0,0 12,20A6,6 0 0,0 18,14A6,6 0 0,0 12,8Z" fill="#2196f3"/>
 <clipPath id="c4-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
 <g clip-path="url(#c4-clip1)">
-<text x="59" y="30" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Washer</text>
+<text x="59" y="29.75" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Washer</text>
 </g>
 <clipPath id="c4-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
 <g clip-path="url(#c4-clip2)">
@@ -247,32 +247,32 @@
 <circle cx="120" cy="120" r="96" transform="rotate(135 120 120)" fill="none" stroke="#464646" stroke-opacity="0.3" stroke-width="16" stroke-dasharray="452.4, 603.2" stroke-linecap="round"/>
 <circle cx="120" cy="120" r="96" transform="rotate(135 120 120)" fill="none" stroke="#2196f3" stroke-width="16" stroke-dasharray="280.5, 603.2" stroke-linecap="round"/>
 </svg>
-<clipPath id="c4-clip3"><rect x="177" y="128.03" width="46" height="20"/></clipPath>
+<clipPath id="c4-clip3"><rect x="177" y="128.04" width="45.99" height="20"/></clipPath>
 <g clip-path="url(#c4-clip3)">
-<text x="177" y="143.03" font-size="14" font-weight="400" fill="#9b9b9b">Rinsing</text>
+<text x="177" y="142.79" font-size="14" font-weight="400" fill="#9b9b9b">Rinsing</text>
 </g>
-<text x="137.47" y="199.03" font-size="57" font-weight="400" fill="#e1e1e1" letter-spacing="-0.25">1:24</text>
-<text x="250.39" y="175.03" font-size="22" font-weight="400" fill="#e1e1e1">h</text>
-<clipPath id="c4-clip4"><rect x="149.25" y="212.03" width="101.48" height="20"/></clipPath>
+<text x="137.48" y="199.54" font-size="57" font-weight="400" fill="#e1e1e1" letter-spacing="-0.25">1:24</text>
+<text x="250.4" y="175.54" font-size="22" font-weight="400" fill="#e1e1e1">h</text>
+<clipPath id="c4-clip4"><rect x="149.26" y="212.04" width="101.48" height="20"/></clipPath>
 <g clip-path="url(#c4-clip4)">
-<text x="149.25" y="227.03" font-size="14" font-weight="400" fill="#9b9b9b">Ends at 8:06 PM</text>
+<text x="149.26" y="226.79" font-size="14" font-weight="400" fill="#9b9b9b">Ends at 8:06 PM</text>
 </g>
-<text x="186.88" y="298.56" font-size="14" font-weight="500" fill="#9b9b9b">62%</text>
+<text x="186.89" y="298.31" font-size="14" font-weight="500" fill="#9b9b9b">62%</text>
 <rect x="13" y="309" width="310" height="42" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(134.55 320) scale(0.83)" d="M14,19H18V5H14M6,19H10V5H6V19Z" fill="#e1e1e1"/>
 <clipPath id="c4-clip5"><rect x="162.55" y="320" width="38.91" height="20"/></clipPath>
 <g clip-path="url(#c4-clip5)">
-<text x="162.55" y="335" font-size="14" font-weight="500" fill="#e1e1e1">Pause</text>
+<text x="162.55" y="334.75" font-size="14" font-weight="500" fill="#e1e1e1">Pause</text>
 </g>
 <rect x="331" y="309" width="56" height="42" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(349 320) scale(0.83)" d="M18,18H6V6H18V18Z" fill="#e1e1e1"/>
 <rect x="13.5" y="363.5" width="109.14" height="31" rx="15.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
 <path transform="translate(22 370) scale(0.75)" d="M16 11H18V13H16V11M12 3H19A2 2 0 0 1 21 5V19H22V21H2V19H10V5A2 2 0 0 1 12 3M12 5V19H19V5M6.2 5H2.8V4.5A1.7 1.7 0 0 1 6.2 4.5M7 5V4.5A2.5 2.5 0 0 0 2 4.5V5A1 1 0 0 0 1 6V10A1 1 0 0 0 2 11H7A1 1 0 0 0 8 10V6A1 1 0 0 0 7 5" fill="#9b9b9b"/>
 <text x="46" y="383" font-size="12" font-weight="500" fill="#e1e1e1">Door locked</text>
-<rect x="131.64" y="363.5" width="126.14" height="31" rx="15.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
+<rect x="131.64" y="363.5" width="126.13" height="31" rx="15.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
 <path transform="translate(140.14 370) scale(0.75)" d="M16.89,15.5L18.31,16.89C19.21,15.73 19.76,14.39 19.93,13H17.91C17.77,13.87 17.43,14.72 16.89,15.5M13,17.9V19.92C14.39,19.75 15.74,19.21 16.9,18.31L15.46,16.87C14.71,17.41 13.87,17.76 13,17.9M19.93,11C19.76,9.61 19.21,8.27 18.31,7.11L16.89,8.53C17.43,9.28 17.77,10.13 17.91,11M15.55,5.55L11,1V4.07C7.06,4.56 4,7.92 4,12C4,16.08 7.05,19.44 11,19.93V17.91C8.16,17.43 6,14.97 6,12C6,9.03 8.16,6.57 11,6.09V10L15.55,5.55Z" fill="#9b9b9b"/>
 <text x="164.14" y="383" font-size="12" font-weight="400" fill="#9b9b9b">Spin</text>
-<text x="193.56" y="383" font-size="12" font-weight="500" fill="#e1e1e1">1400 rpm</text>
+<text x="193.55" y="383" font-size="12" font-weight="500" fill="#e1e1e1">1400 rpm</text>
 </g></g>
 <g transform="translate(416 694)"><rect x="0" y="0" width="400" height="462" rx="12" fill="#1c1c1c"/>
 <rect x="0.5" y="0.5" width="399" height="461" rx="11.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
@@ -282,7 +282,7 @@
 <path transform="translate(19 21) scale(1)" d="M14.83,11.17C16.39,12.73 16.39,15.27 14.83,16.83C13.27,18.39 10.73,18.39 9.17,16.83L14.83,11.17M6,2H18A2,2 0 0,1 20,4V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V4A2,2 0 0,1 6,2M7,4A1,1 0 0,0 6,5A1,1 0 0,0 7,6A1,1 0 0,0 8,5A1,1 0 0,0 7,4M10,4A1,1 0 0,0 9,5A1,1 0 0,0 10,6A1,1 0 0,0 11,5A1,1 0 0,0 10,4M12,8A6,6 0 0,0 6,14A6,6 0 0,0 12,20A6,6 0 0,0 18,14A6,6 0 0,0 12,8Z" fill="#2196f3"/>
 <clipPath id="c5-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
 <g clip-path="url(#c5-clip1)">
-<text x="59" y="30" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Washer</text>
+<text x="59" y="29.75" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Washer</text>
 </g>
 <clipPath id="c5-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
 <g clip-path="url(#c5-clip2)">
@@ -292,37 +292,37 @@
 <path transform="translate(356 22) scale(0.92)" d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z" fill="#9b9b9b"/>
 <rect x="13" y="65" width="374" height="42" rx="10" fill="#039be5" fill-opacity="0.12"/>
 <path transform="translate(25 75) scale(0.92)" d="M16,21H8A1,1 0 0,1 7,20V12.07L5.7,13.12C5.31,13.5 4.68,13.5 4.29,13.12L1.46,10.29C1.07,9.9 1.07,9.27 1.46,8.88L7.34,3H9C9,4.1 10.34,5 12,5C13.66,5 15,4.1 15,3H16.66L22.54,8.88C22.93,9.27 22.93,9.9 22.54,10.29L19.71,13.12C19.32,13.5 18.69,13.5 18.3,13.12L17,12.07V20A1,1 0 0,1 16,21M20.42,9.58L16.11,5.28C15.8,5.63 15.43,5.94 15,6.2C14.16,6.7 13.13,7 12,7C10.3,7 8.79,6.32 7.89,5.28L3.58,9.58L5,11L8,9H9V19H15V9H16L19,11L20.42,9.58Z" fill="#039be5"/>
-<text x="59" y="91" font-size="14" font-weight="400" fill="#e1e1e1">You can open the door and add laundry</text>
+<text x="59" y="90.75" font-size="14" font-weight="400" fill="#e1e1e1">You can open the door and add laundry</text>
 <svg x="76" y="115" width="248" height="248" viewBox="0 0 240 240" overflow="visible">
 <circle cx="120" cy="120" r="96" transform="rotate(135 120 120)" fill="none" stroke="#464646" stroke-opacity="0.3" stroke-width="16" stroke-dasharray="452.4, 603.2" stroke-linecap="round"/>
 <circle cx="120" cy="120" r="96" transform="rotate(135 120 120)" fill="none" stroke="#6f6f6f" stroke-width="16" stroke-dasharray="280.5, 603.2" stroke-linecap="round"/>
 </svg>
-<clipPath id="c5-clip3"><rect x="177" y="182.03" width="46" height="20"/></clipPath>
+<clipPath id="c5-clip3"><rect x="177" y="182.04" width="45.99" height="20"/></clipPath>
 <g clip-path="url(#c5-clip3)">
-<text x="177" y="197.03" font-size="14" font-weight="400" fill="#9b9b9b">Rinsing</text>
+<text x="177" y="196.79" font-size="14" font-weight="400" fill="#9b9b9b">Rinsing</text>
 </g>
-<text x="137.47" y="253.03" font-size="57" font-weight="400" fill="#e1e1e1" letter-spacing="-0.25">1:24</text>
-<text x="250.39" y="229.03" font-size="22" font-weight="400" fill="#e1e1e1">h</text>
-<clipPath id="c5-clip4"><rect x="176.67" y="266.03" width="46.64" height="20"/></clipPath>
+<text x="137.48" y="253.54" font-size="57" font-weight="400" fill="#e1e1e1" letter-spacing="-0.25">1:24</text>
+<text x="250.4" y="229.54" font-size="22" font-weight="400" fill="#e1e1e1">h</text>
+<clipPath id="c5-clip4"><rect x="176.68" y="266.04" width="46.64" height="20"/></clipPath>
 <g clip-path="url(#c5-clip4)">
-<text x="176.67" y="281.03" font-size="14" font-weight="400" fill="#9b9b9b">Paused</text>
+<text x="176.68" y="280.79" font-size="14" font-weight="400" fill="#9b9b9b">Paused</text>
 </g>
-<text x="186.88" y="352.56" font-size="14" font-weight="500" fill="#9b9b9b">62%</text>
+<text x="186.89" y="352.31" font-size="14" font-weight="500" fill="#9b9b9b">62%</text>
 <rect x="13" y="363" width="310" height="42" rx="12" fill="#2196f3"/>
-<path transform="translate(128.48 374) scale(0.83)" d="M8,5.14V19.14L19,12.14L8,5.14Z" fill="#ffffff"/>
-<clipPath id="c5-clip5"><rect x="156.48" y="374" width="51.02" height="20"/></clipPath>
+<path transform="translate(128.49 374) scale(0.83)" d="M8,5.14V19.14L19,12.14L8,5.14Z" fill="#ffffff"/>
+<clipPath id="c5-clip5"><rect x="156.49" y="374" width="51.01" height="20"/></clipPath>
 <g clip-path="url(#c5-clip5)">
-<text x="156.48" y="389" font-size="14" font-weight="500" fill="#ffffff">Resume</text>
+<text x="156.49" y="388.75" font-size="14" font-weight="500" fill="#ffffff">Resume</text>
 </g>
 <rect x="331" y="363" width="56" height="42" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(349 374) scale(0.83)" d="M18,18H6V6H18V18Z" fill="#e1e1e1"/>
 <rect x="13.5" y="417.5" width="109.14" height="31" rx="15.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
 <path transform="translate(22 424) scale(0.75)" d="M16 11H18V13H16V11M12 3H19A2 2 0 0 1 21 5V19H22V21H2V19H10V5A2 2 0 0 1 12 3M12 5V19H19V5M6.2 5H2.8V4.5A1.7 1.7 0 0 1 6.2 4.5M7 5V4.5A2.5 2.5 0 0 0 2 4.5V5A1 1 0 0 0 1 6V10A1 1 0 0 0 2 11H7A1 1 0 0 0 8 10V6A1 1 0 0 0 7 5" fill="#9b9b9b"/>
 <text x="46" y="437" font-size="12" font-weight="500" fill="#e1e1e1">Door locked</text>
-<rect x="131.64" y="417.5" width="126.14" height="31" rx="15.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
+<rect x="131.64" y="417.5" width="126.13" height="31" rx="15.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
 <path transform="translate(140.14 424) scale(0.75)" d="M16.89,15.5L18.31,16.89C19.21,15.73 19.76,14.39 19.93,13H17.91C17.77,13.87 17.43,14.72 16.89,15.5M13,17.9V19.92C14.39,19.75 15.74,19.21 16.9,18.31L15.46,16.87C14.71,17.41 13.87,17.76 13,17.9M19.93,11C19.76,9.61 19.21,8.27 18.31,7.11L16.89,8.53C17.43,9.28 17.77,10.13 17.91,11M15.55,5.55L11,1V4.07C7.06,4.56 4,7.92 4,12C4,16.08 7.05,19.44 11,19.93V17.91C8.16,17.43 6,14.97 6,12C6,9.03 8.16,6.57 11,6.09V10L15.55,5.55Z" fill="#9b9b9b"/>
 <text x="164.14" y="437" font-size="12" font-weight="400" fill="#9b9b9b">Spin</text>
-<text x="193.56" y="437" font-size="12" font-weight="500" fill="#e1e1e1">1400 rpm</text>
+<text x="193.55" y="437" font-size="12" font-weight="500" fill="#e1e1e1">1400 rpm</text>
 </g></g>
 <g transform="translate(832 694)"><rect x="0" y="0" width="400" height="462" rx="12" fill="#1c1c1c"/>
 <rect x="0.5" y="0.5" width="399" height="461" rx="11.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
@@ -332,7 +332,7 @@
 <path transform="translate(19 21) scale(1)" d="M14.83,11.17C16.39,12.73 16.39,15.27 14.83,16.83C13.27,18.39 10.73,18.39 9.17,16.83L14.83,11.17M6,2H18A2,2 0 0,1 20,4V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V4A2,2 0 0,1 6,2M7,4A1,1 0 0,0 6,5A1,1 0 0,0 7,6A1,1 0 0,0 8,5A1,1 0 0,0 7,4M10,4A1,1 0 0,0 9,5A1,1 0 0,0 10,6A1,1 0 0,0 11,5A1,1 0 0,0 10,4M12,8A6,6 0 0,0 6,14A6,6 0 0,0 12,20A6,6 0 0,0 18,14A6,6 0 0,0 12,8Z" fill="#2196f3"/>
 <clipPath id="c6-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
 <g clip-path="url(#c6-clip1)">
-<text x="59" y="30" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Washer</text>
+<text x="59" y="29.75" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Washer</text>
 </g>
 <clipPath id="c6-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
 <g clip-path="url(#c6-clip2)">
@@ -342,37 +342,37 @@
 <path transform="translate(356 22) scale(0.92)" d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z" fill="#9b9b9b"/>
 <rect x="13" y="65" width="374" height="42" rx="10" fill="#ffa600" fill-opacity="0.12"/>
 <path transform="translate(25 75) scale(0.92)" d="M7.2,11.2C8.97,11.2 10.4,12.63 10.4,14.4C10.4,16.17 8.97,17.6 7.2,17.6C5.43,17.6 4,16.17 4,14.4C4,12.63 5.43,11.2 7.2,11.2M14.8,16A2,2 0 0,1 16.8,18A2,2 0 0,1 14.8,20A2,2 0 0,1 12.8,18A2,2 0 0,1 14.8,16M15.2,4A4.8,4.8 0 0,1 20,8.8C20,11.45 17.85,13.6 15.2,13.6A4.8,4.8 0 0,1 10.4,8.8C10.4,6.15 12.55,4 15.2,4Z" fill="#ffa600"/>
-<text x="59" y="91" font-size="14" font-weight="400" fill="#e1e1e1">Too much foam detected</text>
+<text x="59" y="90.75" font-size="14" font-weight="400" fill="#e1e1e1">Too much foam detected</text>
 <svg x="76" y="115" width="248" height="248" viewBox="0 0 240 240" overflow="visible">
 <circle cx="120" cy="120" r="96" transform="rotate(135 120 120)" fill="none" stroke="#464646" stroke-opacity="0.3" stroke-width="16" stroke-dasharray="452.4, 603.2" stroke-linecap="round"/>
 <circle cx="120" cy="120" r="96" transform="rotate(135 120 120)" fill="none" stroke="#2196f3" stroke-width="16" stroke-dasharray="280.5, 603.2" stroke-linecap="round"/>
 </svg>
-<clipPath id="c6-clip3"><rect x="177" y="182.03" width="46" height="20"/></clipPath>
+<clipPath id="c6-clip3"><rect x="177" y="182.04" width="45.99" height="20"/></clipPath>
 <g clip-path="url(#c6-clip3)">
-<text x="177" y="197.03" font-size="14" font-weight="400" fill="#9b9b9b">Rinsing</text>
+<text x="177" y="196.79" font-size="14" font-weight="400" fill="#9b9b9b">Rinsing</text>
 </g>
-<text x="137.47" y="253.03" font-size="57" font-weight="400" fill="#e1e1e1" letter-spacing="-0.25">1:24</text>
-<text x="250.39" y="229.03" font-size="22" font-weight="400" fill="#e1e1e1">h</text>
-<clipPath id="c6-clip4"><rect x="149.25" y="266.03" width="101.48" height="20"/></clipPath>
+<text x="137.48" y="253.54" font-size="57" font-weight="400" fill="#e1e1e1" letter-spacing="-0.25">1:24</text>
+<text x="250.4" y="229.54" font-size="22" font-weight="400" fill="#e1e1e1">h</text>
+<clipPath id="c6-clip4"><rect x="149.26" y="266.04" width="101.48" height="20"/></clipPath>
 <g clip-path="url(#c6-clip4)">
-<text x="149.25" y="281.03" font-size="14" font-weight="400" fill="#9b9b9b">Ends at 8:06 PM</text>
+<text x="149.26" y="280.79" font-size="14" font-weight="400" fill="#9b9b9b">Ends at 8:06 PM</text>
 </g>
-<text x="186.88" y="352.56" font-size="14" font-weight="500" fill="#9b9b9b">62%</text>
+<text x="186.89" y="352.31" font-size="14" font-weight="500" fill="#9b9b9b">62%</text>
 <rect x="13" y="363" width="310" height="42" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(134.55 374) scale(0.83)" d="M14,19H18V5H14M6,19H10V5H6V19Z" fill="#e1e1e1"/>
 <clipPath id="c6-clip5"><rect x="162.55" y="374" width="38.91" height="20"/></clipPath>
 <g clip-path="url(#c6-clip5)">
-<text x="162.55" y="389" font-size="14" font-weight="500" fill="#e1e1e1">Pause</text>
+<text x="162.55" y="388.75" font-size="14" font-weight="500" fill="#e1e1e1">Pause</text>
 </g>
 <rect x="331" y="363" width="56" height="42" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(349 374) scale(0.83)" d="M18,18H6V6H18V18Z" fill="#e1e1e1"/>
 <rect x="13.5" y="417.5" width="109.14" height="31" rx="15.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
 <path transform="translate(22 424) scale(0.75)" d="M16 11H18V13H16V11M12 3H19A2 2 0 0 1 21 5V19H22V21H2V19H10V5A2 2 0 0 1 12 3M12 5V19H19V5M6.2 5H2.8V4.5A1.7 1.7 0 0 1 6.2 4.5M7 5V4.5A2.5 2.5 0 0 0 2 4.5V5A1 1 0 0 0 1 6V10A1 1 0 0 0 2 11H7A1 1 0 0 0 8 10V6A1 1 0 0 0 7 5" fill="#9b9b9b"/>
 <text x="46" y="437" font-size="12" font-weight="500" fill="#e1e1e1">Door locked</text>
-<rect x="131.64" y="417.5" width="126.14" height="31" rx="15.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
+<rect x="131.64" y="417.5" width="126.13" height="31" rx="15.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
 <path transform="translate(140.14 424) scale(0.75)" d="M16.89,15.5L18.31,16.89C19.21,15.73 19.76,14.39 19.93,13H17.91C17.77,13.87 17.43,14.72 16.89,15.5M13,17.9V19.92C14.39,19.75 15.74,19.21 16.9,18.31L15.46,16.87C14.71,17.41 13.87,17.76 13,17.9M19.93,11C19.76,9.61 19.21,8.27 18.31,7.11L16.89,8.53C17.43,9.28 17.77,10.13 17.91,11M15.55,5.55L11,1V4.07C7.06,4.56 4,7.92 4,12C4,16.08 7.05,19.44 11,19.93V17.91C8.16,17.43 6,14.97 6,12C6,9.03 8.16,6.57 11,6.09V10L15.55,5.55Z" fill="#9b9b9b"/>
 <text x="164.14" y="437" font-size="12" font-weight="400" fill="#9b9b9b">Spin</text>
-<text x="193.56" y="437" font-size="12" font-weight="500" fill="#e1e1e1">1400 rpm</text>
+<text x="193.55" y="437" font-size="12" font-weight="500" fill="#e1e1e1">1400 rpm</text>
 </g></g>
 <g transform="translate(1248 694)"><rect x="0" y="0" width="400" height="610" rx="12" fill="#1c1c1c"/>
 <rect x="0.5" y="0.5" width="399" height="609" rx="11.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
@@ -382,7 +382,7 @@
 <path transform="translate(19 21) scale(1)" d="M14.83,11.17C16.39,12.73 16.39,15.27 14.83,16.83C13.27,18.39 10.73,18.39 9.17,16.83L14.83,11.17M6,2H18A2,2 0 0,1 20,4V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V4A2,2 0 0,1 6,2M7,4A1,1 0 0,0 6,5A1,1 0 0,0 7,6A1,1 0 0,0 8,5A1,1 0 0,0 7,4M10,4A1,1 0 0,0 9,5A1,1 0 0,0 10,6A1,1 0 0,0 11,5A1,1 0 0,0 10,4M12,8A6,6 0 0,0 6,14A6,6 0 0,0 12,20A6,6 0 0,0 18,14A6,6 0 0,0 12,8Z" fill="#2196f3"/>
 <clipPath id="c7-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
 <g clip-path="url(#c7-clip1)">
-<text x="59" y="30" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Washer</text>
+<text x="59" y="29.75" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Washer</text>
 </g>
 <clipPath id="c7-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
 <g clip-path="url(#c7-clip2)">
@@ -394,43 +394,43 @@
 <circle cx="120" cy="120" r="96" transform="rotate(135 120 120)" fill="none" stroke="#464646" stroke-opacity="0.3" stroke-width="16" stroke-dasharray="452.4, 603.2" stroke-linecap="round"/>
 <circle cx="120" cy="120" r="96" transform="rotate(135 120 120)" fill="none" stroke="#43a047" stroke-width="16" stroke-dasharray="452.4, 603.2" stroke-linecap="round"/>
 </svg>
-<clipPath id="c7-clip3"><rect x="173.72" y="132.03" width="52.55" height="20"/></clipPath>
+<clipPath id="c7-clip3"><rect x="173.73" y="132.04" width="52.54" height="20"/></clipPath>
 <g clip-path="url(#c7-clip3)">
-<text x="173.72" y="147.03" font-size="14" font-weight="400" fill="#9b9b9b">Finished</text>
+<text x="173.73" y="146.79" font-size="14" font-weight="400" fill="#9b9b9b">Finished</text>
 </g>
-<path transform="translate(172 152.03) scale(2.33)" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z" fill="#e1e1e1"/>
-<clipPath id="c7-clip4"><rect x="138.39" y="208.03" width="123.2" height="20"/></clipPath>
+<path transform="translate(172 152.04) scale(2.33)" d="M21,7L9,19L3.5,13.5L4.91,12.09L9,16.17L19.59,5.59L21,7Z" fill="#e1e1e1"/>
+<clipPath id="c7-clip4"><rect x="138.4" y="208.04" width="123.2" height="20"/></clipPath>
 <g clip-path="url(#c7-clip4)">
-<text x="138.39" y="223.03" font-size="14" font-weight="400" fill="#9b9b9b">Finished at 6:42 PM</text>
+<text x="138.4" y="222.79" font-size="14" font-weight="400" fill="#9b9b9b">Finished at 6:42 PM</text>
 </g>
 <rect x="13" y="309" width="374" height="52" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(25 324) scale(0.92)" d="M16,21H8A1,1 0 0,1 7,20V12.07L5.7,13.12C5.31,13.5 4.68,13.5 4.29,13.12L1.46,10.29C1.07,9.9 1.07,9.27 1.46,8.88L7.34,3H9C9,4.1 10.34,5 12,5C13.66,5 15,4.1 15,3H16.66L22.54,8.88C22.93,9.27 22.93,9.9 22.54,10.29L19.71,13.12C19.32,13.5 18.69,13.5 18.3,13.12L17,12.07V20A1,1 0 0,1 16,21M20.42,9.58L16.11,5.28C15.8,5.63 15.43,5.94 15,6.2C14.16,6.7 13.13,7 12,7C10.3,7 8.79,6.32 7.89,5.28L3.58,9.58L5,11L8,9H9V19H15V9H16L19,11L20.42,9.58Z" fill="#2196f3"/>
 <text x="59" y="329" font-size="12" font-weight="400" fill="#9b9b9b">Program</text>
 <clipPath id="c7-clip5"><rect x="59" y="333" width="45.98" height="20"/></clipPath>
 <g clip-path="url(#c7-clip5)">
-<text x="59" y="348" font-size="15" font-weight="500" fill="#e1e1e1">Cotton</text>
+<text x="59" y="347.75" font-size="15" font-weight="500" fill="#e1e1e1">Cotton</text>
 </g>
 <path transform="translate(353 324) scale(0.92)" d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" fill="#9b9b9b"/>
 <rect x="13" y="369" width="183" height="44" rx="12" fill="#2196f3" fill-opacity="0.2"/>
 <path transform="translate(25 381) scale(0.83)" d="M7,9V15H11L16,20V4L11,9H7Z" fill="#2196f3"/>
 <clipPath id="c7-clip6"><rect x="53" y="381" width="34.86" height="20"/></clipPath>
 <g clip-path="url(#c7-clip6)">
-<text x="53" y="396" font-size="14" font-weight="400" fill="#e1e1e1">Silent</text>
+<text x="53" y="395.75" font-size="14" font-weight="400" fill="#e1e1e1">Silent</text>
 </g>
 <rect x="204" y="369" width="183" height="44" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(216 381) scale(0.83)" d="M16.5,5.5A2,2 0 0,0 18.5,3.5A2,2 0 0,0 16.5,1.5A2,2 0 0,0 14.5,3.5A2,2 0 0,0 16.5,5.5M12.9,19.4L13.9,15L16,17V23H18V15.5L15.9,13.5L16.5,10.5C17.89,12.09 19.89,13 22,13V11C20.24,11.03 18.6,10.11 17.7,8.6L16.7,7C16.34,6.4 15.7,6 15,6C14.7,6 14.5,6.1 14.2,6.1L9,8.3V13H11V9.6L12.8,8.9L11.2,17L6.3,16L5.9,18L12.9,19.4M4,9A1,1 0 0,1 3,8A1,1 0 0,1 4,7H7V9H4M5,5A1,1 0 0,1 4,4A1,1 0 0,1 5,3H10V5H5M3,13A1,1 0 0,1 2,12A1,1 0 0,1 3,11H7V13H3Z" fill="#9b9b9b"/>
 <clipPath id="c7-clip7"><rect x="244" y="381" width="83.97" height="20"/></clipPath>
 <g clip-path="url(#c7-clip7)">
-<text x="244" y="396" font-size="14" font-weight="400" fill="#e1e1e1">SpeedPerfect</text>
+<text x="244" y="395.75" font-size="14" font-weight="400" fill="#e1e1e1">SpeedPerfect</text>
 </g>
 <path transform="translate(13 431) scale(1)" d="M12,20A7,7 0 0,1 5,13A7,7 0 0,1 12,6A7,7 0 0,1 19,13A7,7 0 0,1 12,20M19.03,7.39L20.45,5.97C20,5.46 19.55,5 19.04,4.56L17.62,6C16.07,4.74 14.12,4 12,4A9,9 0 0,0 3,13A9,9 0 0,0 12,22C17,22 21,17.97 21,13C21,10.88 20.26,8.93 19.03,7.39M11,14H13V8H11M15,1H9V3H15V1Z" fill="#9b9b9b"/>
 <clipPath id="c7-clip8"><rect x="49" y="432" width="52.7" height="20"/></clipPath>
 <g clip-path="url(#c7-clip8)">
-<text x="49" y="447" font-size="14" font-weight="400" fill="#e1e1e1">Duration</text>
+<text x="49" y="446.75" font-size="14" font-weight="400" fill="#e1e1e1">Duration</text>
 </g>
 <rect x="223" y="421" width="164" height="42" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(234 432) scale(0.83)" d="M19,13H5V11H19V13Z" fill="#e1e1e1"/>
-<text x="285.58" y="447" font-size="14" font-weight="500" fill="#e1e1e1">2:00 h</text>
+<text x="285.59" y="447" font-size="14" font-weight="500" fill="#e1e1e1">2:00 h</text>
 <g opacity="0.35">
 <path transform="translate(356 432) scale(0.83)" d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" fill="#e1e1e1"/>
 </g>
@@ -438,12 +438,12 @@
 <path transform="translate(170.67 482) scale(0.83)" d="M8,5.14V19.14L19,12.14L8,5.14Z" fill="#ffffff"/>
 <clipPath id="c7-clip9"><rect x="198.67" y="482" width="30.66" height="20"/></clipPath>
 <g clip-path="url(#c7-clip9)">
-<text x="198.67" y="497" font-size="14" font-weight="500" fill="#ffffff">Start</text>
+<text x="198.67" y="496.75" font-size="14" font-weight="500" fill="#ffffff">Start</text>
 </g>
 <rect x="13.5" y="525.5" width="109.17" height="31" rx="15.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
 <path transform="translate(22 532) scale(0.75)" d="M16,11H18V13H16V11M12,3H19C20.11,3 21,3.89 21,5V19H22V21H2V19H10V5C10,3.89 10.89,3 12,3M12,5V19H19V5H12Z" fill="#9b9b9b"/>
 <text x="46" y="545" font-size="12" font-weight="500" fill="#e1e1e1">Door closed</text>
-<rect x="131.67" y="525.5" width="126.14" height="31" rx="15.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
+<rect x="131.67" y="525.5" width="126.13" height="31" rx="15.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
 <path transform="translate(140.17 532) scale(0.75)" d="M16.89,15.5L18.31,16.89C19.21,15.73 19.76,14.39 19.93,13H17.91C17.77,13.87 17.43,14.72 16.89,15.5M13,17.9V19.92C14.39,19.75 15.74,19.21 16.9,18.31L15.46,16.87C14.71,17.41 13.87,17.76 13,17.9M19.93,11C19.76,9.61 19.21,8.27 18.31,7.11L16.89,8.53C17.43,9.28 17.77,10.13 17.91,11M15.55,5.55L11,1V4.07C7.06,4.56 4,7.92 4,12C4,16.08 7.05,19.44 11,19.93V17.91C8.16,17.43 6,14.97 6,12C6,9.03 8.16,6.57 11,6.09V10L15.55,5.55Z" fill="#9b9b9b"/>
 <text x="164.17" y="545" font-size="12" font-weight="400" fill="#9b9b9b">Spin</text>
 <text x="193.59" y="545" font-size="12" font-weight="500" fill="#e1e1e1">1400 rpm</text>
@@ -463,7 +463,7 @@
 <path transform="translate(19 21) scale(1)" d="M14.83,11.17C16.39,12.73 16.39,15.27 14.83,16.83C13.27,18.39 10.73,18.39 9.17,16.83L14.83,11.17M6,2H18A2,2 0 0,1 20,4V20A2,2 0 0,1 18,22H6A2,2 0 0,1 4,20V4A2,2 0 0,1 6,2M7,4A1,1 0 0,0 6,5A1,1 0 0,0 7,6A1,1 0 0,0 8,5A1,1 0 0,0 7,4M10,4A1,1 0 0,0 9,5A1,1 0 0,0 10,6A1,1 0 0,0 11,5A1,1 0 0,0 10,4M12,8A6,6 0 0,0 6,14A6,6 0 0,0 12,20A6,6 0 0,0 18,14A6,6 0 0,0 12,8Z" fill="#2196f3"/>
 <clipPath id="c8-clip1"><rect x="59" y="15" width="228" height="20"/></clipPath>
 <g clip-path="url(#c8-clip1)">
-<text x="59" y="30" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Washer</text>
+<text x="59" y="29.75" font-size="14" font-weight="500" fill="#e1e1e1" letter-spacing="0.1">Washer</text>
 </g>
 <clipPath id="c8-clip2"><rect x="59" y="35" width="228" height="16"/></clipPath>
 <g clip-path="url(#c8-clip2)">
@@ -471,8 +471,8 @@
 </g>
 <path transform="translate(306 22) scale(0.92)" d="M16.56,5.44L15.11,6.89C16.84,7.94 18,9.83 18,12A6,6 0 0,1 12,18A6,6 0 0,1 6,12C6,9.83 7.16,7.94 8.88,6.88L7.44,5.44C5.36,6.88 4,9.28 4,12A8,8 0 0,0 12,20A8,8 0 0,0 20,12C20,9.28 18.64,6.88 16.56,5.44M13,3H11V13H13" fill="#2196f3"/>
 <path transform="translate(356 22) scale(0.92)" d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z" fill="#9b9b9b"/>
-<text x="13" y="80" font-size="14" font-weight="500" fill="#e1e1e1">Rinsing · 1:24 h</text>
-<text x="285.52" y="80" font-size="14" font-weight="400" fill="#9b9b9b">Ends at 8:06 PM</text>
+<text x="13" y="79.75" font-size="14" font-weight="500" fill="#e1e1e1">Rinsing · 1:24 h</text>
+<text x="285.52" y="79.75" font-size="14" font-weight="400" fill="#9b9b9b">Ends at 8:06 PM</text>
 <rect x="13" y="91" width="374" height="8" rx="4" fill="#464646" fill-opacity="0.3"/>
 <clipPath id="c8-clip3"><rect x="13" y="91" width="374" height="8" rx="4"/></clipPath>
 <g clip-path="url(#c8-clip3)">
@@ -482,16 +482,16 @@
 <path transform="translate(134.55 122) scale(0.83)" d="M14,19H18V5H14M6,19H10V5H6V19Z" fill="#e1e1e1"/>
 <clipPath id="c8-clip4"><rect x="162.55" y="122" width="38.91" height="20"/></clipPath>
 <g clip-path="url(#c8-clip4)">
-<text x="162.55" y="137" font-size="14" font-weight="500" fill="#e1e1e1">Pause</text>
+<text x="162.55" y="136.75" font-size="14" font-weight="500" fill="#e1e1e1">Pause</text>
 </g>
 <rect x="331" y="111" width="56" height="42" rx="12" fill="#464646" fill-opacity="0.2"/>
 <path transform="translate(349 122) scale(0.83)" d="M18,18H6V6H18V18Z" fill="#e1e1e1"/>
 <rect x="13.5" y="165.5" width="109.14" height="31" rx="15.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
 <path transform="translate(22 172) scale(0.75)" d="M16 11H18V13H16V11M12 3H19A2 2 0 0 1 21 5V19H22V21H2V19H10V5A2 2 0 0 1 12 3M12 5V19H19V5M6.2 5H2.8V4.5A1.7 1.7 0 0 1 6.2 4.5M7 5V4.5A2.5 2.5 0 0 0 2 4.5V5A1 1 0 0 0 1 6V10A1 1 0 0 0 2 11H7A1 1 0 0 0 8 10V6A1 1 0 0 0 7 5" fill="#9b9b9b"/>
 <text x="46" y="185" font-size="12" font-weight="500" fill="#e1e1e1">Door locked</text>
-<rect x="131.64" y="165.5" width="126.14" height="31" rx="15.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
+<rect x="131.64" y="165.5" width="126.13" height="31" rx="15.5" fill="none" stroke="#e1e1e1" stroke-opacity="0.12" stroke-width="1"/>
 <path transform="translate(140.14 172) scale(0.75)" d="M16.89,15.5L18.31,16.89C19.21,15.73 19.76,14.39 19.93,13H17.91C17.77,13.87 17.43,14.72 16.89,15.5M13,17.9V19.92C14.39,19.75 15.74,19.21 16.9,18.31L15.46,16.87C14.71,17.41 13.87,17.76 13,17.9M19.93,11C19.76,9.61 19.21,8.27 18.31,7.11L16.89,8.53C17.43,9.28 17.77,10.13 17.91,11M15.55,5.55L11,1V4.07C7.06,4.56 4,7.92 4,12C4,16.08 7.05,19.44 11,19.93V17.91C8.16,17.43 6,14.97 6,12C6,9.03 8.16,6.57 11,6.09V10L15.55,5.55Z" fill="#9b9b9b"/>
 <text x="164.14" y="185" font-size="12" font-weight="400" fill="#9b9b9b">Spin</text>
-<text x="193.56" y="185" font-size="12" font-weight="500" fill="#e1e1e1">1400 rpm</text>
+<text x="193.55" y="185" font-size="12" font-weight="500" fill="#e1e1e1">1400 rpm</text>
 </g></g>
 </svg>

@@ -167,7 +167,7 @@ in sight, with an alert when they run out.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="images/dishwasher-dark.svg">
-  <img alt="Dishwasher card: off, ready, delayed start, running, salt empty, finished and compact view" src="images/dishwasher-light.svg">
+  <img alt="Dishwasher card: off, ready, door open, delayed start, running, salt empty, finished and compact view" src="images/dishwasher-light.svg">
 </picture>
 
 ### Oven
@@ -222,8 +222,11 @@ Some parts appear only when the integration provides what they need:
 
 > [!TIP]
 > Bosch and Siemens appliances accept a remote start only after you turn on
-> **Remote Start** at the appliance itself. Until then the card disables
-> **Start** and tells you why.
+> **Remote Start** at the appliance itself. The card can tell you so only
+> through the **Remote start allowed** entity, which Home Connect Local by
+> chris-mc1 disables by default: enable it on the appliance's device page.
+> Without it, when the appliance doesn't accept a start the card disables
+> **Start** and suggests what to check.
 
 ## Languages
 
@@ -264,12 +267,92 @@ dependencies.
 python3 tools/serve.py
 ```
 
-- `http://localhost:8765/demo/` shows the cards with demo data: every
-  scenario, light and dark, English and Italian. Add `?variant=fork` to see
-  them on the entities of the vemboy200 fork.
-- `http://localhost:8765/tools/render.html` renders the images in
-  `images/` from the real cards, as plain vector SVG with an embedded
-  Roboto subset. It also checks that the columns of the wall stay aligned.
+Then open `http://localhost:8765/demo/` to see the cards with demo data:
+every scenario, light and dark, English and Italian. Add `?variant=fork` to
+see them on the entities of the vemboy200 fork.
+
+## Contributing
+
+### A card for another appliance
+
+Cards for dryers, washer-dryers, coffee makers, fridges or hoods are
+welcome, but they can't be built without data from a real appliance. If you
+own one, three things are enough to get it started:
+
+- **The diagnostics of the appliance**: they describe every feature the
+  appliance has, with its programs, options and allowed values
+- **The list of its entities and their states**, captured with the script
+  below at a few moments: off, ready with a program selected, while a
+  program runs and when it has finished
+- **What you'd like to see and do from the card**: the information you
+  check most and the controls you use every day. Screenshots of the
+  official Home Connect app are welcome too
+
+Then open an issue with the
+[New appliance card](https://github.com/fabioscarparo/bosch-homeconnect-cards/issues/new?template=new_appliance.yml)
+form and attach the files.
+
+> [!WARNING]
+> Never attach the ZIP file of the Home Connect Profile Downloader: it
+> contains the encryption keys of your appliances.
+
+### Downloading the diagnostics
+
+Go to **Settings → Devices & services → Home Connect Local**, open the
+appliance, then **⋮ → Download diagnostics**. Home Assistant removes the
+encryption keys, the MAC address and the serial number from the file.
+
+### Capturing entities and states
+
+1. Some entities of the appliance are disabled by default. To include them,
+   open the device page, select **+N entities not shown**, then enable them
+   and wait a minute.
+2. Open Home Assistant in a browser on a computer and open the console:
+   **Cmd+Option+J** on macOS, **Ctrl+Shift+J** on Windows and Linux.
+   Chrome may ask you to type `allow pasting` first.
+3. Paste this script and press **Enter**:
+
+   ```js
+   (() => {
+     const hass = document.querySelector("home-assistant").hass;
+     const appliances = {};
+     for (const entry of Object.values(hass.entities)) {
+       if (entry.platform !== "homeconnect_ws") continue;
+       const device = hass.devices[entry.device_id] || {};
+       const stateObj = hass.states[entry.entity_id];
+       const { friendly_name, ...attributes } = stateObj?.attributes || {};
+       const appliance = (appliances[entry.device_id] ||= {
+         model: device.model,
+         model_id: device.model_id,
+         manufacturer: device.manufacturer,
+         entities: [],
+       });
+       appliance.entities.push({
+         domain: entry.entity_id.split(".")[0],
+         key: entry.translation_key,
+         category: entry.entity_category ?? null,
+         state: stateObj?.state ?? null,
+         attributes,
+       });
+     }
+     const data = {
+       ha_version: hass.config.version,
+       captured_at: new Date().toISOString(),
+       appliances: Object.values(appliances),
+     };
+     const link = document.createElement("a");
+     link.href = URL.createObjectURL(new Blob([JSON.stringify(data, null, 1)], { type: "application/json" }));
+     link.download = `homeconnect-entities-${Date.now()}.json`;
+     link.click();
+     return `${data.appliances.length} appliances exported`;
+   })();
+   ```
+
+4. The browser downloads a `homeconnect-entities-….json` file. Repeat at
+   each moment you want to capture: every run creates a new file.
+
+For each entity the file holds its domain, key, category, state and
+attributes. Entity names and ids, rooms and device ids are left out.
 
 ## Disclaimer
 

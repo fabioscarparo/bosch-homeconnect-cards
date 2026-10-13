@@ -38,8 +38,10 @@ function forkEntities(data) {
   }
   for (const device of data.devices) {
     if (device.model === "Hob") continue;
-    const add = (key, domain, state, attributes = {}) =>
+    const add = (key, domain, state, attributes = {}) => {
+      if (out.some((e) => e.device_id === device.id && e.key === key)) return;
       out.push({ entity_id: `${domain}.${device.id}_${key}`, device_id: device.id, key, canonical: key, category: null, state, attributes });
+    };
     add("select_delay_start", "select", "no_delay", { options: FORK_DELAY_OPTIONS, friendly_name: `${device.name} Delay start` });
     add("binary_remote_start_allowed", "binary_sensor", "on", { friendly_name: `${device.name} Remote start allowed` });
     if (device.model === "Oven") add("binary_sensor_program_finished", "binary_sensor", "off");
@@ -339,6 +341,7 @@ export const SCENARIOS = {
       "Remote start off",
       (s, d) => {
         washerReady(s, d);
+        s.set(d, "binary_remote_start_allowed", "off");
         s.set(d, "button_start_program", "unavailable");
       },
     ],
@@ -373,6 +376,14 @@ export const SCENARIOS = {
   Dishwasher: {
     off: ["Off", () => {}],
     ready: ["Ready", dishReady],
+    door: [
+      "Door open",
+      (s, d) => {
+        dishReady(s, d);
+        s.set(d, "binary_sensor_door_state", "on");
+        s.set(d, "button_start_program", "unavailable");
+      },
+    ],
     delayed: [
       "Delayed start",
       (s, d) => {

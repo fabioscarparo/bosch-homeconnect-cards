@@ -2758,6 +2758,36 @@
     "icon": "mdi:key-wireless",
     "friendly_name": "Induction Hob Bluetooth presence token"
    }
+  },
+  {
+   "entity_id": "binary_sensor.washer_remote_start_allowed",
+   "device_id": "washer",
+   "key": "binary_remote_start_allowed",
+   "category": "diagnostic",
+   "state": "on",
+   "attributes": {
+    "friendly_name": "Washer Remote start allowed"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.dishwasher_remote_start_allowed",
+   "device_id": "dishwasher",
+   "key": "binary_remote_start_allowed",
+   "category": "diagnostic",
+   "state": "on",
+   "attributes": {
+    "friendly_name": "Dishwasher Remote start allowed"
+   }
+  },
+  {
+   "entity_id": "binary_sensor.oven_remote_start_allowed",
+   "device_id": "oven",
+   "key": "binary_remote_start_allowed",
+   "category": "diagnostic",
+   "state": "on",
+   "attributes": {
+    "friendly_name": "Oven Remote start allowed"
+   }
   }
  ],
  "translations": {
