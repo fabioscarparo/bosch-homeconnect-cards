@@ -157,10 +157,10 @@ also shows the recommended load. While the program runs you can pause it,
 resume it or stop it, and the card tells you when laundry can still be
 added.
 
-Tap the **Last cycle** badges, or the **Consumption** badge when there's no
-last cycle, to see the energy and water of this month, a chart of the last
-six months, the average per cycle, this year and the total, from the Home
-Assistant statistics.
+The **Last cycle** badge shows the energy and water of the last program.
+Tap it, or the **Consumption** badge when there's no last cycle, to see the
+energy and water of this month, a chart of the last six months, the average
+per cycle, this year and the total, from the Home Assistant statistics.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="images/washer-dark.svg">

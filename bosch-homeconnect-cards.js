@@ -10,7 +10,7 @@
  * MIT License - Copyright (c) 2026 Fabio Scarparo
  */
 
-const VERSION = "0.4.0";
+const VERSION = "0.4.1";
 const DOMAIN = "homeconnect_ws";
 const UNAVAILABLE = new Set(["unavailable", "unknown"]);
 
@@ -1128,6 +1128,8 @@ const STYLES = `
   .badge:hover { background: color-mix(in srgb, var(--primary-text-color) 5%, transparent); }
   .badge ha-icon { color: var(--badge-color, var(--secondary-text-color)); }
   .badge .muted { color: var(--secondary-text-color); font-weight: 400; }
+  .badge.no-icon { padding-inline-start: 12px; }
+  .badge .part { margin-inline-start: 4px; }
 
   .empty {
     display: flex;
@@ -1672,15 +1674,18 @@ class HomeConnectCard extends HTMLElement {
     return `<div class="alert ${type}" role="status"><ha-icon icon="${icon}"></ha-icon><span>${esc(text)}</span></div>`;
   }
 
-  _badge(icon, text, { key, entity, color, label, action: onTap } = {}) {
+  _badge(icon, text, { key, entity, color, label, action: onTap, parts = [] } = {}) {
     const target = entity || (key ? this.eid(key) : undefined);
     let action = target ? `data-action="more-info" data-entity="${target}" role="button" tabindex="0"` : "";
     if (onTap) action = `data-action="${onTap}" role="button" tabindex="0"`;
     return `
-      <div class="badge" ${action} style="${color ? `--badge-color:${color}` : ""}">
-        <ha-icon icon="${icon}"></ha-icon>
+      <div class="badge ${icon ? "" : "no-icon"}" ${action} style="${color ? `--badge-color:${color}` : ""}">
+        ${icon ? `<ha-icon icon="${icon}"></ha-icon>` : ""}
         ${label ? `<span class="muted">${esc(label)}</span>` : ""}
-        <span>${esc(text)}</span>
+        ${text != null ? `<span>${esc(text)}</span>` : ""}
+        ${parts
+          .map((part) => `<ha-icon class="part" icon="${part.icon}" style="--badge-color:${part.color}"></ha-icon><span>${esc(part.text)}</span>`)
+          .join("")}
       </div>`;
   }
 
@@ -1958,30 +1963,22 @@ class HomeConnectCard extends HTMLElement {
   }
 
   _lastCycleBadges() {
-    const badges = [];
-    // With the total consumption sensors they open the consumption sheet
+    // With the total consumption sensors the badge opens the consumption sheet
     const action = this._hasUsage() ? "open-usage" : undefined;
-    if (this.ok("sensor_energy_consumed_last")) {
-      badges.push(
-        this._badge("mdi:lightning-bolt", this._fmtState(this.st("sensor_energy_consumed_last")), {
-          key: "sensor_energy_consumed_last",
-          label: this._t("last_cycle"),
-          color: USAGE_METRICS.energy.color,
-          action,
-        }),
-      );
-    }
-    if (this.ok("sensor_water_consumed_last")) {
-      badges.push(
-        this._badge("mdi:water", this._fmtState(this.st("sensor_water_consumed_last")), {
-          key: "sensor_water_consumed_last",
-          color: USAGE_METRICS.water.color,
-          action,
-        }),
-      );
-    }
-    if (!badges.length && action) badges.push(this._badge("mdi:chart-bar", this._t("usage"), { action }));
-    return badges;
+    const metrics = [
+      ["sensor_energy_consumed_last", USAGE_METRICS.energy],
+      ["sensor_water_consumed_last", USAGE_METRICS.water],
+    ].filter(([key]) => this.ok(key));
+    if (!metrics.length) return action ? [this._badge("mdi:chart-bar", this._t("usage"), { action })] : [];
+    // Energy and water of the last cycle in one badge, each value with its own icon
+    return [
+      this._badge(null, null, {
+        key: metrics[0][0],
+        label: this._t("last_cycle"),
+        action,
+        parts: metrics.map(([key, metric]) => ({ icon: metric.icon, color: metric.color, text: this._fmtState(this.st(key)) })),
+      }),
+    ];
   }
 
   // --- Consumption -----------------------------------------------------------

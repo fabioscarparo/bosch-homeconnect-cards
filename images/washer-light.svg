@@ -24,13 +24,12 @@
 <g clip-path="url(#c0-clip3)">
 <text x="190.15" y="90.75" font-size="14" font-weight="500" fill="#212121">Turn on</text>
 </g>
-<rect x="13.5" y="119.5" width="154.81" height="31" rx="15.5" fill="none" stroke="#000000" stroke-opacity="0.12" stroke-width="1"/>
-<path transform="translate(22 126) scale(0.75)" d="M11 15H6L13 1V9H18L11 23V15Z" fill="#ffc107"/>
-<text x="46" y="139" font-size="12" font-weight="400" fill="#727272">Last cycle</text>
-<text x="105.53" y="139" font-size="12" font-weight="500" fill="#212121">0.52 kWh</text>
-<rect x="177.31" y="119.5" width="68.11" height="31" rx="15.5" fill="none" stroke="#000000" stroke-opacity="0.12" stroke-width="1"/>
-<path transform="translate(185.81 126) scale(0.75)" d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25C12,3.25 18,10 18,14A6,6 0 0,1 12,20Z" fill="#2196f3"/>
-<text x="209.81" y="139" font-size="12" font-weight="500" fill="#212121">36 L</text>
+<rect x="13.5" y="119.5" width="219.92" height="31" rx="15.5" fill="none" stroke="#000000" stroke-opacity="0.12" stroke-width="1"/>
+<text x="26" y="139" font-size="12" font-weight="400" fill="#727272">Last cycle</text>
+<path transform="translate(89.53 126) scale(0.75)" d="M11 15H6L13 1V9H18L11 23V15Z" fill="#ffc107"/>
+<text x="113.53" y="139" font-size="12" font-weight="500" fill="#212121">0.52 kWh</text>
+<path transform="translate(173.81 126) scale(0.75)" d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25C12,3.25 18,10 18,14A6,6 0 0,1 12,20Z" fill="#2196f3"/>
+<text x="197.81" y="139" font-size="12" font-weight="500" fill="#212121">36 L</text>
 </g></g>
 <g transform="translate(416 0)"><rect x="0" y="0" width="400" height="144" rx="12" fill="#ffffff"/>
 <rect x="0.5" y="0.5" width="399" height="143" rx="11.5" fill="none" stroke="#000000" stroke-opacity="0.12" stroke-width="1"/>
@@ -49,13 +48,12 @@
 <path transform="translate(356 22) scale(0.92)" d="M12,16A2,2 0 0,1 14,18A2,2 0 0,1 12,20A2,2 0 0,1 10,18A2,2 0 0,1 12,16M12,10A2,2 0 0,1 14,12A2,2 0 0,1 12,14A2,2 0 0,1 10,12A2,2 0 0,1 12,10M12,4A2,2 0 0,1 14,6A2,2 0 0,1 12,8A2,2 0 0,1 10,6A2,2 0 0,1 12,4Z" fill="#727272"/>
 <path transform="translate(13 65) scale(0.92)" d="M4,1C2.89,1 2,1.89 2,3V7C2,8.11 2.89,9 4,9H1V11H13V9H10C11.11,9 12,8.11 12,7V3C12,1.89 11.11,1 10,1H4M4,3H10V7H4V3M14,13C12.89,13 12,13.89 12,15V19C12,20.11 12.89,21 14,21H11V23H23V21H20C21.11,21 22,20.11 22,19V15C22,13.89 21.11,13 20,13H14M3.88,13.46L2.46,14.88L4.59,17L2.46,19.12L3.88,20.54L6,18.41L8.12,20.54L9.54,19.12L7.41,17L9.54,14.88L8.12,13.46L6,15.59L3.88,13.46M14,15H20V19H14V15Z" fill="#727272"/>
 <text x="47" y="81" font-size="14" font-weight="400" fill="#727272">The appliance can&apos;t be reached on the network</text>
-<rect x="13.5" y="99.5" width="154.81" height="31" rx="15.5" fill="none" stroke="#000000" stroke-opacity="0.12" stroke-width="1"/>
-<path transform="translate(22 106) scale(0.75)" d="M11 15H6L13 1V9H18L11 23V15Z" fill="#ffc107"/>
-<text x="46" y="119" font-size="12" font-weight="400" fill="#727272">Last cycle</text>
-<text x="105.53" y="119" font-size="12" font-weight="500" fill="#212121">0.52 kWh</text>
-<rect x="177.31" y="99.5" width="68.11" height="31" rx="15.5" fill="none" stroke="#000000" stroke-opacity="0.12" stroke-width="1"/>
-<path transform="translate(185.81 106) scale(0.75)" d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25C12,3.25 18,10 18,14A6,6 0 0,1 12,20Z" fill="#2196f3"/>
-<text x="209.81" y="119" font-size="12" font-weight="500" fill="#212121">36 L</text>
+<rect x="13.5" y="99.5" width="219.92" height="31" rx="15.5" fill="none" stroke="#000000" stroke-opacity="0.12" stroke-width="1"/>
+<text x="26" y="119" font-size="12" font-weight="400" fill="#727272">Last cycle</text>
+<path transform="translate(89.53 106) scale(0.75)" d="M11 15H6L13 1V9H18L11 23V15Z" fill="#ffc107"/>
+<text x="113.53" y="119" font-size="12" font-weight="500" fill="#212121">0.52 kWh</text>
+<path transform="translate(173.81 106) scale(0.75)" d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25C12,3.25 18,10 18,14A6,6 0 0,1 12,20Z" fill="#2196f3"/>
+<text x="197.81" y="119" font-size="12" font-weight="500" fill="#212121">36 L</text>
 </g></g>
 <g transform="translate(832 0)"><rect x="0" y="0" width="400" height="1076" rx="12" fill="#ffffff"/>
 <rect x="0.5" y="0.5" width="399" height="1075" rx="11.5" fill="none" stroke="#000000" stroke-opacity="0.12" stroke-width="1"/>
@@ -233,13 +231,12 @@
 <path transform="translate(140.17 998) scale(0.75)" d="M12,3A4,4 0 0,1 16,7C16,7.73 15.81,8.41 15.46,9H18C18.95,9 19.75,9.67 19.95,10.56C21.96,18.57 22,18.78 22,19A2,2 0 0,1 20,21H4A2,2 0 0,1 2,19C2,18.78 2.04,18.57 4.05,10.56C4.25,9.67 5.05,9 6,9H8.54C8.19,8.41 8,7.73 8,7A4,4 0 0,1 12,3M12,5A2,2 0 0,0 10,7A2,2 0 0,0 12,9A2,2 0 0,0 14,7A2,2 0 0,0 12,5M6,11V19H8V16.5L9,17.5V19H11V17L9,15L11,13V11H9V12.5L8,13.5V11H6M15,11C13.89,11 13,11.89 13,13V17C13,18.11 13.89,19 15,19H18V14H16V17H15V13H18V11H15Z" fill="#727272"/>
 <text x="164.17" y="1011" font-size="12" font-weight="400" fill="#727272">Recommended load</text>
 <text x="277.02" y="1011" font-size="12" font-weight="500" fill="#212121">4 kg</text>
-<rect x="13.5" y="1031.5" width="154.81" height="31" rx="15.5" fill="none" stroke="#000000" stroke-opacity="0.12" stroke-width="1"/>
-<path transform="translate(22 1038) scale(0.75)" d="M11 15H6L13 1V9H18L11 23V15Z" fill="#ffc107"/>
-<text x="46" y="1051" font-size="12" font-weight="400" fill="#727272">Last cycle</text>
-<text x="105.53" y="1051" font-size="12" font-weight="500" fill="#212121">0.52 kWh</text>
-<rect x="177.31" y="1031.5" width="68.11" height="31" rx="15.5" fill="none" stroke="#000000" stroke-opacity="0.12" stroke-width="1"/>
-<path transform="translate(185.81 1038) scale(0.75)" d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25C12,3.25 18,10 18,14A6,6 0 0,1 12,20Z" fill="#2196f3"/>
-<text x="209.81" y="1051" font-size="12" font-weight="500" fill="#212121">36 L</text>
+<rect x="13.5" y="1031.5" width="219.92" height="31" rx="15.5" fill="none" stroke="#000000" stroke-opacity="0.12" stroke-width="1"/>
+<text x="26" y="1051" font-size="12" font-weight="400" fill="#727272">Last cycle</text>
+<path transform="translate(89.53 1038) scale(0.75)" d="M11 15H6L13 1V9H18L11 23V15Z" fill="#ffc107"/>
+<text x="113.53" y="1051" font-size="12" font-weight="500" fill="#212121">0.52 kWh</text>
+<path transform="translate(173.81 1038) scale(0.75)" d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25C12,3.25 18,10 18,14A6,6 0 0,1 12,20Z" fill="#2196f3"/>
+<text x="197.81" y="1051" font-size="12" font-weight="500" fill="#212121">36 L</text>
 </g></g>
 <g transform="translate(1248 0)"><rect x="0" y="0" width="400" height="1176" rx="12" fill="#ffffff"/>
 <rect x="0.5" y="0.5" width="399" height="1175" rx="11.5" fill="none" stroke="#000000" stroke-opacity="0.12" stroke-width="1"/>
@@ -433,13 +430,12 @@
 <path transform="translate(140.17 1098) scale(0.75)" d="M12,3A4,4 0 0,1 16,7C16,7.73 15.81,8.41 15.46,9H18C18.95,9 19.75,9.67 19.95,10.56C21.96,18.57 22,18.78 22,19A2,2 0 0,1 20,21H4A2,2 0 0,1 2,19C2,18.78 2.04,18.57 4.05,10.56C4.25,9.67 5.05,9 6,9H8.54C8.19,8.41 8,7.73 8,7A4,4 0 0,1 12,3M12,5A2,2 0 0,0 10,7A2,2 0 0,0 12,9A2,2 0 0,0 14,7A2,2 0 0,0 12,5M6,11V19H8V16.5L9,17.5V19H11V17L9,15L11,13V11H9V12.5L8,13.5V11H6M15,11C13.89,11 13,11.89 13,13V17C13,18.11 13.89,19 15,19H18V14H16V17H15V13H18V11H15Z" fill="#727272"/>
 <text x="164.17" y="1111" font-size="12" font-weight="400" fill="#727272">Recommended load</text>
 <text x="277.02" y="1111" font-size="12" font-weight="500" fill="#212121">4 kg</text>
-<rect x="13.5" y="1131.5" width="154.81" height="31" rx="15.5" fill="none" stroke="#000000" stroke-opacity="0.12" stroke-width="1"/>
-<path transform="translate(22 1138) scale(0.75)" d="M11 15H6L13 1V9H18L11 23V15Z" fill="#ffc107"/>
-<text x="46" y="1151" font-size="12" font-weight="400" fill="#727272">Last cycle</text>
-<text x="105.53" y="1151" font-size="12" font-weight="500" fill="#212121">0.52 kWh</text>
-<rect x="177.31" y="1131.5" width="68.11" height="31" rx="15.5" fill="none" stroke="#000000" stroke-opacity="0.12" stroke-width="1"/>
-<path transform="translate(185.81 1138) scale(0.75)" d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25C12,3.25 18,10 18,14A6,6 0 0,1 12,20Z" fill="#2196f3"/>
-<text x="209.81" y="1151" font-size="12" font-weight="500" fill="#212121">36 L</text>
+<rect x="13.5" y="1131.5" width="219.92" height="31" rx="15.5" fill="none" stroke="#000000" stroke-opacity="0.12" stroke-width="1"/>
+<text x="26" y="1151" font-size="12" font-weight="400" fill="#727272">Last cycle</text>
+<path transform="translate(89.53 1138) scale(0.75)" d="M11 15H6L13 1V9H18L11 23V15Z" fill="#ffc107"/>
+<text x="113.53" y="1151" font-size="12" font-weight="500" fill="#212121">0.52 kWh</text>
+<path transform="translate(173.81 1138) scale(0.75)" d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25C12,3.25 18,10 18,14A6,6 0 0,1 12,20Z" fill="#2196f3"/>
+<text x="197.81" y="1151" font-size="12" font-weight="500" fill="#212121">36 L</text>
 </g></g>
 <g transform="translate(0 1192)"><rect x="0" y="0" width="402" height="558" rx="28" fill="#ffffff"/>
 <rect x="0.5" y="0.5" width="401" height="557" rx="27.5" fill="none" stroke="#000000" stroke-opacity="0.12" stroke-width="1"/>
@@ -644,13 +640,12 @@
 <path transform="translate(140.17 1066) scale(0.75)" d="M12,3A4,4 0 0,1 16,7C16,7.73 15.81,8.41 15.46,9H18C18.95,9 19.75,9.67 19.95,10.56C21.96,18.57 22,18.78 22,19A2,2 0 0,1 20,21H4A2,2 0 0,1 2,19C2,18.78 2.04,18.57 4.05,10.56C4.25,9.67 5.05,9 6,9H8.54C8.19,8.41 8,7.73 8,7A4,4 0 0,1 12,3M12,5A2,2 0 0,0 10,7A2,2 0 0,0 12,9A2,2 0 0,0 14,7A2,2 0 0,0 12,5M6,11V19H8V16.5L9,17.5V19H11V17L9,15L11,13V11H9V12.5L8,13.5V11H6M15,11C13.89,11 13,11.89 13,13V17C13,18.11 13.89,19 15,19H18V14H16V17H15V13H18V11H15Z" fill="#727272"/>
 <text x="164.17" y="1079" font-size="12" font-weight="400" fill="#727272">Recommended load</text>
 <text x="277.02" y="1079" font-size="12" font-weight="500" fill="#212121">4 kg</text>
-<rect x="13.5" y="1099.5" width="154.81" height="31" rx="15.5" fill="none" stroke="#000000" stroke-opacity="0.12" stroke-width="1"/>
-<path transform="translate(22 1106) scale(0.75)" d="M11 15H6L13 1V9H18L11 23V15Z" fill="#ffc107"/>
-<text x="46" y="1119" font-size="12" font-weight="400" fill="#727272">Last cycle</text>
-<text x="105.53" y="1119" font-size="12" font-weight="500" fill="#212121">0.52 kWh</text>
-<rect x="177.31" y="1099.5" width="68.11" height="31" rx="15.5" fill="none" stroke="#000000" stroke-opacity="0.12" stroke-width="1"/>
-<path transform="translate(185.81 1106) scale(0.75)" d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25C12,3.25 18,10 18,14A6,6 0 0,1 12,20Z" fill="#2196f3"/>
-<text x="209.81" y="1119" font-size="12" font-weight="500" fill="#212121">36 L</text>
+<rect x="13.5" y="1099.5" width="219.92" height="31" rx="15.5" fill="none" stroke="#000000" stroke-opacity="0.12" stroke-width="1"/>
+<text x="26" y="1119" font-size="12" font-weight="400" fill="#727272">Last cycle</text>
+<path transform="translate(89.53 1106) scale(0.75)" d="M11 15H6L13 1V9H18L11 23V15Z" fill="#ffc107"/>
+<text x="113.53" y="1119" font-size="12" font-weight="500" fill="#212121">0.52 kWh</text>
+<path transform="translate(173.81 1106) scale(0.75)" d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25C12,3.25 18,10 18,14A6,6 0 0,1 12,20Z" fill="#2196f3"/>
+<text x="197.81" y="1119" font-size="12" font-weight="500" fill="#212121">36 L</text>
 </g></g>
 <g transform="translate(832 1192)"><rect x="0" y="0" width="400" height="408" rx="12" fill="#ffffff"/>
 <rect x="0.5" y="0.5" width="399" height="407" rx="11.5" fill="none" stroke="#000000" stroke-opacity="0.12" stroke-width="1"/>
@@ -974,13 +969,12 @@
 <path transform="translate(140.17 998) scale(0.75)" d="M12,3A4,4 0 0,1 16,7C16,7.73 15.81,8.41 15.46,9H18C18.95,9 19.75,9.67 19.95,10.56C21.96,18.57 22,18.78 22,19A2,2 0 0,1 20,21H4A2,2 0 0,1 2,19C2,18.78 2.04,18.57 4.05,10.56C4.25,9.67 5.05,9 6,9H8.54C8.19,8.41 8,7.73 8,7A4,4 0 0,1 12,3M12,5A2,2 0 0,0 10,7A2,2 0 0,0 12,9A2,2 0 0,0 14,7A2,2 0 0,0 12,5M6,11V19H8V16.5L9,17.5V19H11V17L9,15L11,13V11H9V12.5L8,13.5V11H6M15,11C13.89,11 13,11.89 13,13V17C13,18.11 13.89,19 15,19H18V14H16V17H15V13H18V11H15Z" fill="#727272"/>
 <text x="164.17" y="1011" font-size="12" font-weight="400" fill="#727272">Recommended load</text>
 <text x="277.02" y="1011" font-size="12" font-weight="500" fill="#212121">4 kg</text>
-<rect x="13.5" y="1031.5" width="154.81" height="31" rx="15.5" fill="none" stroke="#000000" stroke-opacity="0.12" stroke-width="1"/>
-<path transform="translate(22 1038) scale(0.75)" d="M11 15H6L13 1V9H18L11 23V15Z" fill="#ffc107"/>
-<text x="46" y="1051" font-size="12" font-weight="400" fill="#727272">Last cycle</text>
-<text x="105.53" y="1051" font-size="12" font-weight="500" fill="#212121">0.52 kWh</text>
-<rect x="177.31" y="1031.5" width="68.11" height="31" rx="15.5" fill="none" stroke="#000000" stroke-opacity="0.12" stroke-width="1"/>
-<path transform="translate(185.81 1038) scale(0.75)" d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25C12,3.25 18,10 18,14A6,6 0 0,1 12,20Z" fill="#2196f3"/>
-<text x="209.81" y="1051" font-size="12" font-weight="500" fill="#212121">36 L</text>
+<rect x="13.5" y="1031.5" width="219.92" height="31" rx="15.5" fill="none" stroke="#000000" stroke-opacity="0.12" stroke-width="1"/>
+<text x="26" y="1051" font-size="12" font-weight="400" fill="#727272">Last cycle</text>
+<path transform="translate(89.53 1038) scale(0.75)" d="M11 15H6L13 1V9H18L11 23V15Z" fill="#ffc107"/>
+<text x="113.53" y="1051" font-size="12" font-weight="500" fill="#212121">0.52 kWh</text>
+<path transform="translate(173.81 1038) scale(0.75)" d="M12,20A6,6 0 0,1 6,14C6,10 12,3.25 12,3.25C12,3.25 18,10 18,14A6,6 0 0,1 12,20Z" fill="#2196f3"/>
+<text x="197.81" y="1051" font-size="12" font-weight="500" fill="#212121">36 L</text>
 </g></g>
 <g transform="translate(832 2352)"><rect x="0" y="0" width="402" height="598.5" rx="28" fill="#ffffff"/>
 <rect x="0.5" y="0.5" width="401" height="597.5" rx="27.5" fill="none" stroke="#000000" stroke-opacity="0.12" stroke-width="1"/>
