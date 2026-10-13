@@ -217,18 +217,14 @@ care of all of it, also after migrating from one to the other.
 |---|---|---|
 | Washer, dishwasher, oven, hob status | Yes | Yes |
 | Programs, options, start, pause, stop | Yes | Yes |
-| Delayed start | "Start in" number, started through `homeconnect_ws.start_program` | "Delay start" select or number, applied by the Start button |
+| Delayed start | "Start in" number, started through `homeconnect_ws.start_program` | "Delay start" select in 1.9, number in minutes from 2.0.0b1, applied by the Start button |
 | Washer temperature, spin speed, extra rinse, stains, recommended load | Yes | Yes |
-| Washer Mini, pre-treatment and soak | No | With [#179](https://github.com/vemboy200/homeconnect_local_hass/pull/179) |
-| Energy and water of the last cycle | No | With [#179](https://github.com/vemboy200/homeconnect_local_hass/pull/179) |
-| Consumption by month | No | In the next release, already on `dev` |
+| Washer Mini, pre-treatment and soak | No | From 2.0.0b1 |
+| Energy and water of the last cycle | No | From 2.0.0b1 |
+| Consumption by month | No | From 2.0.0b1 |
 | Oven light | No | Yes |
-| Oven hints and weight | No | With [#179](https://github.com/vemboy200/homeconnect_local_hass/pull/179) |
+| Oven hints and weight | No | From 2.0.0b1 |
 | Hob zone control | No | No |
-
-[#179](https://github.com/vemboy200/homeconnect_local_hass/pull/179) is a
-pull request to the fork that is still open: until it's merged, those parts
-of the cards don't appear.
 
 ## Optional features
 
@@ -244,6 +240,7 @@ device pages tidy and the database small.
 | Date of the last cycle | Start count, on the vemboy200 fork | Yes |
 | Average per cycle | Completed count | Yes |
 | Oven hints such as "time to turn the food" | The oven event sensors | No |
+| Foam alert on the washer | Foam detection | Yes, on new installs of the vemboy200 fork from 2.0.0b1 |
 | Hint when remote control is off | Remote control active, on the vemboy200 fork | Yes |
 | Hint when the appliance is in use from its own controls | Local control active, on the vemboy200 fork | Yes |
 | Hint when remote start is off | Remote start allowed | With chris-mc1 |

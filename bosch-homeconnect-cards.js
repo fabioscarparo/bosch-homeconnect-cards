@@ -10,7 +10,7 @@
  * MIT License - Copyright (c) 2026 Fabio Scarparo
  */
 
-const VERSION = "0.4.3";
+const VERSION = "0.4.4";
 const DOMAIN = "homeconnect_ws";
 const UNAVAILABLE = new Set(["unavailable", "unknown"]);
 
@@ -1159,7 +1159,8 @@ const STYLES = `
   .zone.active .shape { stroke: var(--accent); }
   .zone.residual .shape { fill: var(--amber-color, #ffc107); fill-opacity: 0.16; stroke: var(--amber-color, #ffc107); stroke-dasharray: 6 5; }
   .zone.unselectable { pointer-events: none; }
-  .zone text { text-anchor: middle; dominant-baseline: central; font-family: inherit; pointer-events: none; }
+  /* On the baseline, moved down by half the cap height of Roboto (dy 0.355em): capitals and digits sit in the middle */
+  .zone text { text-anchor: middle; font-family: inherit; pointer-events: none; }
   .zone .lvl { font-size: 30px; font-weight: 500; }
   .zone .lvl.small { font-size: 14px; }
   .zone .tmr { font-size: 12px; font-weight: 500; font-variant-numeric: tabular-nums; }
@@ -2967,10 +2968,10 @@ class HobCard extends HomeConnectCard {
           const color = strength > 0.45 ? "#fff" : "var(--primary-text-color)";
           const timer = z.remaining > 0 ? durationText(z.remaining) : "";
           label = `
-            <text class="lvl ${text.length > 3 ? "small" : ""}" x="${cx}" y="${timer ? cy - 8 : cy}" style="fill:${color}">${esc(text)}</text>
-            ${timer ? `<text class="tmr" x="${cx}" y="${cy + 20}" style="fill:${color}">${esc(timer)}</text>` : ""}`;
+            <text class="lvl ${text.length > 3 ? "small" : ""}" x="${cx}" y="${timer ? cy - 8 : cy}" dy="0.355em" style="fill:${color}">${esc(text)}</text>
+            ${timer ? `<text class="tmr" x="${cx}" y="${cy + 20}" dy="0.355em" style="fill:${color}">${esc(timer)}</text>` : ""}`;
         } else if (z.mode === "residual") {
-          label = `<text class="lvl" x="${cx}" y="${cy}">H</text>`;
+          label = `<text class="lvl" x="${cx}" y="${cy}" dy="0.355em">H</text>`;
         }
         const desc = `${name}: ${this._t(`zone_mode.${z.mode}`)}${z.mode === "active" ? ` ${this._levelText(z.level)}` : ""}`;
         return `
@@ -2991,7 +2992,8 @@ class HobCard extends HomeConnectCard {
 
   _offBody(d) {
     if (d.offline) return super._offBody(d);
-    return this._hobMap();
+    // The same Turn on button as the other cards, below the map
+    return this._hobMap() + super._offBody(d);
   }
 
   _body(d) {
