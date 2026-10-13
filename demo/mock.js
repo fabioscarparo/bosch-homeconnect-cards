@@ -45,6 +45,23 @@ function forkEntities(data) {
     add("select_delay_start", "select", "no_delay", { options: FORK_DELAY_OPTIONS, friendly_name: `${device.name} Delay start` });
     add("binary_remote_start_allowed", "binary_sensor", "on", { friendly_name: `${device.name} Remote start allowed` });
     if (device.model === "Oven") add("binary_sensor_program_finished", "binary_sensor", "off");
+    if (device.model === "Washer") {
+      // Options the fork exposes for a Bosch WGH24400IT washer
+      add("select_laundry_option_temperature", "select", "gc40", {
+        options: ["cold", "gc20", "gc30", "gc40", "gc50", "gc60", "gc70", "gc80", "gc90", "ulcold", "ulwarm", "ulhot", "auto", "max"],
+      });
+      add("select_laundry_spin_speed", "select", "rpm1400", {
+        options: ["off", "uloff", "ullow", "rpm400", "rpm600", "rpm800", "rpm1000", "rpm1200", "rpm1400", "rinsehold", "auto"],
+      });
+      add("select_laundry_rinseplus", "select", "off", { options: ["off", "plus1", "plus2", "plus3"] });
+      add("select_laundry_option_stains", "select", "off", {
+        options: ["off", "blood", "egg", "mud", "grass", "coffee", "redwine", "chocolate", "tea", "tomatosauce"],
+      });
+      add("sensor_laundry_load_recommendation", "sensor", "4.0", { unit_of_measurement: "kg", device_class: "weight" });
+      for (const option of ["water_plus", "prewash", "rinse_hold", "less_ironing", "intensive_plus"]) {
+        add(`switch_laundry_${option}`, "switch", "off");
+      }
+    }
   }
   return out;
 }

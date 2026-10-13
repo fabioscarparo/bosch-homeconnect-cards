@@ -10,7 +10,7 @@
  * MIT License - Copyright (c) 2026 Fabio Scarparo
  */
 
-const VERSION = "0.2.0";
+const VERSION = "0.3.0";
 const DOMAIN = "homeconnect_ws";
 const UNAVAILABLE = new Set(["unavailable", "unknown"]);
 
@@ -101,6 +101,14 @@ const STRINGS = {
     supply: { empty: "Esaurito", nearly_empty: "Quasi finito", full: "OK" },
     door: { open: "Porta aperta", closed: "Porta chiusa", locked: "Porta bloccata", ajar: "Porta socchiusa" },
     spin: "Centrifuga",
+    spin_off: "Senza centrifuga",
+    cold: "Fredda",
+    rpm: "{n} giri/min",
+    rinse_plus: "Extra risciacquo",
+    multiple_soak: "Ammollo multiplo",
+    stains: "Antimacchie",
+    load_recommendation: "Carico consigliato",
+    laundry_load: "Carico",
     alert: {
       foam: "Rilevata troppa schiuma",
       aborted: "Programma interrotto",
@@ -221,6 +229,14 @@ const STRINGS = {
     supply: { empty: "Empty", nearly_empty: "Low", full: "OK" },
     door: { open: "Door open", closed: "Door closed", locked: "Door locked", ajar: "Door ajar" },
     spin: "Spin",
+    spin_off: "No spin",
+    cold: "Cold",
+    rpm: "{n} rpm",
+    rinse_plus: "Rinse plus",
+    multiple_soak: "Multiple soak",
+    stains: "Stains",
+    load_recommendation: "Recommended load",
+    laundry_load: "Load",
     alert: {
       foam: "Too much foam detected",
       aborted: "Program aborted",
@@ -526,11 +542,22 @@ const GROUP_ICONS = {
 
 // Switches shown as program options
 const OPTION_META = {
-  switch_laundry_speed_perfect: { icon: "mdi:run-fast", it: "Velocità perfetta", en: "SpeedPerfect" },
-  switch_laundry_silent_mode: { icon: "mdi:volume-low", it: "Silenzioso", en: "Silent" },
-  switch_laundry_prewash: { icon: "mdi:water-plus-outline", it: "Prelavaggio", en: "Prewash" },
+  // Washer options, named like in the Home Connect app
+  switch_laundry_water_plus: { icon: "mdi:water-plus", it: "Water Plus", en: "Water Plus" },
+  switch_laundry_prewash: { icon: "mdi:tray-arrow-up", it: "Prelavaggio", en: "Prewash" },
+  switch_laundry_rinse_hold: { icon: "mdi:waves", it: "Ammollo a fine ciclo", en: "Rinse hold" },
+  switch_laundry_less_ironing: { icon: "mdi:iron-outline", it: "Stirameno", en: "Less ironing" },
+  switch_laundry_soak: { icon: "mdi:bucket-outline", it: "Ammollo", en: "Soak" },
+  switch_laundry_hygienic_steam: { icon: "mdi:kettle-steam-outline", it: "Vapore", en: "Steam" },
+  switch_laundry_intensive_plus: { icon: "mdi:shimmer", it: "Intensive Plus", en: "Intensive Plus" },
+  switch_laundry_silent_mode: { icon: "mdi:weather-night", it: "Silenzioso", en: "Silent" },
+  switch_laundry_silent_wash: { icon: "mdi:weather-night", it: "Silenzioso", en: "Silent" },
+  switch_laundry_speed_perfect: { icon: "mdi:speedometer", it: "SpeedPerfect", en: "SpeedPerfect" },
+  switch_laundry_common_speed_perfect: { icon: "mdi:speedometer", it: "SpeedPerfect", en: "SpeedPerfect" },
+  switch_laundry_water_and_rinse_plus1: { icon: "mdi:water-sync", it: "Acqua e risciacquo +1", en: "Water and rinse +1" },
+  switch_laundry_disinfectant: { icon: "mdi:bottle-tonic-plus-outline", it: "Disinfettante", en: "Disinfectant" },
+  switch_laundry_low_temperature_hygiene: { icon: "mdi:shield-check-outline", it: "Igiene a bassa temperatura", en: "Low temperature hygiene" },
   switch_laundry_rinse_plus: { icon: "mdi:water-sync", it: "Risciacquo extra", en: "Rinse plus" },
-  switch_laundry_water_plus: { icon: "mdi:water-plus", it: "Acqua extra", en: "Water plus" },
   switch_half_load: { icon: "mdi:circle-half-full", it: "Mezzo carico", en: "Half load" },
   switch_hygiene_plus: { icon: "mdi:shimmer", it: "Hygiene Plus", en: "Hygiene Plus" },
   switch_vario_speed_plus: { icon: "mdi:rabbit", it: "VarioSpeed Plus", en: "VarioSpeed Plus" },
@@ -615,6 +642,13 @@ function hobZonePart(entry, stateObj) {
   const zone = zoneNumber(entry.entity_id) ?? zoneNumber(stateObj?.attributes.friendly_name);
   return zone ? { zone, part: ZONE_PARTS[m[1]] } : null;
 }
+
+// Selects stepped through with minus and plus, limited to the values that make sense
+// there: the "ul" values are for US appliances
+const OPTION_STEPS = {
+  select_laundry_option_temperature: (option) => /^(cold|gc\d+)$/.test(option),
+  select_laundry_spin_speed: (option) => /^(off|rpm\d+)$/.test(option),
+};
 
 // "2h" or "90min", as used by the fork's "Delay start" select
 function delayOptionSeconds(option) {
@@ -1338,10 +1372,8 @@ class HomeConnectCard extends HTMLElement {
       const stateObj = hass.states[entry.entity_id];
       // "restored" entities are still in the registry but no longer provided by the integration
       const stale = !stateObj || stateObj.attributes?.restored === true;
-      const previous = found[entry.translation_key];
-      if (!previous || (previous.stale && !stale)) {
-        found[entry.translation_key] = { id: entry.entity_id, stale, category: entry.entity_category ?? null };
-      }
+      // Some versions have two entities for one key: keep them all and pick when reading
+      (found[entry.translation_key] ||= []).push({ id: entry.entity_id, stale, category: entry.entity_category ?? null });
       const zonePart = hobZonePart(entry, stateObj);
       if (zonePart) {
         const zone = (zones[zonePart.zone] ||= {});
@@ -1349,6 +1381,7 @@ class HomeConnectCard extends HTMLElement {
         if (!before || (before.stale && !stale)) zone[zonePart.part] = { id: entry.entity_id, stale };
       }
     }
+    for (const candidates of Object.values(found)) candidates.sort((a, b) => a.stale - b.stale);
     for (const [key, aliases] of Object.entries(KEY_ALIASES)) {
       const alias = found[key] ? undefined : aliases.find((name) => found[name]);
       if (alias) found[key] = found[alias];
@@ -1357,8 +1390,12 @@ class HomeConnectCard extends HTMLElement {
     return this._entityCache;
   }
 
+  // The first candidate that has a state, else the first one
   eid(key) {
-    return this._found[key]?.id;
+    const candidates = this._found[key];
+    if (!candidates) return undefined;
+    const usable = candidates.find((c) => !c.stale && !UNAVAILABLE.has(this._hass.states[c.id]?.state));
+    return (usable || candidates[0]).id;
   }
 
   st(key) {
@@ -1573,7 +1610,7 @@ class HomeConnectCard extends HTMLElement {
 
   _optionKeys() {
     return Object.entries(this._found)
-      .filter(([key, info]) => key.startsWith("switch_") && !info.category && !OPTION_EXCLUDE.has(key))
+      .filter(([key, candidates]) => key.startsWith("switch_") && !candidates[0].category && !OPTION_EXCLUDE.has(key))
       .map(([key]) => key);
   }
 
@@ -1629,6 +1666,43 @@ class HomeConnectCard extends HTMLElement {
             <ha-icon icon="mdi:plus"></ha-icon></button>
         </div>
       </div>`;
+  }
+
+  _optionStepper(key, { label, icon, format }) {
+    const stateObj = this.st(key);
+    if (!stateObj || UNAVAILABLE.has(stateObj.state)) return "";
+    const options = (stateObj.attributes.options || []).filter(OPTION_STEPS[key] || (() => true));
+    const current = this._pendingVal(stateObj.entity_id) ?? stateObj.state;
+    const index = options.indexOf(current);
+    const off = this._d.running || this._d.remoteControlOff;
+    return this._stepperRow({
+      label,
+      icon,
+      text: format ? format(current) : this._fmtState(stateObj, current),
+      pending: this._pending[stateObj.entity_id] !== undefined,
+      action: "option-step",
+      key,
+      step: 1,
+      minus: off || index <= 0,
+      plus: off || index >= options.length - 1,
+    });
+  }
+
+  // A select with many options, opened in a list like the programs
+  _selectRow(key, { label, icon }) {
+    const stateObj = this.st(key);
+    if (!stateObj || UNAVAILABLE.has(stateObj.state)) return "";
+    const current = this._pendingVal(stateObj.entity_id) ?? stateObj.state;
+    const disabled = this._d.running || this._d.remoteControlOff;
+    return `
+      <button class="select" data-action="open-select" data-key="${key}" ${disabled ? "disabled" : ""}>
+        <ha-icon icon="${icon}"></ha-icon>
+        <span class="sel-text">
+          <span class="lbl">${esc(label)}</span>
+          <span class="val">${esc(current === "off" ? this._t("none") : this._fmtState(stateObj, current))}</span>
+        </span>
+        <ha-icon class="chev" icon="mdi:chevron-down"></ha-icon>
+      </button>`;
   }
 
   _segmented(key, { label, icon, format }) {
@@ -1852,6 +1926,22 @@ class HomeConnectCard extends HTMLElement {
       case "select":
         this._select(key, el.dataset.option);
         break;
+      case "option-step": {
+        const stateObj = this.st(key);
+        if (!stateObj) break;
+        const options = (stateObj.attributes.options || []).filter(OPTION_STEPS[key] || (() => true));
+        const current = this._pendingVal(stateObj.entity_id) ?? stateObj.state;
+        const index = clamp(options.indexOf(current) + Number(el.dataset.delta), 0, options.length - 1);
+        if (options[index] !== current) this._select(key, options[index]);
+        break;
+      }
+      case "open-select":
+        this._openSheet({ type: "select", key, title: el.querySelector(".lbl")?.textContent });
+        break;
+      case "pick-option":
+        this._select(key, el.dataset.option);
+        this._dialog.close();
+        break;
       case "delay-option": {
         const delay = this._delay();
         if (delay?.kind !== "select") break;
@@ -1944,6 +2034,13 @@ class HomeConnectCard extends HTMLElement {
   }
 
   _sheetHead() {
+    if (this._sheet.type === "select") {
+      return `
+        <div class="sheet-head">
+          <div class="sheet-title">${esc(this._sheet.title || "")}</div>
+          <button class="icon-btn" data-action="close" aria-label="Close"><ha-icon icon="mdi:close"></ha-icon></button>
+        </div>`;
+    }
     if (this._sheet.type !== "programs") return "";
     const options = this.st("select_program")?.attributes.options || [];
     const search =
@@ -1964,6 +2061,21 @@ class HomeConnectCard extends HTMLElement {
   }
 
   _sheetBody() {
+    if (this._sheet.type === "select") {
+      const stateObj = this.st(this._sheet.key);
+      if (!stateObj) return "";
+      const current = this._pendingVal(stateObj.entity_id) ?? stateObj.state;
+      return (stateObj.attributes.options || [])
+        .map(
+          (option) => `
+          <button class="item ${option === current ? "selected" : ""}" data-action="pick-option"
+            data-key="${this._sheet.key}" data-option="${esc(option)}">
+            <span>${esc(this._fmtState(stateObj, option))}</span>
+            ${option === current ? '<ha-icon icon="mdi:check"></ha-icon>' : ""}
+          </button>`,
+        )
+        .join("");
+    }
     if (this._sheet.type !== "programs") return "";
     const stateObj = this.st("select_program");
     const current = this._d?.program;
@@ -2087,10 +2199,57 @@ class CycleCard extends HomeConnectCard {
 class WasherCard extends CycleCard {
   static kind = "washer";
 
+  _spinText(option) {
+    if (option === "off") return this._t("spin_off");
+    const rpm = String(option).match(/^rpm(\d+)$/);
+    return rpm ? this._t("rpm", { n: rpm[1] }) : this._fmtState(this.st("select_laundry_spin_speed"), option);
+  }
+
+  _temperatureText(option) {
+    if (option === "cold") return this._t("cold");
+    const degrees = String(option).match(/^gc(\d+)$/);
+    return degrees ? `${degrees[1]} °C` : this._fmtState(this.st("select_laundry_option_temperature"), option);
+  }
+
+  _plusText(option) {
+    const plus = String(option).match(/^plus(\d)$/);
+    return plus ? `+${plus[1]}` : this._t("none");
+  }
+
   _controls(d) {
+    const idle = !d.running;
     return [
       this._programSelect(d),
-      d.running ? "" : this._options(d),
+      idle
+        ? this._optionStepper("select_laundry_option_temperature", {
+            label: this._t("temperature"),
+            icon: "mdi:thermometer",
+            format: (option) => this._temperatureText(option),
+          })
+        : "",
+      idle
+        ? this._optionStepper("select_laundry_spin_speed", {
+            label: this._t("spin"),
+            icon: "mdi:rotate-right",
+            format: (option) => this._spinText(option),
+          })
+        : "",
+      idle ? this._options(d) : "",
+      idle
+        ? this._segmented("select_laundry_rinseplus", {
+            label: this._t("rinse_plus"),
+            icon: "mdi:water-sync",
+            format: (option) => this._plusText(option),
+          })
+        : "",
+      idle
+        ? this._segmented("select_laundry_multiple_soak", {
+            label: this._t("multiple_soak"),
+            icon: "mdi:bucket-outline",
+            format: (option) => this._plusText(option),
+          })
+        : "",
+      idle ? this._selectRow("select_laundry_option_stains", { label: this._t("stains"), icon: "mdi:water-alert-outline" }) : "",
       d.running
         ? ""
         : this._stepper("number_duration", {
@@ -2120,7 +2279,25 @@ class WasherCard extends CycleCard {
 
   _badges(d) {
     const badges = [this._doorBadge()];
-    if (!d.off && this.ok("sensor_laundry_spin_speed")) {
+    const recommended = this.numVal("sensor_laundry_load_recommendation");
+    if (!d.off && !d.running && recommended > 0) {
+      badges.push(
+        this._badge("mdi:weight-kilogram", this._fmtState(this.st("sensor_laundry_load_recommendation")), {
+          key: "sensor_laundry_load_recommendation",
+          label: this._t("load_recommendation"),
+        }),
+      );
+    }
+    if (this.numVal("sensor_laundry_load") > 0) {
+      badges.push(
+        this._badge("mdi:scale", this._fmtState(this.st("sensor_laundry_load")), {
+          key: "sensor_laundry_load",
+          label: this._t("laundry_load"),
+        }),
+      );
+    }
+    // With a spin speed select the stepper shows it already
+    if (!d.off && this.ok("sensor_laundry_spin_speed") && (d.running || !this.ok("select_laundry_spin_speed"))) {
       badges.push(
         this._badge("mdi:rotate-right", this._fmtState(this.st("sensor_laundry_spin_speed")), {
           key: "sensor_laundry_spin_speed",

@@ -151,8 +151,10 @@ the address, after `/config/devices/device/`.
 The dial shows the remaining time, the progress and the current phase of
 the program. Before starting you choose the program and its options, such
 as **SpeedPerfect** or **Silent**, and the duration when the program allows
-it. While the program runs you can pause it, resume it or stop it, and the
-card tells you when laundry can still be added.
+it. With the vemboy200 fork you also set the temperature, the spin speed,
+extra rinses and stain treatment, and see the recommended load, like in the
+Home Connect app. While the program runs you can pause it, resume it or stop
+it, and the card tells you when laundry can still be added.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="images/washer-dark.svg">
@@ -209,6 +211,8 @@ handles delayed start on its own: the cards take care of all of it.
 | Programs, options, start, pause, stop | Yes | Yes |
 | Delayed start | "Start in" number, started through `homeconnect_ws.start_program` | "Delay start" select or number, applied by the Start button |
 | Oven light | Switch | Light |
+| Washer temperature, spin speed, extra rinse, stains, recommended load | No | Yes |
+| Washer options such as Water Plus, Prewash, Less ironing, Intensive Plus | No | Yes |
 
 ## Optional features
 
