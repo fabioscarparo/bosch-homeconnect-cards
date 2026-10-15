@@ -2796,7 +2796,7 @@ class WasherCard extends CycleCard {
   _temperatureText(option) {
     if (option === "cold") return this._t("cold");
     const degrees = String(option).match(/^gc(\d+)$/);
-    return degrees ? `${degrees[1]} °C` : String(option);
+    return degrees ? `${degrees[1]} °C` : this._fmtState(this.st("select_laundry_option_temperature"), option) || String(option);
   }
 
   _plusText(option) {
