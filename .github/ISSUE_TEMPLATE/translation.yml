@@ -1,0 +1,42 @@
+name: Translation
+description: Add a language or fix a translation
+labels: ["translation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping! The texts of the cards are in the [translations](https://github.com/fabioscarparo/bosch-homeconnect-cards/tree/main/translations) folder, one file per language.
+
+        - **A new language**: copy `en.json` and translate the values, leaving the keys as they are.
+        - **A fix**: change the file of your language, or just list the texts to change below.
+
+        Keep the words in braces, such as `{t}` or `{n}`: the card fills them in. For programs and options, use the names the Home Connect app shows in your language.
+  - type: input
+    id: language
+    attributes:
+      label: Language
+      placeholder: French (fr)
+    validations:
+      required: true
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What is it?
+      options:
+        - A new language
+        - A fix to an existing language
+    validations:
+      required: true
+  - type: textarea
+    id: translations
+    attributes:
+      label: Translations
+      description: Drag your JSON file here, or paste the texts you changed and where they appear in the card. Screenshots are welcome.
+    validations:
+      required: true
+  - type: checkboxes
+    id: native
+    attributes:
+      label: About you
+      options:
+        - label: I use Home Assistant in this language

@@ -266,14 +266,34 @@ for example, counts the cycles from then on.
 > when the appliance doesn't accept a start the card disables **Start** and
 > suggests what to check.
 
-## Languages
+## Language support
 
-The cards speak English, Italian and German. Labels, states, program names
-and the visual editor follow the language of each user's profile, with
-English for any other language. Program names ship with the cards, because
-the integration doesn't translate all of them. A few texts come from the
-integration as they are, such as the phase of a wash, and follow its own
-translations.
+| Language | Supported |
+|---|---|
+| English | ✅ |
+| Italian | ✅ |
+| German | ✅ |
+
+Labels, states, program names and the visual editor follow the language of
+each user's profile, with English for any other language. Program names ship
+with the cards, because the integration doesn't translate all of them. A few
+texts come from the integration as they are, such as the phase of a wash, and
+follow its own translations.
+
+### Help translate
+
+The texts of the cards are in the [translations](translations) folder, one
+file per language:
+
+- **A new language**: copy [`en.json`](translations/en.json) and translate
+  the values, leaving the keys as they are.
+- **A fix**: change the file of your language.
+
+Keep the words in braces, such as `{t}` or `{n}`: the card fills them in.
+For programs and options, use the names the Home Connect app shows in your
+language. Then send the file with the
+[Translation form](https://github.com/fabioscarparo/bosch-homeconnect-cards/issues/new?template=translation.yml),
+or open a pull request.
 
 ## How it works
 
