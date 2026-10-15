@@ -10,7 +10,7 @@
  * MIT License - Copyright (c) 2026 Fabio Scarparo
  */
 
-const VERSION = "0.5.0";
+const VERSION = "0.5.1";
 const DOMAIN = "homeconnect_ws";
 const UNAVAILABLE = new Set(["unavailable", "unknown"]);
 
@@ -2662,7 +2662,9 @@ class CycleCard extends HomeConnectCard {
     const estimate = toSeconds(this.st("sensor_estimated_remaining_program_time"));
     const startIn = toSeconds(this.st("sensor_start_in"));
     const progress = this.numVal("sensor_program_progress");
-    return { remaining, estimate, startIn, progress };
+    // Before the start the remaining time can be 0, as nothing is running: then the estimate counts
+    const expected = remaining > 0 ? remaining : estimate > 60 ? estimate : null;
+    return { remaining, estimate, expected, startIn, progress };
   }
 
   _phase() {
@@ -2678,7 +2680,7 @@ class CycleCard extends HomeConnectCard {
   }
 
   _hero(d) {
-    const { remaining, estimate, startIn, progress } = this._times();
+    const { remaining, expected, startIn, progress } = this._times();
     const phase = this._phase();
     if (d.op === "DelayedStart" && startIn != null) {
       const time = splitDuration(startIn);
@@ -2711,7 +2713,7 @@ class CycleCard extends HomeConnectCard {
         sub: since ? esc(this._t("finished_at", { t: this._clock(0, Date.parse(since)) })) : "",
       });
     }
-    const duration = remaining ?? (estimate > 60 ? estimate : null);
+    const duration = expected;
     const time = splitDuration(duration);
     return dial({
       label: esc(this._t("estimated")),
@@ -2722,14 +2724,16 @@ class CycleCard extends HomeConnectCard {
   }
 
   _compactHero(d) {
-    const { remaining, startIn, progress } = this._times();
+    const { remaining, expected, startIn, progress } = this._times();
     let left = this._phase() || this._t(`op.${d.op}`);
     let right = "";
     if (d.op === "DelayedStart" && startIn != null) {
       left = `${this._t("starts_in")} ${durationText(startIn)}`;
-    } else if (remaining != null && (d.running || d.op === "Ready")) {
-      right = d.running ? this._t("ends_at", { t: this._clock(remaining) }) : durationText(remaining);
-      if (d.running) left = `${left} · ${durationText(remaining)}`;
+    } else if (d.running && remaining != null) {
+      right = this._t("ends_at", { t: this._clock(remaining) });
+      left = `${left} · ${durationText(remaining)}`;
+    } else if (d.op === "Ready" && expected != null) {
+      right = durationText(expected);
     }
     const bar = d.running ? `<div class="bar"><div style="width:${clamp(progress ?? 0, 0, 100)}%"></div></div>` : "";
     return `
