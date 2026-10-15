@@ -1,0 +1,60 @@
+name: Bug report
+description: Something in a card doesn't work as expected
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report! The cards depend on the entities your integration provides, so I need to know your setup: without the files below I can't tell what's going on.
+
+        **Never attach the ZIP file of the Home Connect Profile Downloader**: it contains the encryption keys of your appliances.
+  - type: dropdown
+    id: card
+    attributes:
+      label: Card
+      options:
+        - Washer
+        - Dishwasher
+        - Oven
+        - Induction hob
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happens?
+      description: What you see, and what you expected instead. Screenshots are welcome.
+    validations:
+      required: true
+  - type: input
+    id: cards_version
+    attributes:
+      label: Cards version
+      description: Shown in HACS, and in the browser console as BOSCH HOME CONNECT CARDS
+      placeholder: "0.5.1"
+    validations:
+      required: true
+  - type: dropdown
+    id: integration
+    attributes:
+      label: Integration
+      options:
+        - Home Connect Local by chris-mc1
+        - Home Connect Local fork by vemboy200
+    validations:
+      required: true
+  - type: input
+    id: integration_version
+    attributes:
+      label: Integration version
+      description: Shown in HACS
+      placeholder: "2.0.0b1"
+    validations:
+      required: true
+  - type: textarea
+    id: files
+    attributes:
+      label: Diagnostics and entity export
+      description: Drag here the diagnostics of the appliance and an entity export, made as explained in [Downloading the diagnostics](https://github.com/fabioscarparo/bosch-homeconnect-cards#downloading-the-diagnostics) and [Capturing entities and states](https://github.com/fabioscarparo/bosch-homeconnect-cards#capturing-entities-and-states).
+    validations:
+      required: true

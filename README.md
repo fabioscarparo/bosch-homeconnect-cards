@@ -362,8 +362,12 @@ encryption keys, the MAC address and the serial number from the file.
 3. Paste this script and press **Enter**:
 
    ```js
-   (() => {
+   (async () => {
      const hass = document.querySelector("home-assistant").hass;
+     // Which integration: the original by chris-mc1 or the vemboy200 fork, and its version
+     const manifest = await hass
+       .callWS({ type: "manifest/get", integration: "homeconnect_ws" })
+       .catch(() => null);
      const appliances = {};
      for (const entry of Object.values(hass.entities)) {
        if (entry.platform !== "homeconnect_ws") continue;
@@ -386,6 +390,11 @@ encryption keys, the MAC address and the serial number from the file.
      }
      const data = {
        ha_version: hass.config.version,
+       integration: manifest && {
+         version: manifest.version,
+         documentation: manifest.documentation,
+         codeowners: manifest.codeowners,
+       },
        captured_at: new Date().toISOString(),
        appliances: Object.values(appliances),
      };
@@ -400,8 +409,9 @@ encryption keys, the MAC address and the serial number from the file.
 4. The browser downloads a `homeconnect-entities-….json` file. Repeat at
    each moment you want to capture: every run creates a new file.
 
-For each entity the file holds its domain, key, category, state and
-attributes. Entity names and ids, rooms and device ids are left out.
+The file says which integration and version you use. For each entity it
+holds its domain, key, category, state and attributes. Entity names and ids,
+rooms and device ids are left out.
 
 ## Disclaimer
 
