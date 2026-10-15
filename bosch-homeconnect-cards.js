@@ -10,7 +10,7 @@
  * MIT License - Copyright (c) 2026 Fabio Scarparo
  */
 
-const VERSION = "0.5.2";
+const VERSION = "0.5.3";
 const DOMAIN = "homeconnect_ws";
 const UNAVAILABLE = new Set(["unavailable", "unknown"]);
 
@@ -1911,9 +1911,10 @@ class HomeConnectCard extends HTMLElement {
     if (!select || UNAVAILABLE.has(select.state)) return null;
     const options = select.attributes.options || [];
     const option = (name) => options.find((o) => String(o).toLowerCase() === name);
-    // Standby keeps the appliance on the network, so the card can turn it on again
+    // Off or MainsOff, like the power switch: an appliance can list Standby among the
+    // options but refuse it, as a Bosch WAV28E41 washer does (#3)
     const onOption = option("on");
-    const offOption = option("standby") ?? option("off") ?? option("mainsoff");
+    const offOption = option("off") ?? option("mainsoff") ?? option("standby");
     if (!onOption || !offOption) return null;
     const state = this._pendingVal(select.entity_id) ?? select.state;
     return { kind: "select", id: select.entity_id, on: String(state).toLowerCase() === "on", onOption, offOption };
