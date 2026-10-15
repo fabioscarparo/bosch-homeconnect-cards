@@ -10,7 +10,7 @@
  * MIT License - Copyright (c) 2026 Fabio Scarparo
  */
 
-const VERSION = "0.5.1";
+const VERSION = "0.5.2";
 const DOMAIN = "homeconnect_ws";
 const UNAVAILABLE = new Set(["unavailable", "unknown"]);
 
@@ -1803,9 +1803,12 @@ class HomeConnectCard extends HTMLElement {
     let off = offline;
     if (!off && !running) {
       const power = this.st("switch_power_state");
+      const powerState = ["select_power_state", "sensor_power_state"]
+        .map((key) => this.st(key))
+        .find((stateObj) => stateObj && !UNAVAILABLE.has(stateObj.state));
       if (power && !UNAVAILABLE.has(power.state)) off = power.state === "off";
-      else if (this.ok("sensor_power_state")) {
-        off = ["off", "mainsoff", "standby"].includes(this.val("sensor_power_state")) && (!op || op === "Inactive");
+      else if (powerState) {
+        off = ["off", "mainsoff", "standby"].includes(String(powerState.state).toLowerCase()) && (!op || op === "Inactive");
       }
     }
     const active = this.ok("sensor_active_program") ? this.val("sensor_active_program") : null;
@@ -1875,14 +1878,12 @@ class HomeConnectCard extends HTMLElement {
   _header(d) {
     const color = d.offline || d.off ? "var(--inactive)" : "var(--accent)";
     const infoKey = this.eid("sensor_operation_state") ? "sensor_operation_state" : "switch_power_state";
-    const power = this.st("switch_power_state");
-    const powerOn = power?.state === "on";
-    const powerBtn =
-      power && !d.offline && !UNAVAILABLE.has(power.state)
-        ? `<button class="icon-btn ${powerOn ? "on" : ""}" data-action="toggle" data-key="switch_power_state"
-             title="${esc(this._t("power"))}" aria-label="${esc(this._t("power"))}" aria-pressed="${powerOn}">
-             <ha-icon icon="mdi:power"></ha-icon></button>`
-        : "";
+    const power = d.offline ? null : this._power();
+    const powerBtn = power
+      ? `<button class="icon-btn ${power.on ? "on" : ""}" data-action="power-toggle"
+           title="${esc(this._t("power"))}" aria-label="${esc(this._t("power"))}" aria-pressed="${power.on}">
+           <ha-icon icon="mdi:power"></ha-icon></button>`
+      : "";
     return `
       <div class="header">
         <div class="tile-icon" style="--tile-color:${color}" data-action="more-info" data-key="${infoKey}" role="button" tabindex="0">
@@ -1899,12 +1900,40 @@ class HomeConnectCard extends HTMLElement {
       </div>`;
   }
 
+  // The power control: a switch on appliances with two power states, a select on those
+  // with more, like On, Standby and MainsOff. Both versions of the integration do the same.
+  _power() {
+    const toggle = this.st("switch_power_state");
+    if (toggle && !UNAVAILABLE.has(toggle.state)) {
+      return { kind: "switch", id: toggle.entity_id, on: (this._pendingVal(toggle.entity_id) ?? toggle.state) === "on" };
+    }
+    const select = this.st("select_power_state");
+    if (!select || UNAVAILABLE.has(select.state)) return null;
+    const options = select.attributes.options || [];
+    const option = (name) => options.find((o) => String(o).toLowerCase() === name);
+    // Standby keeps the appliance on the network, so the card can turn it on again
+    const onOption = option("on");
+    const offOption = option("standby") ?? option("off") ?? option("mainsoff");
+    if (!onOption || !offOption) return null;
+    const state = this._pendingVal(select.entity_id) ?? select.state;
+    return { kind: "select", id: select.entity_id, on: String(state).toLowerCase() === "on", onOption, offOption };
+  }
+
+  _setPower(on) {
+    const power = this._power();
+    if (!power) return;
+    const value = power.kind === "switch" ? (on ? "on" : "off") : on ? power.onOption : power.offOption;
+    this._pending[power.id] = { value, time: Date.now() };
+    this._render();
+    if (power.kind === "switch") this._call("switch", on ? "turn_on" : "turn_off", { entity_id: power.id });
+    else this._call("select", "select_option", { entity_id: power.id, option: value });
+  }
+
   _offBody(d) {
     if (d.offline) {
       return `<div class="empty"><ha-icon icon="mdi:lan-disconnect"></ha-icon><span>${esc(this._t("offline_hint"))}</span></div>`;
     }
-    const power = this.st("switch_power_state");
-    if (!power || UNAVAILABLE.has(power.state)) return "";
+    if (!this._power()) return "";
     return `
       <div class="actions">
         <button class="ctrl tonal" data-action="power-on"><ha-icon icon="mdi:power"></ha-icon><span>${esc(this._t("power_on"))}</span></button>
@@ -2443,8 +2472,13 @@ class HomeConnectCard extends HTMLElement {
         break;
       }
       case "power-on":
-        this._call("switch", "turn_on", { entity_id: this.eid("switch_power_state") });
+        this._setPower(true);
         break;
+      case "power-toggle": {
+        const power = this._power();
+        if (power) this._setPower(!power.on);
+        break;
+      }
       case "press":
         if (entityId) this._call("button", "press", { entity_id: entityId });
         break;
