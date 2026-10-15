@@ -10,7 +10,7 @@
  * MIT License - Copyright (c) 2026 Fabio Scarparo
  */
 
-const VERSION = "0.4.5";
+const VERSION = "0.5.0";
 const DOMAIN = "homeconnect_ws";
 const UNAVAILABLE = new Set(["unavailable", "unknown"]);
 
@@ -48,6 +48,12 @@ const KINDS = {
 // ---------------------------------------------------------------------------
 // Strings
 // ---------------------------------------------------------------------------
+
+// Italian and German, English for any other language
+function cardLang(language) {
+  const code = String(language || "en").toLowerCase();
+  return ["it", "de"].find((lang) => code.startsWith(lang)) || "en";
+}
 
 const STRINGS = {
   it: {
@@ -340,6 +346,151 @@ const STRINGS = {
       description: "Status and controls for a Bosch Home Connect appliance",
     },
   },
+  de: {
+    op: {
+      Inactive: "Inaktiv",
+      Ready: "Bereit",
+      DelayedStart: "Startzeitvorwahl",
+      Run: "Läuft",
+      Pause: "Pausiert",
+      ActionRequired: "Aktion erforderlich",
+      Finished: "Beendet",
+      Error: "Fehler",
+      Aborting: "Wird abgebrochen",
+    },
+    off: "Aus",
+    offline: "Nicht verbunden",
+    offline_hint: "Das Gerät ist im Netzwerk nicht erreichbar",
+    program: "Programm",
+    choose_program: "Programm wählen",
+    search: "Programme suchen",
+    no_results: "Keine Programme gefunden",
+    start: "Starten",
+    start_delayed: "Start in {t}",
+    pause: "Pause",
+    resume: "Fortsetzen",
+    stop: "Stopp",
+    power_on: "Einschalten",
+    power: "Ein/Aus",
+    settings: "Geräteeinstellungen",
+    estimated: "Geschätzte Dauer",
+    remaining: "Verbleibend",
+    starts_in: "Start in",
+    ends_at: "Ende um {t}",
+    finished_at: "Beendet um {t}",
+    elapsed: "Vergangen",
+    end: "Ende",
+    duration: "Dauer",
+    delay: "Startzeitvorwahl",
+    none: "Aus",
+    temperature: "Temperatur",
+    current: "Aktuell {v}",
+    weight: "Gewicht",
+    level: "Stufe",
+    pyrolysis_level: "Pyrolyse-Stufe",
+    preheating: "Vorheizen",
+    last_cycle: "Letztes Programm",
+    usage: "Verbrauch",
+    energy: "Energie",
+    water: "Wasser",
+    this_month: "Dieser Monat",
+    since: "Seit {d}",
+    last_months: "Letzte 6 Monate",
+    this_year: "Dieses Jahr",
+    per_cycle: "Durchschnitt pro Programm",
+    total: "Gesamt",
+    usage_none: "Die Statistiken erscheinen nach dem ersten Programm, das Home Assistant aufzeichnet",
+    usage_error: "Die Statistiken von Home Assistant konnten nicht gelesen werden",
+    forecast_energy: "Erwartete Energie",
+    forecast_water: "Erwartetes Wasser",
+    salt: "Salz",
+    rinse_aid: "Klarspüler",
+    supply: { empty: "Leer", nearly_empty: "Fast leer", full: "OK" },
+    door: { open: "Tür offen", closed: "Tür geschlossen", locked: "Tür verriegelt", ajar: "Tür angelehnt" },
+    spin: "Schleudern",
+    spin_off: "Ohne Schleudern",
+    cold: "Kalt",
+    rpm: "{n} U/min",
+    rinse_plus: "Spülen Plus",
+    pretreatment: "Vorbehandlung",
+    pretreatment_values: { prewash: "Vorwäsche", handsoak: "Einweichen" },
+    soak_temperature: "Einweichtemperatur",
+    soak_duration: "Einweichdauer",
+    steam_intensity: "Dampfintensität",
+    intensity: { middle: "Mittel", high: "Hoch" },
+    multiple_soak: "Mehrfach-Einweichen",
+    stains: "Flecken",
+    load_recommendation: "Empfohlene Beladung",
+    laundry_load: "Beladung",
+    alert: {
+      foam: "Zu viel Schaum erkannt",
+      aborted: "Programm abgebrochen",
+      insert_food: "Jetzt das Gargut einschieben",
+      turn_food: "Jetzt das Gargut wenden",
+      preheat_done: "Vorheizen beendet",
+      temp_high: "Garraumtemperatur zu hoch",
+      confirm: "Bestätige die Aktion am Gerät",
+      open_door: "Öffne die Tür",
+      close_door: "Schließe die Tür",
+      finished: "Programm beendet",
+      salt: "Salz nachfüllen",
+      rinse_aid: "Klarspüler nachfüllen",
+      reload: "Wäsche nachlegen möglich: pausiere und öffne die Tür",
+      reload_now: "Du kannst die Tür öffnen und Wäsche nachlegen",
+      error: "Das Gerät meldet einen Fehler",
+    },
+    hint_remote_start: "Fernstart ist aus: Schalte ihn am Gerät ein, um hier zu starten",
+    hint_close_door: "Schließe die Tür, um das Programm zu starten",
+    hint_start_unavailable:
+      "Das Gerät nimmt gerade keinen Start an. Prüfe zum Beispiel, ob die Tür geschlossen und Fernstart eingeschaltet ist",
+    hint_remote_off: "Fernsteuerung ist nicht aktiv",
+    hint_local: "Wird gerade am Gerät bedient",
+    child_lock: "Kindersicherung",
+    zones: {
+      FrontLeft: "Vorne links",
+      Left: "Flex links",
+      RearLeft: "Hinten links",
+      RearRight: "Hinten rechts",
+      Right: "Flex rechts",
+      FrontRight: "Vorne rechts",
+    },
+    zone_mode: { off: "Aus", active: "An", residual: "Restwärme", unselectable: "Nicht wählbar" },
+    zones_all_off: "Alle Kochzonen sind aus",
+    power_level: "Leistungsstufe",
+    keep_warm: "Warm",
+    timer: "Timer",
+    zone_start: "Kochzone einschalten",
+    zone_stop: "Kochzone ausschalten",
+    zone_note: "Funktioniert nur bei eingeschaltetem Kochfeld und aktiver Fernsteuerung",
+    zone_unsupported: "Kochzonen werden am Kochfeld eingeschaltet und eingestellt",
+    groups: {
+      favorite: "Favoriten",
+      heatingmode: "Heizarten",
+      dish_automatic: "Automatikprogramme",
+      dish_recommendation: "Empfohlene Gerichte",
+      cleaning: "Reinigung",
+      subsequentmode: "Nach dem Garen",
+      other: "Programme",
+    },
+    favorite: "Favorit {n}",
+    phase: { None: "", PreRinse: "Vorspülen", MainWash: "Reinigen", FinalRinse: "Klarspülen", Drying: "Trocknen" },
+    no_device: "Wähle im Karteneditor ein Gerät",
+    device_missing: "Gerät nicht gefunden",
+    error: "Befehl fehlgeschlagen: {e}",
+    editor: {
+      device_id: "Gerät",
+      name: "Name",
+      color: "Farbe",
+      hide_hero: "Kompakte Ansicht",
+    },
+    card: {
+      washer: "Waschmaschine",
+      dishwasher: "Geschirrspüler",
+      oven: "Backofen",
+      hob: "Induktionskochfeld",
+      description: "Status und Bedienung eines Bosch Home Connect Geräts",
+    },
+  },
 };
 
 // Program names: the integration doesn't translate all of them, so the cards ship their own.
@@ -552,6 +703,106 @@ const PROGRAM_LABELS = {
     wholebakedpotatoes: "Whole baked potatoes",
     powerlevelmode: "Power level",
   },
+  de: {
+    cotton: "Baumwolle",
+    darkwash: "Jeans/Dunkle Wäsche",
+    delicatessilk: "Fein/Seide",
+    delicatessilkmp: "Anti-Mikroplastik",
+    drumclean70: "Trommelreinigung 70°",
+    easycare: "Pflegeleicht",
+    goldencycle: "Golden Cycle",
+    eco4060: "Eco 40-60",
+    mix: "Mix",
+    outdoor: "Outdoor",
+    rinse: "Spülen",
+    sensitive: "Sensitiv",
+    shirtsblouses: "Hemden/Blusen",
+    sportfitness: "Sportbekleidung",
+    spindrain: "Schleudern/Abpumpen",
+    steaming: "Dampf",
+    super1530: "Super 15'/30'",
+    wool: "Wolle",
+    auto1: "Auto 35-45°",
+    auto2: "Auto 45-65°",
+    auto3: "Auto 65-75°",
+    eco50: "Eco 50°",
+    glas40: "Glas 40°",
+    intensiv70: "Intensiv 70°",
+    intensivpower: "Intensiv Power",
+    kurz60: "Speed 60°",
+    machinecare: "Maschinenpflege",
+    mixedload: "Mischbeladung",
+    nightwash: "Leise 50°",
+    prerinse: "Vorspülen",
+    quick45: "Schnell 45°",
+    quick65: "Schnell 65°",
+    quickd: "Quick D",
+    super60: "Super 60°",
+    "3dhotair": "3D-Heißluft",
+    airfry: "Air Fry",
+    bottomheating: "Unterhitze",
+    defrost: "Auftauen",
+    grilllargearea: "Grill, große Fläche",
+    grillsmallarea: "Grill, kleine Fläche",
+    hotairgentle: "Heißluft sanft",
+    hotairgrilling: "Umluftgrillen",
+    keepwarm: "Warmhalten",
+    letrest: "Ruhen lassen",
+    pizzasetting: "Pizzastufe",
+    preheating: "Vorheizen",
+    preheatovenware: "Geschirr vorwärmen",
+    slowcook: "Niedertemperaturgaren",
+    topbottomheating: "Ober-/Unterhitze",
+    topbottomheatingeco: "Ober-/Unterhitze Eco",
+    drying: "Trocknen",
+    easyclean: "EasyClean",
+    pyrolysis: "Pyrolyse",
+    "subsequentmode:continuecooking": "Weitergaren",
+    "subsequentmode:keepwarm": "Warmhalten",
+    "subsequentmode:leavetorest": "Ruhen lassen",
+    "subsequentmode:startbaking": "Backen starten",
+    belly: "Schweinebauch",
+    bonelesslegoflambmedium: "Lammkeule ohne Knochen, medium",
+    bonelessporkneckjoint: "Schweinenacken ohne Knochen",
+    gooselegs: "Gänsekeulen",
+    jointofporkwithcracklingegshoulder: "Schweinebraten mit Kruste",
+    jointofveallean: "Kalbsbraten, mager",
+    jointofvealmarbled: "Kalbsbraten, durchwachsen",
+    legoflambonthebonewelldone: "Lammkeule mit Knochen, durchgegart",
+    meatloafmadefromfreshmincedmeat: "Hackbraten",
+    pavlova: "Pavlova",
+    potroastedbeef: "Rinderschmorbraten",
+    roastporkloin: "Schweinelendenbraten",
+    sirloinmedium: "Roastbeef, medium",
+    sirloinrare: "Roastbeef, englisch",
+    slowroastjoint: "Schmorbraten, langsam gegart",
+    stewwithmeat: "Eintopf mit Fleisch",
+    stewwithvegetables: "Eintopf mit Gemüse",
+    turkeybreast: "Putenbrust",
+    unstuffedduck: "Ente, ungefüllt",
+    unstuffedsmallturkey: "Babypute, ungefüllt",
+    vealossobuco: "Kalbs-Ossobuco",
+    bakesavouryfreshcookedingredients: "Herzhafter Auflauf",
+    bonlessrolledshoulder: "Schweinerollbraten",
+    chickenparts: "Hähnchenteile",
+    chips: "Pommes frites",
+    freshlasagne: "Lasagne, frisch",
+    fruitcrumble: "Obstcrumble",
+    halvedchicken: "Hähnchen, halbiert",
+    loinjoint: "Lendenbraten",
+    muffins: "Muffins",
+    partcookedbreadrollsorbaguette: "Aufbackbrötchen oder Baguette",
+    pizzathickcrust1slicefrozen: "Pizza mit dickem Boden, tiefgekühlt",
+    pizzathincrust1slice: "Pizza mit dünnem Boden",
+    porkroast: "Schweinebraten",
+    potatogratinrawingredients4cmdeep: "Kartoffelgratin",
+    roastwholefish: "Fisch, ganz",
+    scones: "Scones",
+    topsideandtoprump: "Oberschale und Tafelspitz",
+    turkeycrownbritishstyle: "Putenkrone",
+    wholebakedpotatoes: "Backkartoffeln, ganz",
+    powerlevelmode: "Leistungsstufe",
+  },
 };
 
 // Unnamed favorites go last, after the real programs
@@ -577,31 +828,31 @@ const GROUP_ICONS = {
 // Switches shown as program options
 const OPTION_META = {
   // Washer options, named like in the Home Connect app
-  switch_laundry_water_plus: { icon: "mdi:water-plus", it: "Water Plus", en: "Water Plus" },
-  switch_laundry_prewash: { icon: "mdi:tray-arrow-up", it: "Prelavaggio", en: "Prewash" },
-  switch_laundry_rinse_hold: { icon: "mdi:waves", it: "Ammollo a fine ciclo", en: "Rinse hold" },
-  switch_laundry_less_ironing: { icon: "mdi:iron-outline", it: "Stirameno", en: "Less ironing" },
-  switch_laundry_soak: { icon: "mdi:bucket-outline", it: "Ammollo", en: "Soak" },
-  switch_laundry_hygienic_steam: { icon: "mdi:kettle-steam-outline", it: "Vapore", en: "Steam" },
-  switch_laundry_intensive_plus: { icon: "mdi:shimmer", it: "Intensive Plus", en: "Intensive Plus" },
-  switch_laundry_mini_load: { icon: "mdi:tshirt-crew-outline", it: "Mini", en: "Mini" },
-  switch_laundry_silent_mode: { icon: "mdi:weather-night", it: "Silenzioso", en: "Silent" },
-  switch_laundry_silent_wash: { icon: "mdi:weather-night", it: "Silenzioso", en: "Silent" },
-  switch_laundry_speed_perfect: { icon: "mdi:speedometer", it: "SpeedPerfect", en: "SpeedPerfect" },
-  switch_laundry_common_speed_perfect: { icon: "mdi:speedometer", it: "SpeedPerfect", en: "SpeedPerfect" },
-  switch_laundry_water_and_rinse_plus1: { icon: "mdi:water-sync", it: "Acqua e risciacquo +1", en: "Water and rinse +1" },
-  switch_laundry_disinfectant: { icon: "mdi:bottle-tonic-plus-outline", it: "Disinfettante", en: "Disinfectant" },
-  switch_laundry_low_temperature_hygiene: { icon: "mdi:shield-check-outline", it: "Igiene a bassa temperatura", en: "Low temperature hygiene" },
-  switch_laundry_rinse_plus: { icon: "mdi:water-sync", it: "Risciacquo extra", en: "Rinse plus" },
-  switch_half_load: { icon: "mdi:circle-half-full", it: "Mezzo carico", en: "Half load" },
-  switch_hygiene_plus: { icon: "mdi:shimmer", it: "Hygiene Plus", en: "Hygiene Plus" },
-  switch_vario_speed_plus: { icon: "mdi:rabbit", it: "VarioSpeed Plus", en: "VarioSpeed Plus" },
-  switch_silence_on_demand: { icon: "mdi:volume-off", it: "Silenzio su richiesta", en: "Silence on demand" },
-  switch_extra_dry: { icon: "mdi:weather-sunny", it: "Asciugatura extra", en: "Extra dry" },
-  switch_oven_fast_pre_heat: { icon: "mdi:fast-forward", it: "Preriscaldamento rapido", en: "Fast preheat" },
-  switch_oven_steam_boost: { icon: "mdi:weather-fog", it: "Getto di vapore", en: "Steam boost" },
-  switch_oven_cavity_light: { icon: "mdi:lightbulb-outline", it: "Luce interna", en: "Oven light", live: true },
-  switch_child_lock: { icon: "mdi:lock-outline", it: "Blocco bambini", en: "Child lock", live: true },
+  switch_laundry_water_plus: { icon: "mdi:water-plus", it: "Water Plus", en: "Water Plus", de: "Wasser Plus" },
+  switch_laundry_prewash: { icon: "mdi:tray-arrow-up", it: "Prelavaggio", en: "Prewash", de: "Vorwäsche" },
+  switch_laundry_rinse_hold: { icon: "mdi:waves", it: "Ammollo a fine ciclo", en: "Rinse hold", de: "Spülstopp" },
+  switch_laundry_less_ironing: { icon: "mdi:iron-outline", it: "Stirameno", en: "Less ironing", de: "Bügelleicht" },
+  switch_laundry_soak: { icon: "mdi:bucket-outline", it: "Ammollo", en: "Soak", de: "Einweichen" },
+  switch_laundry_hygienic_steam: { icon: "mdi:kettle-steam-outline", it: "Vapore", en: "Steam", de: "Dampf" },
+  switch_laundry_intensive_plus: { icon: "mdi:shimmer", it: "Intensive Plus", en: "Intensive Plus", de: "Intensiv Plus" },
+  switch_laundry_mini_load: { icon: "mdi:tshirt-crew-outline", it: "Mini", en: "Mini", de: "Mini" },
+  switch_laundry_silent_mode: { icon: "mdi:weather-night", it: "Silenzioso", en: "Silent", de: "Leise" },
+  switch_laundry_silent_wash: { icon: "mdi:weather-night", it: "Silenzioso", en: "Silent", de: "Leise" },
+  switch_laundry_speed_perfect: { icon: "mdi:speedometer", it: "SpeedPerfect", en: "SpeedPerfect", de: "SpeedPerfect" },
+  switch_laundry_common_speed_perfect: { icon: "mdi:speedometer", it: "SpeedPerfect", en: "SpeedPerfect", de: "SpeedPerfect" },
+  switch_laundry_water_and_rinse_plus1: { icon: "mdi:water-sync", it: "Acqua e risciacquo +1", en: "Water and rinse +1", de: "Wasser und Spülen +1" },
+  switch_laundry_disinfectant: { icon: "mdi:bottle-tonic-plus-outline", it: "Disinfettante", en: "Disinfectant", de: "Desinfektion" },
+  switch_laundry_low_temperature_hygiene: { icon: "mdi:shield-check-outline", it: "Igiene a bassa temperatura", en: "Low temperature hygiene", de: "Hygiene bei niedriger Temperatur" },
+  switch_laundry_rinse_plus: { icon: "mdi:water-sync", it: "Risciacquo extra", en: "Rinse plus", de: "Spülen Plus" },
+  switch_half_load: { icon: "mdi:circle-half-full", it: "Mezzo carico", en: "Half load", de: "Halbe Beladung" },
+  switch_hygiene_plus: { icon: "mdi:shimmer", it: "Hygiene Plus", en: "Hygiene Plus", de: "Hygiene Plus" },
+  switch_vario_speed_plus: { icon: "mdi:rabbit", it: "VarioSpeed Plus", en: "VarioSpeed Plus", de: "VarioSpeed Plus" },
+  switch_silence_on_demand: { icon: "mdi:volume-off", it: "Silenzio su richiesta", en: "Silence on demand", de: "Leise auf Knopfdruck" },
+  switch_extra_dry: { icon: "mdi:weather-sunny", it: "Asciugatura extra", en: "Extra dry", de: "Extra Trocken" },
+  switch_oven_fast_pre_heat: { icon: "mdi:fast-forward", it: "Preriscaldamento rapido", en: "Fast preheat", de: "Schnellaufheizen" },
+  switch_oven_steam_boost: { icon: "mdi:weather-fog", it: "Getto di vapore", en: "Steam boost", de: "Dampfstoß" },
+  switch_oven_cavity_light: { icon: "mdi:lightbulb-outline", it: "Luce interna", en: "Oven light", de: "Backofenlicht", live: true },
+  switch_child_lock: { icon: "mdi:lock-outline", it: "Blocco bambini", en: "Child lock", de: "Kindersicherung", live: true },
 };
 
 // Switches that are not program options
@@ -1405,8 +1656,7 @@ class HomeConnectCard extends HTMLElement {
   // --- Strings ---------------------------------------------------------------
 
   get _lang() {
-    const lang = this._hass?.locale?.language || this._hass?.language || "en";
-    return lang.startsWith("it") ? "it" : "en";
+    return cardLang(this._hass?.locale?.language || this._hass?.language);
   }
 
   _t(path, vars) {
@@ -2493,6 +2743,12 @@ class CycleCard extends HomeConnectCard {
 class WasherCard extends CycleCard {
   static kind = "washer";
 
+  // Spin speeds such as rpm1400 read the same in every language: 1400 U/min, not RPM1400
+  _spinBadgeText() {
+    const value = String(this.val("sensor_laundry_spin_speed")).toLowerCase();
+    return /^(off|rpm\d+)$/.test(value) ? this._spinText(value) : this._fmtState(this.st("sensor_laundry_spin_speed"));
+  }
+
   _spinText(option) {
     if (option === "off") return this._t("spin_off");
     const rpm = String(option).match(/^rpm(\d+)$/);
@@ -2624,7 +2880,7 @@ class WasherCard extends CycleCard {
     // With a spin speed select the stepper shows it already
     if (!d.off && this.ok("sensor_laundry_spin_speed") && (d.running || !this.ok("select_laundry_spin_speed"))) {
       badges.push(
-        this._badge("mdi:rotate-right", this._fmtState(this.st("sensor_laundry_spin_speed")), {
+        this._badge("mdi:rotate-right", this._spinBadgeText(), {
           key: "sensor_laundry_spin_speed",
           label: this._t("spin"),
         }),
@@ -3149,7 +3405,7 @@ class HomeConnectCardEditor extends HTMLElement {
   _render() {
     if (!this._hass || !this._config) return;
     const kind = KINDS[this.kind] ? this.kind : "washer";
-    const lang = (this._hass.locale?.language || this._hass.language || "en").startsWith("it") ? "it" : "en";
+    const lang = cardLang(this._hass.locale?.language || this._hass.language);
     if (!this._form) {
       this._form = document.createElement("ha-form");
       this._form.addEventListener("value-changed", (ev) => {
@@ -3194,9 +3450,7 @@ if (!customElements.get("homeconnect-card-editor")) {
   customElements.define("homeconnect-card-editor", HomeConnectCardEditor);
 }
 
-const pageLang = (document.querySelector("home-assistant")?.hass?.language || navigator.language || "en").startsWith("it")
-  ? "it"
-  : "en";
+const pageLang = cardLang(document.querySelector("home-assistant")?.hass?.language || navigator.language);
 
 window.customCards = window.customCards || [];
 for (const [kind, cardClass] of Object.entries(CARD_CLASSES)) {

@@ -268,10 +268,12 @@ for example, counts the cycles from then on.
 
 ## Languages
 
-The cards speak English and Italian. Labels, states, program names and the
-visual editor follow the language of each user's profile, with English for
-any other language. Program names ship with the cards, because the
-integration doesn't translate all of them.
+The cards speak English, Italian and German. Labels, states, program names
+and the visual editor follow the language of each user's profile, with
+English for any other language. Program names ship with the cards, because
+the integration doesn't translate all of them. A few texts come from the
+integration as they are, such as the phase of a wash, and follow its own
+translations.
 
 ## How it works
 
