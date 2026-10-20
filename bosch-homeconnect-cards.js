@@ -10,7 +10,7 @@
  * MIT License - Copyright (c) 2026 Fabio Scarparo
  */
 
-const VERSION = "0.6.5";
+const VERSION = "0.6.6";
 const DOMAIN = "homeconnect_ws";
 const UNAVAILABLE = new Set(["unavailable", "unknown"]);
 
@@ -3686,8 +3686,9 @@ class HobCard extends HomeConnectCard {
           "200": { rect: [20, 20, 140, 80] },
           "100": { rect: [20, 110, 140, 80] },
           "120": { rect: [20, 20, 140, 170] },
-          "300": rightFlex ? { rect: [180, 20, 140, 80] } : { circle: [248, 58, 38] },
-          "400": rightFlex ? { rect: [180, 110, 140, 80] } : { circle: [256, 148, 44] },
+          // Round zones centered on the right column, one above the other
+          "300": rightFlex ? { rect: [180, 20, 140, 80] } : { circle: [250, 58, 38] },
+          "400": rightFlex ? { rect: [180, 110, 140, 80] } : { circle: [250, 148, 44] },
           "340": { rect: [180, 20, 140, 170] },
         };
     const [width, height] = wide ? [324, 190] : [340, 210];
