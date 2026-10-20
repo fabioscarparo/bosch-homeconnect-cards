@@ -10,7 +10,7 @@
  * MIT License - Copyright (c) 2026 Fabio Scarparo
  */
 
-const VERSION = "0.5.3";
+const VERSION = "0.5.4";
 const DOMAIN = "homeconnect_ws";
 const UNAVAILABLE = new Set(["unavailable", "unknown"]);
 
@@ -3151,7 +3151,9 @@ class OvenCard extends HomeConnectCard {
     add("binary_sensor_oven_turn_food_now", "info", "mdi:rotate-3d-variant", this._t("alert.turn_food"));
     add("binary_sensor_oven_open_door", "info", "mdi:door-open", this._t("alert.open_door"));
     add("binary_sensor_oven_close_door", "info", "mdi:door-closed", this._t("alert.close_door"));
-    if (this.on("binary_sensor_oven_regular_preheat_finished") || this.on("binary_sensor_oven_fast_preheat_finished")) {
+    // Ovens such as the Gaggenau BO470112 report one preheat event instead of one per cavity
+    const preheatKeys = ["binary_sensor_oven_regular_preheat_finished", "binary_sensor_oven_fast_preheat_finished", "binary_sensor_oven_preheat_finished"];
+    if (preheatKeys.some((key) => this.on(key))) {
       alerts.push(this._alert("success", "mdi:thermometer-check", this._t("alert.preheat_done")));
     }
     add("binary_sensor_oven_program_finished", "success", "mdi:check-circle-outline", this._t("alert.finished"));
