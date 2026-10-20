@@ -227,14 +227,14 @@ level for cleaning, duration and delayed start for heating modes.
 
 A map of the hob with every cooking zone: power level, timer and residual
 heat at a glance, and the **flex zone** drawn as one surface when it is in
-use. 80 cm hobs with a large zone in the middle, such as the Bosch
-PXV875DV1E, get their own map. Select a zone to see its details. Zones are
+use. 80 and 90 cm hobs with a large zone in the middle, such as the Bosch
+PXV875DV1E and the Neff T69YYV4C0, get their own map. Select a zone to see its details. Zones are
 switched on and adjusted at the hob itself: no version of Home Connect
 Local can control them.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="images/hob-dark.svg">
-  <img alt="Induction hob card: off, residual heat, cooking, flex zone, zone details, and an 80 cm hob cooking and with its flex zone" src="images/hob-light.svg">
+  <img alt="Induction hob card: off, residual heat, cooking, flex zone, zone details, an 80 cm hob cooking and with its flex zone, and a 90 cm hob with both flex zones" src="images/hob-light.svg">
 </picture>
 
 ## Compatibility

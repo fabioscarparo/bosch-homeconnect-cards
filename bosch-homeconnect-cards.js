@@ -10,7 +10,7 @@
  * MIT License - Copyright (c) 2026 Fabio Scarparo
  */
 
-const VERSION = "0.6.4";
+const VERSION = "0.6.5";
 const DOMAIN = "homeconnect_ws";
 const UNAVAILABLE = new Set(["unavailable", "unknown"]);
 
@@ -3666,18 +3666,20 @@ class HobCard extends HomeConnectCard {
     const byId = Object.fromEntries(zones.map((z) => [z.id, z]));
     const lit = (id) => byId[id] && ["active", "residual"].includes(byId[id].mode);
     const rightFlex = !!byId["340"];
-    // 80 cm hobs have a large zone in the middle. The Bosch PXV875DV1E gives the size and
-    // position of each zone: drawn at 4 px per cm, with the front at the bottom
+    // 80 and 90 cm hobs have a large zone in the middle. The Bosch PXV875DV1E gives the size
+    // and position of each zone: drawn at 4 px per cm, with the front at the bottom. With a
+    // flex zone on both sides, like the Neff T69YYV4C0, the middle zone sits between them.
     const wide = !!byId["500"];
     const leftFlex = !!byId["120"];
     const layout = wide
       ? {
-          "200": leftFlex ? { rect: [19, 12, 84, 79] } : { circle: [61, 49, 30] },
-          "100": leftFlex ? { rect: [19, 93, 84, 79] } : { circle: [61, 139, 36] },
-          "120": { rect: [19, 12, 84, 160] },
-          "500": { circle: [150, 80, 48] },
-          "300": rightFlex ? { rect: [218, 12, 84, 79] } : { circle: [260, 52, 38] },
-          "400": rightFlex ? { rect: [218, 93, 84, 79] } : { circle: [260, 133, 40] },
+          // 10 px between the two halves of a flex zone, like on 60 cm hobs
+          "200": leftFlex ? { rect: [21, 12, 84, 75] } : { circle: [61, 49, 30] },
+          "100": leftFlex ? { rect: [21, 97, 84, 75] } : { circle: [61, 139, 36] },
+          "120": { rect: [21, 12, 84, 160] },
+          "500": { circle: [leftFlex ? 162 : 150, 80, 48] },
+          "300": rightFlex ? { rect: [218, 12, 84, 75] } : { circle: [260, 52, 38] },
+          "400": rightFlex ? { rect: [218, 97, 84, 75] } : { circle: [260, 133, 40] },
           "340": { rect: [218, 12, 84, 160] },
         }
       : {
