@@ -36,7 +36,7 @@ and renamed entities keep working.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="images/wall-dark.svg">
-  <img alt="Washer, dishwasher, oven and induction hob cards on a Home Assistant dashboard, with demo data" src="images/wall-light.svg">
+  <img alt="Washer, dryer, dishwasher, oven and induction hob cards on a Home Assistant dashboard, with demo data" src="images/wall-light.svg">
 </picture>
 
 ---
