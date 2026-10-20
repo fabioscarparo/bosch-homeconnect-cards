@@ -176,8 +176,8 @@ Home Assistant statistics.
 
 The same dial as the washer, with the phase of the program: drying,
 cooling down, wrinkle guard. Before starting you choose the program, the
-**drying level** from iron dry to extra dry, how long the **wrinkle guard**
-keeps turning the drum, options such as **Gentle**, **Half load** and
+**drying level** from iron dry to extra dry, the **wrinkle guard** and how
+long it lasts, options such as **Gentle**, **Half load** and
 **SpeedPerfect**, the duration of the time programs and the delayed start.
 While it runs, the drying level and the wrinkle guard stay in sight. The
 card reminds you to empty the condensate container, clean the lint filter

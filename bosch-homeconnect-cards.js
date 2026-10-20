@@ -10,7 +10,7 @@
  * MIT License - Copyright (c) 2026 Fabio Scarparo
  */
 
-const VERSION = "0.6.0";
+const VERSION = "0.6.1";
 const DOMAIN = "homeconnect_ws";
 const UNAVAILABLE = new Set(["unavailable", "unknown"]);
 
@@ -139,15 +139,16 @@ const STRINGS = {
     stains: "Antimacchie",
     load_recommendation: "Carico consigliato",
     laundry_load: "Carico",
-    drying_target: "Grado di asciugatura",
+    drying_target: "Livello di asciugatura",
     drying_targets: {
-      irondry: "Asciutto da stiro",
-      gentledry: "Asciutto delicato",
-      cupboarddry: "Asciutto armadio",
-      cupboarddryplus: "Asciutto armadio plus",
-      extradry: "Extra asciutto",
+      irondry: "Stiratura con ferro",
+      gentledry: "Leggermente umido",
+      cupboarddry: "Asciugatura normale",
+      cupboarddryplus: "Asciugatura normale plus",
+      extradry: "Asciugatura extra",
     },
     wrinkle_guard: "Antipiega",
+    wrinkle_duration: "Durata antipiega",
     refresher: "Refresher",
     refresher_values: { shirt1: "1 camicia", shirt5: "5 camicie", business: "Business" },
     wash_spin: "Centrifuga del lavaggio",
@@ -223,11 +224,11 @@ const STRINGS = {
       CoolingDown: "Raffreddamento",
       AdditionalCoolingDown: "Raffreddamento aggiuntivo",
       GuardingWrinkle: "Antipiega",
-      IronDryReached: "Asciutto da stiro",
-      GentlyDryReached: "Asciutto delicato",
-      CupboardDryReached: "Asciutto armadio",
-      CupboardDryPlusReached: "Asciutto armadio plus",
-      ExtraDryReached: "Extra asciutto",
+      IronDryReached: "Stiratura con ferro",
+      GentlyDryReached: "Leggermente umido",
+      CupboardDryReached: "Asciugatura normale",
+      CupboardDryPlusReached: "Asciugatura normale plus",
+      ExtraDryReached: "Asciugatura extra",
       SlightlyDampReached: "Leggermente umido",
       CleaningHeatExchanger: "Pulizia dello scambiatore di calore",
       LaundryRefreshing: "Rinfrescamento",
@@ -335,6 +336,7 @@ const STRINGS = {
       extradry: "Extra dry",
     },
     wrinkle_guard: "Wrinkle guard",
+    wrinkle_duration: "Wrinkle guard duration",
     refresher: "Refresher",
     refresher_values: { shirt1: "1 shirt", shirt5: "5 shirts", business: "Business" },
     wash_spin: "Wash spin speed",
@@ -522,6 +524,7 @@ const STRINGS = {
       extradry: "Extratrocken",
     },
     wrinkle_guard: "Knitterschutz",
+    wrinkle_duration: "Knitterschutz-Dauer",
     refresher: "Refresher",
     refresher_values: { shirt1: "1 Hemd", shirt5: "5 Hemden", business: "Business" },
     wash_spin: "Schleuderdrehzahl der Wäsche",
@@ -649,27 +652,28 @@ const PROGRAM_LABELS = {
     steaming: "Vapore",
     super1530: "Super 15'/30'",
     wool: "Lana",
-    // Dryer
-    bedlinens: "Lenzuola",
-    coldrefresh: "Rinfresco a freddo",
-    connecteddry: "Connected Dry",
-    delicates: "Delicati",
-    depthcare: "Cura profonda",
-    downfeathers: "Piumini",
-    ecocottoneu23: "Cotone Eco",
-    hygiene: "Igiene",
-    inbasket: "Cesto lana",
-    quickcare: "Cura rapida",
-    shirtblouses: "Camicie",
-    silentdry: "Silent Dry",
-    sportswear: "Sport",
-    super40: "Super 40'",
-    synthetic: "Sintetici",
-    timecold: "Tempo freddo",
-    timewarm: "Tempo caldo",
-    towels: "Asciugamani",
-    waterproof: "Impermeabilizzazione",
-    woolfinish: "Lana finish",
+    // Dryer, as the Home Connect app names them
+    "dryer:bedlinens": "Lenzuola",
+    "dryer:coldrefresh": "Refresh freddo",
+    "dryer:connecteddry": "Smart Dry",
+    "dryer:delicates": "Delicati",
+    "dryer:depthcare": "Cura profonda",
+    "dryer:downfeathers": "Piumini",
+    "dryer:mix": "Carico misto",
+    "dryer:ecocottoneu23": "Eco",
+    "dryer:hygiene": "Allergy Plus",
+    "dryer:inbasket": "Lana con cestello",
+    "dryer:quickcare": "Cura rapida",
+    "dryer:shirtblouses": "Camicie",
+    "dryer:silentdry": "Silent dry",
+    "dryer:sportswear": "Sport/Fitness",
+    "dryer:super40": "Rapido 40 min.",
+    "dryer:synthetic": "Sintetici",
+    "dryer:timecold": "Programma a tempo a freddo",
+    "dryer:timewarm": "Programma a tempo caldo",
+    "dryer:towels": "Asciugamani",
+    "dryer:waterproof": "Impermeabilizzazione",
+    "dryer:woolfinish": "Lana finish",
     // Dishwasher
     auto1: "Auto 35-45°",
     auto2: "Auto 45-65°",
@@ -776,26 +780,26 @@ const PROGRAM_LABELS = {
     steaming: "Steam",
     super1530: "Super 15'/30'",
     wool: "Wool",
-    bedlinens: "Bed linen",
-    coldrefresh: "Cold refresh",
-    connecteddry: "Connected Dry",
-    delicates: "Delicates",
-    depthcare: "Deep care",
-    downfeathers: "Down",
-    ecocottoneu23: "Eco cotton",
-    hygiene: "Hygiene",
-    inbasket: "Wool basket",
-    quickcare: "Quick care",
-    shirtblouses: "Shirts",
-    silentdry: "Silent Dry",
-    sportswear: "Sportswear",
-    super40: "Super 40'",
-    synthetic: "Synthetics",
-    timecold: "Time cold",
-    timewarm: "Time warm",
-    towels: "Towels",
-    waterproof: "Waterproofing",
-    woolfinish: "Wool finish",
+    "dryer:bedlinens": "Bed linen",
+    "dryer:coldrefresh": "Cold refresh",
+    "dryer:connecteddry": "Connected Dry",
+    "dryer:delicates": "Delicates",
+    "dryer:depthcare": "Deep care",
+    "dryer:downfeathers": "Down",
+    "dryer:ecocottoneu23": "Eco cotton",
+    "dryer:hygiene": "Hygiene",
+    "dryer:inbasket": "Wool basket",
+    "dryer:quickcare": "Quick care",
+    "dryer:shirtblouses": "Shirts",
+    "dryer:silentdry": "Silent Dry",
+    "dryer:sportswear": "Sportswear",
+    "dryer:super40": "Super 40'",
+    "dryer:synthetic": "Synthetics",
+    "dryer:timecold": "Time cold",
+    "dryer:timewarm": "Time warm",
+    "dryer:towels": "Towels",
+    "dryer:waterproof": "Waterproofing",
+    "dryer:woolfinish": "Wool finish",
     auto1: "Auto 35-45°",
     auto2: "Auto 45-65°",
     auto3: "Auto 65-75°",
@@ -896,26 +900,26 @@ const PROGRAM_LABELS = {
     steaming: "Dampf",
     super1530: "Super 15'/30'",
     wool: "Wolle",
-    bedlinens: "Bettwäsche",
-    coldrefresh: "Kalt auffrischen",
-    connecteddry: "Connected Dry",
-    delicates: "Feinwäsche",
-    depthcare: "Tiefenpflege",
-    downfeathers: "Daunen",
-    ecocottoneu23: "Baumwolle Eco",
-    hygiene: "Hygiene",
-    inbasket: "Wollkorb",
-    quickcare: "Schnellpflege",
-    shirtblouses: "Hemden/Blusen",
-    silentdry: "Silent Dry",
-    sportswear: "Sportbekleidung",
-    super40: "Super 40'",
-    synthetic: "Pflegeleicht",
-    timecold: "Zeitprogramm kalt",
-    timewarm: "Zeitprogramm warm",
-    towels: "Handtücher",
-    waterproof: "Imprägnieren",
-    woolfinish: "Wolle finish",
+    "dryer:bedlinens": "Bettwäsche",
+    "dryer:coldrefresh": "Kalt auffrischen",
+    "dryer:connecteddry": "Connected Dry",
+    "dryer:delicates": "Feinwäsche",
+    "dryer:depthcare": "Tiefenpflege",
+    "dryer:downfeathers": "Daunen",
+    "dryer:ecocottoneu23": "Baumwolle Eco",
+    "dryer:hygiene": "Hygiene",
+    "dryer:inbasket": "Wollkorb",
+    "dryer:quickcare": "Schnellpflege",
+    "dryer:shirtblouses": "Hemden/Blusen",
+    "dryer:silentdry": "Silent Dry",
+    "dryer:sportswear": "Sportbekleidung",
+    "dryer:super40": "Super 40'",
+    "dryer:synthetic": "Pflegeleicht",
+    "dryer:timecold": "Zeitprogramm kalt",
+    "dryer:timewarm": "Zeitprogramm warm",
+    "dryer:towels": "Handtücher",
+    "dryer:waterproof": "Imprägnieren",
+    "dryer:woolfinish": "Wolle finish",
     auto1: "Auto 35-45°",
     auto2: "Auto 45-65°",
     auto3: "Auto 65-75°",
@@ -1142,6 +1146,8 @@ const OPTION_STEPS = {
   select_laundry_spin_speed: (option) => /^(off|rpm\d+)$/.test(option),
   select_laundry_soak_temperature: (option) => /^(cold|gc\d+)$/.test(option),
   select_laundry_spin_speed_before_drying: (option) => /^(off|rpm\d+)$/.test(option),
+  // Only the durations: the dryer card turns the wrinkle guard on and off with its own button
+  select_laundry_wrinkle_guard: (option) => /^min\d+$/.test(option),
 };
 
 // "2h" or "90min", as used by the fork's "Delay start" select
@@ -1896,7 +1902,9 @@ class HomeConnectCard extends HTMLElement {
     const info = programInfo(key);
     if (info.group === "favorite") return this._t("favorite", { n: info.n });
     const labels = PROGRAM_LABELS[this._lang];
-    const own = labels[`${info.group}:${info.id}`] || labels[info.id];
+    // A dryer program can have another name than the washer one with the same id (dryer:mix)
+    const appliance = key.match(/^laundrycare_(dryer)_program_/)?.[1];
+    const own = (appliance && labels[`${appliance}:${info.id}`]) || labels[`${info.group}:${info.id}`] || labels[info.id];
     if (own) return own;
     // Newer versions of the integration translate many more programs
     const stateObj = this.st("select_program") || this.st("sensor_active_program");
@@ -2208,7 +2216,8 @@ class HomeConnectCard extends HTMLElement {
       .map(([key]) => key);
   }
 
-  _options(d, keys = this._optionKeys()) {
+  // `first`: buttons a card adds before the option switches, already rendered
+  _options(d, keys = this._optionKeys(), first = []) {
     const items = keys
       .filter((key) => this.ok(key))
       .map((key) => {
@@ -2223,6 +2232,7 @@ class HomeConnectCard extends HTMLElement {
             <ha-icon icon="${icon}"></ha-icon><span>${esc(label)}</span>
           </button>`;
       });
+    items.unshift(...first.filter(Boolean));
     return items.length ? `<div class="options">${items.join("")}</div>` : "";
   }
 
@@ -3176,18 +3186,55 @@ class DryerCard extends CycleCard {
     return phase;
   }
 
+  // Like in the Home Connect app, the wrinkle guard is turned on and off, and when on it
+  // lasts one of the durations the dryer offers
+  _wrinkle() {
+    const stateObj = this.st("select_laundry_wrinkle_guard");
+    if (!stateObj || UNAVAILABLE.has(stateObj.state)) return null;
+    const options = stateObj.attributes.options || [];
+    const current = this._pendingVal(stateObj.entity_id) ?? stateObj.state;
+    return { current, durations: options.filter(OPTION_STEPS.select_laundry_wrinkle_guard), canTurnOff: options.includes("off") };
+  }
+
+  _wrinkleButton(d) {
+    const wrinkle = this._wrinkle();
+    if (!wrinkle?.canTurnOff || !wrinkle.durations.length) return "";
+    const on = wrinkle.current !== "off";
+    return `
+      <button class="ctrl opt ${on ? "active" : ""}" data-action="wrinkle-toggle" aria-pressed="${on}" ${d.running || d.remoteControlOff ? "disabled" : ""}>
+        <ha-icon icon="mdi:hanger"></ha-icon><span>${esc(this._t("wrinkle_guard"))}</span>
+      </button>`;
+  }
+
+  _wrinkleDuration() {
+    const wrinkle = this._wrinkle();
+    if (!wrinkle || wrinkle.current === "off") return "";
+    return this._optionStepper("select_laundry_wrinkle_guard", {
+      label: this._t(wrinkle.canTurnOff ? "wrinkle_duration" : "wrinkle_guard"),
+      icon: "mdi:timer-sand",
+      format: (option) => this._wrinkleText(option),
+    });
+  }
+
+  _onAction(action) {
+    if (action !== "wrinkle-toggle") return;
+    const wrinkle = this._wrinkle();
+    if (!wrinkle) return;
+    if (wrinkle.current !== "off") {
+      this._wrinkleLast = wrinkle.current;
+      this._select("select_laundry_wrinkle_guard", "off");
+      return;
+    }
+    // Back to the last duration, else 120 minutes as the appliance does
+    const next = [this._wrinkleLast, "min120"].find((option) => wrinkle.durations.includes(option));
+    this._select("select_laundry_wrinkle_guard", next ?? wrinkle.durations[Math.floor(wrinkle.durations.length / 2)]);
+  }
+
   _controls(d) {
     const idle = !d.running;
     return [
       this._programSelect(d),
       idle ? this._selectRow("select_laundry_drying_target", { label: this._t("drying_target"), icon: "mdi:water-percent" }) : "",
-      idle
-        ? this._optionStepper("select_laundry_wrinkle_guard", {
-            label: this._t("wrinkle_guard"),
-            icon: "mdi:hanger",
-            format: (option) => this._wrinkleText(option),
-          })
-        : "",
       idle
         ? this._segmented("select_laundry_refresher", {
             label: this._t("refresher"),
@@ -3202,7 +3249,8 @@ class DryerCard extends CycleCard {
             format: (option) => this._spinText(option),
           })
         : "",
-      idle ? this._options(d) : "",
+      idle ? this._options(d, this._optionKeys(), [this._wrinkleButton(d)]) : "",
+      idle ? this._wrinkleDuration() : "",
       idle
         ? this._stepper("number_duration", {
             label: this._t("duration"),
