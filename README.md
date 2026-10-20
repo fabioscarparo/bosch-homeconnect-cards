@@ -23,6 +23,8 @@ There is one card for each type of appliance:
 
 - **Washer** - program, temperature, spin speed and options, remaining
   time, and the energy and water of the last cycle and month by month
+- **Dryer** - program, drying level, wrinkle guard and options, remaining
+  time and phase, condensate and lint filter reminders
 - **Dishwasher** - program and options, delayed start, salt and rinse aid
 - **Oven** - heating mode, temperature, duration, automatic recipes and
   cooking hints such as "time to turn the food"
@@ -83,7 +85,8 @@ repository.
 
 1. Open a dashboard and select **Edit dashboard** (pencil).
 2. Select **Add card** and search for **Home Connect**: you find
-   **Home Connect Washer**, **Dishwasher**, **Oven** and **Induction hob**.
+   **Home Connect Washer**, **Dryer**, **Dishwasher**, **Oven** and
+   **Induction hob**.
 3. Pick the appliance in the visual editor and save. The editor
    preselects the first appliance of the right type.
 
@@ -116,6 +119,7 @@ hide_hero: false           # optional: compact view, without the dial
 | Card | Type | Default color |
 |---|---|---|
 | Washer | `custom:homeconnect-washer-card` | `blue` |
+| Dryer | `custom:homeconnect-dryer-card` | `deep-purple` |
 | Dishwasher | `custom:homeconnect-dishwasher-card` | `cyan` |
 | Oven | `custom:homeconnect-oven-card` | `deep-orange` |
 | Induction hob | `custom:homeconnect-hob-card` | `orange` |
@@ -168,6 +172,26 @@ Home Assistant statistics.
   <img alt="Washer card: off, disconnected, ready, options, stain picker, remote start off, running, paused, foam alert, finished, consumption and compact view" src="images/washer-light.svg">
 </picture>
 
+### Dryer
+
+The same dial as the washer, with the phase of the program: drying,
+cooling down, wrinkle guard. Before starting you choose the program, the
+**drying level** from iron dry to extra dry, how long the **wrinkle guard**
+keeps turning the drum, options such as **Gentle**, **Half load** and
+**SpeedPerfect**, the duration of the time programs and the delayed start.
+While it runs, the drying level and the wrinkle guard stay in sight. The
+card reminds you to empty the condensate container, clean the lint filter
+and refill the refresher.
+
+The energy of the last cycle and the consumption sheet show up only on
+dryers that report their energy: the Bosch WRB247C0IT behind these images
+doesn't.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="images/dryer-dark.svg">
+  <img alt="Dryer card: off, ready, options, drying level picker, time program, running, cooling down, cleaning reminders, finished, program picker and compact view" src="images/dryer-light.svg">
+</picture>
+
 ### Dishwasher
 
 Same dial as the washer, plus **delayed start**: set the delay, and the
@@ -215,11 +239,12 @@ care of all of it, also after migrating from one to the other.
 
 | | chris-mc1 (1.0.6) | vemboy200 fork (1.9, 2.0 beta) |
 |---|---|---|
-| Washer, dishwasher, oven, hob status | Yes | Yes |
+| Washer, dryer, dishwasher, oven, hob status | Yes | Yes |
 | Programs, options, start, pause, stop | Yes | Yes |
 | Delayed start | "Start in" number, started through `homeconnect_ws.start_program` | "Delay start" select in 1.9, number in minutes from 2.0.0b1, applied by the Start button |
 | Washer temperature, spin speed, extra rinse, stains, recommended load | Yes | Yes |
 | Washer Mini, pre-treatment and soak | No | From 2.0.0b1 |
+| Dryer drying level, wrinkle guard, condensate and lint filter | Yes | Yes |
 | Energy and water of the last cycle | No | From 2.0.0b1 |
 | Consumption by month | No | From 2.0.0b1 |
 | Oven light | No | Yes |
@@ -241,6 +266,7 @@ device pages tidy and the database small.
 | Average per cycle | Completed count | Yes |
 | Oven hints such as "time to turn the food" | The oven event sensors | No |
 | Foam alert on the washer | Foam detection | Yes, on new installs of the vemboy200 fork from 2.0.0b1 |
+| Drying finished, cool-down and more dryer cleaning reminders | The dryer events proposed to the vemboy200 fork in [#229](https://github.com/vemboy200/homeconnect_local_hass/pull/229) | No |
 | Hint when remote control is off | Remote control active, on the vemboy200 fork | Yes |
 | Hint when the appliance is in use from its own controls | Local control active, on the vemboy200 fork | Yes |
 | Hint when remote start is off | Remote start allowed | With chris-mc1 |
@@ -314,7 +340,7 @@ easy to follow in the logbook and in automations:
 
 | Control | Action |
 |---|---|
-| Program, levels, washer temperature and spin speed | `select.select_option` |
+| Program, levels, washer temperature and spin speed, drying level and wrinkle guard | `select.select_option` |
 | Oven temperature, duration, weight | `number.set_value`, sent after a short pause so repeated taps add up |
 | Delayed start | `select.select_option` or `number.set_value` on the vemboy200 fork. With chris-mc1, `number.set_value` and then `homeconnect_ws.start_program` to start |
 | Options, power, oven light | `switch.toggle`, or `light.toggle` when the light is a light entity |
@@ -324,7 +350,7 @@ easy to follow in the logbook and in automations:
 
 ### A card for another appliance
 
-Cards for dryers, washer-dryers, coffee makers, fridges or hoods are
+Cards for washer-dryers, coffee makers, fridges or hoods are
 welcome, but they can't be built without data from a real appliance. If you
 own one, three things are enough to get it started:
 

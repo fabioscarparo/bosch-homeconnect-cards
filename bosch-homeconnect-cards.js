@@ -2,25 +2,32 @@
  * Bosch Home Connect cards for Home Assistant
  * https://github.com/fabioscarparo/bosch-homeconnect-cards
  *
- * Four Lovelace cards for the appliances of the Home Connect Local
- * integration (homeconnect_ws): washer, dishwasher, oven and induction hob.
+ * Five Lovelace cards for the appliances of the Home Connect Local
+ * integration (homeconnect_ws): washer, dryer, dishwasher, oven and induction hob.
  * Entities are looked up from the device by their translation_key,
  * so the cards keep working when entity_ids are renamed.
  *
  * MIT License - Copyright (c) 2026 Fabio Scarparo
  */
 
-const VERSION = "0.5.4";
+const VERSION = "0.6.0";
 const DOMAIN = "homeconnect_ws";
 const UNAVAILABLE = new Set(["unavailable", "unknown"]);
 
 const KINDS = {
   washer: {
     tag: "homeconnect-washer-card",
-    models: ["Washer", "WasherDryer", "Dryer"],
+    models: ["Washer", "WasherDryer"],
     icon: "mdi:washing-machine",
     programIcon: "mdi:tshirt-crew-outline",
     color: "blue",
+  },
+  dryer: {
+    tag: "homeconnect-dryer-card",
+    models: ["Dryer"],
+    icon: "mdi:tumble-dryer",
+    programIcon: "mdi:tshirt-crew-outline",
+    color: "deep-purple",
   },
   dishwasher: {
     tag: "homeconnect-dishwasher-card",
@@ -132,6 +139,18 @@ const STRINGS = {
     stains: "Antimacchie",
     load_recommendation: "Carico consigliato",
     laundry_load: "Carico",
+    drying_target: "Grado di asciugatura",
+    drying_targets: {
+      irondry: "Asciutto da stiro",
+      gentledry: "Asciutto delicato",
+      cupboarddry: "Asciutto armadio",
+      cupboarddryplus: "Asciutto armadio plus",
+      extradry: "Extra asciutto",
+    },
+    wrinkle_guard: "Antipiega",
+    refresher: "Refresher",
+    refresher_values: { shirt1: "1 camicia", shirt5: "5 camicie", business: "Business" },
+    wash_spin: "Centrifuga del lavaggio",
     alert: {
       foam: "Rilevata troppa schiuma",
       aborted: "Programma interrotto",
@@ -148,6 +167,14 @@ const STRINGS = {
       reload: "Puoi aggiungere capi: metti in pausa e apri la porta",
       reload_now: "Puoi aprire la porta e aggiungere capi",
       error: "L'elettrodomestico segnala un errore",
+      drying_done: "Asciugatura terminata",
+      condensate: "Svuota il serbatoio della condensa",
+      lint_filter: "Pulisci il filtro lanugine",
+      self_cleaning: "Pulisci il modulo autopulente",
+      easyclean: "Pulisci il filtro EasyClean",
+      refresher: "Ricarica il refresher",
+      care_cycle: "È consigliato un ciclo di cura",
+      evaporator: "L'evaporatore è ghiacciato",
     },
     hint_remote_start: "Avvio remoto non attivo: attivalo sull'elettrodomestico per avviare da qui",
     hint_close_door: "Chiudi la porta per avviare il programma",
@@ -183,7 +210,28 @@ const STRINGS = {
       other: "Programmi",
     },
     favorite: "Preferito {n}",
-    phase: { None: "", PreRinse: "Prelavaggio", MainWash: "Lavaggio", FinalRinse: "Risciacquo finale", Drying: "Asciugatura" },
+    phase: {
+      None: "",
+      PreRinse: "Prelavaggio",
+      MainWash: "Lavaggio",
+      FinalRinse: "Risciacquo finale",
+      Drying: "Asciugatura",
+      // Dryer
+      NoPhase: "",
+      DetectingLoad: "Rilevamento del carico",
+      Heating: "Riscaldamento",
+      CoolingDown: "Raffreddamento",
+      AdditionalCoolingDown: "Raffreddamento aggiuntivo",
+      GuardingWrinkle: "Antipiega",
+      IronDryReached: "Asciutto da stiro",
+      GentlyDryReached: "Asciutto delicato",
+      CupboardDryReached: "Asciutto armadio",
+      CupboardDryPlusReached: "Asciutto armadio plus",
+      ExtraDryReached: "Extra asciutto",
+      SlightlyDampReached: "Leggermente umido",
+      CleaningHeatExchanger: "Pulizia dello scambiatore di calore",
+      LaundryRefreshing: "Rinfrescamento",
+    },
     no_device: "Scegli un elettrodomestico nell'editor della scheda",
     device_missing: "Elettrodomestico non trovato",
     error: "Comando non riuscito: {e}",
@@ -195,6 +243,7 @@ const STRINGS = {
     },
     card: {
       washer: "Lavatrice",
+      dryer: "Asciugatrice",
       dishwasher: "Lavastoviglie",
       oven: "Forno",
       hob: "Piano a induzione",
@@ -277,6 +326,18 @@ const STRINGS = {
     stains: "Stains",
     load_recommendation: "Recommended load",
     laundry_load: "Load",
+    drying_target: "Drying level",
+    drying_targets: {
+      irondry: "Iron dry",
+      gentledry: "Gentle dry",
+      cupboarddry: "Cupboard dry",
+      cupboarddryplus: "Cupboard dry plus",
+      extradry: "Extra dry",
+    },
+    wrinkle_guard: "Wrinkle guard",
+    refresher: "Refresher",
+    refresher_values: { shirt1: "1 shirt", shirt5: "5 shirts", business: "Business" },
+    wash_spin: "Wash spin speed",
     alert: {
       foam: "Too much foam detected",
       aborted: "Program aborted",
@@ -293,6 +354,14 @@ const STRINGS = {
       reload: "You can add laundry: pause and open the door",
       reload_now: "You can open the door and add laundry",
       error: "The appliance reports an error",
+      drying_done: "Drying finished",
+      condensate: "Empty the condensate container",
+      lint_filter: "Clean the lint filter",
+      self_cleaning: "Clean the self-cleaning module",
+      easyclean: "Clean the EasyClean filter",
+      refresher: "Refill the refresher",
+      care_cycle: "A care cycle is recommended",
+      evaporator: "The evaporator is frozen",
     },
     hint_remote_start: "Remote start is off: turn it on at the appliance to start from here",
     hint_close_door: "Close the door to start the program",
@@ -328,7 +397,28 @@ const STRINGS = {
       other: "Programs",
     },
     favorite: "Favorite {n}",
-    phase: { None: "", PreRinse: "Pre-rinse", MainWash: "Main wash", FinalRinse: "Final rinse", Drying: "Drying" },
+    phase: {
+      None: "",
+      PreRinse: "Pre-rinse",
+      MainWash: "Main wash",
+      FinalRinse: "Final rinse",
+      Drying: "Drying",
+      // Dryer
+      NoPhase: "",
+      DetectingLoad: "Detecting the load",
+      Heating: "Heating",
+      CoolingDown: "Cooling down",
+      AdditionalCoolingDown: "Extra cooling down",
+      GuardingWrinkle: "Wrinkle guard",
+      IronDryReached: "Iron dry",
+      GentlyDryReached: "Gentle dry",
+      CupboardDryReached: "Cupboard dry",
+      CupboardDryPlusReached: "Cupboard dry plus",
+      ExtraDryReached: "Extra dry",
+      SlightlyDampReached: "Slightly damp",
+      CleaningHeatExchanger: "Cleaning the heat exchanger",
+      LaundryRefreshing: "Refreshing",
+    },
     no_device: "Choose an appliance in the card editor",
     device_missing: "Appliance not found",
     error: "Command failed: {e}",
@@ -340,6 +430,7 @@ const STRINGS = {
     },
     card: {
       washer: "Washer",
+      dryer: "Dryer",
       dishwasher: "Dishwasher",
       oven: "Oven",
       hob: "Induction hob",
@@ -422,6 +513,18 @@ const STRINGS = {
     stains: "Flecken",
     load_recommendation: "Empfohlene Beladung",
     laundry_load: "Beladung",
+    drying_target: "Trocknungsgrad",
+    drying_targets: {
+      irondry: "Bügeltrocken",
+      gentledry: "Schonend trocken",
+      cupboarddry: "Schranktrocken",
+      cupboarddryplus: "Schranktrocken plus",
+      extradry: "Extratrocken",
+    },
+    wrinkle_guard: "Knitterschutz",
+    refresher: "Refresher",
+    refresher_values: { shirt1: "1 Hemd", shirt5: "5 Hemden", business: "Business" },
+    wash_spin: "Schleuderdrehzahl der Wäsche",
     alert: {
       foam: "Zu viel Schaum erkannt",
       aborted: "Programm abgebrochen",
@@ -438,6 +541,14 @@ const STRINGS = {
       reload: "Wäsche nachlegen möglich: pausiere und öffne die Tür",
       reload_now: "Du kannst die Tür öffnen und Wäsche nachlegen",
       error: "Das Gerät meldet einen Fehler",
+      drying_done: "Trocknen beendet",
+      condensate: "Kondensatbehälter leeren",
+      lint_filter: "Flusensieb reinigen",
+      self_cleaning: "Selbstreinigungsmodul reinigen",
+      easyclean: "EasyClean-Filter reinigen",
+      refresher: "Refresher nachfüllen",
+      care_cycle: "Ein Pflegeprogramm wird empfohlen",
+      evaporator: "Der Verdampfer ist vereist",
     },
     hint_remote_start: "Fernstart ist aus: Schalte ihn am Gerät ein, um hier zu starten",
     hint_close_door: "Schließe die Tür, um das Programm zu starten",
@@ -473,7 +584,28 @@ const STRINGS = {
       other: "Programme",
     },
     favorite: "Favorit {n}",
-    phase: { None: "", PreRinse: "Vorspülen", MainWash: "Reinigen", FinalRinse: "Klarspülen", Drying: "Trocknen" },
+    phase: {
+      None: "",
+      PreRinse: "Vorspülen",
+      MainWash: "Reinigen",
+      FinalRinse: "Klarspülen",
+      Drying: "Trocknen",
+      // Dryer
+      NoPhase: "",
+      DetectingLoad: "Beladungserkennung",
+      Heating: "Aufheizen",
+      CoolingDown: "Abkühlen",
+      AdditionalCoolingDown: "Zusätzliches Abkühlen",
+      GuardingWrinkle: "Knitterschutz",
+      IronDryReached: "Bügeltrocken",
+      GentlyDryReached: "Schonend trocken",
+      CupboardDryReached: "Schranktrocken",
+      CupboardDryPlusReached: "Schranktrocken plus",
+      ExtraDryReached: "Extratrocken",
+      SlightlyDampReached: "Leicht feucht",
+      CleaningHeatExchanger: "Wärmetauscher reinigen",
+      LaundryRefreshing: "Auffrischen",
+    },
     no_device: "Wähle im Karteneditor ein Gerät",
     device_missing: "Gerät nicht gefunden",
     error: "Befehl fehlgeschlagen: {e}",
@@ -485,6 +617,7 @@ const STRINGS = {
     },
     card: {
       washer: "Waschmaschine",
+      dryer: "Trockner",
       dishwasher: "Geschirrspüler",
       oven: "Backofen",
       hob: "Induktionskochfeld",
@@ -516,6 +649,27 @@ const PROGRAM_LABELS = {
     steaming: "Vapore",
     super1530: "Super 15'/30'",
     wool: "Lana",
+    // Dryer
+    bedlinens: "Lenzuola",
+    coldrefresh: "Rinfresco a freddo",
+    connecteddry: "Connected Dry",
+    delicates: "Delicati",
+    depthcare: "Cura profonda",
+    downfeathers: "Piumini",
+    ecocottoneu23: "Cotone Eco",
+    hygiene: "Igiene",
+    inbasket: "Cesto lana",
+    quickcare: "Cura rapida",
+    shirtblouses: "Camicie",
+    silentdry: "Silent Dry",
+    sportswear: "Sport",
+    super40: "Super 40'",
+    synthetic: "Sintetici",
+    timecold: "Tempo freddo",
+    timewarm: "Tempo caldo",
+    towels: "Asciugamani",
+    waterproof: "Impermeabilizzazione",
+    woolfinish: "Lana finish",
     // Dishwasher
     auto1: "Auto 35-45°",
     auto2: "Auto 45-65°",
@@ -622,6 +776,26 @@ const PROGRAM_LABELS = {
     steaming: "Steam",
     super1530: "Super 15'/30'",
     wool: "Wool",
+    bedlinens: "Bed linen",
+    coldrefresh: "Cold refresh",
+    connecteddry: "Connected Dry",
+    delicates: "Delicates",
+    depthcare: "Deep care",
+    downfeathers: "Down",
+    ecocottoneu23: "Eco cotton",
+    hygiene: "Hygiene",
+    inbasket: "Wool basket",
+    quickcare: "Quick care",
+    shirtblouses: "Shirts",
+    silentdry: "Silent Dry",
+    sportswear: "Sportswear",
+    super40: "Super 40'",
+    synthetic: "Synthetics",
+    timecold: "Time cold",
+    timewarm: "Time warm",
+    towels: "Towels",
+    waterproof: "Waterproofing",
+    woolfinish: "Wool finish",
     auto1: "Auto 35-45°",
     auto2: "Auto 45-65°",
     auto3: "Auto 65-75°",
@@ -722,6 +896,26 @@ const PROGRAM_LABELS = {
     steaming: "Dampf",
     super1530: "Super 15'/30'",
     wool: "Wolle",
+    bedlinens: "Bettwäsche",
+    coldrefresh: "Kalt auffrischen",
+    connecteddry: "Connected Dry",
+    delicates: "Feinwäsche",
+    depthcare: "Tiefenpflege",
+    downfeathers: "Daunen",
+    ecocottoneu23: "Baumwolle Eco",
+    hygiene: "Hygiene",
+    inbasket: "Wollkorb",
+    quickcare: "Schnellpflege",
+    shirtblouses: "Hemden/Blusen",
+    silentdry: "Silent Dry",
+    sportswear: "Sportbekleidung",
+    super40: "Super 40'",
+    synthetic: "Pflegeleicht",
+    timecold: "Zeitprogramm kalt",
+    timewarm: "Zeitprogramm warm",
+    towels: "Handtücher",
+    waterproof: "Imprägnieren",
+    woolfinish: "Wolle finish",
     auto1: "Auto 35-45°",
     auto2: "Auto 45-65°",
     auto3: "Auto 65-75°",
@@ -845,6 +1039,10 @@ const OPTION_META = {
   switch_laundry_low_temperature_hygiene: { icon: "mdi:shield-check-outline", it: "Igiene a bassa temperatura", en: "Low temperature hygiene", de: "Hygiene bei niedriger Temperatur" },
   switch_laundry_rinse_plus: { icon: "mdi:water-sync", it: "Risciacquo extra", en: "Rinse plus", de: "Spülen Plus" },
   switch_half_load: { icon: "mdi:circle-half-full", it: "Mezzo carico", en: "Half load", de: "Halbe Beladung" },
+  // Dryer options
+  switch_laundry_gentle: { icon: "mdi:feather", it: "Delicato", en: "Gentle", de: "Schonen" },
+  switch_laundry_hygiene: { icon: "mdi:shield-check-outline", it: "Igiene", en: "Hygiene", de: "Hygiene" },
+  switch_laundry_wrinkle_guard_boost: { icon: "mdi:hanger", it: "Antipiega boost", en: "Wrinkle guard boost", de: "Knitterschutz Boost" },
   switch_hygiene_plus: { icon: "mdi:shimmer", it: "Hygiene Plus", en: "Hygiene Plus", de: "Hygiene Plus" },
   switch_vario_speed_plus: { icon: "mdi:rabbit", it: "VarioSpeed Plus", en: "VarioSpeed Plus", de: "VarioSpeed Plus" },
   switch_silence_on_demand: { icon: "mdi:volume-off", it: "Silenzio su richiesta", en: "Silence on demand", de: "Leise auf Knopfdruck" },
@@ -943,6 +1141,7 @@ const OPTION_STEPS = {
   select_laundry_option_temperature: (option) => /^(cold|gc\d+)$/.test(option),
   select_laundry_spin_speed: (option) => /^(off|rpm\d+)$/.test(option),
   select_laundry_soak_temperature: (option) => /^(cold|gc\d+)$/.test(option),
+  select_laundry_spin_speed_before_drying: (option) => /^(off|rpm\d+)$/.test(option),
 };
 
 // "2h" or "90min", as used by the fork's "Delay start" select
@@ -2083,6 +2282,11 @@ class HomeConnectCard extends HTMLElement {
     });
   }
 
+  // The name of a select's option: the integration's translation, unless a card has its own
+  _optionLabel(key, option) {
+    return this._fmtState(this.st(key), option);
+  }
+
   // A select with many options, opened in a list like the programs
   _selectRow(key, { label, icon }) {
     const stateObj = this.st(key);
@@ -2094,7 +2298,7 @@ class HomeConnectCard extends HTMLElement {
         <ha-icon icon="${icon}"></ha-icon>
         <span class="sel-text">
           <span class="lbl">${esc(label)}</span>
-          <span class="val">${esc(current === "off" ? this._t("none") : this._fmtState(stateObj, current))}</span>
+          <span class="val">${esc(current === "off" ? this._t("none") : this._optionLabel(key, current))}</span>
         </span>
         <ha-icon class="chev" icon="mdi:chevron-down"></ha-icon>
       </button>`;
@@ -2291,8 +2495,19 @@ class HomeConnectCard extends HTMLElement {
     return `${this._num(value, unit === "L" ? 0 : 2)} ${unit}`.trim();
   }
 
+  // Totals with a value: some appliances, such as a Bosch WRB247C0IT dryer, list the
+  // consumption among their features but never report it, so the entity stays unavailable.
+  // While the appliance is disconnected every entity is: its statistics are still there.
+  _usageMetrics() {
+    const offline = this.val("connection") === "off";
+    return Object.keys(USAGE_METRICS).filter((name) => {
+      const total = USAGE_METRICS[name].total;
+      return this.ok(total) || (offline && !!this._found[total]);
+    });
+  }
+
   _hasUsage() {
-    return Object.values(USAGE_METRICS).some((metric) => this._found[metric.total]);
+    return this._usageMetrics().length > 0;
   }
 
   // Every entity of a key, stale ones too: after a migration the old one keeps the history
@@ -2352,7 +2567,7 @@ class HomeConnectCard extends HTMLElement {
     if (!USAGE_METRICS[metric]) return "";
     const lang = this._hass?.locale?.language || this._lang;
     const month = (date, style) => new Intl.DateTimeFormat(lang, { month: style }).format(date);
-    const metrics = Object.entries(USAGE_METRICS).filter(([, m]) => this._found[m.total]);
+    const metrics = Object.entries(USAGE_METRICS).filter(([name]) => this._usageMetrics().includes(name));
     const loaded = usage && !usage.error;
     const sum = (values) => {
       const known = values.filter((v) => v != null);
@@ -2520,7 +2735,7 @@ class HomeConnectCard extends HTMLElement {
         break;
       case "open-usage": {
         this._usage = null;
-        const [metric] = Object.keys(USAGE_METRICS).filter((name) => this._found[USAGE_METRICS[name].total]);
+        const [metric] = this._usageMetrics();
         this._openSheet({ type: "usage", metric });
         this._loadUsage();
         break;
@@ -2649,7 +2864,7 @@ class HomeConnectCard extends HTMLElement {
           (option) => `
           <button class="item ${option === current ? "selected" : ""}" data-action="pick-option"
             data-key="${this._sheet.key}" data-option="${esc(option)}">
-            <span>${esc(this._fmtState(stateObj, option))}</span>
+            <span>${esc(this._optionLabel(this._sheet.key, option))}</span>
             ${option === current ? '<ha-icon icon="mdi:check"></ha-icon>' : ""}
           </button>`,
         )
@@ -2688,7 +2903,7 @@ class HomeConnectCard extends HTMLElement {
 }
 
 // ---------------------------------------------------------------------------
-// Washer and dishwasher
+// Washer, dryer and dishwasher
 // ---------------------------------------------------------------------------
 
 class CycleCard extends HomeConnectCard {
@@ -2702,8 +2917,17 @@ class CycleCard extends HomeConnectCard {
     return { remaining, estimate, expected, startIn, progress };
   }
 
+  // Before the start, for the selected program
+  _loadRecommendationBadge(d) {
+    if (d.off || d.running || !(this.numVal("sensor_laundry_load_recommendation") > 0)) return "";
+    return this._badge("mdi:weight-kilogram", this._fmtState(this.st("sensor_laundry_load_recommendation")), {
+      key: "sensor_laundry_load_recommendation",
+      label: this._t("load_recommendation"),
+    });
+  }
+
   _phase() {
-    for (const key of ["sensor_laundry_process_phase", "sensor_program_phase"]) {
+    for (const key of ["sensor_laundry_process_phase", "sensor_dryer_process_phase", "sensor_program_phase"]) {
       if (!this.ok(key)) continue;
       const value = String(this.val(key)).toLowerCase();
       const phases = STRINGS[this._lang].phase;
@@ -2898,16 +3122,7 @@ class WasherCard extends CycleCard {
   }
 
   _badges(d) {
-    const badges = [this._doorBadge()];
-    const recommended = this.numVal("sensor_laundry_load_recommendation");
-    if (!d.off && !d.running && recommended > 0) {
-      badges.push(
-        this._badge("mdi:weight-kilogram", this._fmtState(this.st("sensor_laundry_load_recommendation")), {
-          key: "sensor_laundry_load_recommendation",
-          label: this._t("load_recommendation"),
-        }),
-      );
-    }
+    const badges = [this._doorBadge(), this._loadRecommendationBadge(d)];
     if (this.numVal("sensor_laundry_load") > 0) {
       badges.push(
         this._badge("mdi:scale", this._fmtState(this.st("sensor_laundry_load")), {
@@ -2924,6 +3139,127 @@ class WasherCard extends CycleCard {
           label: this._t("spin"),
         }),
       );
+    }
+    if (!d.running) badges.push(...this._lastCycleBadges());
+    return badges;
+  }
+}
+
+class DryerCard extends CycleCard {
+  static kind = "dryer";
+
+  // Drying levels and refresher programs named by the card: not every version of the
+  // integration translates them
+  _optionLabel(key, option) {
+    const group = { select_laundry_drying_target: "drying_targets", select_laundry_refresher: "refresher_values" }[key];
+    const path = group && `${group}.${String(option).toLowerCase()}`;
+    const own = path && this._t(path);
+    return own && own !== path ? own : super._optionLabel(key, option);
+  }
+
+  _wrinkleText(option) {
+    const minutes = String(option).match(/^min(\d+)$/);
+    return minutes ? `${minutes[1]} min` : this._t("none");
+  }
+
+  // The spin speed of the wash before, which the dryer uses to estimate the time
+  _spinText(option) {
+    if (option === "off") return this._t("spin_off");
+    const rpm = String(option).match(/^rpm(\d+)$/);
+    return rpm ? this._t("rpm", { n: rpm[1] }) : this._optionLabel("select_laundry_spin_speed_before_drying", option);
+  }
+
+  // The cool-down has its own event, for when the phase doesn't tell
+  _phase() {
+    const phase = super._phase();
+    if (!phase && this.on("binary_sensor_cool_down_phase_running")) return this._t("phase.CoolingDown");
+    return phase;
+  }
+
+  _controls(d) {
+    const idle = !d.running;
+    return [
+      this._programSelect(d),
+      idle ? this._selectRow("select_laundry_drying_target", { label: this._t("drying_target"), icon: "mdi:water-percent" }) : "",
+      idle
+        ? this._optionStepper("select_laundry_wrinkle_guard", {
+            label: this._t("wrinkle_guard"),
+            icon: "mdi:hanger",
+            format: (option) => this._wrinkleText(option),
+          })
+        : "",
+      idle
+        ? this._segmented("select_laundry_refresher", {
+            label: this._t("refresher"),
+            icon: "mdi:spray-bottle",
+            format: (option) => this._optionLabel("select_laundry_refresher", option),
+          })
+        : "",
+      idle
+        ? this._optionStepper("select_laundry_spin_speed_before_drying", {
+            label: this._t("wash_spin"),
+            icon: "mdi:rotate-right",
+            format: (option) => this._spinText(option),
+          })
+        : "",
+      idle ? this._options(d) : "",
+      idle
+        ? this._stepper("number_duration", {
+            label: this._t("duration"),
+            icon: "mdi:timer-outline",
+            step: 600,
+            format: (v) => durationText(v),
+            // Time programs only, once one is selected
+            disabled: !d.program,
+          })
+        : "",
+      idle ? this._delayControl(1800) : "",
+      this._hints(d),
+      this._actions(d),
+    ].join("");
+  }
+
+  _alerts(d) {
+    const alerts = [];
+    const add = (type, icon, text) => alerts.push(this._alert(type, icon, this._t(text)));
+    const any = (...keys) => keys.some((key) => this.on(key));
+    if (this.on("binary_sensor_evaporator_frozen")) add("error", "mdi:snowflake-alert", "alert.evaporator");
+    if (d.op === "Error" || this.on("binary_sensor_fatal_error_occurred")) add("error", "mdi:alert-circle-outline", "alert.error");
+    if (this.on("binary_sensor_program_aborted")) add("warning", "mdi:cancel", "alert.aborted");
+    if (this.on("binary_sensor_condensate_container_full")) add("warning", "mdi:cup-water", "alert.condensate");
+    // The lint filter has an alert and, on newer dryers, a cleaning reminder: one is enough
+    if (any("binary_sensor_lint_filter_full", "binary_sensor_clean_lint_filter")) add("warning", "mdi:air-filter", "alert.lint_filter");
+    if (this.on("binary_sensor_clean_self_cleaning_module")) add("warning", "mdi:broom", "alert.self_cleaning");
+    if (this.on("binary_sensor_easyclean_filter_reminder")) add("info", "mdi:filter-variant", "alert.easyclean");
+    if (any("binary_sensor_refresher_level", "binary_sensor_refresher_container_empty")) add("info", "mdi:spray-bottle", "alert.refresher");
+    if (this.on("binary_sensor_maintenance_reminder")) add("info", "mdi:wrench-outline", "alert.care_cycle");
+    // Before the cool-down and the wrinkle guard: when the program ends the dial says it
+    if (this.on("binary_sensor_drying_process_finished") && d.op !== "Finished") add("success", "mdi:check-circle-outline", "alert.drying_done");
+    // No hint about adding laundry, unlike the washer: a dryer allows it for the whole program
+    return alerts.join("");
+  }
+
+  _badges(d) {
+    const badges = [this._doorBadge(), this._loadRecommendationBadge(d)];
+    // While the program runs the controls are hidden: its drying level and wrinkle guard stay in sight
+    if (d.running) {
+      const target = this.val("select_laundry_drying_target");
+      if (this.ok("select_laundry_drying_target")) {
+        badges.push(
+          this._badge("mdi:water-percent", this._optionLabel("select_laundry_drying_target", target), {
+            key: "select_laundry_drying_target",
+          }),
+        );
+      }
+      const wrinkle = this.val("select_laundry_wrinkle_guard");
+      if (this.ok("select_laundry_wrinkle_guard") && wrinkle !== "off") {
+        badges.push(
+          this._badge("mdi:hanger", this._wrinkleText(wrinkle), {
+            key: "select_laundry_wrinkle_guard",
+            label: this._t("wrinkle_guard"),
+          }),
+        );
+      }
     }
     if (!d.running) badges.push(...this._lastCycleBadges());
     return badges;
@@ -3485,7 +3821,7 @@ class HomeConnectCardEditor extends HTMLElement {
 // Registration
 // ---------------------------------------------------------------------------
 
-const CARD_CLASSES = { washer: WasherCard, dishwasher: DishwasherCard, oven: OvenCard, hob: HobCard };
+const CARD_CLASSES = { washer: WasherCard, dryer: DryerCard, dishwasher: DishwasherCard, oven: OvenCard, hob: HobCard };
 
 if (!customElements.get("homeconnect-card-editor")) {
   customElements.define("homeconnect-card-editor", HomeConnectCardEditor);
