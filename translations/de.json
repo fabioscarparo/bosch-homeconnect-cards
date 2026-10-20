@@ -145,7 +145,8 @@
       "RearLeft": "Hinten links",
       "RearRight": "Hinten rechts",
       "Right": "Flex rechts",
-      "FrontRight": "Vorne rechts"
+      "FrontRight": "Vorne rechts",
+      "Center": "Mitte"
     },
     "zone_mode": {
       "off": "Aus",

@@ -145,7 +145,8 @@
       "RearLeft": "Rear left",
       "RearRight": "Rear right",
       "Right": "Right flex",
-      "FrontRight": "Front right"
+      "FrontRight": "Front right",
+      "Center": "Center"
     },
     "zone_mode": {
       "off": "Off",

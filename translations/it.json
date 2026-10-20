@@ -145,7 +145,8 @@
       "RearLeft": "Posteriore sinistra",
       "RearRight": "Posteriore destra",
       "Right": "Destra flex",
-      "FrontRight": "Anteriore destra"
+      "FrontRight": "Anteriore destra",
+      "Center": "Centrale"
     },
     "zone_mode": {
       "off": "Spenta",

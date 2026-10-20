@@ -10,7 +10,7 @@
  * MIT License - Copyright (c) 2026 Fabio Scarparo
  */
 
-const VERSION = "0.6.2";
+const VERSION = "0.6.3";
 const DOMAIN = "homeconnect_ws";
 const UNAVAILABLE = new Set(["unavailable", "unknown"]);
 
@@ -192,6 +192,7 @@ const STRINGS = {
       RearRight: "Posteriore destra",
       Right: "Destra flex",
       FrontRight: "Anteriore destra",
+      Center: "Centrale",
     },
     zone_mode: { off: "Spenta", active: "Accesa", residual: "Calore residuo", unselectable: "Non selezionabile" },
     zones_all_off: "Tutte le zone spente",
@@ -381,6 +382,7 @@ const STRINGS = {
       RearRight: "Rear right",
       Right: "Right flex",
       FrontRight: "Front right",
+      Center: "Center",
     },
     zone_mode: { off: "Off", active: "On", residual: "Residual heat", unselectable: "Not selectable" },
     zones_all_off: "All zones are off",
@@ -570,6 +572,7 @@ const STRINGS = {
       RearRight: "Hinten rechts",
       Right: "Flex rechts",
       FrontRight: "Vorne rechts",
+      Center: "Mitte",
     },
     zone_mode: { off: "Aus", active: "An", residual: "Restwärme", unselectable: "Nicht wählbar" },
     zones_all_off: "Alle Kochzonen sind aus",
@@ -1074,6 +1077,8 @@ const HOB_ZONES = [
   { id: "200", name: "RearLeft" },
   { id: "100", name: "FrontLeft" },
   { id: "120", name: "Left" },
+  // The large middle zone of 80 cm hobs such as the Bosch PXV875DV1E
+  { id: "500", name: "Center" },
   { id: "300", name: "RearRight" },
   { id: "400", name: "FrontRight" },
   { id: "340", name: "Right" },
@@ -3636,14 +3641,29 @@ class HobCard extends HomeConnectCard {
     const byId = Object.fromEntries(zones.map((z) => [z.id, z]));
     const lit = (id) => byId[id] && ["active", "residual"].includes(byId[id].mode);
     const rightFlex = !!byId["340"];
-    const layout = {
-      "200": { rect: [20, 20, 140, 80] },
-      "100": { rect: [20, 110, 140, 80] },
-      "120": { rect: [20, 20, 140, 170] },
-      "300": rightFlex ? { rect: [180, 20, 140, 80] } : { circle: [248, 58, 38] },
-      "400": rightFlex ? { rect: [180, 110, 140, 80] } : { circle: [256, 148, 44] },
-      "340": { rect: [180, 20, 140, 170] },
-    };
+    // 80 cm hobs have a large zone in the middle. The Bosch PXV875DV1E gives the size and
+    // position of each zone: drawn at 4 px per cm, with the front at the bottom
+    const wide = !!byId["500"];
+    const leftFlex = !!byId["120"];
+    const layout = wide
+      ? {
+          "200": leftFlex ? { rect: [19, 12, 84, 79] } : { circle: [61, 49, 30] },
+          "100": leftFlex ? { rect: [19, 93, 84, 79] } : { circle: [61, 139, 36] },
+          "120": { rect: [19, 12, 84, 160] },
+          "500": { circle: [150, 80, 48] },
+          "300": rightFlex ? { rect: [218, 12, 84, 79] } : { circle: [260, 52, 38] },
+          "400": rightFlex ? { rect: [218, 93, 84, 79] } : { circle: [260, 133, 40] },
+          "340": { rect: [218, 12, 84, 160] },
+        }
+      : {
+          "200": { rect: [20, 20, 140, 80] },
+          "100": { rect: [20, 110, 140, 80] },
+          "120": { rect: [20, 20, 140, 170] },
+          "300": rightFlex ? { rect: [180, 20, 140, 80] } : { circle: [248, 58, 38] },
+          "400": rightFlex ? { rect: [180, 110, 140, 80] } : { circle: [256, 148, 44] },
+          "340": { rect: [180, 20, 140, 170] },
+        };
+    const [width, height] = wide ? [324, 190] : [340, 210];
     const hidden = new Set();
     if (lit("120")) hidden.add("100").add("200");
     else hidden.add("120");
@@ -3658,7 +3678,8 @@ class HobCard extends HomeConnectCard {
         let cy;
         let svg;
         const strength = z.mode === "active" ? this._levelStrength(z.level) : 0;
-        const fill = z.mode === "active" ? `fill-opacity:${(0.28 + strength * 0.6).toFixed(2)}` : "";
+        // Strong enough at every level for the white level on top, stronger as the level goes up
+        const fill = z.mode === "active" ? `fill-opacity:${Math.max(0.62, 0.28 + strength * 0.6).toFixed(2)}` : "";
         if (shape.rect) {
           const [x, y, w, h] = shape.rect;
           cx = x + w / 2;
@@ -3671,16 +3692,19 @@ class HobCard extends HomeConnectCard {
           svg = `<circle class="shape" cx="${x}" cy="${y}" r="${r}" style="${fill}"></circle>`;
         }
         const name = this._t(`zones.${z.name}`);
+        // Smaller in the small round zones of 80 cm hobs: the level fits the zone
+        const size = shape.circle ? Math.min(30, Math.round(shape.circle[2] * 0.8)) : 30;
+        const fontSize = size < 30 ? `font-size:${size}px;` : "";
         let label = "";
         if (z.mode === "active") {
           const text = this._levelText(z.level);
-          const color = strength > 0.45 ? "#fff" : "var(--primary-text-color)";
+          const color = "#fff";
           const timer = z.remaining > 0 ? durationText(z.remaining) : "";
           label = `
-            <text class="lvl ${text.length > 3 ? "small" : ""}" x="${cx}" y="${timer ? cy - 8 : cy}" dy="0.355em" style="fill:${color}">${esc(text)}</text>
+            <text class="lvl ${text.length > 3 ? "small" : ""}" x="${cx}" y="${timer ? cy - 8 : cy}" dy="0.355em" style="${text.length > 3 ? "" : fontSize}fill:${color}">${esc(text)}</text>
             ${timer ? `<text class="tmr" x="${cx}" y="${cy + 20}" dy="0.355em" style="fill:${color}">${esc(timer)}</text>` : ""}`;
         } else if (z.mode === "residual") {
-          label = `<text class="lvl" x="${cx}" y="${cy}" dy="0.355em">H</text>`;
+          label = `<text class="lvl" x="${cx}" y="${cy}" dy="0.355em"${fontSize ? ` style="${fontSize}"` : ""}>H</text>`;
         }
         const desc = `${name}: ${this._t(`zone_mode.${z.mode}`)}${z.mode === "active" ? ` ${this._levelText(z.level)}` : ""}`;
         return `
@@ -3692,8 +3716,8 @@ class HobCard extends HomeConnectCard {
 
     const anyLit = zones.some((z) => z.mode === "active" || z.mode === "residual");
     return `
-      <svg class="hob" viewBox="0 0 340 210" role="group">
-        <rect class="glass" x="0.5" y="0.5" width="339" height="209" rx="18"></rect>
+      <svg class="hob" viewBox="0 0 ${width} ${height}" role="group">
+        <rect class="glass" x="0.5" y="0.5" width="${width - 1}" height="${height - 1}" rx="18"></rect>
         ${shapes}
       </svg>
       ${anyLit ? "" : `<div class="hob-off">${esc(this._t("zones_all_off"))}</div>`}`;
