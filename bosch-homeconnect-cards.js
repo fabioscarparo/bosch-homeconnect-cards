@@ -10,7 +10,7 @@
  * MIT License - Copyright (c) 2026 Fabio Scarparo
  */
 
-const VERSION = "0.6.3";
+const VERSION = "0.6.4";
 const DOMAIN = "homeconnect_ws";
 const UNAVAILABLE = new Set(["unavailable", "unknown"]);
 
@@ -666,9 +666,13 @@ const PROGRAM_LABELS = {
     "dryer:depthcare": "Cura profonda",
     "dryer:downfeathers": "Piumini",
     "dryer:mix": "Carico misto",
+    "dryer:cottoneco": "Eco",
     "dryer:ecocottoneu23": "Eco",
     "dryer:hygiene": "Allergy Plus",
     "dryer:inbasket": "Lana con cestello",
+    "dryer:inbasketplushtoys": "Peluches con cestello",
+    "dryer:jeans": "Jeans",
+    "dryer:pillow": "Piumini",
     "dryer:quickcare": "Cura rapida",
     "dryer:shirtblouses": "Camicie",
     "dryer:silentdry": "Silent dry",
@@ -792,9 +796,13 @@ const PROGRAM_LABELS = {
     "dryer:delicates": "Delicates",
     "dryer:depthcare": "Deep care",
     "dryer:downfeathers": "Down",
+    "dryer:cottoneco": "Eco cotton",
     "dryer:ecocottoneu23": "Eco cotton",
     "dryer:hygiene": "Hygiene",
     "dryer:inbasket": "Wool basket",
+    "dryer:inbasketplushtoys": "Soft toys in basket",
+    "dryer:jeans": "Jeans",
+    "dryer:pillow": "Pillows",
     "dryer:quickcare": "Quick care",
     "dryer:shirtblouses": "Shirts",
     "dryer:silentdry": "Silent Dry",
@@ -912,9 +920,13 @@ const PROGRAM_LABELS = {
     "dryer:delicates": "Feinwäsche",
     "dryer:depthcare": "Tiefenpflege",
     "dryer:downfeathers": "Daunen",
+    "dryer:cottoneco": "Baumwolle Eco",
     "dryer:ecocottoneu23": "Baumwolle Eco",
     "dryer:hygiene": "Hygiene",
     "dryer:inbasket": "Wollkorb",
+    "dryer:inbasketplushtoys": "Kuscheltiere im Korb",
+    "dryer:jeans": "Jeans",
+    "dryer:pillow": "Kopfkissen",
     "dryer:quickcare": "Schnellpflege",
     "dryer:shirtblouses": "Hemden/Blusen",
     "dryer:silentdry": "Silent Dry",
@@ -1157,6 +1169,16 @@ const OPTION_STEPS = {
   // Only the durations: the dryer card turns the wrinkle guard on and off with its own button
   select_laundry_wrinkle_guard: (option) => /^min\d+$/.test(option),
 };
+
+// The values a stepper goes through, lowest first. Home Connect Local by chris-mc1 can list
+// them sorted as text (min120 before min30), so the numbered ones are sorted by number.
+function stepOptions(key, options = []) {
+  const allowed = options.filter(OPTION_STEPS[key] || (() => true));
+  const number = (option) => Number(String(option).match(/\d+$/)?.[0] ?? NaN);
+  const plain = allowed.filter((option) => Number.isNaN(number(option)));
+  const numbered = allowed.filter((option) => !Number.isNaN(number(option))).sort((a, b) => number(a) - number(b));
+  return [...plain, ...numbered];
+}
 
 // "2h" or "90min", as used by the fork's "Delay start" select
 function delayOptionSeconds(option) {
@@ -2285,7 +2307,7 @@ class HomeConnectCard extends HTMLElement {
   _optionStepper(key, { label, icon, format }) {
     const stateObj = this.st(key);
     if (!stateObj || UNAVAILABLE.has(stateObj.state)) return "";
-    const options = (stateObj.attributes.options || []).filter(OPTION_STEPS[key] || (() => true));
+    const options = stepOptions(key, stateObj.attributes.options);
     const current = this._pendingVal(stateObj.entity_id) ?? stateObj.state;
     const index = options.indexOf(current);
     const off = this._d.running || this._d.remoteControlOff;
@@ -2730,7 +2752,7 @@ class HomeConnectCard extends HTMLElement {
       case "option-step": {
         const stateObj = this.st(key);
         if (!stateObj) break;
-        const options = (stateObj.attributes.options || []).filter(OPTION_STEPS[key] || (() => true));
+        const options = stepOptions(key, stateObj.attributes.options);
         const current = this._pendingVal(stateObj.entity_id) ?? stateObj.state;
         const index = clamp(options.indexOf(current) + Number(el.dataset.delta), 0, options.length - 1);
         if (options[index] !== current) this._select(key, options[index]);
@@ -2932,8 +2954,9 @@ class CycleCard extends HomeConnectCard {
     const estimate = toSeconds(this.st("sensor_estimated_remaining_program_time"));
     const startIn = toSeconds(this.st("sensor_start_in"));
     const progress = this.numVal("sensor_program_progress");
-    // Before the start the remaining time can be 0, as nothing is running: then the estimate counts
-    const expected = remaining > 0 ? remaining : estimate > 60 ? estimate : null;
+    // Before the start the remaining time can be 0, as nothing is running: then the estimate counts.
+    // A leftover minute doesn't, also when the hours give 60.0000001 seconds.
+    const expected = remaining > 0 ? remaining : Math.round(estimate) > 60 ? estimate : null;
     return { remaining, estimate, expected, startIn, progress };
   }
 
@@ -3194,8 +3217,8 @@ class DryerCard extends CycleCard {
   _derive() {
     const d = super._derive();
     // The same times the dial shows: a leftover estimate of a minute doesn't count
-    const { remaining, estimate } = this._times();
-    if (!d.program && (d.op === "Ready" || d.running) && (remaining > 0 || estimate > 60)) d.programHint = this._t("app_program");
+    const { remaining, expected } = this._times();
+    if (!d.program && (d.op === "Ready" || d.running) && (remaining > 0 || expected)) d.programHint = this._t("app_program");
     return d;
   }
 
@@ -3213,7 +3236,7 @@ class DryerCard extends CycleCard {
     if (!stateObj || UNAVAILABLE.has(stateObj.state)) return null;
     const options = stateObj.attributes.options || [];
     const current = this._pendingVal(stateObj.entity_id) ?? stateObj.state;
-    return { current, durations: options.filter(OPTION_STEPS.select_laundry_wrinkle_guard), canTurnOff: options.includes("off") };
+    return { current, durations: stepOptions("select_laundry_wrinkle_guard", options), canTurnOff: options.includes("off") };
   }
 
   _wrinkleButton(d) {
@@ -3309,6 +3332,8 @@ class DryerCard extends CycleCard {
 
   _badges(d) {
     const badges = [this._doorBadge(), this._loadRecommendationBadge(d)];
+    // Only while it's on, like the lock on the dryer's display
+    if (this.on("switch_child_lock")) badges.push(this._badge("mdi:lock-outline", this._t("child_lock"), { key: "switch_child_lock" }));
     // While the program runs the controls are hidden: its drying level and wrinkle guard stay in sight
     if (d.running) {
       const target = this.val("select_laundry_drying_target");
