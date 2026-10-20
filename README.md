@@ -187,6 +187,12 @@ The energy of the last cycle and the consumption sheet show up only on
 dryers that report their energy: the Bosch WRB247C0IT behind these images
 doesn't.
 
+Programs downloaded from the Home Connect app, such as Jeans, have a code
+that Home Connect Local doesn't know yet
+([vemboy200/homeconnect_local_hass#230](https://github.com/vemboy200/homeconnect_local_hass/issues/230)):
+when one is chosen in the app, the card shows **Program chosen in the app**
+with its estimated time, but can't start it.
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="images/dryer-dark.svg">
   <img alt="Dryer card: off, ready, options, drying level picker, time program, running, cooling down, cleaning reminders, finished, program picker and compact view" src="images/dryer-light.svg">

@@ -10,7 +10,7 @@
  * MIT License - Copyright (c) 2026 Fabio Scarparo
  */
 
-const VERSION = "0.6.1";
+const VERSION = "0.6.2";
 const DOMAIN = "homeconnect_ws";
 const UNAVAILABLE = new Set(["unavailable", "unknown"]);
 
@@ -149,6 +149,7 @@ const STRINGS = {
     },
     wrinkle_guard: "Antipiega",
     wrinkle_duration: "Durata antipiega",
+    app_program: "Programma scelto nell'app",
     refresher: "Refresher",
     refresher_values: { shirt1: "1 camicia", shirt5: "5 camicie", business: "Business" },
     wash_spin: "Centrifuga del lavaggio",
@@ -337,6 +338,7 @@ const STRINGS = {
     },
     wrinkle_guard: "Wrinkle guard",
     wrinkle_duration: "Wrinkle guard duration",
+    app_program: "Program chosen in the app",
     refresher: "Refresher",
     refresher_values: { shirt1: "1 shirt", shirt5: "5 shirts", business: "Business" },
     wash_spin: "Wash spin speed",
@@ -525,6 +527,7 @@ const STRINGS = {
     },
     wrinkle_guard: "Knitterschutz",
     wrinkle_duration: "Knitterschutz-Dauer",
+    app_program: "In der App gewähltes Programm",
     refresher: "Refresher",
     refresher_values: { shirt1: "1 Hemd", shirt5: "5 Hemden", business: "Business" },
     wash_spin: "Schleuderdrehzahl der Wäsche",
@@ -2079,6 +2082,7 @@ class HomeConnectCard extends HTMLElement {
     const parts = [];
     if (d.op) parts.push(this._t(`op.${d.op}`));
     if (d.program && (d.running || d.op === "Ready" || d.op === "Finished")) parts.push(this._programLabel(d.program));
+    else if (d.programHint) parts.push(d.programHint);
     return parts.join(" · ");
   }
 
@@ -2198,7 +2202,8 @@ class HomeConnectCard extends HTMLElement {
     if (!this.eid("select_program") || d.running) return "";
     // "unknown" only means that no program is selected yet
     const disabled = this.val("select_program") === "unavailable" || d.remoteControlOff;
-    const label = d.program ? this._programLabel(d.program) : this._t("choose_program");
+    // programHint: a card can name a program the integration doesn't know
+    const label = d.program ? this._programLabel(d.program) : d.programHint || this._t("choose_program");
     return `
       <button class="select" data-action="open-programs" ${disabled ? "disabled" : ""}>
         <ha-icon icon="${d.program ? GROUP_ICONS[programInfo(d.program).group] || this.meta.programIcon : this.meta.programIcon}"></ha-icon>
@@ -2988,7 +2993,7 @@ class CycleCard extends HomeConnectCard {
       label: esc(this._t("estimated")),
       big: time ? time.value : "-",
       unit: time ? time.unit : "",
-      sub: duration != null && d.program ? esc(this._t("ends_at", { t: this._clock(this._delayValue() + duration) })) : "",
+      sub: duration != null && (d.program || d.programHint) ? esc(this._t("ends_at", { t: this._clock(this._delayValue() + duration) })) : "",
     });
   }
 
@@ -3177,6 +3182,16 @@ class DryerCard extends CycleCard {
     if (option === "off") return this._t("spin_off");
     const rpm = String(option).match(/^rpm(\d+)$/);
     return rpm ? this._t("rpm", { n: rpm[1] }) : this._optionLabel("select_laundry_spin_speed_before_drying", option);
+  }
+
+  // A program downloaded from the Home Connect app has a code the integration doesn't
+  // know, so the program is unknown, but the dryer gives its time (fork issue #230)
+  _derive() {
+    const d = super._derive();
+    // The same times the dial shows: a leftover estimate of a minute doesn't count
+    const { remaining, estimate } = this._times();
+    if (!d.program && (d.op === "Ready" || d.running) && (remaining > 0 || estimate > 60)) d.programHint = this._t("app_program");
+    return d;
   }
 
   // The cool-down has its own event, for when the phase doesn't tell
