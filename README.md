@@ -307,6 +307,7 @@ for example, counts the cycles from then on.
 | English | ✅ |
 | Italian | ✅ |
 | German | ✅ |
+| Slovak | ✅ |
 
 Labels, states, program names and the visual editor follow the language of
 each user's profile, with English for any other language. Program names ship
