@@ -10,7 +10,7 @@
  * MIT License - Copyright (c) 2026 Fabio Scarparo
  */
 
-const VERSION = "0.6.6";
+const VERSION = "0.6.7";
 const DOMAIN = "homeconnect_ws";
 const UNAVAILABLE = new Set(["unavailable", "unknown"]);
 
@@ -3334,7 +3334,8 @@ class DryerCard extends CycleCard {
     const badges = [this._doorBadge(), this._loadRecommendationBadge(d)];
     // Only while it's on, like the lock on the dryer's display
     if (this.on("switch_child_lock")) badges.push(this._badge("mdi:lock-outline", this._t("child_lock"), { key: "switch_child_lock" }));
-    // While the program runs the controls are hidden: its drying level and wrinkle guard stay in sight
+    // While the program runs the controls are hidden: its drying level, the options turned on
+    // and the wrinkle guard stay in sight
     if (d.running) {
       const target = this.val("select_laundry_drying_target");
       if (this.ok("select_laundry_drying_target")) {
@@ -3343,6 +3344,11 @@ class DryerCard extends CycleCard {
             key: "select_laundry_drying_target",
           }),
         );
+      }
+      for (const key of this._optionKeys().filter((key) => this.on(key))) {
+        const meta = OPTION_META[key] || {};
+        const stateObj = this.st(key);
+        badges.push(this._badge(meta.icon || stateObj.attributes.icon || "mdi:tune-variant", meta[this._lang] || this._entityName(stateObj), { key }));
       }
       const wrinkle = this.val("select_laundry_wrinkle_guard");
       if (this.ok("select_laundry_wrinkle_guard") && wrinkle !== "off") {
