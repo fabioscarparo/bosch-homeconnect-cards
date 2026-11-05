@@ -10,7 +10,7 @@
  * MIT License - Copyright (c) 2026 Fabio Scarparo
  */
 
-const VERSION = "0.6.8";
+const VERSION = "0.6.9";
 const DOMAIN = "homeconnect_ws";
 const UNAVAILABLE = new Set(["unavailable", "unknown"]);
 
@@ -3270,7 +3270,13 @@ class CycleCard extends HomeConnectCard {
     const progress = this.numVal("sensor_program_progress");
     // Before the start the remaining time can be 0, as nothing is running: then the estimate counts.
     // A leftover minute doesn't, also when the hours give 60.0000001 seconds.
-    const expected = remaining > 0 ? remaining : Math.round(estimate) > 60 ? estimate : null;
+    let expected = remaining > 0 ? remaining : Math.round(estimate) > 60 ? estimate : null;
+    // From 2.0.0b5 the fork reports those times only once a program runs. Before the start, the
+    // finish time a washer or dryer proposes is the program's duration: the delay is added at start.
+    if (expected == null && String(this.val("sensor_operation_state")).toLowerCase() === "ready") {
+      const finishIn = toSeconds(this.st("sensor_finish_in"));
+      if (Math.round(finishIn) > 60) expected = finishIn;
+    }
     return { remaining, estimate, expected, startIn, progress };
   }
 
