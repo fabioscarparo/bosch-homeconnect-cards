@@ -10,7 +10,7 @@
  * MIT License - Copyright (c) 2026 Fabio Scarparo
  */
 
-const VERSION = "0.6.10";
+const VERSION = "0.6.11";
 const DOMAIN = "homeconnect_ws";
 const UNAVAILABLE = new Set(["unavailable", "unknown"]);
 
@@ -2059,8 +2059,9 @@ const STYLES = `
     transition: background-color 180ms, color 180ms;
     --mdc-icon-size: 22px;
   }
-  .icon-btn:hover { background: color-mix(in srgb, var(--primary-text-color) 8%, transparent); }
+  .icon-btn:hover:not(:disabled) { background: color-mix(in srgb, var(--primary-text-color) 8%, transparent); }
   .icon-btn.on { color: var(--accent); }
+  .icon-btn:disabled { opacity: 0.45; }
 
   /* Dial */
   .dial { position: relative; width: 100%; max-width: 248px; aspect-ratio: 1; margin: -4px auto -12px; }
@@ -2646,6 +2647,12 @@ class HomeConnectCard extends HTMLElement {
     return this.val(key) === "on";
   }
 
+  // The fork marks what the appliance won't let change right now as readonly, like an option
+  // the program fixes or the power of some washers, and refuses to write it
+  locked(key) {
+    return this.st(key)?.attributes?.readonly === true;
+  }
+
   _pendingVal(entityId) {
     const pending = this._pending[entityId];
     if (!pending) return undefined;
@@ -2746,7 +2753,7 @@ class HomeConnectCard extends HTMLElement {
     const infoKey = this.eid("sensor_operation_state") ? "sensor_operation_state" : "switch_power_state";
     const power = d.offline ? null : this._power();
     const powerBtn = power
-      ? `<button class="icon-btn ${power.on ? "on" : ""}" data-action="power-toggle"
+      ? `<button class="icon-btn ${power.on ? "on" : ""}" data-action="power-toggle"${power.locked ? " disabled" : ""}
            title="${esc(this._t("power"))}" aria-label="${esc(this._t("power"))}" aria-pressed="${power.on}">
            <ha-icon icon="mdi:power"></ha-icon></button>`
       : "";
@@ -2771,7 +2778,8 @@ class HomeConnectCard extends HTMLElement {
   _power() {
     const toggle = this.st("switch_power_state");
     if (toggle && !UNAVAILABLE.has(toggle.state)) {
-      return { kind: "switch", id: toggle.entity_id, on: (this._pendingVal(toggle.entity_id) ?? toggle.state) === "on" };
+      const on = (this._pendingVal(toggle.entity_id) ?? toggle.state) === "on";
+      return { kind: "switch", id: toggle.entity_id, on, locked: this.locked("switch_power_state") };
     }
     const select = this.st("select_power_state");
     if (!select || UNAVAILABLE.has(select.state)) return null;
@@ -2783,12 +2791,13 @@ class HomeConnectCard extends HTMLElement {
     const offOption = option("off") ?? option("mainsoff") ?? option("standby");
     if (!onOption || !offOption) return null;
     const state = this._pendingVal(select.entity_id) ?? select.state;
-    return { kind: "select", id: select.entity_id, on: String(state).toLowerCase() === "on", onOption, offOption };
+    const on = String(state).toLowerCase() === "on";
+    return { kind: "select", id: select.entity_id, on, onOption, offOption, locked: this.locked("select_power_state") };
   }
 
   _setPower(on) {
     const power = this._power();
-    if (!power) return;
+    if (!power || power.locked) return;
     const value = power.kind === "switch" ? (on ? "on" : "off") : on ? power.onOption : power.offOption;
     this._pending[power.id] = { value, time: Date.now() };
     this._render();
@@ -2800,10 +2809,11 @@ class HomeConnectCard extends HTMLElement {
     if (d.offline) {
       return `<div class="empty"><ha-icon icon="mdi:lan-disconnect"></ha-icon><span>${esc(this._t("offline_hint"))}</span></div>`;
     }
-    if (!this._power()) return "";
+    const power = this._power();
+    if (!power) return "";
     return `
       <div class="actions">
-        <button class="ctrl tonal" data-action="power-on"><ha-icon icon="mdi:power"></ha-icon><span>${esc(this._t("power_on"))}</span></button>
+        <button class="ctrl tonal" data-action="power-on"${power.locked ? " disabled" : ""}><ha-icon icon="mdi:power"></ha-icon><span>${esc(this._t("power_on"))}</span></button>
       </div>`;
   }
 
@@ -2886,7 +2896,7 @@ class HomeConnectCard extends HTMLElement {
         const on = (this._pendingVal(stateObj.entity_id) ?? stateObj.state) === "on";
         const label = meta[this._lang] || this._entityName(stateObj);
         const icon = meta.icon || stateObj.attributes.icon || "mdi:tune-variant";
-        const disabled = (d.running && !meta.live) || d.remoteControlOff;
+        const disabled = (d.running && !meta.live) || d.remoteControlOff || this.locked(key);
         return `
           <button class="ctrl opt ${on ? "active" : ""}" data-action="toggle" data-key="${key}" aria-pressed="${on}" ${disabled ? "disabled" : ""}>
             <ha-icon icon="${icon}"></ha-icon><span>${esc(label)}</span>
@@ -2904,7 +2914,7 @@ class HomeConnectCard extends HTMLElement {
     const value = pending ?? Number(stateObj.state);
     const lo = min ?? attrs.min ?? 0;
     const hi = max ?? attrs.max ?? 100;
-    const off = disabled || this._d.remoteControlOff;
+    const off = disabled || this._d.remoteControlOff || this.locked(key);
     return this._stepperRow({
       label,
       icon: icon || attrs.icon || "mdi:numeric",
@@ -2938,7 +2948,7 @@ class HomeConnectCard extends HTMLElement {
     const options = stepOptions(key, stateObj.attributes.options);
     const current = this._pendingVal(stateObj.entity_id) ?? stateObj.state;
     const index = options.indexOf(current);
-    const off = this._d.running || this._d.remoteControlOff;
+    const off = this._d.running || this._d.remoteControlOff || this.locked(key);
     return this._stepperRow({
       label,
       icon,
@@ -2962,7 +2972,7 @@ class HomeConnectCard extends HTMLElement {
     const stateObj = this.st(key);
     if (!stateObj || UNAVAILABLE.has(stateObj.state)) return "";
     const current = this._pendingVal(stateObj.entity_id) ?? stateObj.state;
-    const disabled = this._d.running || this._d.remoteControlOff;
+    const disabled = this._d.running || this._d.remoteControlOff || this.locked(key);
     return `
       <button class="select" data-action="open-select" data-key="${key}" ${disabled ? "disabled" : ""}>
         <ha-icon icon="${icon}"></ha-icon>
@@ -2980,7 +2990,7 @@ class HomeConnectCard extends HTMLElement {
     const options = stateObj.attributes.options || [];
     if (options.length < 2 || options.length > 6) return "";
     const current = this._pendingVal(stateObj.entity_id) ?? stateObj.state;
-    const disabled = this._d.running || this._d.remoteControlOff;
+    const disabled = this._d.running || this._d.remoteControlOff || this.locked(key);
     return `
       <div class="row">
         <div class="row-label"><ha-icon icon="${icon || stateObj.attributes.icon || "mdi:format-list-numbered"}"></ha-icon><span>${esc(label)}</span></div>
@@ -3033,7 +3043,7 @@ class HomeConnectCard extends HTMLElement {
     const icon = "mdi:timer-plus-outline";
     if (delay.kind === "select") {
       const index = delay.options.indexOf(delay.option);
-      const off = this._d.remoteControlOff;
+      const off = this._d.remoteControlOff || this.locked(delay.key);
       return this._stepperRow({
         label,
         icon,
@@ -3878,7 +3888,7 @@ class DryerCard extends CycleCard {
     if (!wrinkle?.canTurnOff || !wrinkle.durations.length) return "";
     const on = wrinkle.current !== "off";
     return `
-      <button class="ctrl opt ${on ? "active" : ""}" data-action="wrinkle-toggle" aria-pressed="${on}" ${d.running || d.remoteControlOff ? "disabled" : ""}>
+      <button class="ctrl opt ${on ? "active" : ""}" data-action="wrinkle-toggle" aria-pressed="${on}" ${d.running || d.remoteControlOff || this.locked("select_laundry_wrinkle_guard") ? "disabled" : ""}>
         <ha-icon icon="mdi:hanger"></ha-icon><span>${esc(this._t("wrinkle_guard"))}</span>
       </button>`;
   }
@@ -4105,8 +4115,9 @@ class OvenCard extends HomeConnectCard {
       });
     }
     const range = setpoint.max - setpoint.min;
-    const minus = setpoint.value <= setpoint.min || d.remoteControlOff;
-    const plus = setpoint.value >= setpoint.max || d.remoteControlOff;
+    const fixed = d.remoteControlOff || this.locked("number_oven_setpoint_temperature");
+    const minus = setpoint.value <= setpoint.min || fixed;
+    const plus = setpoint.value >= setpoint.max || fixed;
     return `
       ${dial({
         pct: (setpoint.value - setpoint.min) / range,
