@@ -9,7 +9,7 @@
 
 <p align="center">
   <a href="https://github.com/fabioscarparo/bosch-homeconnect-cards/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/fabioscarparo/bosch-homeconnect-cards?label=Release&color=5CC300"></a>
-  <a href="https://hacs.xyz/"><img alt="HACS Custom" src="https://img.shields.io/badge/HACS-Custom-41BDF5?logo=homeassistantcommunitystore&logoColor=fff"></a>
+  <a href="https://hacs.xyz/"><img alt="HACS Default" src="https://img.shields.io/badge/HACS-Default-41BDF5?logo=homeassistantcommunitystore&logoColor=fff"></a>
   <a href="https://www.home-assistant.io/"><img alt="Home Assistant 2024.8+" src="https://img.shields.io/badge/Home_Assistant-2024.8%2B-18BCF2?logo=homeassistant&logoColor=fff"></a>
   <a href="https://developer.mozilla.org/docs/Web/JavaScript"><img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000"></a>
   <a href="LICENSE"><img alt="MIT" src="https://img.shields.io/badge/License-MIT-333"></a>
@@ -60,16 +60,13 @@ and renamed entities keep working.
 
 ### Install with HACS
 
-The cards are not in the default HACS store: add them as a custom
-repository.
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=fabioscarparo&repository=bosch-homeconnect-cards&category=plugin)
 
-1. Open **HACS**, then **⋮ → Custom repositories**.
-2. Add `https://github.com/fabioscarparo/bosch-homeconnect-cards` with
-   type **Dashboard**.
-3. Search for **Bosch Home Connect Cards**, open it and select
-   **Download**. HACS adds the dashboard resource for you and lets you know
-   when a new version is out.
-4. Reload the browser.
+1. Open **HACS** and search for **Bosch Home Connect Cards**, or select the
+   button above.
+2. Open it and select **Download**. HACS adds the dashboard resource for you
+   and lets you know when a new version is out.
+3. Reload the browser.
 
 ### Manual installation
 
