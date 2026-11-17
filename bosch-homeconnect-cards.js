@@ -10,7 +10,7 @@
  * MIT License - Copyright (c) 2026 Fabio Scarparo
  */
 
-const VERSION = "0.6.11";
+const VERSION = "0.6.13";
 const DOMAIN = "homeconnect_ws";
 const UNAVAILABLE = new Set(["unavailable", "unknown"]);
 
@@ -2760,7 +2760,7 @@ class HomeConnectCard extends HTMLElement {
     return `
       <div class="header">
         <div class="tile-icon" style="--tile-color:${color}" data-action="more-info" data-key="${infoKey}" role="button" tabindex="0">
-          <ha-icon icon="${this._config.icon || this.meta.icon}"></ha-icon>
+          <ha-icon icon="${esc(this._config.icon || this.meta.icon)}"></ha-icon>
         </div>
         <div class="tile-info" data-action="more-info" data-key="${infoKey}">
           <div class="name">${esc(this._config.name || this._deviceName())}</div>
@@ -2845,20 +2845,20 @@ class HomeConnectCard extends HTMLElement {
   // --- Building blocks -------------------------------------------------------
 
   _alert(type, icon, text) {
-    return `<div class="alert ${type}" role="status"><ha-icon icon="${icon}"></ha-icon><span>${esc(text)}</span></div>`;
+    return `<div class="alert ${type}" role="status"><ha-icon icon="${esc(icon)}"></ha-icon><span>${esc(text)}</span></div>`;
   }
 
   _badge(icon, text, { key, entity, color, label, action: onTap, parts = [] } = {}) {
     const target = entity || (key ? this.eid(key) : undefined);
-    let action = target ? `data-action="more-info" data-entity="${target}" role="button" tabindex="0"` : "";
-    if (onTap) action = `data-action="${onTap}" role="button" tabindex="0"`;
+    let action = target ? `data-action="more-info" data-entity="${esc(target)}" role="button" tabindex="0"` : "";
+    if (onTap) action = `data-action="${esc(onTap)}" role="button" tabindex="0"`;
     return `
-      <div class="badge ${icon ? "" : "no-icon"}" ${action} style="${color ? `--badge-color:${color}` : ""}">
-        ${icon ? `<ha-icon icon="${icon}"></ha-icon>` : ""}
+      <div class="badge ${icon ? "" : "no-icon"}" ${action} style="${color ? `--badge-color:${esc(color)}` : ""}">
+        ${icon ? `<ha-icon icon="${esc(icon)}"></ha-icon>` : ""}
         ${label ? `<span class="muted">${esc(label)}</span>` : ""}
         ${text != null ? `<span>${esc(text)}</span>` : ""}
         ${parts
-          .map((part) => `<ha-icon class="part" icon="${part.icon}" style="--badge-color:${part.color}"></ha-icon><span>${esc(part.text)}</span>`)
+          .map((part) => `<ha-icon class="part" icon="${esc(part.icon)}" style="--badge-color:${esc(part.color)}"></ha-icon><span>${esc(part.text)}</span>`)
           .join("")}
       </div>`;
   }
@@ -2898,8 +2898,8 @@ class HomeConnectCard extends HTMLElement {
         const icon = meta.icon || stateObj.attributes.icon || "mdi:tune-variant";
         const disabled = (d.running && !meta.live) || d.remoteControlOff || this.locked(key);
         return `
-          <button class="ctrl opt ${on ? "active" : ""}" data-action="toggle" data-key="${key}" aria-pressed="${on}" ${disabled ? "disabled" : ""}>
-            <ha-icon icon="${icon}"></ha-icon><span>${esc(label)}</span>
+          <button class="ctrl opt ${on ? "active" : ""}" data-action="toggle" data-key="${esc(key)}" aria-pressed="${on}" ${disabled ? "disabled" : ""}>
+            <ha-icon icon="${esc(icon)}"></ha-icon><span>${esc(label)}</span>
           </button>`;
       });
     items.unshift(...first.filter(Boolean));
@@ -2931,12 +2931,12 @@ class HomeConnectCard extends HTMLElement {
   _stepperRow({ label, icon, text, pending, action, key, step, minus, plus }) {
     return `
       <div class="row">
-        <div class="row-label"><ha-icon icon="${icon}"></ha-icon><span>${esc(label)}</span></div>
+        <div class="row-label"><ha-icon icon="${esc(icon)}"></ha-icon><span>${esc(label)}</span></div>
         <div class="stepper ${pending ? "pending" : ""}">
-          <button data-action="${action}" data-key="${key}" data-delta="${-step}" ${minus ? "disabled" : ""} aria-label="-">
+          <button data-action="${action}" data-key="${esc(key)}" data-delta="${-step}" ${minus ? "disabled" : ""} aria-label="-">
             <ha-icon icon="mdi:minus"></ha-icon></button>
           <span class="num">${esc(text)}</span>
-          <button data-action="${action}" data-key="${key}" data-delta="${step}" ${plus ? "disabled" : ""} aria-label="+">
+          <button data-action="${action}" data-key="${esc(key)}" data-delta="${step}" ${plus ? "disabled" : ""} aria-label="+">
             <ha-icon icon="mdi:plus"></ha-icon></button>
         </div>
       </div>`;
@@ -2974,8 +2974,8 @@ class HomeConnectCard extends HTMLElement {
     const current = this._pendingVal(stateObj.entity_id) ?? stateObj.state;
     const disabled = this._d.running || this._d.remoteControlOff || this.locked(key);
     return `
-      <button class="select" data-action="open-select" data-key="${key}" ${disabled ? "disabled" : ""}>
-        <ha-icon icon="${icon}"></ha-icon>
+      <button class="select" data-action="open-select" data-key="${esc(key)}" ${disabled ? "disabled" : ""}>
+        <ha-icon icon="${esc(icon)}"></ha-icon>
         <span class="sel-text">
           <span class="lbl">${esc(label)}</span>
           <span class="val">${esc(current === "off" ? this._t("none") : this._optionLabel(key, current))}</span>
@@ -2993,13 +2993,13 @@ class HomeConnectCard extends HTMLElement {
     const disabled = this._d.running || this._d.remoteControlOff || this.locked(key);
     return `
       <div class="row">
-        <div class="row-label"><ha-icon icon="${icon || stateObj.attributes.icon || "mdi:format-list-numbered"}"></ha-icon><span>${esc(label)}</span></div>
+        <div class="row-label"><ha-icon icon="${esc(icon || stateObj.attributes.icon || "mdi:format-list-numbered")}"></ha-icon><span>${esc(label)}</span></div>
         <div class="segmented" role="radiogroup">
           ${options
             .map(
               (option) => `
             <button class="${option === current ? "sel" : ""}" role="radio" aria-checked="${option === current}"
-              data-action="select" data-key="${key}" data-option="${esc(option)}" ${disabled ? "disabled" : ""}>
+              data-action="select" data-key="${esc(key)}" data-option="${esc(option)}" ${disabled ? "disabled" : ""}>
               ${esc(format ? format(option) : this._fmtState(stateObj, option))}</button>`,
             )
             .join("")}
@@ -3070,9 +3070,9 @@ class HomeConnectCard extends HTMLElement {
       const disabled = blocked || d.remoteControlOff || (key && (!this.st(key) || this.val(key) === "unavailable"));
       return `
         <button class="ctrl ${primary ? "primary" : ""} ${iconOnly ? "icon-only" : ""}" data-action="${action}"
-          ${key ? `data-key="${key}"` : ""} ${disabled ? "disabled" : ""}
+          ${key ? `data-key="${esc(key)}"` : ""} ${disabled ? "disabled" : ""}
           title="${esc(text)}" aria-label="${esc(text)}">
-          <ha-icon icon="${icon}"></ha-icon>${iconOnly ? "" : `<span>${esc(text)}</span>`}
+          <ha-icon icon="${esc(icon)}"></ha-icon>${iconOnly ? "" : `<span>${esc(text)}</span>`}
         </button>`;
     };
     const stop = (iconOnly) =>
@@ -3265,7 +3265,7 @@ class HomeConnectCard extends HTMLElement {
         return `
           <button class="usage-tile ${name === metric ? "sel" : ""}" data-action="usage-metric" data-metric="${name}"
             style="--metric:${m.color}" aria-pressed="${name === metric}">
-            <span class="ut-head"><ha-icon icon="${m.icon}"></ha-icon>${esc(this._t(name))}</span>
+            <span class="ut-head"><ha-icon icon="${esc(m.icon)}"></ha-icon>${esc(this._t(name))}</span>
             <span class="ut-value">${value != null ? `${esc(this._num(value, m.digits))}<span class="unit">${m.unit}</span>` : "-"}</span>
             <span class="ut-sub">${esc(period)}</span>
           </button>`;
@@ -3335,7 +3335,7 @@ class HomeConnectCard extends HTMLElement {
         <div class="usage-rows">${rows
           .map(
             ([icon, label, value, secondary]) => `
-          <div class="row"><div class="row-label"><ha-icon icon="${icon}"></ha-icon>
+          <div class="row"><div class="row-label"><ha-icon icon="${esc(icon)}"></ha-icon>
             <div class="row-text"><span>${esc(label)}</span>${secondary ? `<span class="secondary">${esc(secondary)}</span>` : ""}</div></div>
             <span class="row-value">${esc(value)}</span></div>`,
           )
@@ -3543,7 +3543,7 @@ class HomeConnectCard extends HTMLElement {
         .map(
           (option) => `
           <button class="item ${option === current ? "selected" : ""}" data-action="pick-option"
-            data-key="${this._sheet.key}" data-option="${esc(option)}">
+            data-key="${esc(this._sheet.key)}" data-option="${esc(option)}">
             <span>${esc(this._optionLabel(this._sheet.key, option))}</span>
             ${option === current ? '<ha-icon icon="mdi:check"></ha-icon>' : ""}
           </button>`,
@@ -4387,7 +4387,7 @@ class HobCard extends HomeConnectCard {
         }
         const desc = `${name}: ${this._t(`zone_mode.${z.mode}`)}${z.mode === "active" ? ` ${this._levelText(z.level)}` : ""}`;
         return `
-          <g class="zone ${z.mode}" data-action="zone" data-zone="${z.id}" role="button" tabindex="0" aria-label="${esc(desc)}">
+          <g class="zone ${z.mode}" data-action="zone" data-zone="${esc(z.id)}" role="button" tabindex="0" aria-label="${esc(desc)}">
             <title>${esc(desc)}</title>${svg}${label}
           </g>`;
       })
