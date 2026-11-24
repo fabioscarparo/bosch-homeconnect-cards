@@ -10,7 +10,7 @@
  * MIT License - Copyright (c) 2026 Fabio Scarparo
  */
 
-const VERSION = "0.6.13";
+const VERSION = "0.6.15";
 const DOMAIN = "homeconnect_ws";
 const UNAVAILABLE = new Set(["unavailable", "unknown"]);
 
@@ -1694,8 +1694,8 @@ const OPTION_META = {
   switch_laundry_hygiene: { icon: "mdi:shield-check-outline", it: "Igiene", en: "Hygiene", de: "Hygiene", sk: "Hygiena", nl: "Hygiëne" },
   switch_laundry_wrinkle_guard_boost: { icon: "mdi:hanger", it: "Antipiega boost", en: "Wrinkle guard boost", de: "Knitterschutz Boost", sk: "Zvýšená ochrana proti pokrčeniu", nl: "Extra kreukbescherming" },
   switch_hygiene_plus: { icon: "mdi:shimmer", it: "Hygiene Plus", en: "Hygiene Plus", de: "Hygiene Plus", sk: "Hygiena plus", nl: "Hygiëne Plus" },
-  switch_vario_speed_plus: { icon: "mdi:rabbit", it: "VarioSpeed Plus", en: "VarioSpeed Plus", de: "VarioSpeed Plus", sk: "VarioSpeed Plus", nl: "VarioSpeed Plus" },
-  switch_silence_on_demand: { icon: "mdi:volume-off", it: "Silenzio su richiesta", en: "Silence on demand", de: "Leise auf Knopfdruck", sk: "Tichý režim na požiadanie", nl: "Stil op verzoek" },
+  switch_vario_speed_plus: { icon: "mdi:rabbit", it: "VarioSpeed Plus", en: "VarioSpeed Plus", de: "VarioSpeed Plus", sk: "VarioSpeed Plus", nl: "VarioSpeed Plus", live: true },
+  switch_silence_on_demand: { icon: "mdi:volume-off", it: "Silenzio su richiesta", en: "Silence on demand", de: "Leise auf Knopfdruck", sk: "Tichý režim na požiadanie", nl: "Stil op verzoek", live: true },
   switch_extra_dry: { icon: "mdi:weather-sunny", it: "Asciugatura extra", en: "Extra dry", de: "Extra Trocken", sk: "Extra suché", nl: "Extra droog" },
   switch_oven_fast_pre_heat: { icon: "mdi:fast-forward", it: "Preriscaldamento rapido", en: "Fast preheat", de: "Schnellaufheizen", sk: "Rýchle predhrievanie", nl: "Snel voorverwarmen" },
   switch_oven_steam_boost: { icon: "mdi:weather-fog", it: "Getto di vapore", en: "Steam boost", de: "Dampfstoß", sk: "Parný impulz", nl: "Extra stoom" },
@@ -3604,6 +3604,17 @@ class CycleCard extends HomeConnectCard {
     return { remaining, estimate, expected, startIn, progress };
   }
 
+  // The options turned on, as badges while the program runs and their switches are hidden
+  _optionBadges(keys = this._optionKeys()) {
+    return keys
+      .filter((key) => this.on(key))
+      .map((key) => {
+        const meta = OPTION_META[key] || {};
+        const stateObj = this.st(key);
+        return this._badge(meta.icon || stateObj.attributes.icon || "mdi:tune-variant", meta[this._lang] || this._entityName(stateObj), { key });
+      });
+  }
+
   // Before the start, for the selected program
   _loadRecommendationBadge(d) {
     if (d.off || d.running || !(this.numVal("sensor_laundry_load_recommendation") > 0)) return "";
@@ -3989,11 +4000,7 @@ class DryerCard extends CycleCard {
           }),
         );
       }
-      for (const key of this._optionKeys().filter((key) => this.on(key))) {
-        const meta = OPTION_META[key] || {};
-        const stateObj = this.st(key);
-        badges.push(this._badge(meta.icon || stateObj.attributes.icon || "mdi:tune-variant", meta[this._lang] || this._entityName(stateObj), { key }));
-      }
+      badges.push(...this._optionBadges());
       const wrinkle = this.val("select_laundry_wrinkle_guard");
       if (this.ok("select_laundry_wrinkle_guard") && wrinkle !== "off") {
         badges.push(
@@ -4012,10 +4019,15 @@ class DryerCard extends CycleCard {
 class DishwasherCard extends CycleCard {
   static kind = "dishwasher";
 
+  // The options a program can change while it runs, like Silence on demand and VarioSpeed Plus
+  _liveOptionKeys() {
+    return this._optionKeys().filter((key) => OPTION_META[key]?.live);
+  }
+
   _controls(d) {
     return [
       this._programSelect(d),
-      d.running ? "" : this._options(d),
+      this._options(d, d.running ? this._liveOptionKeys() : this._optionKeys()),
       d.running ? "" : this._delayControl(1800),
       this._hints(d),
       this._actions(d),
@@ -4063,6 +4075,11 @@ class DishwasherCard extends CycleCard {
           }),
         );
       }
+    }
+    // The other options turned on stay in sight while the program runs
+    if (d.running) {
+      const live = this._liveOptionKeys();
+      badges.push(...this._optionBadges(this._optionKeys().filter((key) => !live.includes(key))));
     }
     if (!d.running) badges.push(...this._lastCycleBadges());
     return badges;
